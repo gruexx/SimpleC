@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.ShopcartMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.Shopcart">
+    <id column="shopcartId" jdbcType="INTEGER" property="shopcartid" />
+    <result column="userId_fk_shopcart" jdbcType="INTEGER" property="useridFkShopcart" />
+    <result column="goodsId_fk_shopcart" jdbcType="INTEGER" property="goodsidFkShopcart" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="isBuy" jdbcType="INTEGER" property="isbuy" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    shopcartId, userId_fk_shopcart, goodsId_fk_shopcart, number, isBuy, flag
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.ShopcartExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shopcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shopcart
+    where shopcartId = #{shopcartid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from shopcart
+    where shopcartId = #{shopcartid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.ShopcartExample">
+    delete from shopcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.Shopcart">
+    insert into shopcart (shopcartId, userId_fk_shopcart, goodsId_fk_shopcart, 
+      number, isBuy, flag
+      )
+    values (#{shopcartid,jdbcType=INTEGER}, #{useridFkShopcart,jdbcType=INTEGER}, #{goodsidFkShopcart,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{isbuy,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.Shopcart">
+    insert into shopcart
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopcartid != null">
+        shopcartId,
+      </if>
+      <if test="useridFkShopcart != null">
+        userId_fk_shopcart,
+      </if>
+      <if test="goodsidFkShopcart != null">
+        goodsId_fk_shopcart,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="isbuy != null">
+        isBuy,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopcartid != null">
+        #{shopcartid,jdbcType=INTEGER},
+      </if>
+      <if test="useridFkShopcart != null">
+        #{useridFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="goodsidFkShopcart != null">
+        #{goodsidFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="isbuy != null">
+        #{isbuy,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.ShopcartExample" resultType="java.lang.Long">
+    select count(*) from shopcart
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update shopcart
+    <set>
+      <if test="record.shopcartid != null">
+        shopcartId = #{record.shopcartid,jdbcType=INTEGER},
+      </if>
+      <if test="record.useridFkShopcart != null">
+        userId_fk_shopcart = #{record.useridFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsidFkShopcart != null">
+        goodsId_fk_shopcart = #{record.goodsidFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.isbuy != null">
+        isBuy = #{record.isbuy,jdbcType=INTEGER},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update shopcart
+    set shopcartId = #{record.shopcartid,jdbcType=INTEGER},
+      userId_fk_shopcart = #{record.useridFkShopcart,jdbcType=INTEGER},
+      goodsId_fk_shopcart = #{record.goodsidFkShopcart,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      isBuy = #{record.isbuy,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Shopcart">
+    update shopcart
+    <set>
+      <if test="useridFkShopcart != null">
+        userId_fk_shopcart = #{useridFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="goodsidFkShopcart != null">
+        goodsId_fk_shopcart = #{goodsidFkShopcart,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="isbuy != null">
+        isBuy = #{isbuy,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shopcartId = #{shopcartid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Shopcart">
+    update shopcart
+    set userId_fk_shopcart = #{useridFkShopcart,jdbcType=INTEGER},
+      goodsId_fk_shopcart = #{goodsidFkShopcart,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      isBuy = #{isbuy,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER}
+    where shopcartId = #{shopcartid,jdbcType=INTEGER}
+  </update>
+</mapper>

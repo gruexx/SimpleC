@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.Goods">
+    <id column="goodsId" jdbcType="INTEGER" property="goodsid" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+    <result column="classifyId_fk_goods" jdbcType="INTEGER" property="classifyidFkGoods" />
+    <result column="userId_fk_goods" jdbcType="INTEGER" property="useridFkGoods" />
+    <result column="goodsPrice" jdbcType="DOUBLE" property="goodsprice" />
+    <result column="goodsNumber" jdbcType="INTEGER" property="goodsnumber" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goodsId, goodsName, classifyId_fk_goods, userId_fk_goods, goodsPrice, goodsNumber, 
+    flag, image
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.GoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.GoodsExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.Goods">
+    insert into goods (goodsId, goodsName, classifyId_fk_goods, 
+      userId_fk_goods, goodsPrice, goodsNumber, 
+      flag, image)
+    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{classifyidFkGoods,jdbcType=INTEGER}, 
+      #{useridFkGoods,jdbcType=INTEGER}, #{goodsprice,jdbcType=DOUBLE}, #{goodsnumber,jdbcType=INTEGER}, 
+      #{flag,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="goodsname != null">
+        goodsName,
+      </if>
+      <if test="classifyidFkGoods != null">
+        classifyId_fk_goods,
+      </if>
+      <if test="useridFkGoods != null">
+        userId_fk_goods,
+      </if>
+      <if test="goodsprice != null">
+        goodsPrice,
+      </if>
+      <if test="goodsnumber != null">
+        goodsNumber,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null">
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyidFkGoods != null">
+        #{classifyidFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="useridFkGoods != null">
+        #{useridFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null">
+        #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsnumber != null">
+        #{goodsnumber,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.GoodsExample" resultType="java.lang.Long">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.goodsid != null">
+        goodsId = #{record.goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsname != null">
+        goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classifyidFkGoods != null">
+        classifyId_fk_goods = #{record.classifyidFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="record.useridFkGoods != null">
+        userId_fk_goods = #{record.useridFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsprice != null">
+        goodsPrice = #{record.goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsnumber != null">
+        goodsNumber = #{record.goodsnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null">
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set goodsId = #{record.goodsid,jdbcType=INTEGER},
+      goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      classifyId_fk_goods = #{record.classifyidFkGoods,jdbcType=INTEGER},
+      userId_fk_goods = #{record.useridFkGoods,jdbcType=INTEGER},
+      goodsPrice = #{record.goodsprice,jdbcType=DOUBLE},
+      goodsNumber = #{record.goodsnumber,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Goods">
+    update goods
+    <set>
+      <if test="goodsname != null">
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="classifyidFkGoods != null">
+        classifyId_fk_goods = #{classifyidFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="useridFkGoods != null">
+        userId_fk_goods = #{useridFkGoods,jdbcType=INTEGER},
+      </if>
+      <if test="goodsprice != null">
+        goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsnumber != null">
+        goodsNumber = #{goodsnumber,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Goods">
+    update goods
+    set goodsName = #{goodsname,jdbcType=VARCHAR},
+      classifyId_fk_goods = #{classifyidFkGoods,jdbcType=INTEGER},
+      userId_fk_goods = #{useridFkGoods,jdbcType=INTEGER},
+      goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      goodsNumber = #{goodsnumber,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR}
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+</mapper>
