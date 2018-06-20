@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.User">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPassword" jdbcType="VARCHAR" property="userpassword" />
+    <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
+    <result column="userChaoPoint" jdbcType="INTEGER" property="userchaopoint" />
+    <result column="userRemainder" jdbcType="DOUBLE" property="userremainder" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="Administrator" jdbcType="INTEGER" property="administrator" />
+    <result column="userPhone" jdbcType="VARCHAR" property="userphone" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userId, userName, userPassword, userEmail, userChaoPoint, userRemainder, flag, Administrator, 
+    userPhone
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.User">
+    insert into user (userId, userName, userPassword, 
+      userEmail, userChaoPoint, userRemainder, 
+      flag, Administrator, userPhone
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
+      #{useremail,jdbcType=VARCHAR}, #{userchaopoint,jdbcType=INTEGER}, #{userremainder,jdbcType=DOUBLE}, 
+      #{flag,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="userpassword != null">
+        userPassword,
+      </if>
+      <if test="useremail != null">
+        userEmail,
+      </if>
+      <if test="userchaopoint != null">
+        userChaoPoint,
+      </if>
+      <if test="userremainder != null">
+        userRemainder,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="administrator != null">
+        Administrator,
+      </if>
+      <if test="userphone != null">
+        userPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userchaopoint != null">
+        #{userchaopoint,jdbcType=INTEGER},
+      </if>
+      <if test="userremainder != null">
+        #{userremainder,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="administrator != null">
+        #{administrator,jdbcType=INTEGER},
+      </if>
+      <if test="userphone != null">
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.UserExample" resultType="java.lang.Long">
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user
+    <set>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpassword != null">
+        userPassword = #{record.userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useremail != null">
+        userEmail = #{record.useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userchaopoint != null">
+        userChaoPoint = #{record.userchaopoint,jdbcType=INTEGER},
+      </if>
+      <if test="record.userremainder != null">
+        userRemainder = #{record.userremainder,jdbcType=DOUBLE},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.administrator != null">
+        Administrator = #{record.administrator,jdbcType=INTEGER},
+      </if>
+      <if test="record.userphone != null">
+        userPhone = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user
+    set userId = #{record.userid,jdbcType=INTEGER},
+      userName = #{record.username,jdbcType=VARCHAR},
+      userPassword = #{record.userpassword,jdbcType=VARCHAR},
+      userEmail = #{record.useremail,jdbcType=VARCHAR},
+      userChaoPoint = #{record.userchaopoint,jdbcType=INTEGER},
+      userRemainder = #{record.userremainder,jdbcType=DOUBLE},
+      flag = #{record.flag,jdbcType=INTEGER},
+      Administrator = #{record.administrator,jdbcType=INTEGER},
+      userPhone = #{record.userphone,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.User">
+    update user
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpassword != null">
+        userPassword = #{userpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        userEmail = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="userchaopoint != null">
+        userChaoPoint = #{userchaopoint,jdbcType=INTEGER},
+      </if>
+      <if test="userremainder != null">
+        userRemainder = #{userremainder,jdbcType=DOUBLE},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="administrator != null">
+        Administrator = #{administrator,jdbcType=INTEGER},
+      </if>
+      <if test="userphone != null">
+        userPhone = #{userphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.User">
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      userPassword = #{userpassword,jdbcType=VARCHAR},
+      userEmail = #{useremail,jdbcType=VARCHAR},
+      userChaoPoint = #{userchaopoint,jdbcType=INTEGER},
+      userRemainder = #{userremainder,jdbcType=DOUBLE},
+      flag = #{flag,jdbcType=INTEGER},
+      Administrator = #{administrator,jdbcType=INTEGER},
+      userPhone = #{userphone,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
