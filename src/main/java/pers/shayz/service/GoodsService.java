@@ -6,7 +6,6 @@ import pers.shayz.bean.Goods;
 import pers.shayz.bean.GoodsExample;
 import pers.shayz.dao.GoodsMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,5 +28,13 @@ public class GoodsService {
 
     public Goods getGoodsById(int id){
         return goodsMapper.selectByPrimaryKey(id);
+    }
+
+    public List<Goods> getGoodsBySearch(String search) {
+        GoodsExample goodsExample = new GoodsExample();
+        GoodsExample.Criteria criteria = goodsExample.createCriteria();
+        criteria.andGoodsnameLike("%"+search+"%");
+
+        return goodsMapper.selectByExample(goodsExample);
     }
 }

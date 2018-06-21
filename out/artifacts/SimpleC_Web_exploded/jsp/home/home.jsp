@@ -1,16 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
     <title>首页</title>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css"/>
-    <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css"/>
-    <link href="${APP_PATH}/css/hmstyle.css" rel="stylesheet" type="text/css"/>
-    <link href="${APP_PATH}/css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet"/>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet"/>
+    <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet"/>
+    <link href="${APP_PATH}/css/hmstyle.css" rel="stylesheet"/>
+    <link href="${APP_PATH}/css/skin.css" rel="stylesheet"/>
     <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
     <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 </head>
@@ -45,14 +46,16 @@
     </div>
     <!--悬浮搜索框-->
     <div class="nav white">
-        <div class="logo"><img src="${APP_PATH}/static/picture/logoPro.png"/></div>
         <div class="logoBig">
-            <li><img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></li>
+            <li>
+                <a href="${APP_PATH}/toHome">
+                    <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+            </li>
         </div>
         <div class="search-bar pr">
             <a name="index_none_header_sysc" href="#"></a>
-            <form>
-                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+            <form action="/Search" method="post">
+                <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
                 <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
             </form>
 
@@ -747,8 +750,9 @@
         </div>
         <div class="footer ">
             <div class="footer-hd ">
-                <p><a href="# ">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/toHome">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b> <a
-                        href="# ">物流</a></p>
+                <p><a href="# ">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/toHome">商城首页</a> <b>|</b> <a href="# ">支付宝</a>
+                    <b>|</b> <a
+                            href="# ">物流</a></p>
             </div>
             <div class="footer-bd ">
                 <p><a href="# ">关于心潮</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a href="# ">网站地图</a> <em>©

@@ -3,15 +3,15 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0 ,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <%
+        pageContext.setAttribute("APP_PATH", request.getContextPath());
+    %>
     <title>结算页面</title>
-    <link href="../../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
-    <link href="../../basic/css/demo.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/cartstyle.css" rel="stylesheet" type="text/css"/>
-    <link href="../../css/jsstyle.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../js/address.js"></script>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
+    <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css"/>
+    <link href="${APP_PATH}/css/cartstyle.css" rel="stylesheet" type="text/css"/>
+    <link href="${APP_PATH}/css/jsstyle.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${APP_PATH}/js/address.js"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     </ul>
     <ul class="message-r">
         <div class="topMessage home">
-            <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
         </div>
         <div class="topMessage my-shangcheng">
             <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
@@ -42,15 +42,19 @@
 </div>
 <!--悬浮搜索框-->
 <div class="nav white">
-    <div class="logo"><img src="../../static/picture/logoPro.png"/></div>
     <div class="logoBig">
-        <li><img src="../../static/picture/logoPro.png" style="height: 90px;width: 150px"/></li>
+        <li>
+            <a href="${APP_PATH}/toHome">
+                <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+        </li>
     </div>
     <div class="search-bar pr">
         <a name="index_none_header_sysc" href="#"></a>
-        <form>
-            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"></form>
+        <form action="/Search" method="post">
+            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+        </form>
+
     </div>
 </div>
 <div class="clear"></div>
@@ -80,7 +84,7 @@
                         <ins class="deftip">默认地址</ins>
                     </div>
                     <div class="address-right">
-                        <a href="../../person/address.html"> <span class="am-icon-angle-right am-icon-lg"></span></a>
+                        <a href="${APP_PATH}/person/address.html"> <span class="am-icon-angle-right am-icon-lg"></span></a>
                     </div>
                     <div class="clear"></div>
                     <div class="new-addr-btn"><a href="#" class="hidden">设为默认</a> <span
@@ -138,9 +142,9 @@
         <div class="logistics">
             <h3>选择支付方式</h3>
             <ul class="pay-list">
-                <li class="pay card"><img src="../../images/wangyin.jpg"/>银联<span></span></li>
-                <li class="pay qq"><img src="../../images/weizhifu.jpg"/>微信<span></span></li>
-                <li class="pay taobao"><img src="../../images/zhifubao.jpg"/>支付宝<span></span></li>
+                <li class="pay card"><img src="${APP_PATH}/images/wangyin.jpg"/>银联<span></span></li>
+                <li class="pay qq"><img src="${APP_PATH}/images/weizhifu.jpg"/>微信<span></span></li>
+                <li class="pay taobao"><img src="${APP_PATH}/images/zhifubao.jpg"/>支付宝<span></span></li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -175,7 +179,7 @@
                                 <div class="pay-phone">
                                     <li class="td td-item">
                                         <div class="item-pic">
-                                            <a href="#" class="J_MakePoint"> <img src="../../images/kouhong.jpg_80x80.jpg"
+                                            <a href="#" class="J_MakePoint"> <img src="${APP_PATH}/images/kouhong.jpg_80x80.jpg"
                                                                                   class="itempic J_ItemImg"></a>
                                         </div>
                                         <div class="item-info">
@@ -227,7 +231,7 @@
                             <div class="pay-phone">
                                 <li class="td td-item">
                                     <div class="item-pic">
-                                        <a href="#" class="J_MakePoint"> <img src="../../images/kouhong.jpg_80x80.jpg"
+                                        <a href="#" class="J_MakePoint"> <img src="${APP_PATH}/images/kouhong.jpg_80x80.jpg"
                                                                               class="itempic J_ItemImg"></a>
                                     </div>
                                     <div class="item-info">

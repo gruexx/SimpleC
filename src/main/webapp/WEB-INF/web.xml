@@ -32,18 +32,18 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--&lt;!&ndash;css样式&ndash;&gt;-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>default</servlet-name>-->
-        <!--<url-pattern>*.js</url-pattern>-->
-        <!--<url-pattern>*.css</url-pattern>-->
-        <!--<url-pattern>*.gif</url-pattern>-->
-        <!--<url-pattern>*.png</url-pattern>-->
-        <!--<url-pattern>*.jpg</url-pattern>-->
-        <!--<url-pattern>*.ttf</url-pattern>-->
-        <!--<url-pattern>*.woff</url-pattern>-->
-        <!--<url-pattern>*.woff2</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <!--css样式-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.ttf</url-pattern>
+        <url-pattern>*.woff</url-pattern>
+        <url-pattern>*.woff2</url-pattern>
+    </servlet-mapping>
 
     <!--字符编码过滤器，必须放最前面-->
     <filter>

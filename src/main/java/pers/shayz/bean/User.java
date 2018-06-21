@@ -19,6 +19,10 @@ public class User {
 
     private String userphone;
 
+    private String address;
+
+    private String image;
+
     public Integer getUserid() {
         return userid;
     }
@@ -89,5 +93,21 @@ public class User {
 
     public void setUserphone(String userphone) {
         this.userphone = userphone == null ? null : userphone.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
     }
 }

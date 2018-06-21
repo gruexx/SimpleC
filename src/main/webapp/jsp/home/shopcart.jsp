@@ -3,14 +3,15 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <%
+        pageContext.setAttribute("APP_PATH", request.getContextPath());
+    %>
     <title>购物车页面</title>
-    <link href="../../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
-    <link href="../../basic/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/cartstyle.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/optstyle.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
+    <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="${APP_PATH}/css/cartstyle.css" rel="stylesheet" type="text/css" />
+    <link href="${APP_PATH}/css/optstyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         </ul>
         <ul class="message-r">
             <div class="topMessage home">
-                <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
                 <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a> </div>
@@ -40,15 +41,19 @@
     </div>
     <!--悬浮搜索框-->
     <div class="nav white">
-        <div class="logo"><img src="../../static/picture/logoPro.png" /></div>
         <div class="logoBig">
-            <li><img src="../../static/picture/logoPro.png" style="height: 90px;width: 150px" /></li>
+            <li>
+                <a href="${APP_PATH}/toHome">
+                    <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+            </li>
         </div>
         <div class="search-bar pr">
             <a name="index_none_header_sysc" href="#"></a>
-            <form>
-                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"> </form>
+            <form action="/Search" method="post">
+                <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+            </form>
+
         </div>
     </div>
     <div class="clear"></div>
@@ -91,7 +96,7 @@
                             </li>
                             <li class="td td-item">
                                 <div class="item-pic">
-                                    <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12"> <img src="../../images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+                                    <a href="#" target="_blank" data-title="美康粉黛醉美东方唇膏口红正品 持久保湿滋润防水不掉色护唇彩妆" class="J_MakePoint" data-point="tbcart.8.12"> <img src="${APP_PATH}/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
                                 </div>
                                 <div class="item-info">
                                     <div class="item-basic-info"> <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a> </div>
@@ -164,7 +169,7 @@
         <li><a href="home.jsp"><i class="am-icon-home "></i>首页</a></li>
         <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
         <li class="active"><a href="shopcart.jsp"><i class="am-icon-shopping-basket"></i>购物车</a></li>
-        <li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
+        <li><a href="${APP_PATH}/person/index.html"><i class="am-icon-user"></i>我的</a></li>
     </div>
 </body>
 

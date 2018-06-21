@@ -22,7 +22,7 @@ public class UserController {
 
     @RequestMapping(value = "/toRegister")
     public String toRegister(){
-        return "register";
+        return "home/register";
     }
 
     @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
@@ -32,35 +32,46 @@ public class UserController {
         userService.saveUser(user);
         System.out.println("save success");
         modelMap.addAttribute("success", "注册成功，请登录！！！");
-        return "login";
+        return "home/login";
     }
 
     @RequestMapping(value = "/toLogin")
     public String toLogin(){
-        return "login";
+        return "home/login";
     }
 
     @RequestMapping(value = "/Logout")
     public String Logout(HttpSession session){
         session.invalidate();
-        return "login";
+        return "redirect:/toLogin";
     }
 
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(HttpSession session, String useremail, String userpassword, ModelMap modelMap){
-        System.out.println(useremail);
-        User user = userService.getUserByEmail(useremail);
-        if(user.getUserpassword().equals(userpassword)){
-            session.setAttribute("userName", user.getUsername());
-            return "home";
+    public String doLogin(HttpSession session, String userlogin, String userpassword, ModelMap modelMap){
+        System.out.println(userlogin);
+        if(userlogin.contains("@")){
+            User user = userService.getUserByEmail(userlogin);
+            if(user.getUserpassword().equals(userpassword)){
+                session.setAttribute("userName", user.getUsername());
+                return "home/home";
+            }else {
+                modelMap.addAttribute("result", "邮箱密码不匹配！！！");
+                return "home/login";
+            }
         }else {
-            modelMap.addAttribute("result", "邮箱密码不匹配！！！");
-            return "login";
+            User user = userService.getUserByName(userlogin);
+            if(user.getUserpassword().equals(userpassword)){
+                session.setAttribute("userName", userlogin);
+                return "home/home";
+            }else {
+                modelMap.addAttribute("result", "邮箱密码不匹配！！！");
+                return "home/login";
+            }
         }
     }
 
     @RequestMapping(value = "/toHome")
     public String toHome(){
-        return "home";
+        return "home/home";
     }
 }

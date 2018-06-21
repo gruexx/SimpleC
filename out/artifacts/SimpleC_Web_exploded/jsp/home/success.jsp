@@ -3,14 +3,15 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <%
+        pageContext.setAttribute("APP_PATH", request.getContextPath());
+    %>
     <title>付款成功页面</title>
-    <link rel="stylesheet" type="text/css" href="../../AmazeUI-2.4.2/assets/css/amazeui.css" />
-    <link href="../../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="../../basic/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="../../css/sustyle.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../basic/js/jquery-1.7.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" />
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="${APP_PATH}/css/sustyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${APP_PATH}/basic/js/jquery-1.7.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         </ul>
         <ul class="message-r">
             <div class="topMessage home">
-                <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
                 <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a> </div>
@@ -40,15 +41,19 @@
     </div>
     <!--悬浮搜索框-->
     <div class="nav white">
-        <div class="logo"><img src="../../static/picture/logoPro.png" /></div>
         <div class="logoBig">
-            <li><img src="../../static/picture/logoPro.png" style="height: 90px;width: 150px" /></li>
+            <li>
+                <a href="${APP_PATH}/toHome">
+                    <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+            </li>
         </div>
         <div class="search-bar pr">
             <a name="index_none_header_sysc" href="#"></a>
-            <form>
-                <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"> </form>
+            <form action="/Search" method="post">
+                <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+            </form>
+
         </div>
     </div>
     <div class="clear"></div>
@@ -63,7 +68,7 @@
                         <p>联系电话：15871145629</p>
                         <p>收货地址：湖北省 武汉市 武昌区 东湖路75号众环大厦</p>
                     </div> 请认真核对您的收货信息，如有错误请联系客服 </ul>
-                <div class="option"> <span class="info">您可以</span> <a href="../../person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a> <a href="../../person/orderinfo.html" class="J_MakePoint">查看<span>交易详情</span></a> </div>
+                <div class="option"> <span class="info">您可以</span> <a href="${APP_PATH}/person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a> <a href="${APP_PATH}/person/orderinfo.html" class="J_MakePoint">查看<span>交易详情</span></a> </div>
             </div>
         </div>
     </div>

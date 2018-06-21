@@ -6,8 +6,8 @@
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet">
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -16,15 +16,15 @@
 <div class="am-container header">
     <ul class="message-l">
         <div class="topMessage">
-            <<div class="menu-hd">
-            <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
-            <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
-        </div>
+            <div class="menu-hd">
+                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
+                <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+            </div>
         </div>
     </ul>
     <ul class="message-r">
         <div class="topMessage home">
-            <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
         </div>
         <div class="topMessage my-shangcheng">
             <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
@@ -40,13 +40,18 @@
 <!--悬浮搜索框-->
 <div class="nav white">
     <div class="logoBig">
-        <li><img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></li>
+        <li>
+            <a href="${APP_PATH}/toHome">
+            <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+        </li>
     </div>
     <div class="search-bar pr">
         <a name="index_none_header_sysc" href="#"></a>
-        <form>
-            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"></form>
+        <form action="/Search" method="post">
+            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+        </form>
+
     </div>
 </div>
 <div class="nav-table">
@@ -61,7 +66,7 @@
                 <div class="Row">
                     <c:forEach items="${requestScope.GoodsList}" var="goodsList">
                         <li style="height: 278px;width: 277px;">
-                            <a href="${APP_PATH}/toIntroduction/${goodsList.goodsId}">
+                            <a href="${APP_PATH}/toIntroduction/${goodsList.goodsid}">
                                 <img src="${APP_PATH}/${goodsList.image}"/>
                             </a>
                         </li>
@@ -76,7 +81,8 @@
 </div>
 <div class="footer ">
     <div class="footer-hd ">
-        <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/jsp/home/home.jsp">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b>
+        <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/jsp/home/home.jsp">商城首页</a> <b>|</b> <a href="# ">支付宝</a>
+            <b>|</b>
             <a href="#">物流</a></p>
     </div>
     <div class="footer-bd ">

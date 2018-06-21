@@ -22,7 +22,7 @@ public class GoodsController {
                                  ModelMap modelMap){
         Goods goods = goodsService.getGoodsById(goodsId);
         modelMap.addAttribute("Goods", goods);
-        return "introduction";
+        return "home/introduction";
     }
 
 }

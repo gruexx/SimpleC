@@ -32,4 +32,12 @@ public class UserService {
         List<User> list = userMapper.selectByExample(userExample);
         return list.get(0);
     }
+
+    public User getUserByName(String name) {
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUsernameEqualTo(name);
+        List<User> list = userMapper.selectByExample(userExample);
+        return list.get(0);
+    }
 }
