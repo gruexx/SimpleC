@@ -23,6 +23,23 @@ public class User {
 
     private String image;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", userpassword='" + userpassword + '\'' +
+                ", useremail='" + useremail + '\'' +
+                ", userchaopoint=" + userchaopoint +
+                ", userremainder=" + userremainder +
+                ", flag=" + flag +
+                ", administrator=" + administrator +
+                ", userphone='" + userphone + '\'' +
+                ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
+
     public Integer getUserid() {
         return userid;
     }

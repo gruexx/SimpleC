@@ -7,6 +7,15 @@ public class Classify {
 
     private Integer flag;
 
+    @Override
+    public String toString() {
+        return "Classify{" +
+                "classifyid=" + classifyid +
+                ", classifyname='" + classifyname + '\'' +
+                ", flag=" + flag +
+                '}';
+    }
+
     public Integer getClassifyid() {
         return classifyid;
     }

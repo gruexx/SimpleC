@@ -20,7 +20,7 @@
     <ul class="message-l">
         <div class="topMessage">
             <div class="menu-hd">
-                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
+                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
                 <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
             </div>
         </div>
@@ -50,7 +50,7 @@
     </div>
     <div class="search-bar pr">
         <a name="index_none_header_sysc" href="#"></a>
-        <form action="/Search" method="post">
+        <form action="${APP_PATH}/Search" method="post">
             <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
             <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
         </form>

@@ -2,6 +2,7 @@ package pers.shayz.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import pers.shayz.bean.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +20,14 @@ public class LoginInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
 
         HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("userName");
+        String username = (String) session.getAttribute("username");
+        String userid = (String) session.getAttribute("userid");
+        String userchaopoint = (String) session.getAttribute("userchaopoint");
+        System.out.println(username);
+        System.out.println(userid);
+        System.out.println(userchaopoint);
 
-        if (userName != null) {
+        if (userid != null) {
             return true;
         }
 
@@ -33,13 +39,13 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("HandlerInterceptor1...postHandle");
+        System.out.println("HandlerInterceptor...postHandle");
     }
 
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        System.out.println("HandlerInterceptor1...afterCompletion");
+        System.out.println("HandlerInterceptor...afterCompletion");
     }
 
 }
