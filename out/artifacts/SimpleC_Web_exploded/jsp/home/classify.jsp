@@ -16,7 +16,10 @@
 <div class="am-container header">
     <ul class="message-l">
         <div class="topMessage">
-            <div class="menu-hd"><a href="#" target="_top" class="h">登录</a> <a href="#" target="_top">免费注册</a></div>
+            <<div class="menu-hd">
+            <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
+            <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+        </div>
         </div>
     </ul>
     <ul class="message-r">
@@ -56,8 +59,12 @@
         <div class="am-g blog-content">
             <div class="am-u-sm-12">
                 <div class="Row">
-                    <c:forEach items="${GoodsList}" var="goodsList">
-                        <li style="height: 278px;width: 277px;"><img src="${APP_PATH}/${goodsList.image}"/></li>
+                    <c:forEach items="${requestScope.GoodsList}" var="goodsList">
+                        <li style="height: 278px;width: 277px;">
+                            <a href="${APP_PATH}/toIntroduction/${goodsList.goodsId}">
+                                <img src="${APP_PATH}/${goodsList.image}"/>
+                            </a>
+                        </li>
                     </c:forEach>
                     <h3>${requestScope.None}</h3>
                 </div>

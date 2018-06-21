@@ -18,7 +18,10 @@
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
-                <div class="menu-hd"> <a href="#" target="_top" class="h">登录</a> <a href="#" target="_top">免费注册</a> </div>
+                <div class="menu-hd">
+                    <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
+                    <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+                </div>
             </div>
         </ul>
         <ul class="message-r">

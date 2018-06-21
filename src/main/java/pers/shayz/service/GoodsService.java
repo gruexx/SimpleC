@@ -26,4 +26,8 @@ public class GoodsService {
 
         return goodsMapper.selectByExample(goodsExample);
     }
+
+    public Goods getGoodsById(int id){
+        return goodsMapper.selectByPrimaryKey(id);
+    }
 }

@@ -21,7 +21,10 @@
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
-                <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a></div>
+                <div class="menu-hd">
+                    <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.userName}</a> |
+                    <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+                </div>
             </div>
         </ul>
         <ul class="message-r">
@@ -83,7 +86,7 @@
         <div class="nav-cont">
             <ul>
                 <li class="index" style="padding-left: 690px">
-                    <a href="#" style="font-size: 20px;background:#ff3f48;color: white">发布商品</a>
+                    <a href="#" style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
                 </li>
             </ul>
             <div class="nav-extra"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i

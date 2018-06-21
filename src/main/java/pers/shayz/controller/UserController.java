@@ -40,6 +40,12 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = "/Logout")
+    public String Logout(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
+
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
     public String doLogin(HttpSession session, String useremail, String userpassword, ModelMap modelMap){
         System.out.println(useremail);
@@ -56,10 +62,5 @@ public class UserController {
     @RequestMapping(value = "/toHome")
     public String toHome(){
         return "home";
-    }
-
-    @RequestMapping(value = "/toIntroduction")
-    public String toIntroduction(){
-        return "introduction";
     }
 }

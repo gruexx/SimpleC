@@ -39,7 +39,7 @@
                     class="zcnext am-fr am-btn-default">注册</a>
                 <br/></div>
             <div class="am-cf">
-                <input type="submit" id="LoginBtn" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+                <input onclick="Login()" type="submit" id="LoginBtn" value="登 录" class="am-btn am-btn-primary am-btn-sm">
             </div>
             <div class="am-cf">
                 <label style="color: red">${requestScope.result}</label>
@@ -68,7 +68,11 @@
 </html>
 
 <script type="text/javascript">
-    $("#LoginBtn").click(function () {
-        $("#LoginForm").submit();
-    })
+    // $("#LoginBtn").click(function () {
+    //     $("#LoginForm").submit();
+    // })
+
+    function Login() {
+        document.getElementById("LoginForm").submit();
+    }
 </script>
