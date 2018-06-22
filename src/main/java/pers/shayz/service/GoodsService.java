@@ -22,7 +22,6 @@ public class GoodsService {
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
         criteria.andClassifyidFkGoodsEqualTo(id);
-
         return goodsMapper.selectByExample(goodsExample);
     }
 
@@ -36,5 +35,9 @@ public class GoodsService {
         criteria.andGoodsnameLike("%"+search+"%");
 
         return goodsMapper.selectByExample(goodsExample);
+    }
+
+    public void saveGoods(Goods goods) {
+        goodsMapper.insertSelective(goods);
     }
 }

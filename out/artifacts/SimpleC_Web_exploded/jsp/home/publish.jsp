@@ -13,6 +13,8 @@
     <link href="${APP_PATH}/css/infstyle.css" rel="stylesheet" type="text/css">
     <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -97,14 +99,16 @@
                         <div><b>用户名：<i>${sessionScope.username}</i></b></div>
                         <div class="u-safety">
                             <a href="">
-                            潮积分：
-                            <span class="u-profile"><i class="bc_ee0000" style="width: 60px">${sessionScope.userchaopoint}</i></span>
-                        </a></div>
+                                潮积分：
+                                <span class="u-profile"><i class="bc_ee0000"
+                                                           style="width: 60px">${sessionScope.userchaopoint}</i></span>
+                            </a></div>
                     </div>
                 </div>
 
                 <div class="info-main">
-                    <form id="addGoodsForm" action="${APP_PATH}/doPublish" method="post" class="am-form am-form-horizontal">
+                    <form id="addGoodsForm" action="${APP_PATH}/doPublish" method="post"
+                          class="am-form am-form-horizontal">
                         <div class="am-form-group">
                             <label class="am-form-label">商品名称</label>
                             <div class="am-form-content">
@@ -141,7 +145,8 @@
                                 <input placeholder="goodsnumber" type="text" id="goodsnumber"></div>
                         </div>
                         <div class="info-btn" style="height:40px">
-                            <div id="addGoodsBtn" class="am-btn am-btn-danger" style="align:center;height:30px">上架商品</div>
+                            <div id="addGoodsBtn" class="am-btn am-btn-danger" style="align:center;height:30px">上架商品
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -174,21 +179,45 @@
         var goodsprice = $("#goodsprice").val();
         var goodsnumber = $("#goodsnumber").val();
 
+        console.log("display...")
+        console.log(image);
+
         $.ajax({
-            type:"post",
-            url:"/doPublish",
-            data:{
-                goodsname:goodsname,
-                classifyidFkGoods:classifyidFkGoods,
-                image:image,
-                goodsprice:goodsprice,
-                goodsnumber:goodsnumber
+            type: "post",
+            url: "/doPublish",
+            data: {
+                goodsname: goodsname,
+                classifyidFkGoods: classifyidFkGoods,
+                image: image,
+                goodsprice: goodsprice,
+                goodsnumber: goodsnumber
             },
-            success:function (msg) {
-                alert(msg);
-            },
-            error:function () {
-                alert("fail");
+            success: function (result) {
+                $("#addGoodsForm")[0].reset();
+                if (result.code == 100) {
+                    $.toast({
+                        heading: "Success",
+                        text: result.extend.msg,
+                        showHideTransition: 'slide',
+                        position: {
+                            left: 750,
+                            top: 220
+                        },
+                        icon: 'success'
+                    })
+                } else {
+                    $.toast({
+                        heading: "Fail",
+                        text: result.extend.msg,
+                        showHideTransition: 'fade',
+                        position: {
+                            left: 750,
+                            top: 220
+                        },
+                        icon: 'error'
+                    })
+                }
+
             }
         })
     })
