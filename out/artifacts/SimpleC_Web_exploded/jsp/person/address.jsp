@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <%
+        pageContext.setAttribute("APP_PATH", request.getContextPath());
+    %>
     <title>地址管理</title>
-    <link href="../../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="../../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-    <link href="../../css/personal.css" rel="stylesheet" type="text/css">
-    <link href="../../css/addstyle.css" rel="stylesheet" type="text/css">
-    <script src="../../AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/css/addstyle.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 </head>
 
 <body>
@@ -22,31 +24,42 @@
                 <div class="am-container header">
                     <ul class="message-l">
                         <div class="topMessage">
-                            <div class="menu-hd"> <a href="#" target="_top" class="h">登录</a> <a href="#" target="_top">免费注册</a> </div>
+                            <div class="menu-hd">
+                                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
+                                <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+                            </div>
                         </div>
                     </ul>
                     <ul class="message-r">
                         <div class="topMessage home">
-                            <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
                         </div>
                         <div class="topMessage my-shangcheng">
-                            <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                            <div class="menu-hd MyShangcheng"><a href="${APP_PATH}/toUserInfo" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                            </div>
                         </div>
                         <div class="topMessage mini-cart">
-                            <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+                            <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
+                                    class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
+                                                                                                          class="h">0</strong></a></div>
                         </div>
                     </ul>
                 </div>
                 <!--悬浮搜索框-->
                 <div class="nav white">
                     <div class="logoBig">
-                        <li><img src="../../static/picture/logoPro.png" style="height: 90px;width: 150px" /></li>
+                        <li>
+                            <a href="${APP_PATH}/toHome">
+                                <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+                        </li>
                     </div>
                     <div class="search-bar pr">
                         <a name="index_none_header_sysc" href="#"></a>
-                        <form>
-                            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"> </form>
+                        <form action="${APP_PATH}/Search" method="post">
+                            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+                        </form>
+
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -74,20 +87,6 @@
                     <hr/>
                     <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
                         <li class="user-addresslist defaultAddr"> <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-                            <p class="new-tit new-p-re"> <span class="new-txt">小叮当</span> <span class="new-txt-rd2">159****1622</span> </p>
-                            <div class="new-mu_l2a new-p-re">
-                                <p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">湖北</span>省 <span class="city">武汉</span>市 <span class="dist">洪山</span>区 <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-                            </div>
-                            <div class="new-addr-btn"> <a href="#"><i class="am-icon-edit"></i>编辑</a> <span class="new-addr-bar">|</span> <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a> </div>
-                        </li>
-                        <li class="user-addresslist"> <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
-                            <p class="new-tit new-p-re"> <span class="new-txt">小叮当</span> <span class="new-txt-rd2">159****1622</span> </p>
-                            <div class="new-mu_l2a new-p-re">
-                                <p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">湖北</span>省 <span class="city">武汉</span>市 <span class="dist">洪山</span>区 <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
-                            </div>
-                            <div class="new-addr-btn"> <a href="#"><i class="am-icon-edit"></i>编辑</a> <span class="new-addr-bar">|</span> <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a> </div>
-                        </li>
-                        <li class="user-addresslist"> <span class="new-option-r"><i class="am-icon-check-circle"></i>设为默认</span>
                             <p class="new-tit new-p-re"> <span class="new-txt">小叮当</span> <span class="new-txt-rd2">159****1622</span> </p>
                             <div class="new-mu_l2a new-p-re">
                                 <p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">湖北</span>省 <span class="city">武汉</span>市 <span class="dist">洪山</span>区 <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
@@ -147,8 +146,8 @@
                     </div>
                 </div>
                 <script type="text/javascript">
-                    $(document).ready(function () {
-                        $(".new-option-r").click(function () {
+                    $(document).ready(function() {
+                        $(".new-option-r").click(function() {
                             $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
                         });
                         var $ww = $(window).width();
@@ -156,13 +155,14 @@
                             $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
                         }
                     })
+
                 </script>
                 <div class="clear"></div>
             </div>
             <!--      底部      -->
             <div class="footer ">
                 <div class="footer-hd ">
-                    <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/home/home.jsp">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b> <a href="#">物流</a></p>
+                    <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/toHome">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b> <a href="#">物流</a></p>
                 </div>
                 <div class="footer-bd ">
                     <p><a href="# ">关于心潮</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a href="# ">网站地图</a> <em>© 2018-2038
@@ -172,24 +172,28 @@
         </div>
         <aside class="menu">
             <ul>
-                <li class="person"> <a href="index.html">个人中心</a> </li>
-                <li class="person"> <a href="#">个人资料</a>
+                <li class="person"> <a href="${APP_PATH}/toUserInfo" style="font-size: 16px">个人中心</a> </li>
+                <hr/>
+                <li class="person" style="font-size: 15px"> 个人资料
+                    <hr/>
                     <ul>
-                        <li> <a href="information.html">个人信息</a></li>
-                        <li class="active"> <a href="address.html">收货地址</a></li>
+                        <li> <a href="${APP_PATH}/toUserInfo">个人信息</a></li>
+                        <li class="active"> <a href="address.jsp">收货地址</a></li>
                     </ul>
                 </li>
-                <li class="person"> <a href="#">我的交易</a>
+                <li class="person" style="font-size: 15px"> 我的交易
+                    <hr/>
                     <ul>
-                        <li><a href="order.html">订单管理</a></li>
+                        <li><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
                     </ul>
                     <ul>
-                        <li><a href="goodsrelease.html">发布商品</a></li>
+                        <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
                     </ul>
                 </li>
-                <li class="person"> <a href="#">我的资产</a>
+                <li class="person" style="font-size: 15px"> 我的资产
+                    <hr/>
                     <ul>
-                        <li> <a href="bill.html">账单明细</a></li>
+                        <li> <a href="${APP_PATH}/toBill">账单明细</a></li>
                     </ul>
                 </li>
             </ul>

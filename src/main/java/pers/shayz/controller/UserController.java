@@ -86,4 +86,39 @@ public class UserController {
         modelMap.addAttribute("classifyList", classifyList);
         return "home/publish";
     }
+
+    @RequestMapping(value = "/toUserInfo")
+    public String toUserInfo(){
+        return "person/userinfo";
+    }
+
+    @RequestMapping(value = "/toAddress")
+    public String toAddress(){
+        return "person/address";
+    }
+
+    @RequestMapping(value = "/toBill")
+    public String toBill(){
+        return "person/bill";
+    }
+
+    @RequestMapping(value = "/toBillList")
+    public String toBillList(){
+        return "person/billlist";
+    }
+
+    @RequestMapping(value = "/toOrder")
+    public String toOrder(){
+        return "person/order";
+    }
+
+    @RequestMapping(value = "/toOrderItem")
+    public String toOrderItem(){
+        return "person/orderitem";
+    }
+
+    @RequestMapping(value = "/toPassword")
+    public String toPassword(){
+        return "person/password";
+    }
 }

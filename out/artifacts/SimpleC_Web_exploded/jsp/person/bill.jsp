@@ -1,15 +1,17 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <%
+        pageContext.setAttribute("APP_PATH", request.getContextPath());
+    %>
     <title>个人账单</title>
-    <link href="../../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="../../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
-    <link href="../../css/personal.css" rel="stylesheet" type="text/css">
-    <link href="../../css/blstyle.css" rel="stylesheet" type="text/css">
-    <script src="../../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="${APP_PATH}/css/blstyle.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -21,31 +23,42 @@
                 <div class="am-container header">
                     <ul class="message-l">
                         <div class="topMessage">
-                            <div class="menu-hd"> <a href="#" target="_top" class="h">登录</a> <a href="#" target="_top">免费注册</a> </div>
+                            <div class="menu-hd">
+                                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
+                                <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
+                            </div>
                         </div>
                     </ul>
                     <ul class="message-r">
                         <div class="topMessage home">
-                            <div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
+                            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
                         </div>
                         <div class="topMessage my-shangcheng">
-                            <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
+                            <div class="menu-hd MyShangcheng"><a href="${APP_PATH}/toUserInfo" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                            </div>
                         </div>
                         <div class="topMessage mini-cart">
-                            <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+                            <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
+                                    class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
+                                                                                                          class="h">0</strong></a></div>
                         </div>
                     </ul>
                 </div>
                 <!--悬浮搜索框-->
                 <div class="nav white">
                     <div class="logoBig">
-                        <li><img src="../../static/picture/logoPro.png" style="height: 90px;width: 150px" /></li>
+                        <li>
+                            <a href="${APP_PATH}/toHome">
+                                <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
+                        </li>
                     </div>
                     <div class="search-bar pr">
                         <a name="index_none_header_sysc" href="#"></a>
-                        <form>
-                            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-                            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit"> </form>
+                        <form action="${APP_PATH}/Search" method="post">
+                            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
+                            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
+                        </form>
+
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -58,12 +71,8 @@
         <div class="nav-cont">
             <ul>
                 <li class="index"><a href="#">首页</a></li>
-                <li class="qc"><a href="#">闪购</a></li>
-                <li class="qc"><a href="#">限时抢</a></li>
-                <li class="qc"><a href="#">团购</a></li>
-                <li class="qc last"><a href="#">大包装</a></li>
             </ul>
-            <div class="nav-extra"> <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利 <i class="am-icon-angle-right" style="padding-left: 10px;"></i> </div>
+            <div class="nav-extra"> <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i class="am-icon-angle-right" style="padding-left: 10px;"></i> </div>
         </div>
     </div> <b class="line"></b>
     <div class="center">
@@ -93,7 +102,7 @@
                                               119.80
                                        </span>
                                         <span class="desc ng-binding">
-                                           <a href="billlist.html">查看支出明细</a>
+                                           <a href="${APP_PATH}/toBillList">查看支出明细</a>
                                          </span>
                                     </h3>
                                     <div ng-class="shoppingChart" class="catatory-details  fn-hide shopping">
@@ -149,10 +158,9 @@
                                               0.00
                                        </span>
                                     <span class="desc ng-binding">
-                                           <a href="billlist.html">查看收入明细</a>
+                                           <a href="${APP_PATH}/toBillList">查看收入明细</a>
                                     </span>
-                                </h3>
-                            </div>
+                                </h3> </div>
                             <!--消费走势-->
                             <div class="module-consumeTrend inner-module">
                                 <h3 class="module-title">消费走势</h3>
@@ -165,13 +173,13 @@
                                     <div class="cards-carousel">
                                         <div class="mask">
                                             <div class="bac fn-left"></div>
-                                            <div class="bank ng-binding" style="background-image: url(../../images/combo.png);">中国农业银行</div>
+                                            <div class="bank ng-binding" style="background-image: url(${APP_PATH}/images/combo.png);">中国农业银行</div>
                                             <div class="details"> <a>查看详情</a> </div>
                                         </div>
                                     </div>
                                     <div class="cards-details">
                                         <div class="bank-name">
-                                            <div class="name fn-left" style="background-image: url(../../images/combo.png);"></div> <span class="close fn-right"><a>X</a></span> </div>
+                                            <div class="name fn-left" style="background-image: url(${APP_PATH}/images/combo.png);"></div> <span class="close fn-right"><a>X</a></span> </div>
                                         <div class="bank-detail">
                                             <div class="totalin fn-left"> <span class="fn-left">流入</span> <span class="amount fn-right">0.00</span> </div>
                                             <div class="totalout fn-left"> <span class="fn-left">流出</span> <span class="amount fn-right">0.00</span> </div>
@@ -188,17 +196,16 @@
                                 </div>
                             </div>
                             <script>
-                                $(document).ready(function(ev) {
-                                    $('.cards-carousel .details').on('click', function(ev) {
+                                $(document).ready(function (ev) {
+                                    $('.cards-carousel .details').on('click', function (ev) {
                                         $('.cards-details').css("display", "block");
                                         $('.cards-carousel').css("display", "none");
                                     });
-                                    $('.cards-details .close').on('click', function(ev) {
+                                    $('.cards-details .close').on('click', function (ev) {
                                         $('.cards-details').css("display", "none");
                                         $('.cards-carousel').css("display", "block");
                                     });
                                 });
-
                             </script>
                         </div>
                     </div>
@@ -217,24 +224,28 @@
         </div>
         <aside class="menu">
             <ul>
-                <li class="person"> <a href="index.html">个人中心</a> </li>
-                <li class="person"> <a href="#">个人资料</a>
+                <li class="person"> <a href="${APP_PATH}/toUserInfo" style="font-size: 16px">个人中心</a> </li>
+                <hr/>
+                <li class="person" style="font-size: 15px"> 个人资料
+                    <hr/>
                     <ul>
-                        <li> <a href="information.html">个人信息</a></li>
-                        <li class="active"> <a href="address.html">收货地址</a></li>
+                        <li> <a href="${APP_PATH}/toUserInfo">个人信息</a></li>
+                        <li> <a href="${APP_PATH}/toAddress">收货地址</a></li>
                     </ul>
                 </li>
-                <li class="person"> <a href="#">我的交易</a>
+                <li class="person" style="font-size: 15px"> 我的交易
+                    <hr/>
                     <ul>
-                        <li><a href="order.html">订单管理</a></li>
+                        <li><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
                     </ul>
                     <ul>
-                        <li><a href="../home/publish.jsp">发布商品</a></li>
+                        <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
                     </ul>
                 </li>
-                <li class="person"> <a href="#">我的资产</a>
+                <li class="person" style="font-size: 15px"> 我的资产
+                    <hr/>
                     <ul>
-                        <li> <a href="bill.html">账单明细</a></li>
+                        <li class="active"> <a href="${APP_PATH}/toBill">账单明细</a></li>
                     </ul>
                 </li>
             </ul>
