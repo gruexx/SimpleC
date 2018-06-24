@@ -40,4 +40,5 @@ public class GoodsService {
     public void saveGoods(Goods goods) {
         goodsMapper.insertSelective(goods);
     }
+
 }

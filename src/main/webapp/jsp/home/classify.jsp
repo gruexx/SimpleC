@@ -6,8 +6,14 @@
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet">
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">
+    <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
+
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet">--%>
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">--%>
+
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -65,7 +71,7 @@
             <div class="am-u-sm-12">
                 <div class="Row">
                     <c:forEach items="${requestScope.GoodsList}" var="goodsList">
-                        <li style="height: 278px;width: 277px;">
+                        <li data-am-scrollspy="{animation: 'fade'}" style="height: 278px;width: 277px;">
                             <a href="${APP_PATH}/toIntroduction/${goodsList.goodsid}">
                                 <img src="${APP_PATH}/${goodsList.image}"/>
                             </a>

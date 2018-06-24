@@ -7,12 +7,15 @@
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
     <title>发布商品</title>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">--%>
+    <%--<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js" type="text/javascript"></script>--%>
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/css/infstyle.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+
     <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
@@ -129,10 +132,11 @@
                             <div class="am-form-content">
                                 <input type="text" placeholder="information"></div>
                         </div>
-                        <div class="am-form-group">
-                            <label class="am-form-label">上传图片</label>
-                            <div class="am-form-content">
-                                <input type="file" multiple="multiple" id="image"/></div>
+                        <div class="am-form-group am-form-file">
+                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                <i class="am-icon-cloud-upload"></i> 选择要上传的图片</button>
+                            <input id="image" type="file" multiple>
+                            <div id="file-list"></div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">商品价格</label>
@@ -144,8 +148,8 @@
                             <div class="am-form-content" style="width:200px">
                                 <input placeholder="goodsnumber" type="text" id="goodsnumber"></div>
                         </div>
-                        <div class="info-btn" style="height:40px">
-                            <div id="addGoodsBtn" class="am-btn am-btn-danger" style="align:center;height:30px">上架商品
+                        <div class="info-btn">
+                            <div id="addGoodsBtn" class="am-btn am-btn-danger">上架商品
                             </div>
                         </div>
                     </form>
@@ -221,4 +225,15 @@
             }
         })
     })
+</script>
+<script>
+    $(function() {
+        $('#image').on('change', function() {
+            var fileNames = '';
+            $.each(this.files, function() {
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+            });
+            $('#file-list').html(fileNames);
+        });
+    });
 </script>

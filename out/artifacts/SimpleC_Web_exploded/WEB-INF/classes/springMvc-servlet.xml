@@ -30,6 +30,7 @@
             <mvc:exclude-mapping path="/doRegister"/>
             <mvc:exclude-mapping path="/toLogin"/>
             <mvc:exclude-mapping path="/toRegister"/>
+            <mvc:exclude-mapping path="/validateLogin"/>
             <bean class="pers.shayz.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

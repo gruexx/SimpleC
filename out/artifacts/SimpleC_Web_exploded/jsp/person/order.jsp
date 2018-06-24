@@ -7,12 +7,16 @@
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
     <title>订单详情</title>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
+
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.min.css" rel="stylesheet"/>--%>
+    <%--<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>--%>
+
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/css/orstyle.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-    <script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.js"></script>
 </head>
 
 <body>
@@ -251,14 +255,14 @@
             <ul>
                 <li class="person"> <a href="${APP_PATH}/toUserInfo" style="font-size: 16px">个人中心</a> </li>
                 <hr/>
-                <li class="person" style="font-size: 15px"> 个人资料
+                <li class="person" style="font-size: 15px;font-weight: bold"> 个人资料
                     <hr/>
                     <ul>
                         <li> <a href="${APP_PATH}/toUserInfo">个人信息</a></li>
                         <li> <a href="${APP_PATH}/toAddress">收货地址</a></li>
                     </ul>
                 </li>
-                <li class="person" style="font-size: 15px"> 我的交易
+                <li class="person" style="font-size: 15px;font-weight: bold"> 我的交易
                     <hr/>
                     <ul>
                         <li class="active"><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
@@ -267,7 +271,7 @@
                         <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
                     </ul>
                 </li>
-                <li class="person" style="font-size: 15px"> 我的资产
+                <li class="person" style="font-size: 15px;font-weight: bold"> 我的资产
                     <hr/>
                     <ul>
                         <li> <a href="${APP_PATH}/toBill">账单明细</a></li>

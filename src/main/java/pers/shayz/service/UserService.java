@@ -30,7 +30,11 @@ public class UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUseremailEqualTo(email);
         List<User> list = userMapper.selectByExample(userExample);
-        return list.get(0);
+        if(list.size()==0){
+            return null;
+        }else {
+            return list.get(0);
+        }
     }
 
     public User getUserByName(String name) {
@@ -38,6 +42,10 @@ public class UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUsernameEqualTo(name);
         List<User> list = userMapper.selectByExample(userExample);
-        return list.get(0);
+        if(list.size()==0){
+            return null;
+        }else {
+            return list.get(0);
+        }
     }
 }
