@@ -26,13 +26,13 @@ public class ClassifyController {
 
     @RequestMapping(value = "/toClassify/{classifyName}")
     public String toClassify(@PathVariable("classifyName") String classifyName, ModelMap modelMap) {
-        System.out.println(classifyName);
+        System.out.println("/toClassify/{classifyName}: "+classifyName);
         modelMap.addAttribute("classify", classifyName);
 
         int classifyId = classifyService.getClassifyByName(classifyName).getClassifyid();
-        System.out.println(classifyId);
+        System.out.println("/toClassify/{classifyName}: "+classifyId);
         List<Goods> list = goodsService.getGoodsByClassifyId(classifyId);
-        System.out.println(list);
+        System.out.println("/toClassify/{classifyName}: "+list);
         if (list.size() == 0) {
             modelMap.addAttribute("None", "该类商品暂无！");
         } else {

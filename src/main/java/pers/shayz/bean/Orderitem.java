@@ -50,4 +50,15 @@ public class Orderitem {
     public void setFlag(Integer flag) {
         this.flag = flag;
     }
+
+    @Override
+    public String toString() {
+        return "Orderitem{" +
+                "orderitemid=" + orderitemid +
+                ", address='" + address + '\'' +
+                ", totalprice=" + totalprice +
+                ", useridFkOrderitem=" + useridFkOrderitem +
+                ", flag=" + flag +
+                '}';
+    }
 }

@@ -9,13 +9,18 @@
     <title>注册</title>
     <script src="${APP_PATH}/js/jquery-3.1.1.min.js"></script>
 
-    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js"
+            type="text/javascript"></script>
 
     <link href="${APP_PATH}/css/dlstyle.css" rel="stylesheet" type="text/css">
 
     <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.min.css" rel="stylesheet"/>--%>
     <%--<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>--%>
+
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +43,9 @@
                         <span style="display: none" class="am-icon-check"></span>
                     </div>
                     <div class="am-form-group am-form-icon am-form-feedback">
-                        <input type="email" name="useremail" class="am-form-field" data-validation-message="输入地球上的电子邮箱撒"
+                        <input type="email" name="useremail" class="am-form-field"
+                               id="useremail"
+                               data-validation-message="输入地球上的电子邮箱撒"
                                placeholder="输入邮箱" required/>
                         <span style="display: none" class="am-icon-check"></span>
                     </div>
@@ -65,7 +72,6 @@
         </div>
     </div>
 </div>
-
 <div class="footer ">
     <div class="footer-hd ">
         <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/toHome">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b>
@@ -107,6 +113,52 @@
                 $alert.html(msg).show();
                 $group.find('.am-icon-check').hide();
                 $("#registerForm").find(".am-cf").find("#EmailReg").addClass("am-disabled");
+            }
+        });
+    });
+
+    $('#username').blur(function () {
+        var username= $('#username').val();
+        console.log(username);
+        $.ajax({
+            url: '${APP_PATH}/checkUsername',
+            type: 'POST',
+            data: {"username":username},
+            success: function (result) {
+                console.log(result.code);
+                if(result.code===200) {
+                    $.toast({
+                        heading: $('#username').val(),
+                        text: "用户名已存在",
+                        // showHideTransition: 'fade',
+                        hideAfter: false,
+                        position: 'top-right',
+                    })
+                    $('#username').val("");
+                }
+            }
+        });
+    });
+
+    $('#useremail').blur(function () {
+        var useremail= $('#useremail').val();
+        console.log(useremail);
+        $.ajax({
+            url: '${APP_PATH}/checkUseremail',
+            type: 'POST',
+            data: {"useremail":useremail},
+            success: function (result) {
+                console.log(result.code);
+                if(result.code===200) {
+                    $.toast({
+                        heading: $('#useremail').val(),
+                        text: "该邮箱已被注册",
+                        // showHideTransition: 'fade',
+                        hideAfter: false,
+                        position: 'top-right',
+                    })
+                    $('#useremail').val("");
+                }
             }
         });
     });

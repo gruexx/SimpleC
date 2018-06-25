@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor implements HandlerInterceptor {
 
 
+    @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
 
@@ -23,9 +24,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         String username = (String) session.getAttribute("username");
         String userid = (String) session.getAttribute("userid");
         String userchaopoint = (String) session.getAttribute("userchaopoint");
-        System.out.println(username);
-        System.out.println(userid);
-        System.out.println(userchaopoint);
+        System.out.println("LoginInterceptor: "+username);
+        System.out.println("LoginInterceptor: "+userid);
+        System.out.println("LoginInterceptor: "+userchaopoint);
 
         if (userid != null) {
             return true;
@@ -38,14 +39,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         return false;
     }
 
+    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("HandlerInterceptor...postHandle");
+        System.out.println("LoginInterceptor: postHandle");
     }
 
+    @Override
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        System.out.println("HandlerInterceptor...afterCompletion");
+        System.out.println("LoginInterceptor: afterCompletion");
     }
 
 }

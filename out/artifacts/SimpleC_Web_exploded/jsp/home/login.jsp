@@ -5,13 +5,14 @@
 <head>
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
-//        response.setContentType("text/html; charset=utf-8");
     %>
     <title>登录</title>
     <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
 
-    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js"
+            type="text/javascript"></script>
 
     <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.min.css" rel="stylesheet"/>--%>
     <%--<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>--%>
@@ -46,12 +47,19 @@
                 </form>
 
             </div>
-            <div class="login-links">
-                <label for="remember-me">
-                    <input id="remember-me" type="checkbox">记住密码</label> <a href="#" class="am-fr">忘记密码</a> <a
-                    href="${APP_PATH}/toRegister"
-                    class="zcnext am-fr am-btn-default">注册</a>
-                <br/></div>
+
+            <%--<label for="remember-me">--%>
+            <%--<input id="remember-me" type="checkbox">记住密码--%>
+            <%--</label>--%>
+            <label class="am-checkbox needsclick">
+                <input type="checkbox" checked="checked" value="" data-am-ucheck checked> 记住我
+            </label>
+            <label class="am-checkbox needsclick">
+                <input type="checkbox" value="" data-am-ucheck> 记住密码
+            </label>
+            <a href="${APP_PATH}/toRegister" class="zcnext am-fr am-btn-default">注册</a>
+
+
             <div class="am-cf">
                 <input onclick="" type="submit" id="LoginBtn" value="登 录"
                        class="am-btn am-btn-primary am-btn-sm">
@@ -97,8 +105,8 @@
             url: "${APP_PATH}/validateLogin",
             type: "POST",
             data: {
-                "userlogin":userlogin,
-                "userpassword":userpassword
+                "userlogin": userlogin,
+                "userpassword": userpassword
             },
             success: function (result) {
                 if (result.code == 100) {

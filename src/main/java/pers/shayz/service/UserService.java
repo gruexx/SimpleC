@@ -28,7 +28,7 @@ public class UserService {
     public User getUserByEmail(String email){
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUseremailEqualTo(email);
+        criteria.andUseremailEqualTo(email).andFlagEqualTo(1);
         List<User> list = userMapper.selectByExample(userExample);
         if(list.size()==0){
             return null;
@@ -40,7 +40,7 @@ public class UserService {
     public User getUserByName(String name) {
         UserExample userExample = new UserExample();
         UserExample.Criteria criteria = userExample.createCriteria();
-        criteria.andUsernameEqualTo(name);
+        criteria.andUsernameEqualTo(name).andFlagEqualTo(1);
         List<User> list = userMapper.selectByExample(userExample);
         if(list.size()==0){
             return null;
@@ -48,4 +48,5 @@ public class UserService {
             return list.get(0);
         }
     }
+
 }

@@ -13,8 +13,10 @@
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/css/infstyle.css" rel="stylesheet" type="text/css">
 
-    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js"
+            type="text/javascript"></script>
 
     <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
@@ -120,7 +122,7 @@
                         <div class="am-form-group">
                             <label class="am-form-label">商品类别</label>
                             <div class="am-form-content">
-                                <select id="classifyid" class="am-datepicker-select">
+                                <select id="classifyid" class="am-datepicker-select" data-am-selected>
                                     <c:forEach items="${requestScope.classifyList}" var="classifyList">
                                         <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
                                     </c:forEach>
@@ -134,8 +136,9 @@
                         </div>
                         <div class="am-form-group am-form-file">
                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                <i class="am-icon-cloud-upload"></i> 选择要上传的图片</button>
-                            <input id="image" type="file" multiple>
+                                <i class="am-icon-cloud-upload"></i> 选择要上传的图片
+                            </button>
+                            <%--<input id="image" type="file" multiple>--%>
                             <div id="file-list"></div>
                         </div>
                         <div class="am-form-group">
@@ -227,10 +230,10 @@
     })
 </script>
 <script>
-    $(function() {
-        $('#image').on('change', function() {
+    $(function () {
+        $('#image').on('change', function () {
             var fileNames = '';
-            $.each(this.files, function() {
+            $.each(this.files, function () {
                 fileNames += '<span class="am-badge">' + this.name + '</span> ';
             });
             $('#file-list').html(fileNames);

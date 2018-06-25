@@ -44,9 +44,9 @@ public class UserController {
     @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
     public String doRegister(User user, ModelMap modelMap) {
         user.setUserid(null);
-        System.out.println(user);
+        System.out.println("/doRegister: "+user);
         userService.saveUser(user);
-        System.out.println("save success");
+        System.out.println("/doRegister success");
         modelMap.addAttribute("success", "注册成功，请登录！！！");
         return "home/login";
     }
@@ -63,8 +63,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/doLogin", method = RequestMethod.POST)
-    public String doLogin(HttpSession session, String userlogin, String userpassword) {
-        System.out.println("login: " + userlogin);
+    public String doLogin(HttpSession session, String userlogin) {
+        System.out.println("/doLogin: " + userlogin);
         User user;
 
         if (userlogin.contains("@")) {
@@ -83,11 +83,11 @@ public class UserController {
     @ResponseBody
     public Msg validateLogin(@RequestParam("userlogin") String userlogin,
                              @RequestParam("userpassword") String userpassword) {
-        if (userlogin == null || userpassword == null) {
+        if (userlogin.equals("") || userpassword.equals("")) {
             return Msg.fail().add("msg", "用户名/密码不为空！！！");
         }
 
-        System.out.println("validate: " + userlogin);
+        System.out.println("/validateLogin: " + userlogin);
         User user;
 
         if (userlogin.contains("@")) {
@@ -107,6 +107,28 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/checkUsername", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg checkUsername(@RequestParam("username") String username) {
+        System.out.println("/checkUsername: " + username);
+        if(userService.getUserByName(username)==null){
+            return Msg.success();
+        }else{
+        return Msg.fail();
+        }
+    }
+
+    @RequestMapping(value = "/checkUseremail", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg checkUseremail(@RequestParam("useremail") String useremail) {
+        System.out.println("/checkUseremail: " + useremail);
+        if(userService.getUserByEmail(useremail)==null){
+            return Msg.success();
+        }else{
+            return Msg.fail();
+        }
+    }
+
     @RequestMapping(value = "/toHome")
     public String toHome(ModelMap modelMap) {
         modelMap.addAttribute("book", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(1)));
@@ -123,7 +145,7 @@ public class UserController {
     @RequestMapping(value = "/toPublish")
     public String toPublish(ModelMap modelMap) {
         List<Classify> classifyList = classifyService.getAllClassify();
-        System.out.println(classifyList);
+        System.out.println("/toPublish: "+classifyList);
         modelMap.addAttribute("classifyList", classifyList);
         return "home/publish";
     }
@@ -151,11 +173,6 @@ public class UserController {
     @RequestMapping(value = "/toOrder")
     public String toOrder() {
         return "person/order";
-    }
-
-    @RequestMapping(value = "/toOrderItem")
-    public String toOrderItem() {
-        return "person/orderitem";
     }
 
     @RequestMapping(value = "/toPassword")

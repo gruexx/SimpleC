@@ -36,7 +36,7 @@ public class GoodsController {
     @ResponseBody
     public Msg doPublish(Goods goods, HttpSession session){
         goods.setUseridFkGoods(Integer.parseInt(String.valueOf(session.getAttribute("userid"))));
-        System.out.println(goods);
+        System.out.println("/doPublish: "+goods);
 
         if(goods.getGoodsname()==null||goods.getGoodsprice()==null||goods.getGoodsnumber()==null){
             return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
