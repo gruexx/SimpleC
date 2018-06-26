@@ -17,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author ZhouXiaoyu
@@ -58,13 +56,16 @@ public class GoodsController {
                          String goodsnumber, String classifyid,
                          String goodsinfo, HttpSession session) throws IOException {
 
-        System.out.println("/doPublish");
         System.out.println("/doPublish: " + imageFile);
         System.out.println("/doPublish: " + goodsname);
         System.out.println("/doPublish: " + goodsprice);
         System.out.println("/doPublish: " + goodsnumber);
         System.out.println("/doPublish: " + classifyid);
         System.out.println("/doPublish: " + goodsinfo);
+
+        if (goodsname.equals("") || goodsprice.equals("") || goodsnumber.equals("")) {
+            return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
+        }
 
         Goods goods = new Goods();
         goods.setUseridFkGoods(Integer.parseInt(String.valueOf(session.getAttribute("userid"))));
@@ -73,6 +74,8 @@ public class GoodsController {
         goods.setGoodsnumber(Integer.parseInt(goodsnumber));
         goods.setClassifyidFkGoods(Integer.parseInt(classifyid));
         goods.setGoodsinfo(goodsinfo);
+        System.out.println("/doPublish: " + goods);
+
 
         System.out.println("comming!");
         String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\GoodsImage";
@@ -81,35 +84,39 @@ public class GoodsController {
         String fileName = imageFile.getOriginalFilename();
         System.out.println(fileName);
         String[] suffix = fileName.split("\\.");
-        System.out.println(suffix + " " + suffix[suffix.length - 1]);
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        fileName = uuid + "." + suffix[suffix.length - 1];
-        String image = "GoodsImage/" + fileName;
-        System.out.println("fileName>>" + fileName);
+        System.out.println(Arrays.toString(suffix) + " " + suffix[suffix.length - 1]);
 
-        File dir = new File(path, fileName);
+        if (!Objects.equals(suffix[suffix.length - 1], "")) {
+
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            fileName = uuid + "." + suffix[suffix.length - 1];
+            String image = "GoodsImage/" + fileName;
+            System.out.println("fileName>>" + fileName);
+
+            File dir = new File(path, fileName);
 //        System.out.println("dir.exists()>>" + dir.exists());
 //        if (!dir.exists()) {
 //            dir.mkdirs();
 //        }
 //        System.out.println("dir.exists()>>" + dir.exists());
 //      MultipartFile自带的解析方法
-        imageFile.transferTo(dir);
+            imageFile.transferTo(dir);
 
-        goods.setImage(image);
+            goods.setImage(image);
+        } else {
+            goods.setImage(null);
+        }
 
         System.out.println("/doPublish: " + goods);
 
-        if (goods.getGoodsname() == null || goods.getGoodsprice() == null || goods.getGoodsnumber() == null) {
-            return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
-        } else {
-            goodsService.saveGoods(goods);
-            return Msg.success().add("msg", "商品发布成功");
-        }
+
+        goodsService.saveGoods(goods);
+        return Msg.success().add("msg", "商品发布成功");
+
     }
 
     @RequestMapping(value = "/toGoodsManage")
-    public String toGoodsManage(){
+    public String toGoodsManage() {
         return "person/goodsmanage";
     }
 }

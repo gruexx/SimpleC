@@ -90,4 +90,19 @@ public class Goods {
     public void setGoodsinfo(String goodsinfo) {
         this.goodsinfo = goodsinfo == null ? null : goodsinfo.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "goodsid=" + goodsid +
+                ", goodsname='" + goodsname + '\'' +
+                ", classifyidFkGoods=" + classifyidFkGoods +
+                ", useridFkGoods=" + useridFkGoods +
+                ", goodsprice=" + goodsprice +
+                ", goodsnumber=" + goodsnumber +
+                ", flag=" + flag +
+                ", image='" + image + '\'' +
+                ", goodsinfo='" + goodsinfo + '\'' +
+                '}';
+    }
 }

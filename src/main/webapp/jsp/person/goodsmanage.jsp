@@ -115,10 +115,10 @@
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
                     <tr>
-                        <th style="font-size: 20px;font-weight: bold">订单编号</th>
-                        <th style="font-size: 20px;font-weight: bold">地址</th>
-                        <th style="font-size: 20px;font-weight: bold">合计</th>
-                        <th style="font-size: 20px;font-weight: bold">交易状态</th>
+                        <th style="font-size: 20px;font-weight: bold">商品编号</th>
+                        <th style="font-size: 20px;font-weight: bold">商品名称</th>
+                        <th style="font-size: 20px;font-weight: bold">商品价格</th>
+                        <th style="font-size: 20px;font-weight: bold">库存</th>
                         <th style="font-size: 20px;font-weight: bold">交易操作</th>
                     </tr>
                     </thead>

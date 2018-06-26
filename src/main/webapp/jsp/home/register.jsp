@@ -33,7 +33,7 @@
         <div class="login-box" style="background-color:rgba(0,0,0,0.4);height: 500px">
 
 
-            <form action="${APP_PATH}/doRegister" method="post" class="am-form" id="registerForm">
+            <form class="am-form" id="registerForm">
                 <legend style="color: white;padding-bottom: 15px">加入我们</legend>
                 <hr style="padding-bottom: 15px"/>
                 <fieldset>
@@ -57,14 +57,14 @@
                     </div>
                     <div class="am-form-group am-form-icon am-form-feedback">
 
-                        <input type="password" name="" placeholder="确认密码" class="am-form-field"
+                        <input type="password" id="p2" placeholder="确认密码" class="am-form-field"
                                data-equal-to="#userpassword"
                                data-validation-message="密码对不上啊喂" required/>
                         <span style="display: none" class="am-icon-check"></span>
                     </div>
                     <div class="am-cf">
-                        <input type="submit" id="EmailReg" value="注册"
-                               class="am-btn am-btn-primary am-btn-sm am-fl am-disabled">
+                        <input type="button" id="RegBtn" value="注册"
+                                class="am-btn am-btn-primary am-btn-sm am-fl am-disabled">
                     </div>
                 </fieldset>
             </form>
@@ -96,7 +96,7 @@
             onValid: function (validity) {
                 $(validity.field).closest('.am-form-group').find('.am-alert').hide();
                 $(validity.field).closest('.am-form-group').find('.am-icon-check').show();
-                $("#registerForm").find(".am-cf").find("#EmailReg").removeClass("am-disabled");
+                $("#registerForm").find(".am-cf").find("#RegBtn").removeClass("am-disabled");
             },
 
             onInValid: function (validity) {
@@ -112,54 +112,97 @@
 
                 $alert.html(msg).show();
                 $group.find('.am-icon-check').hide();
-                $("#registerForm").find(".am-cf").find("#EmailReg").addClass("am-disabled");
+                $("#registerForm").find(".am-cf").find("#RegBtn").addClass("am-disabled");
             }
         });
     });
 
-    $('#username').blur(function () {
-        var username= $('#username').val();
-        console.log(username);
-        $.ajax({
-            url: '${APP_PATH}/checkUsername',
-            type: 'POST',
-            data: {"username":username},
-            success: function (result) {
-                console.log(result.code);
-                if(result.code===200) {
-                    $.toast({
-                        heading: $('#username').val(),
-                        text: "用户名已存在",
-                        // showHideTransition: 'fade',
-                        hideAfter: false,
-                        position: 'top-right',
-                    })
-                    $('#username').val("");
-                }
-            }
-        });
-    });
+    <%--$('#username').blur(function () {--%>
+    <%--var username= $('#username').val();--%>
+    <%--console.log(username);--%>
+    <%--$.ajax({--%>
+    <%--url: '${APP_PATH}/checkUsername',--%>
+    <%--type: 'POST',--%>
+    <%--data: {"username":username},--%>
+    <%--success: function (result) {--%>
+    <%--console.log(result.code);--%>
+    <%--if(result.code===200) {--%>
+    <%--$.toast({--%>
+    <%--heading: $('#username').val(),--%>
+    <%--text: "用户名已存在",--%>
+    <%--showHideTransition: 'slide',--%>
+    <%--afterHidden: function () {--%>
+    <%--window.location.reload();--%>
+    <%--},--%>
+    <%--hideAfter: 1000,--%>
+    <%--position: 'top-right',--%>
+    <%--})--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--});--%>
 
-    $('#useremail').blur(function () {
-        var useremail= $('#useremail').val();
-        console.log(useremail);
+    <%--$('#useremail').blur(function () {--%>
+    <%--var useremail= $('#useremail').val();--%>
+    <%--console.log(useremail);--%>
+    <%--$.ajax({--%>
+    <%--url: '${APP_PATH}/checkUseremail',--%>
+    <%--type: 'POST',--%>
+    <%--data: {"useremail":useremail},--%>
+    <%--success: function (result) {--%>
+    <%--console.log(result.code);--%>
+    <%--if(result.code===200) {--%>
+    <%--$.toast({--%>
+    <%--heading: $('#useremail').val(),--%>
+    <%--text: "该邮箱已被注册",--%>
+    <%--showHideTransition: 'slide',--%>
+    <%--afterHidden: function () {--%>
+    <%--window.location.reload();--%>
+    <%--},--%>
+    <%--hideAfter: 1000,--%>
+    <%--position: 'top-right',--%>
+    <%--})--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--});--%>
+
+    $('#RegBtn').click(function () {
+        if($('#p2').val()==null){
+            $.toast({
+                text: '请确认密码',
+                showHideTransition: 'slide',
+                hideAfter: false,
+                position: 'top-right'
+            })
+            $('#p2').focus();
+        }
+
         $.ajax({
-            url: '${APP_PATH}/checkUseremail',
+            url: '${APP_PATH}/doRegister',
             type: 'POST',
-            data: {"useremail":useremail},
+            data: $('#registerForm').serialize(),
             success: function (result) {
                 console.log(result.code);
-                if(result.code===200) {
+                if (result.code === 100) {
                     $.toast({
-                        heading: $('#useremail').val(),
-                        text: "该邮箱已被注册",
-                        // showHideTransition: 'fade',
+                        heading: "Success",
+                        text: 'Yes! 注册成功 <a href="${APP_PATH}/toLogin">登录</a>.',
+                        showHideTransition: 'slide',
                         hideAfter: false,
                         position: 'top-right',
+                        icon: 'success'
                     })
-                    $('#useremail').val("");
+                } else {
+                    $.toast({
+                        heading: "Fail",
+                        text: result.extend.msg+',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
+                        showHideTransition: 'slide',
+                        hideAfter: false,
+                        position: 'top-right'
+                    })
                 }
             }
         });
-    });
+    })
 </script>

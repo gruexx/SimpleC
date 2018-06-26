@@ -42,13 +42,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
-    public String doRegister(User user, ModelMap modelMap) {
+    @ResponseBody
+    public Msg doRegister(User user, ModelMap modelMap) {
         user.setUserid(null);
-        System.out.println("/doRegister: "+user);
-        userService.saveUser(user);
-        System.out.println("/doRegister success");
+        System.out.println("/doRegister: " + user);
+
         modelMap.addAttribute("success", "注册成功，请登录！！！");
-        return "home/login";
+
+        String useremail = user.getUseremail();
+        String username = user.getUsername();
+
+
+        if(useremail.equals("")||username.equals("")||user.getUserpassword().equals("")){
+            return Msg.fail().add("msg", "用户名/邮箱/密码不能为空");
+        }
+
+        System.out.println("/doRegister: " + username);
+        if (userService.getUserByName(username) != null) {
+            return Msg.fail().add("msg", "用户名已存在");
+        }
+
+        System.out.println("/doRegister: " + useremail);
+        if (userService.getUserByEmail(useremail) != null) {
+            return Msg.fail().add("msg", "该邮箱已被注册");
+        }
+
+        userService.saveUser(user);
+        return Msg.success();
     }
 
     @RequestMapping(value = "/toLogin")
@@ -107,27 +127,27 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/checkUsername", method = RequestMethod.POST)
-    @ResponseBody
-    public Msg checkUsername(@RequestParam("username") String username) {
-        System.out.println("/checkUsername: " + username);
-        if(userService.getUserByName(username)==null){
-            return Msg.success();
-        }else{
-        return Msg.fail();
-        }
-    }
-
-    @RequestMapping(value = "/checkUseremail", method = RequestMethod.POST)
-    @ResponseBody
-    public Msg checkUseremail(@RequestParam("useremail") String useremail) {
-        System.out.println("/checkUseremail: " + useremail);
-        if(userService.getUserByEmail(useremail)==null){
-            return Msg.success();
-        }else{
-            return Msg.fail();
-        }
-    }
+//    @RequestMapping(value = "/checkUsername", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Msg checkUsername(@RequestParam("username") String username) {
+//        System.out.println("/checkUsername: " + username);
+//        if(userService.getUserByName(username)==null){
+//            return Msg.success();
+//        }else{
+//        return Msg.fail();
+//        }
+//    }
+//
+//    @RequestMapping(value = "/checkUseremail", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Msg checkUseremail(@RequestParam("useremail") String useremail) {
+//        System.out.println("/checkUseremail: " + useremail);
+//        if(userService.getUserByEmail(useremail)==null){
+//            return Msg.success();
+//        }else{
+//            return Msg.fail();
+//        }
+//    }
 
     @RequestMapping(value = "/toHome")
     public String toHome(ModelMap modelMap) {
@@ -145,7 +165,7 @@ public class UserController {
     @RequestMapping(value = "/toPublish")
     public String toPublish(ModelMap modelMap) {
         List<Classify> classifyList = classifyService.getAllClassify();
-        System.out.println("/toPublish: "+classifyList);
+        System.out.println("/toPublish: " + classifyList);
         modelMap.addAttribute("classifyList", classifyList);
         return "home/publish";
     }

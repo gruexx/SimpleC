@@ -52,7 +52,7 @@
                                 购物车 <span class="am-icon-caret-down"></span>
                             </a>
                             <ul class="am-dropdown-content" style="white-space: nowrap">
-                                <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                                <li class="am-dropdown-header">${sessionScope.username}的购物车</li>
                                 <li class="am-divider"></li>
                                 <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
                                 <li class="am-divider"></li>
@@ -89,9 +89,10 @@
 <div class="nav-table">
     <div class="long-title"><span class="all-goods">发布商品</span></div>
     <div class="nav-cont">
-        <ul>
-            <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
-        </ul>
+
+        <li><a href="javascript:history.back(-1)">返回</a></li>
+        <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
+
     </div>
 </div>
 <b class="line"></b>
@@ -140,11 +141,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="am-form-group">
-                            <label class="am-form-label">详细资料</label>
-                            <div class="am-form-content">
-                                <input type="text" placeholder="information" name="goodsinfo"></div>
-                        </div>
                         <div class="am-form-group am-form-file">
                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                 <i class="am-icon-cloud-upload"></i> 选择要上传的图片
@@ -161,6 +157,13 @@
                             <label class="am-form-label">库存量</label>
                             <div class="am-form-content" style="width:200px">
                                 <input placeholder="goodsnumber" type="text" id="goodsnumber" name="goodsnumber"></div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-form-label">详细资料</label>
+                            <div class="am-form-content">
+                                <textarea id="doc-vld-ta-2-1" minlength="10" maxlength="100"
+                                          type="text" placeholder="information" name="goodsinfo"></textarea>
+                            </div>
                         </div>
                         <div class="info-btn">
                             <div id="addGoodsBtn" class="am-btn am-btn-danger">上架商品
@@ -220,8 +223,8 @@
             //     goodsprice: goodsprice,
             //     goodsnumber: goodsnumber
             // },
-            processData:false,
-            contentType:false,
+            processData: false,
+            contentType: false,
             success: function (result) {
                 $("#addGoodsForm")[0].reset();
                 if (result.code == 100) {
@@ -229,10 +232,6 @@
                         heading: "Success",
                         text: result.extend.msg,
                         showHideTransition: 'slide',
-                        position: {
-                            left: 750,
-                            top: 220
-                        },
                         icon: 'success'
                     })
                 } else {
@@ -240,11 +239,6 @@
                         heading: "Fail",
                         text: result.extend.msg,
                         showHideTransition: 'fade',
-                        position: {
-                            left: 750,
-                            top: 220
-                        },
-                        icon: 'error'
                     })
                 }
 
