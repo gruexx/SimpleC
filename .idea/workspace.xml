@@ -289,11 +289,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-18" />
-    <option name="y" value="92" />
-    <option name="width" value="1378" />
-    <option name="height" value="780" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="52" />
+    <option name="y" value="89" />
+    <option name="width" value="1774" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -463,7 +463,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.24923077" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -676,7 +676,7 @@
         </option>
       </method>
     </configuration>
-    <configuration name="test" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.52" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="test" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.8" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/toLogin" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
