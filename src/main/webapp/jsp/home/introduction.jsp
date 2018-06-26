@@ -21,6 +21,97 @@
     <script type="text/javascript" src="${APP_PATH}/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="${APP_PATH}/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="${APP_PATH}/js/list.js"></script>
+
+    <style>
+        .talk_con{
+            width:600px;
+            height:500px;
+            border:1px solid #666;
+            margin:50px auto 0;
+            background:#f9f9f9;
+        }
+        .talk_show{
+            width:580px;
+            height:420px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:580px;
+            margin:10px auto 0;
+        }
+        .whotalk{
+            width:80px;
+            height:30px;
+            float:left;
+            outline:none;
+        }
+        .talk_word{
+            width:350px;
+            height:26px;
+            padding:0px;
+            float:left;
+            margin-left:10px;
+            outline:none;
+            text-indent:10px;
+        }
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:left;
+            margin-left:10px;
+        }
+
+        .atalk{
+            margin:10px;
+        }
+        .atalk span{
+            display:inline-block;
+            background:#0181cc;
+            border-radius:10px;
+            color:#fff;
+            padding:5px 10px;
+        }
+        .btalk{
+            margin:10px;
+            text-align:right;
+        }
+        .btalk span{
+            display:inline-block;
+            background:#ef8201;
+            border-radius:10px;
+            color:#fff;
+            padding:5px 10px;
+        }
+        .black_overlay{
+            display: none;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index:1001;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=88);
+        }
+        .white_content {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 25%;
+            width: 55%;
+            height: 100%;
+            padding: 20px;
+            border: 10px solid orange;
+            background-color: white;
+            z-index:1002;
+            overflow: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -199,6 +290,10 @@
                 <div class="clearfix tb-btn tb-btn-basket theme-login"><a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
                 </div>
             </li>
+            <li>
+                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="chat" title="点此按钮到下一步确认购买信息" href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">联系卖家</a>
+                </div>
+            </li>
         </div>
     </div>
 
@@ -332,6 +427,28 @@
         </div>
     </div>
 </div>
+
+
+<div id="light" class="white_content">
+    <div class="talk_con">
+        <div class="talk_show" id="words">
+            <div class="atalk"><span id="asay">A说：吃饭了吗？</span></div>
+            <div class="btalk"><span id="bsay">B说：还没呢，你呢？</span></div>
+        </div>
+        <div class="talk_input">
+            <select class="whotalk" id="who">
+                <option value="0">A说：</option>
+                <option value="1">B说：</option>
+            </select>
+            <input type="text" class="talk_word" id="talkwords">
+            <input type="button" value="发送" class="talk_sub" id="talksub">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+        </div>
+    </div>
+</div>
+
+
+<div id="fade" class="black_overlay"></div>
 </body>
 
 </html>
