@@ -18,6 +18,7 @@
 <body>
 <div class="hmtop">
     <!--顶部导航条 -->
+
     <div class="am-container header">
         <ul class="message-l">
             <div class="topMessage">
@@ -32,17 +33,37 @@
                 <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
             </div>
             <div class="topMessage my-shangcheng">
-                <div class="menu-hd MyShangcheng"><a href="${APP_PATH}/toUserInfo" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                <div class="menu-hd MyShangcheng"><a href="${APP_PATH}/toUserInfo" target="_top"><i
+                        class="am-icon-user am-icon-fw"></i>个人中心</a>
                 </div>
             </div>
+            <%--<div class="topMessage mini-cart">--%>
+            <%--<div class="menu-hd"><a id="mc-menu-hd" href="${APP_PATH}/toShopcart" target="_top"><i--%>
+            <%--class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"--%>
+            <%--class="h">0</strong></a>--%>
+            <%--</div>--%>
+            <%--</div>--%>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
-                        class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
-                                                                                              class="h">0</strong></a>
-                </div>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        购物车 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content" style="white-space: nowrap">
+                        <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                        <li class="am-divider"></li>
+                        <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
+                        <li class="am-divider"></li>
+                        <li><a href="#">网址不变且唯一</a></li>
+                        <li><a href="#">内容实时同步更新</a></li>
+                        <li><a href="#">云端跨平台适配</a></li>
+                        <li><a href="#">专属的一键拨叫</a></li>
+                    </ul>
+                </li>
             </div>
         </ul>
     </div>
+
+
     <!--悬浮搜索框-->
     <div class="nav white">
         <div class="logoBig">
@@ -262,7 +283,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -288,7 +309,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -314,7 +335,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -340,7 +361,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -366,7 +387,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -392,7 +413,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -418,7 +439,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
@@ -444,7 +465,7 @@
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}" />
+                                <img src="${APP_PATH}/${list.image}"/>
                                 <div class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>

@@ -47,10 +47,21 @@
                         </div>
                     </div>
                     <div class="topMessage mini-cart">
-                        <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
-                                class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
-                                                                                                      class="h">0</strong></a>
-                        </div>
+                        <li class="am-dropdown" data-am-dropdown>
+                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                购物车 <span class="am-icon-caret-down"></span>
+                            </a>
+                            <ul class="am-dropdown-content" style="white-space: nowrap">
+                                <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                                <li class="am-divider"></li>
+                                <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
+                                <li class="am-divider"></li>
+                                <li><a href="#">网址不变且唯一</a></li>
+                                <li><a href="#">内容实时同步更新</a></li>
+                                <li><a href="#">云端跨平台适配</a></li>
+                                <li><a href="#">专属的一键拨叫</a></li>
+                            </ul>
+                        </li>
                     </div>
                 </ul>
             </div>
@@ -113,11 +124,11 @@
 
                 <div class="info-main">
                     <form id="addGoodsForm" action="${APP_PATH}/doPublish" method="post"
-                          class="am-form am-form-horizontal">
+                          class="am-form am-form-horizontal" enctype="multipart/form-data">
                         <div class="am-form-group">
                             <label class="am-form-label">商品名称</label>
                             <div class="am-form-content">
-                                <input type="text" placeholder="goodsname" id="goodsname"></div>
+                                <input type="text" placeholder="goodsname" id="goodsname" name="goodsname"></div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">商品类别</label>
@@ -132,24 +143,24 @@
                         <div class="am-form-group">
                             <label class="am-form-label">详细资料</label>
                             <div class="am-form-content">
-                                <input type="text" placeholder="information"></div>
+                                <input type="text" placeholder="information" name="goodsinfo"></div>
                         </div>
                         <div class="am-form-group am-form-file">
                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                 <i class="am-icon-cloud-upload"></i> 选择要上传的图片
                             </button>
-                            <%--<input id="image" type="file" multiple>--%>
+                            <input id="imageFile" name="imageFile" type="file" multiple>
                             <div id="file-list"></div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">商品价格</label>
                             <div class="am-form-content" style="width:200px">
-                                <input placeholder="￥(RMB)" type="text" id="goodsprice"></div>
+                                <input placeholder="￥(RMB)" type="text" id="goodsprice" name="goodsprice"></div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">库存量</label>
                             <div class="am-form-content" style="width:200px">
-                                <input placeholder="goodsnumber" type="text" id="goodsnumber"></div>
+                                <input placeholder="goodsnumber" type="text" id="goodsnumber" name="goodsnumber"></div>
                         </div>
                         <div class="info-btn">
                             <div id="addGoodsBtn" class="am-btn am-btn-danger">上架商品
@@ -177,28 +188,40 @@
 
 </html>
 <script>
+    // $("#addGoodsBtn").click(function () {
+    //     var form = new FormData(document.getElementById("addGoodsForm"));
+    //     $.ajax({
+    //         type:"post",
+    //         url:"/doPublish",
+    //         data: form,
+    //         processData:false,
+    //         contentType:false,
+    //         success: function (result) {
+    //             alert("success");
+    //         }
+    //     })
+    // })
+
     $("#addGoodsBtn").click(function () {
+        var form = new FormData(document.getElementById("addGoodsForm"));
         // $("#addGoodsForm").submit();
 
-        var goodsname = $("#goodsname").val();
         var classifyidFkGoods = $("#classifyid option:selected").val();
-        var image = $("#image").val();
-        var goodsprice = $("#goodsprice").val();
-        var goodsnumber = $("#goodsnumber").val();
-
-        console.log("display...")
-        console.log(image);
+        form.append('classifyid', classifyidFkGoods);
 
         $.ajax({
             type: "post",
             url: "/doPublish",
-            data: {
-                goodsname: goodsname,
-                classifyidFkGoods: classifyidFkGoods,
-                image: image,
-                goodsprice: goodsprice,
-                goodsnumber: goodsnumber
-            },
+            data: form,
+            // data: {
+            //     goodsname: goodsname,
+            //     classifyidFkGoods: classifyidFkGoods,
+            //     image: image,
+            //     goodsprice: goodsprice,
+            //     goodsnumber: goodsnumber
+            // },
+            processData:false,
+            contentType:false,
             success: function (result) {
                 $("#addGoodsForm")[0].reset();
                 if (result.code == 100) {
@@ -231,7 +254,7 @@
 </script>
 <script>
     $(function () {
-        $('#image').on('change', function () {
+        $('#imageFile').on('change', function () {
             var fileNames = '';
             $.each(this.files, function () {
                 fileNames += '<span class="am-badge">' + this.name + '</span> ';

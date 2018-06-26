@@ -6,7 +6,7 @@
     <%
         pageContext.setAttribute("APP_PATH", request.getContextPath());
     %>
-    <title>订单管理</title>
+    <title>商品管理</title>
 
     <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
 
@@ -169,13 +169,13 @@
             <li class="person" style="font-size: 15px;font-weight: bold"> 我的交易
                 <hr/>
                 <ul>
-                    <li class="active"><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
+                    <li><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
                 </ul>
                 <ul>
                     <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
                 </ul>
                 <ul>
-                    <li><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
+                    <li class="active"><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
                 </ul>
             </li>
             <li class="person" style="font-size: 15px;font-weight: bold"> 我的资产

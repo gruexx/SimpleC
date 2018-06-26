@@ -45,9 +45,21 @@
                             </div>
                         </div>
                         <div class="topMessage mini-cart">
-                            <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
-                                    class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
-                                                                                                          class="h">0</strong></a></div>
+                            <li class="am-dropdown" data-am-dropdown>
+                                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                                    购物车 <span class="am-icon-caret-down"></span>
+                                </a>
+                                <ul class="am-dropdown-content" style="white-space: nowrap">
+                                    <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                                    <li class="am-divider"></li>
+                                    <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
+                                    <li class="am-divider"></li>
+                                    <li><a href="#">网址不变且唯一</a></li>
+                                    <li><a href="#">内容实时同步更新</a></li>
+                                    <li><a href="#">云端跨平台适配</a></li>
+                                    <li><a href="#">专属的一键拨叫</a></li>
+                                </ul>
+                            </li>
                         </div>
                     </ul>
                 </div>
@@ -154,6 +166,9 @@
                     </ul>
                     <ul>
                         <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
                     </ul>
                 </li>
                 <li class="person" style="font-size: 15px;font-weight: bold"> 我的资产

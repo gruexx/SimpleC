@@ -10,6 +10,7 @@
     <result column="goodsNumber" jdbcType="INTEGER" property="goodsnumber" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="goodsInfo" jdbcType="VARCHAR" property="goodsinfo" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List">
     goodsId, goodsName, classifyId_fk_goods, userId_fk_goods, goodsPrice, goodsNumber, 
-    flag, image
+    flag, image, goodsInfo
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.GoodsExample" resultMap="BaseResultMap">
     select
@@ -106,10 +107,12 @@
   <insert id="insert" parameterType="pers.shayz.bean.Goods">
     insert into goods (goodsId, goodsName, classifyId_fk_goods, 
       userId_fk_goods, goodsPrice, goodsNumber, 
-      flag, image)
+      flag, image, goodsInfo
+      )
     values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{classifyidFkGoods,jdbcType=INTEGER}, 
       #{useridFkGoods,jdbcType=INTEGER}, #{goodsprice,jdbcType=DOUBLE}, #{goodsnumber,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR})
+      #{flag,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{goodsinfo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Goods">
     insert into goods
@@ -138,6 +141,9 @@
       <if test="image != null">
         image,
       </if>
+      <if test="goodsinfo != null">
+        goodsInfo,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsid != null">
@@ -163,6 +169,9 @@
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsinfo != null">
+        #{goodsinfo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +208,9 @@
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
+      <if test="record.goodsinfo != null">
+        goodsInfo = #{record.goodsinfo,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +225,8 @@
       goodsPrice = #{record.goodsprice,jdbcType=DOUBLE},
       goodsNumber = #{record.goodsnumber,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
-      image = #{record.image,jdbcType=VARCHAR}
+      image = #{record.image,jdbcType=VARCHAR},
+      goodsInfo = #{record.goodsinfo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +255,9 @@
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
+      <if test="goodsinfo != null">
+        goodsInfo = #{goodsinfo,jdbcType=VARCHAR},
+      </if>
     </set>
     where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
@@ -253,7 +269,8 @@
       goodsPrice = #{goodsprice,jdbcType=DOUBLE},
       goodsNumber = #{goodsnumber,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
-      image = #{image,jdbcType=VARCHAR}
+      image = #{image,jdbcType=VARCHAR},
+      goodsInfo = #{goodsinfo,jdbcType=VARCHAR}
     where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
 </mapper>

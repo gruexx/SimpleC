@@ -33,9 +33,21 @@
                 <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a> </div>
             </div>
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i
-                        class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum"
-                                                                                              class="h">0</strong></a> </div>
+                <li class="am-dropdown" data-am-dropdown>
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                        购物车 <span class="am-icon-caret-down"></span>
+                    </a>
+                    <ul class="am-dropdown-content" style="white-space: nowrap">
+                        <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                        <li class="am-divider"></li>
+                        <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
+                        <li class="am-divider"></li>
+                        <li><a href="#">网址不变且唯一</a></li>
+                        <li><a href="#">内容实时同步更新</a></li>
+                        <li><a href="#">云端跨平台适配</a></li>
+                        <li><a href="#">专属的一键拨叫</a></li>
+                    </ul>
+                </li>
             </div>
         </ul>
     </div>
@@ -150,7 +162,7 @@
                 </div>
                 <div class="price-sum"> <span class="txt">合计:</span> <strong class="price">¥<em id="J_Total">0.00</em></strong> </div>
                 <div class="btn-area">
-                    <a href="pay.jsp" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算"> <span>结&nbsp;算</span></a>
+                    <a href="../home/pay.jsp" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算"> <span>结&nbsp;算</span></a>
                 </div>
             </div>
         </div>
@@ -166,7 +178,7 @@
     <!--操作页面-->
     <!--引导 -->
     <div class="navCir">
-        <li><a href="home.jsp"><i class="am-icon-home "></i>首页</a></li>
+        <li><a href="../home/home.jsp"><i class="am-icon-home "></i>首页</a></li>
         <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
         <li class="active"><a href="shopcart.jsp"><i class="am-icon-shopping-basket"></i>购物车</a></li>
         <li><a href="${APP_PATH}/person/index.html"><i class="am-icon-user"></i>我的</a></li>

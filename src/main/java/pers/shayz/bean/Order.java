@@ -60,16 +60,4 @@ public class Order {
     public void setFlag(Integer flag) {
         this.flag = flag;
     }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderid=" + orderid +
-                ", useridFkOrder=" + useridFkOrder +
-                ", goodsidFkOrder=" + goodsidFkOrder +
-                ", number=" + number +
-                ", orderitemidFkOrder=" + orderitemidFkOrder +
-                ", flag=" + flag +
-                '}';
-    }
 }
