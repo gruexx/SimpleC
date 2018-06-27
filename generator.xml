@@ -37,7 +37,7 @@
         <table tableName="classify" domainObjectName=""></table>
         <table tableName="comment" domainObjectName=""></table>
         <table tableName="goods" domainObjectName=""></table>
-        <table tableName="order" domainObjectName=""></table>
+        <table tableName="orderdetails" domainObjectName=""></table>
         <table tableName="orderitem" domainObjectName=""></table>
         <table tableName="shopcart" domainObjectName=""></table>
         <table tableName="user" domainObjectName=""></table>

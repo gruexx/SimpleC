@@ -1,6 +1,6 @@
 package pers.shayz.bean;
 
-public class Order {
+public class Orderdetails {
     private Integer orderid;
 
     private Integer useridFkOrder;

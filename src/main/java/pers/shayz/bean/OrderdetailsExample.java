@@ -3,14 +3,14 @@ package pers.shayz.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderExample {
+public class OrderdetailsExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public OrderExample() {
+    public OrderdetailsExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

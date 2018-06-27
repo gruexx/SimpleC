@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pers.shayz.dao.OrderMapper">
-  <resultMap id="BaseResultMap" type="pers.shayz.bean.Order">
+<mapper namespace="pers.shayz.dao.OrderdetailsMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.Orderdetails">
     <id column="orderId" jdbcType="INTEGER" property="orderid" />
     <result column="userId_fk_order" jdbcType="INTEGER" property="useridFkOrder" />
     <result column="goodsId_fk_order" jdbcType="INTEGER" property="goodsidFkOrder" />
@@ -70,13 +70,13 @@
   <sql id="Base_Column_List">
     orderId, userId_fk_order, goodsId_fk_order, number, orderitemId_fk_order, flag
   </sql>
-  <select id="selectByExample" parameterType="pers.shayz.bean.OrderExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="pers.shayz.bean.OrderdetailsExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order
+    from orderdetails
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,29 +87,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from orderdetails
     where orderId = #{orderid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from order
+    delete from orderdetails
     where orderId = #{orderid,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="pers.shayz.bean.OrderExample">
-    delete from order
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.OrderdetailsExample">
+    delete from orderdetails
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="pers.shayz.bean.Order">
-    insert into order (orderId, userId_fk_order, goodsId_fk_order, 
+  <insert id="insert" parameterType="pers.shayz.bean.Orderdetails">
+    insert into orderdetails (orderId, userId_fk_order, goodsId_fk_order, 
       number, orderitemId_fk_order, flag
       )
     values (#{orderid,jdbcType=INTEGER}, #{useridFkOrder,jdbcType=INTEGER}, #{goodsidFkOrder,jdbcType=INTEGER}, 
       #{number,jdbcType=INTEGER}, #{orderitemidFkOrder,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="pers.shayz.bean.Order">
-    insert into order
+  <insert id="insertSelective" parameterType="pers.shayz.bean.Orderdetails">
+    insert into orderdetails
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderid != null">
         orderId,
@@ -151,14 +151,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="pers.shayz.bean.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+  <select id="countByExample" parameterType="pers.shayz.bean.OrderdetailsExample" resultType="java.lang.Long">
+    select count(*) from orderdetails
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update orderdetails
     <set>
       <if test="record.orderid != null">
         orderId = #{record.orderid,jdbcType=INTEGER},
@@ -184,7 +184,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update orderdetails
     set orderId = #{record.orderid,jdbcType=INTEGER},
       userId_fk_order = #{record.useridFkOrder,jdbcType=INTEGER},
       goodsId_fk_order = #{record.goodsidFkOrder,jdbcType=INTEGER},
@@ -195,8 +195,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Order">
-    update order
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Orderdetails">
+    update orderdetails
     <set>
       <if test="useridFkOrder != null">
         userId_fk_order = #{useridFkOrder,jdbcType=INTEGER},
@@ -216,8 +216,8 @@
     </set>
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Order">
-    update order
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Orderdetails">
+    update orderdetails
     set userId_fk_order = #{useridFkOrder,jdbcType=INTEGER},
       goodsId_fk_order = #{goodsidFkOrder,jdbcType=INTEGER},
       number = #{number,jdbcType=INTEGER},
