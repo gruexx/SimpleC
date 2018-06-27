@@ -23,69 +23,78 @@
     <script type="text/javascript" src="${APP_PATH}/js/list.js"></script>
 
     <style>
-        .talk_con{
-            width:600px;
-            height:500px;
-            border:1px solid #666;
-            margin:50px auto 0;
-            background:#f9f9f9;
-        }
-        .talk_show{
-            width:580px;
-            height:420px;
-            border:1px solid #666;
-            background:#fff;
-            margin:10px auto 0;
-            overflow:auto;
-        }
-        .talk_input{
-            width:580px;
-            margin:10px auto 0;
-        }
-        .whotalk{
-            width:80px;
-            height:30px;
-            float:left;
-            outline:none;
-        }
-        .talk_word{
-            width:350px;
-            height:26px;
-            padding:0px;
-            float:left;
-            margin-left:10px;
-            outline:none;
-            text-indent:10px;
-        }
-        .talk_sub{
-            width:56px;
-            height:30px;
-            float:left;
-            margin-left:10px;
+        .talk_con {
+            width: 600px;
+            height: 500px;
+            border: 1px solid #666;
+            margin: 50px auto 0;
+            background: #f9f9f9;
         }
 
-        .atalk{
-            margin:10px;
+        .talk_show {
+            width: 580px;
+            height: 420px;
+            border: 1px solid #666;
+            background: #fff;
+            margin: 10px auto 0;
+            overflow: auto;
         }
-        .atalk span{
-            display:inline-block;
-            background:#0181cc;
-            border-radius:10px;
-            color:#fff;
-            padding:5px 10px;
+
+        .talk_input {
+            width: 580px;
+            margin: 10px auto 0;
         }
-        .btalk{
-            margin:10px;
-            text-align:right;
+
+        .whotalk {
+            width: 80px;
+            height: 30px;
+            float: left;
+            outline: none;
         }
-        .btalk span{
-            display:inline-block;
-            background:#ef8201;
-            border-radius:10px;
-            color:#fff;
-            padding:5px 10px;
+
+        .talk_word {
+            width: 350px;
+            height: 26px;
+            padding: 0px;
+            float: left;
+            margin-left: 10px;
+            outline: none;
+            text-indent: 10px;
         }
-        .black_overlay{
+
+        .talk_sub {
+            width: 56px;
+            height: 30px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        .atalk {
+            margin: 10px;
+        }
+
+        .atalk span {
+            display: inline-block;
+            background: #0181cc;
+            border-radius: 10px;
+            color: #fff;
+            padding: 5px 10px;
+        }
+
+        .btalk {
+            margin: 10px;
+            text-align: right;
+        }
+
+        .btalk span {
+            display: inline-block;
+            background: #ef8201;
+            border-radius: 10px;
+            color: #fff;
+            padding: 5px 10px;
+        }
+
+        .black_overlay {
             display: none;
             position: fixed;
             top: 0%;
@@ -93,11 +102,12 @@
             width: 100%;
             height: 100%;
             background-color: black;
-            z-index:1001;
+            z-index: 1001;
             -moz-opacity: 0.8;
-            opacity:.80;
+            opacity: .80;
             filter: alpha(opacity=88);
         }
+
         .white_content {
             display: none;
             position: fixed;
@@ -108,7 +118,7 @@
             padding: 20px;
             border: 10px solid orange;
             background-color: white;
-            z-index:1002;
+            z-index: 1002;
             overflow: auto;
         }
     </style>
@@ -116,7 +126,7 @@
 
 <body>
 <!--顶部导航条 -->
-<jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+<jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 
 <div class="clear"></div>
 <b class="line"></b>
@@ -221,10 +231,11 @@
             <div class="theme-options">
                 <div class="cart-title number">数量</div>
                 <dd>
-                    <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
-                    <input id="text_box" name="" type="text" value="1" style="width:30px;" />
-                    <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-                    <span id="Stock" class="tb-hidden">库存<span class="stock">${requestScope.Goods.goodsnumber}</span>件</span>
+                    <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
+                    <input id="text_box" name="" type="text" value="1" style="width:30px;"/>
+                    <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
+                    <span id="Stock" class="tb-hidden">库存<span
+                            class="stock">${requestScope.Goods.goodsnumber}</span>件</span>
                 </dd>
 
             </div>
@@ -232,7 +243,8 @@
 
         <div class="pay">
             <li>
-                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="LikBuy" title="点此按钮到下一步确认购买信息"
+                                                                       href="#">立即购买</a>
                 </div>
             </li>
             <li>
@@ -240,7 +252,9 @@
                 </div>
             </li>
             <li>
-                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="chat" title="点此按钮到下一步确认购买信息" href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">联系卖家</a>
+                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="chat" title="点此按钮到下一步确认购买信息"
+                                                                       href="javascript:void(0)"
+                                                                       onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">联系卖家</a>
                 </div>
             </li>
         </div>
@@ -291,6 +305,7 @@
                         <div class="clear"></div>
                         <div class="clear"></div>
                         <ul class="am-comments-list am-comments-list-flip">
+
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href=""> <img class="am-comment-avatar" src="${APP_PATH}/images/hwbn40x40.jpg"/>
@@ -310,12 +325,11 @@
                                     <div class="am-comment-bd">
                                         <div class="tb-rev-item " data-id="255776406962">
                                             <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-                                                摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！
+                                                ${requestScope.result}
+                                                ${requestScope.Comment.content}
                                             </div>
-                                            <div class="tb-r-act-bar"> 颜色分类：柠檬黄&nbsp;&nbsp;尺码：S</div>
                                         </div>
                                     </div>
-                                    <!-- 评论内容 -->
                                 </div>
                             </li>
 
@@ -331,13 +345,10 @@
                 </div>
             </div>
             <div class="clear"></div>
-            <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
         </div>
     </div>
 </div>
-
-<!--菜单 -->
-<jsp:include   page="${APP_PATH}/jsp/common/menu.jsp" flush="true"/>
 
 
 <div id="light" class="white_content">
@@ -353,7 +364,8 @@
             </select>
             <input type="text" class="talk_word" id="talkwords">
             <input type="button" value="发送" class="talk_sub" id="talksub">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)"
+                   onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
         </div>
     </div>
 </div>

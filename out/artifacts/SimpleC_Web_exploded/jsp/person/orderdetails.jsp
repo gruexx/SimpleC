@@ -220,9 +220,6 @@
                         <li class="active"><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
                     </ul>
                     <ul>
-                        <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
-                    </ul>
-                    <ul>
                         <li><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
                     </ul>
                 </li>

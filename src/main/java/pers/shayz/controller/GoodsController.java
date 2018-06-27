@@ -8,9 +8,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.Classify;
+import pers.shayz.bean.Comment;
 import pers.shayz.bean.Goods;
 import pers.shayz.bean.Msg;
 import pers.shayz.service.ClassifyService;
+import pers.shayz.service.CommentService;
 import pers.shayz.service.GoodsService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +30,26 @@ public class GoodsController {
     @Autowired
     GoodsService goodsService;
 
+    @Autowired
+    ClassifyService classifyService;
+
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping(value = "/toIntroduction/{goodsId}")
-    public String toIntroduction(@PathVariable(value = "goodsId") int goodsId,
-                                 ModelMap modelMap) {
+    public String toIntroduction(@PathVariable(value = "goodsId") int goodsId, ModelMap modelMap) {
         Goods goods = goodsService.getGoodsById(goodsId);
         modelMap.addAttribute("Goods", goods);
+
+        Comment comment = commentService.getCommentById(goodsId);
+        System.out.println("/toIntroduction/{goodsId}: "+comment);
+        if(comment==null){
+            modelMap.addAttribute("result","该商品暂无评论!");
+        }else{
+            modelMap.addAttribute("Comment",comment);
+            System.out.println(comment.getContent());
+        }
+
         return "home/introduction";
     }
 
@@ -125,7 +142,28 @@ public class GoodsController {
 
         modelMap.addAttribute("myGoods", list);
 
+        List<Classify> classifyList = classifyService.getAllClassify();
+        System.out.println("/toGoodsManage: " + classifyList);
+        modelMap.addAttribute("classifyList", classifyList);
+
         return "person/goodsmanage";
     }
 
+    @RequestMapping(value = "/deleteGoods")
+    @ResponseBody
+    public Msg deleteGoods(@RequestParam("goodsid")String goodsid) {
+        System.out.println("/deleteGoods: "+goodsid);
+
+        goodsService.deleteGoodsById(Integer.parseInt(goodsid));
+
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/getGoods")
+    @ResponseBody
+    public Goods getGoods(@RequestParam("goodsid")String goodsid) {
+        System.out.println("/getGoods: "+goodsid);
+
+        return goodsService.getGoodsById(Integer.parseInt(goodsid));
+    }
 }

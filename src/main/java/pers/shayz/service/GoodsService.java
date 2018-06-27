@@ -21,7 +21,7 @@ public class GoodsService {
 
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        criteria.andClassifyidFkGoodsEqualTo(id);
+        criteria.andClassifyidFkGoodsEqualTo(id).andFlagEqualTo(1);
         return goodsMapper.selectByExample(goodsExample);
     }
 
@@ -32,7 +32,7 @@ public class GoodsService {
     public List<Goods> getGoodsBySearch(String search) {
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        criteria.andGoodsnameLike("%"+search+"%");
+        criteria.andGoodsnameLike("%"+search+"%").andFlagEqualTo(1);
 
         return goodsMapper.selectByExample(goodsExample);
     }
@@ -54,5 +54,11 @@ public class GoodsService {
         }else {
             return list;
         }
+    }
+
+    public void deleteGoodsById(int id) {
+        Goods goods = goodsMapper.selectByPrimaryKey(id);
+        goods.setFlag(0);
+        goodsMapper.updateByPrimaryKeySelective(goods);
     }
 }

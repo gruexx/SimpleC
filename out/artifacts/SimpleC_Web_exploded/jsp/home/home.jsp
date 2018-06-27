@@ -15,6 +15,37 @@
     <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet"/>
     <link href="${APP_PATH}/css/hmstyle.css" rel="stylesheet"/>
     <link href="${APP_PATH}/css/skin.css" rel="stylesheet"/>
+
+    <style type="text/css">
+        #show-font {
+            font-weight: 600;
+            font-size: 28px;
+            font-family: "黑体";
+            color: #8c888b;
+            background: -webkit-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+        -moz-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+        -ms-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+            color: transparent;
+            /*设置字体颜色透明*/
+            -webkit-background-clip: text;
+            /*背景裁剪为文本形式*/
+            animation: ran 10s linear infinite;
+            /*动态10s展示*/
+        }
+
+        @keyframes ran {
+            from {
+                backgroud-position: 0 0;
+            }
+            to {
+                background-position: 2000px 0;
+            }
+        }
+
+        #js_climit_li li:hover{
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,10 +80,10 @@
         <div class="nav-cont">
             <ul>
                 <li class="index" style="padding-left: 690px">
-                    <a href="${APP_PATH}/toPublish" style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
+                    <a href="${APP_PATH}/toGoodsManage" style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
                 </li>
             </ul>
-            <div class="nav-extra"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i
+            <div class="nav-extra" data-am-offcanvas="{target: '#doc-oc-demo3'}"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i
                     class="am-icon-angle-right" style="padding-left: 10px;"></i></div>
         </div>
         <!--侧边导航 -->
@@ -61,70 +92,80 @@
                 <div class="category-content" id="guide_2">
                     <div class="category">
                         <ul class="category-list" id="js_climit_li">
-                            <li class="appliance js_toggle relative first">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toHome" class="ml-22" title="首页">首页</a>
-                                    </h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative first">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/家用电器" class="ml-22" title="家用电器">家用电器</a>
-                                    </h3>
-                                </div>
-                                <b class="arrow"></b></li>
+                            <a href="${APP_PATH}/toHome">
+                                <li class="appliance js_toggle relative first">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="首页">首页</p>
+                                        </h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/家用电器">
+                                <li class="appliance js_toggle relative first">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="家用电器">家用电器</p>
+                                        </h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/手机数码">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="手机数码">手机数码</p>
+                                        </h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/电脑办公">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="电脑办公">电脑办公</p>
+                                        </h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/服装">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="服装">服装</p></h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/运动">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="运动">运动</p></h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/食品" >
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="食品">食品</p></h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/美妆">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="美妆">美妆</p></h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/图书">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="图书">图书</p></h3>
+                                    </div>
+                                    <b class="arrow"></b></li></a>
+                            <a href="${APP_PATH}/toClassify/其他">
                             <li class="appliance js_toggle relative">
                                 <div class="category-info">
                                     <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/手机数码" class="ml-22" title="手机数码">手机数码</a>
-                                    </h3>
+                                        <p class="ml-22" style="color: #d2364c"     title="其他">其他</p></h3>
                                 </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/电脑办公" class="ml-22" title="电脑办公">电脑办公</a>
-                                    </h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/服装" class="ml-22" title="服装">服装</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/运动" class="ml-22" title="运动">运动</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/食品" class="ml-22" title="食品">食品</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/美妆" class="ml-22" title="美妆">美妆</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/图书" class="ml-22" title="图书">图书</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <a href="${APP_PATH}/toClassify/其他" class="ml-22" title="其他">其他</a></h3>
-                                </div>
-                                <b class="arrow"></b></li>
+                                <b class="arrow"></b></li></a>
                         </ul>
                     </div>
                 </div>
@@ -420,8 +461,37 @@
     </div>
 </div>
 
-<!--菜单 -->
-<jsp:include   page="${APP_PATH}/jsp/common/menu.jsp" flush="true"/>
+
+<div id="doc-oc-demo3" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content">
+            <div class="this-title" style="height: 5%;text-align: center;font-weight: bold;font-size: 18px;color: #ab2e2b">积分详情</div>
+            <div class="this-account"  style="height: 10%;font-size: 15px;color: #ab2e2b">积分值:<br><span id="show-font">99999999分</span></div>
+            <div class="award" style="height:55%;font-size: 15px;color: #ab2e2b">积分抽奖<br>
+                <div style="height: 90%;">
+                    <center>精美礼品</center>
+                    <table>
+                        <tr><img src="${APP_PATH}/GoodsImage/tan90.jpg" style="height: 100px;width: auto;"/></tr>
+                        <tr><img src="${APP_PATH}/GoodsImage/tan90.jpg" style="height: 100px;width: auto;"/></tr>
+                        <tr><img src="${APP_PATH}/GoodsImage/tan90.jpg" style="height: 100px;width: auto;"/></tr>
+                    </table>
+                    <p style="font-size: 15px;">更多精美礼品等着你！</p>
+                </div>
+                <div style="height: 10%;">
+                    <center><button type="button" class="am-btn am-btn-primary am-btn-hollow" >去抽奖</button></center>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="rules" style="height: 30%;font-size: 15px;color: #ab2e2b;padding: 15px">积分规则
+            <p>
+                1.通过心潮网站消费或销售商品均可获得潮积分。<br>
+                2.交易额每增加10元可获得1点潮积分。<br>
+                3.可使用100点潮积分进行一次抽奖。
+            </p></div>
+    </div>
+</div>
 
 <script type="text/javascript " src="${APP_PATH}/basic/js/quick_links.js "></script>
 </body>

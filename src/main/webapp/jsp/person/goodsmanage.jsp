@@ -31,7 +31,7 @@
     <article>
         <div class="mt-logo">
             <!--顶部导航条 -->
-            <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
             <div class="clear"></div>
         </div>
         </div>
@@ -58,6 +58,7 @@
                         <small>Order</small>
                     </div>
                 </div>
+                <button id="addGoodsBtn" type="button" class="am-btn am-btn-primary am-btn-block">发布商品</button>
                 <hr/>
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
@@ -83,8 +84,12 @@
                             </td>
                             <td>${myg.goodsinfo}</td>
                             <td>
-                                <button type="button" class="am-btn am-btn-primary">编辑</button>
-                                <button type="button" class="am-btn am-btn-danger">删除</button>
+                                <button data-id="${myg.goodsid}" type="button" class="am-btn am-btn-primary editGoods">
+                                    编辑
+                                </button>
+                                <button data-id="${myg.goodsid}" type="button" class="am-btn am-btn-danger deleteGoods">
+                                    删除
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -94,7 +99,7 @@
             </div>
         </div>
         <!--底部-->
-        <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+        <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
     </div>
     <aside class="menu">
         <ul>
@@ -113,9 +118,6 @@
                     <li><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
                 </ul>
                 <ul>
-                    <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
-                </ul>
-                <ul>
                     <li class="active"><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
                 </ul>
             </li>
@@ -128,26 +130,8 @@
         </ul>
     </aside>
 </div>
-<%--确定收货--%>
-<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
-    <div class="am-modal-dialog">
-        <div class="am-modal-hd">
-            确定收货
-            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-        </div>
-        <div class="am-modal-bd">
-            <span class="am-modal-bd-ico am-icon-exclamation-circle am-text-warning"></span>
-            <p>确定收货后订单交易完成</p>
-        </div>
-        <div class="am-modal-footer">
-            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
-            </button>
-            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定收货</button>
-        </div>
-    </div>
-</div>
-<%--确定删除--%>
-<div class="am-modal am-modal-confirm" tabindex="-1" id="my-delete">
+<%--删除--%>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="deleteModal">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
             确定删除
@@ -164,35 +148,84 @@
         </div>
     </div>
 </div>
+<%--编辑--%>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="editModal">
+    <div class="am-modal-dialog" style="width: 400px">
+        <div class="am-modal-hd">
+            SimpleChange
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form id="addGoodsForm" class="am-form">
+                    <div class="am-form-group">
+                        <label for="goodsname">商品名称：</label>
+                        <input type="text" id="goodsname" name="goodsname" placeholder="必填"
+                               class="am-form-field" required/>
+                    </div>
 
+                    <div class="am-form-group">
+                        <label for="classifyid">商品类别:</label>
+                        <select id="classifyid" class="am-datepicker-select" data-am-selected>
+                            <c:forEach items="${requestScope.classifyList}" var="classifyList">
+                                <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="goodsprice">商品价格：</label>
+                        <input type="number" id="goodsprice" placeholder="必填" name="goodsprice" required/>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="goodsnumber">库存量：</label>
+                        <input type="number" id="goodsnumber" name="goodsnumber" placeholder="必填" required/>
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="goodsinfo">详细资料：</label>
+                        <textarea id="goodsinfo" name="goodsinfo" minlength="10" maxlength="100"></textarea>
+                    </div>
+                    <div class="am-form-group am-form-file">
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                            <i class="am-icon-cloud-upload"></i> 选择要上传的图片
+                        </button>
+                        <input id="imageFile" name="imageFile" type="file" multiple>
+                        <div id="file-list"></div>
+                    </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
 <script>
-    // var index = $(this).index();
-
-    $('.OrderBtn').click(function () {
-        var orderitemid = $(this).data('id');
-        console.log(orderitemid);
-        $('#my-delete').modal({
+    $('.deleteGoods').click(function () {
+        var goodsid = $(this).data('id');
+        console.log(goodsid);
+        $('#deleteModal').modal({
             relatedTarget: this,
-            onConfirm: function (e) {
+            onConfirm: function () {
                 $.ajax({
-                    url: '${APP_PATH}/deleteOrderItem',
+                    url: '${APP_PATH}/deleteGoods',
                     type: 'POST',
-                    data: {"orderitemid": orderitemid},
+                    data: {"goodsid": goodsid},
                     success: function (result) {
+
                         if (result.code === 100) {
                             $.toast({
-                                afterHidden: function () {
-                                    window.location.reload();
-                                },
                                 heading: "Success",
-                                text: "删除成功",
-                                showHideTransition: 'fade',
+                                text: 'Yes! 删除成功 <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
+                                showHideTransition: 'slide',
+                                hideAfter: false,
                                 position: 'top-right',
                                 icon: 'success'
-
                             })
                         }
                     }
@@ -201,42 +234,132 @@
         });
     });
 
-    <%--$('#confirmBtn').click(function () {--%>
+    $('.editGoods').click(function () {
+        var goodsid = $(this).data('id');
+        console.log(goodsid);
+        $.ajax({
+            url: '${APP_PATH}/getGoods',
+            type: 'POST',
+            data: {"goodsid": goodsid},
+            success: function (result) {
+
+                var id = result.classifyidFkGoods;
+                console.log("id: "+id);
+
+                $('#goodsname').val(result.goodsname);
+                $('#goodsnumber').val(result.goodsnumber);
+                $('#goodsinfo').val(result.goodsinfo);
+                $('#goodsprice').val(result.goodsprice);
+                // $('#classifyid').find('option').eq(id-1).prop('selected', true);
+                $('#classifyid').find('option').eq(id-1).siblings().prop('selected', false);
+                $('#classifyid').find('option').eq(id-1).prop('selected', true);
+                var $a = $('#classifyid').find('option').eq(id-1);
+                console.log($a);
+                console.log($('#classifyid').find('option'));
+
+                $('#editModal').modal({
+                    relatedTarget: this,
+                    onConfirm: function () {
+
+                        // var form = new FormData(document.getElementById("addGoodsForm"));
+                        // // $("#addGoodsForm").submit();
+                        //
+                        // var classifyidFkGoods = $("#classifyid option:selected").val();
+                        // form.append('classifyid', classifyidFkGoods);
+                        //
+                        // $.ajax({
+                        //     type: "post",
+                        //     url: "/doPublish",
+                        //     data: form,
+                        //     processData: false,
+                        //     contentType: false,
+                        //     success: function (result) {
+                        //         $("#addGoodsForm")[0].reset();
+                        //         if (result.code === 100) {
+                        //             $.toast({
+                        //                 heading: "Success",
+                        //                 text: result.extend.msg,
+                        //                 showHideTransition: 'slide',
+                        //                 icon: 'success',
+                        //                 position: 'top-right'
+                        //             })
+                        //         } else {
+                        //             $.toast({
+                        //                 heading: "Fail",
+                        //                 text: result.extend.msg,
+                        //                 showHideTransition: 'fade',
+                        //                 position: 'top-right'
+                        //             })
+                        //         }
+                        //     }
+                        // })
+                    }
+                });
+            }
+        });
 
 
-    <%--$('.preBtn p').eq(index1).text("删除订单");--%>
-    <%--$('.preBtn').eq(index1).removeAttr("data-am-modal");--%>
-    <%--$('.preBtn').eq(index1).addClass('deleteBtn');--%>
-    <%--$('.preBtn').eq(index1).removeClass('preBtn');--%>
+    });
 
-    <%--$('.deleteBtn').click(function () {--%>
-    <%--var index2 = $(this).index();--%>
-    <%--console.log(index2);--%>
-    <%--var orderitemid = $('.orderitemid').eq(index2).text();--%>
-    <%--console.log(orderitemid);--%>
+    $("#addGoodsBtn").click(function () {
 
-    <%--$.ajax({--%>
-    <%--url: '${APP_PATH}/deleteOrder',--%>
-    <%--type: 'POST',--%>
-    <%--data: {"orderitemid": orderitemid},--%>
-    <%--success: function (result) {--%>
-    <%--if(result.code===100){--%>
-    <%--$.toast({--%>
-    <%--afterHidden: function () {--%>
-    <%--window.location.reload();--%>
-    <%--},--%>
-    <%--heading: "Success",--%>
-    <%--text: "删除成功",--%>
-    <%--showHideTransition: 'fade',--%>
-    <%--position: 'top-right',--%>
-    <%--icon: 'success'--%>
+        $('#editModal').modal({
+            relatedTarget: this,
+            onConfirm: function () {
 
-    <%--})--%>
-    <%--}--%>
-    <%--}--%>
-    <%--});--%>
-    <%--})--%>
-    <%--});--%>
+                var form = new FormData(document.getElementById("addGoodsForm"));
+                // $("#addGoodsForm").submit();
 
+                var classifyidFkGoods = $("#classifyid option:selected").val();
+                form.append('classifyid', classifyidFkGoods);
 
+                $.ajax({
+                    type: "post",
+                    url: "/doPublish",
+                    data: form,
+                    // data: {
+                    //     goodsname: goodsname,
+                    //     classifyidFkGoods: classifyidFkGoods,
+                    //     image: image,
+                    //     goodsprice: goodsprice,
+                    //     goodsnumber: goodsnumber
+                    // },
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        $("#addGoodsForm")[0].reset();
+                        if (result.code === 100) {
+                            $.toast({
+                                heading: "Success",
+                                text: result.extend.msg,
+                                showHideTransition: 'slide',
+                                icon: 'success',
+                                position: 'top-right'
+                            })
+                        } else {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.msg,
+                                showHideTransition: 'fade',
+                                position: 'top-right'
+                            })
+                        }
+                    }
+                })
+            }
+        });
+
+    })
+</script>
+
+<script>
+    $(function () {
+        $('#imageFile').on('change', function () {
+            var fileNames = '';
+            $.each(this.files, function () {
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+            });
+            $('#file-list').html(fileNames);
+        });
+    });
 </script>

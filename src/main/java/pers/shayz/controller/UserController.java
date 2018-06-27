@@ -3,16 +3,14 @@ package pers.shayz.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import pers.shayz.bean.Classify;
 import pers.shayz.bean.Goods;
 import pers.shayz.bean.Msg;
 import pers.shayz.bean.User;
 import pers.shayz.service.ClassifyService;
 import pers.shayz.service.GoodsService;
+import pers.shayz.service.OrderdetailsService;
 import pers.shayz.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -35,6 +33,9 @@ public class UserController {
 
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private OrderdetailsService orderdetailsService;
 
     @RequestMapping(value = "/toRegister")
     public String toRegister() {
@@ -162,13 +163,13 @@ public class UserController {
         return "home/home";
     }
 
-    @RequestMapping(value = "/toPublish")
-    public String toPublish(ModelMap modelMap) {
-        List<Classify> classifyList = classifyService.getAllClassify();
-        System.out.println("/toPublish: " + classifyList);
-        modelMap.addAttribute("classifyList", classifyList);
-        return "home/publish";
-    }
+//    @RequestMapping(value = "/toPublish")
+//    public String toPublish(ModelMap modelMap) {
+//        List<Classify> classifyList = classifyService.getAllClassify();
+//        System.out.println("/toPublish: " + classifyList);
+//        modelMap.addAttribute("classifyList", classifyList);
+//        return "home/publish";
+//    }
 
     @RequestMapping(value = "/toUserInfo")
     public String toUserInfo() {
@@ -190,9 +191,13 @@ public class UserController {
         return "person/billlist";
     }
 
-    @RequestMapping(value = "/toOrder")
-    public String toOrder() {
-        return "person/order";
+    @RequestMapping(value = "/toOrderDetails/{orderitemid}")
+    public String toOrderDetails(@PathVariable("orderitemid")String id, ModelMap modelMap) {
+        int orderItemId = Integer.parseInt(id);
+        List<Goods> goodsList = orderdetailsService.getGoodsByOrderItemId(orderItemId);
+        modelMap.addAttribute("GoodsList",goodsList);
+
+        return "person/orderdetails";
     }
 
     @RequestMapping(value = "/toPassword")

@@ -75,7 +75,9 @@
                             <td class="orderitemid" style="font-size: 20px">${oiList.orderitemid}</td>
                             <td style="font-size: 20px">${oiList.address}</td>
                             <td style="font-size: 20px">${oiList.totalprice}</td>
-                            <td style="font-size: 20px"><a href="${APP_PATH}/toOrder">订单详情</a></td>
+                            <td style="font-size: 20px">
+                                <a href="/toOrderDetails/${oiList.orderitemid}" class="am-btn am-btn-success OrderDetail">订单详情</a>
+                            </td>
                             <td>
                                 <button type="button" data-id="${oiList.orderitemid}"
                                         class="am-btn am-btn-primary OrderBtn">
@@ -107,9 +109,6 @@
                 <hr/>
                 <ul>
                     <li class="active"><a href="${APP_PATH}/toOrderItem">订单管理</a></li>
-                </ul>
-                <ul>
-                    <li><a href="${APP_PATH}/toPublish">发布商品</a></li>
                 </ul>
                 <ul>
                     <li><a href="${APP_PATH}/toGoodsManage">管理我的商品</a></li>
@@ -195,7 +194,17 @@
         });
     });
 
-        <%--$('#confirmBtn').click(function () {--%>
+    <%--$('.OrderDetail').click(function () {--%>
+        <%--var orderitemid = $(this).data('id');--%>
+        <%--console.log(orderitemid);--%>
+        <%--$.ajax({--%>
+            <%--url:  '${APP_PATH}/toOrderDetails',--%>
+            <%--type: 'POST',--%>
+            <%--data: {"orderitemid": orderitemid}--%>
+        <%--})--%>
+    <%--})--%>
+
+    <%--$('#confirmBtn').click(function () {--%>
 
 
             <%--$('.preBtn p').eq(index1).text("删除订单");--%>
