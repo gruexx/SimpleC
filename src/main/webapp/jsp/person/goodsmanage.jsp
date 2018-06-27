@@ -31,60 +31,7 @@
     <article>
         <div class="mt-logo">
             <!--顶部导航条 -->
-            <div class="am-container header">
-                <ul class="message-l">
-                    <div class="topMessage">
-                        <div class="menu-hd">
-                            <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
-                            <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
-                        </div>
-                    </div>
-                </ul>
-                <ul class="message-r">
-                    <div class="topMessage home">
-                        <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
-                    </div>
-                    <div class="topMessage my-shangcheng">
-                        <div class="menu-hd MyShangcheng"><a href="${APP_PATH}/toUserInfo" target="_top"><i
-                                class="am-icon-user am-icon-fw"></i>个人中心</a>
-                        </div>
-                    </div>
-                    <div class="topMessage mini-cart">
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                                购物车 <span class="am-icon-caret-down"></span>
-                            </a>
-                            <ul class="am-dropdown-content" style="white-space: nowrap">
-                                <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
-                                <li class="am-divider"></li>
-                                <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
-                                <li class="am-divider"></li>
-                                <li><a href="#">网址不变且唯一</a></li>
-                                <li><a href="#">内容实时同步更新</a></li>
-                                <li><a href="#">云端跨平台适配</a></li>
-                                <li><a href="#">专属的一键拨叫</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-            <!--悬浮搜索框-->
-            <div class="nav white">
-                <div class="logoBig">
-                    <li>
-                        <a href="${APP_PATH}/toHome">
-                            <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
-                    </li>
-                </div>
-                <div class="search-bar pr">
-                    <a name="index_none_header_sysc" href="#"></a>
-                    <form action="${APP_PATH}/Search" method="post">
-                        <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
-                        <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
-                    </form>
-
-                </div>
-            </div>
+            <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
             <div class="clear"></div>
         </div>
         </div>
@@ -107,7 +54,7 @@
             <div class="user-order">
                 <!--标题 -->
                 <div class="am-cf am-padding">
-                    <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">订单管理</strong> /
+                    <div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">我的商品管理</strong> /
                         <small>Order</small>
                     </div>
                 </div>
@@ -115,25 +62,29 @@
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
                     <tr>
-                        <th style="font-size: 20px;font-weight: bold">商品编号</th>
-                        <th style="font-size: 20px;font-weight: bold">商品名称</th>
-                        <th style="font-size: 20px;font-weight: bold">商品价格</th>
-                        <th style="font-size: 20px;font-weight: bold">库存</th>
-                        <th style="font-size: 20px;font-weight: bold">交易操作</th>
+                        <th style="font-size: 16px;font-weight: bold">商品编号</th>
+                        <th style="font-size: 16px;font-weight: bold">商品名称</th>
+                        <th style="font-size: 16px;font-weight: bold">商品价格</th>
+                        <th style="font-size: 16px;font-weight: bold">库存</th>
+                        <th style="font-size: 16px;font-weight: bold">图片信息</th>
+                        <th style="font-size: 16px;font-weight: bold">详细信息</th>
+                        <th style="font-size: 16px;font-weight: bold">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${requestScope.OrderItemList}" var="oiList">
-                        <tr >
-                            <td class="orderitemid" style="font-size: 20px">${oiList.orderitemid}</td>
-                            <td style="font-size: 20px">${oiList.address}</td>
-                            <td style="font-size: 20px">${oiList.totalprice}</td>
-                            <td style="font-size: 20px"><a href="${APP_PATH}/toOrder">订单详情</a></td>
+                    <c:forEach items="${requestScope.myGoods}" var="myg">
+                        <tr>
+                            <td>${myg.goodsid}</td>
+                            <td>${myg.goodsname}</td>
+                            <td>${myg.goodsprice}</td>
+                            <td>${myg.goodsnumber}</td>
                             <td>
-                                <button type="button" data-id="${oiList.orderitemid}"
-                                        class="am-btn am-btn-primary OrderBtn">
-                                    删除订单
-                                </button>
+                                <img src="${APP_PATH}/${myg.image}" class="am-img-responsive">
+                            </td>
+                            <td>${myg.goodsinfo}</td>
+                            <td>
+                                <button type="button" class="am-btn am-btn-primary">编辑</button>
+                                <button type="button" class="am-btn am-btn-danger">删除</button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -143,17 +94,7 @@
             </div>
         </div>
         <!--底部-->
-        <div class="footer ">
-            <div class="footer-hd ">
-                <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/toHome">商城首页</a> <b>|</b> <a
-                        href="# ">支付宝</a> <b>|</b> <a href="#">物流</a></p>
-            </div>
-            <div class="footer-bd ">
-                <p><a href="# ">关于心潮</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a href="# ">网站地图</a> <em>©
-                    2018-2038
-                    SimpleChange.com 版权所有.</em></p>
-            </div>
-        </div>
+        <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
     </div>
     <aside class="menu">
         <ul>
@@ -199,7 +140,8 @@
             <p>确定收货后订单交易完成</p>
         </div>
         <div class="am-modal-footer">
-            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow"  data-am-modal-cancel>取消</button>
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
             <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定收货</button>
         </div>
     </div>
@@ -216,7 +158,8 @@
             <p>你确定要永久的删除这些内容么？</p>
         </div>
         <div class="am-modal-footer">
-            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow"  data-am-modal-cancel>取消</button>
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
             <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
         </div>
     </div>
@@ -233,13 +176,13 @@
         console.log(orderitemid);
         $('#my-delete').modal({
             relatedTarget: this,
-            onConfirm: function(e) {
+            onConfirm: function (e) {
                 $.ajax({
                     url: '${APP_PATH}/deleteOrderItem',
                     type: 'POST',
                     data: {"orderitemid": orderitemid},
                     success: function (result) {
-                        if(result.code===100){
+                        if (result.code === 100) {
                             $.toast({
                                 afterHidden: function () {
                                     window.location.reload();
@@ -258,42 +201,42 @@
         });
     });
 
-        <%--$('#confirmBtn').click(function () {--%>
+    <%--$('#confirmBtn').click(function () {--%>
 
 
-            <%--$('.preBtn p').eq(index1).text("删除订单");--%>
-            <%--$('.preBtn').eq(index1).removeAttr("data-am-modal");--%>
-            <%--$('.preBtn').eq(index1).addClass('deleteBtn');--%>
-            <%--$('.preBtn').eq(index1).removeClass('preBtn');--%>
+    <%--$('.preBtn p').eq(index1).text("删除订单");--%>
+    <%--$('.preBtn').eq(index1).removeAttr("data-am-modal");--%>
+    <%--$('.preBtn').eq(index1).addClass('deleteBtn');--%>
+    <%--$('.preBtn').eq(index1).removeClass('preBtn');--%>
 
-            <%--$('.deleteBtn').click(function () {--%>
-                <%--var index2 = $(this).index();--%>
-                <%--console.log(index2);--%>
-                <%--var orderitemid = $('.orderitemid').eq(index2).text();--%>
-                <%--console.log(orderitemid);--%>
+    <%--$('.deleteBtn').click(function () {--%>
+    <%--var index2 = $(this).index();--%>
+    <%--console.log(index2);--%>
+    <%--var orderitemid = $('.orderitemid').eq(index2).text();--%>
+    <%--console.log(orderitemid);--%>
 
-                <%--$.ajax({--%>
-                    <%--url: '${APP_PATH}/deleteOrder',--%>
-                    <%--type: 'POST',--%>
-                    <%--data: {"orderitemid": orderitemid},--%>
-                    <%--success: function (result) {--%>
-                        <%--if(result.code===100){--%>
-                            <%--$.toast({--%>
-                                <%--afterHidden: function () {--%>
-                                    <%--window.location.reload();--%>
-                                <%--},--%>
-                                <%--heading: "Success",--%>
-                                <%--text: "删除成功",--%>
-                                <%--showHideTransition: 'fade',--%>
-                                <%--position: 'top-right',--%>
-                                <%--icon: 'success'--%>
+    <%--$.ajax({--%>
+    <%--url: '${APP_PATH}/deleteOrder',--%>
+    <%--type: 'POST',--%>
+    <%--data: {"orderitemid": orderitemid},--%>
+    <%--success: function (result) {--%>
+    <%--if(result.code===100){--%>
+    <%--$.toast({--%>
+    <%--afterHidden: function () {--%>
+    <%--window.location.reload();--%>
+    <%--},--%>
+    <%--heading: "Success",--%>
+    <%--text: "删除成功",--%>
+    <%--showHideTransition: 'fade',--%>
+    <%--position: 'top-right',--%>
+    <%--icon: 'success'--%>
 
-                            <%--})--%>
-                        <%--}--%>
-                    <%--}--%>
-                <%--});--%>
-            <%--})--%>
-        <%--});--%>
+    <%--})--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--})--%>
+    <%--});--%>
 
 
 </script>

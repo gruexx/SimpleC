@@ -116,59 +116,8 @@
 
 <body>
 <!--顶部导航条 -->
-<div class="am-container header">
-    <ul class="message-l">
-        <div class="topMessage">
-            <div class="menu-hd">
-                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
-                <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
-            </div>
-        </div>
-    </ul>
-    <ul class="message-r">
-        <div class="topMessage home">
-            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
-        </div>
-        <div class="topMessage my-shangcheng">
-            <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
-            </div>
-        </div>
-        <div class="topMessage mini-cart">
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    购物车 <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content" style="white-space: nowrap">
-                    <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
-                    <li class="am-divider"></li>
-                    <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
-                    <li class="am-divider"></li>
-                    <li><a href="#">网址不变且唯一</a></li>
-                    <li><a href="#">内容实时同步更新</a></li>
-                    <li><a href="#">云端跨平台适配</a></li>
-                    <li><a href="#">专属的一键拨叫</a></li>
-                </ul>
-            </li>
-        </div>
-    </ul>
-</div>
-<!--悬浮搜索框-->
-<div class="nav white">
-    <div class="logoBig">
-        <li>
-            <a href="${APP_PATH}/toHome">
-                <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
-        </li>
-    </div>
-    <div class="search-bar pr">
-        <a name="index_none_header_sysc" href="#"></a>
-        <form action="${APP_PATH}/Search" method="post">
-            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
-        </form>
+<jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 
-    </div>
-</div>
 <div class="clear"></div>
 <b class="line"></b>
 <div class="listMain">
@@ -382,51 +331,13 @@
                 </div>
             </div>
             <div class="clear"></div>
-            <div class="footer ">
-                <div class="footer-hd ">
-                    <p><a href="# ">心潮工作室</a> <b>|</b> <a href="# ">商城首页</a> <b>|</b> <a href="# ">支付宝</a> <b>|</b> <a
-                            href="# ">物流</a></p>
-                </div>
-                <div class="footer-bd ">
-                    <p><a href="# ">关于心潮</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a href="# ">网站地图</a> <em>©
-                        2018-2038 SimpleChange.com 版权所有.</em></p>
-                </div>
-            </div>
+            <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
         </div>
     </div>
 </div>
+
 <!--菜单 -->
-<div class=tip>
-    <div id="sidebar">
-        <div id="wrap">
-            <div id="prof" class="item ">
-                <a href="# "> <span class="setting "></span> </a>
-                <div class="mp_tooltip "> 个人中心 <i class="icon_arrow_right_black "></i></div>
-            </div>
-            <div id="shopCart " class="item ">
-                <a href="# "> <span class="message "></span> </a>
-                <p> 购物车 </p>
-                <p class="cart_num ">0</p>
-            </div>
-            <div id="asset " class="item ">
-                <a href="# "> <span class="view "></span> </a>
-                <div class="mp_tooltip "> 我的资产 <i class="icon_arrow_right_black "></i></div>
-            </div>
-            <div id="broadcast " class="item ">
-                <a href="# "> <span class="chongzhi "><img src="${APP_PATH}/images/chongzhi.png "/></span> </a>
-                <div class="mp_tooltip "> 我要充值 <i class="icon_arrow_right_black "></i></div>
-            </div>
-            <div class="quick_toggle ">
-                <li class="qtitem "><a href="# "><span class="kfzx "></span></a>
-                    <div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
-                </li>
-                <li class="qtitem ">
-                    <a data-am-smooth-scroll="{speed: 2000}" class="return_top "><span class="top "></span></a>
-                </li>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include   page="${APP_PATH}/jsp/common/menu.jsp" flush="true"/>
 
 
 <div id="light" class="white_content">

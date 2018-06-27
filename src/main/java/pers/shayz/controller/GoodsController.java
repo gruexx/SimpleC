@@ -116,7 +116,16 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/toGoodsManage")
-    public String toGoodsManage() {
+    public String toGoodsManage(HttpSession session, ModelMap modelMap) {
+        int id = Integer.parseInt((String) session.getAttribute("userid"));
+        System.out.println("/toGoodsManage: "+id);
+
+        List<Goods> list = goodsService.getGoodsByUserId(id);
+        System.out.println("/toGoodsManage: "+list);
+
+        modelMap.addAttribute("myGoods", list);
+
         return "person/goodsmanage";
     }
+
 }

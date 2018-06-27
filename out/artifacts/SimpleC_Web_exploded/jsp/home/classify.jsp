@@ -18,62 +18,16 @@
 </head>
 
 <body>
-<!--顶部导航条 -->
-<div class="am-container header">
-    <ul class="message-l">
-        <div class="topMessage">
-            <div class="menu-hd">
-                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
-                <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
-            </div>
-        </div>
-    </ul>
-    <ul class="message-r">
-        <div class="topMessage home">
-            <div class="menu-hd"><a href="${APP_PATH}/toHome" target="_top" class="h">商城首页</a></div>
-        </div>
-        <div class="topMessage my-shangcheng">
-            <div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
-            </div>
-        </div>
-        <div class="topMessage mini-cart">
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    购物车 <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content" style="white-space: nowrap">
-                    <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
-                    <li class="am-divider"></li>
-                    <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
-                    <li class="am-divider"></li>
-                    <li><a href="#">网址不变且唯一</a></li>
-                    <li><a href="#">内容实时同步更新</a></li>
-                    <li><a href="#">云端跨平台适配</a></li>
-                    <li><a href="#">专属的一键拨叫</a></li>
-                </ul>
-            </li>
-        </div>
-    </ul>
-</div>
-<!--悬浮搜索框-->
-<div class="nav white">
-    <div class="logoBig">
-        <li>
-            <a href="${APP_PATH}/toHome">
-            <img src="${APP_PATH}/static/picture/logoPro.png" style="height: 90px;width: 150px"/></a>
-        </li>
-    </div>
-    <div class="search-bar pr">
-        <a name="index_none_header_sysc" href="#"></a>
-        <form action="${APP_PATH}/Search" method="post">
-            <input id="searchInput" name="search" type="text" placeholder="搜索" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn" value="搜索" type="submit">
-        </form>
+<jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 
-    </div>
-</div>
 <div class="nav-table">
     <div class="long-title"><span class="all-goods">${requestScope.classify}</span></div>
+    <div class="nav-cont">
+
+        <li><a href="javascript:history.back(-1)">返回</a></li>
+        <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
+
+    </div>
 </div>
 <b class="line"></b>
 <!--文章 -->
@@ -85,7 +39,8 @@
                     <c:forEach items="${requestScope.GoodsList}" var="goodsList">
                         <li data-am-scrollspy="{animation: 'fade'}" style="height: 278px;width: 277px;">
                             <a href="${APP_PATH}/toIntroduction/${goodsList.goodsid}">
-                                <img src="${APP_PATH}/${goodsList.image}"/>
+                                <img class="am-img-responsive" src="${APP_PATH}/${goodsList.image}"
+                                     data-am-popover="{position: 'bottom' ,theme: 'primary lg' ,content: '${goodsList.goodsname}', trigger: 'hover focus'}"/>
                             </a>
                         </li>
                     </c:forEach>
@@ -97,23 +52,9 @@
     </div>
 
 </div>
-<div class="footer ">
-    <div class="footer-hd ">
-        <p><a href="#">心潮工作室</a> <b>|</b> <a href="${APP_PATH}/jsp/home/home.jsp">商城首页</a> <b>|</b> <a href="# ">支付宝</a>
-            <b>|</b>
-            <a href="#">物流</a></p>
-    </div>
-    <div class="footer-bd ">
-        <p><a href="# ">关于心潮</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a href="# ">网站地图</a> <em>© 2018-2038
-            SimpleChange.com 版权所有.</em></p>
-    </div>
-</div>
+<jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
 
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.ie8polyfill.min.js"></script>
-<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+
 </body>
 
 </html>

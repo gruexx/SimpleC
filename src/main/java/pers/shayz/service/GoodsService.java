@@ -41,4 +41,18 @@ public class GoodsService {
         goodsMapper.insertSelective(goods);
     }
 
+    public List<Goods> getGoodsByUserId(int id) {
+
+        GoodsExample goodsExample = new GoodsExample();
+        GoodsExample.Criteria criteria = goodsExample.createCriteria();
+        criteria.andUseridFkGoodsEqualTo(id).andFlagEqualTo(1);
+
+        List<Goods> list = goodsMapper.selectByExample(goodsExample);
+
+        if(list.size()==0){
+            return null;
+        }else {
+            return list;
+        }
+    }
 }
