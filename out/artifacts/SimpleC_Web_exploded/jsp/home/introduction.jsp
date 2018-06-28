@@ -142,8 +142,7 @@
             <ul>
                 <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
             </ul>
-            <div class="nav-extra"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i
-                    class="am-icon-angle-right" style="padding-left: 10px;"></i></div>
+            <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
         </div>
     </div>
     <ol class="am-breadcrumb am-breadcrumb-slash">
@@ -251,10 +250,12 @@
                 <div class="clearfix tb-btn tb-btn-basket theme-login"><a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
                 </div>
             </li>
-            <li>
-                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="chat" title="点此按钮到下一步确认购买信息"
-                                                                       href="javascript:void(0)"
-                                                                       onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">联系卖家</a>
+            <li style="float: right;margin-top: 25px;margin-right: 80px;font-size: medium;color: #3bb4f2">联系卖家</li>
+            <li class="rightbtn">
+                <div id="chat" class="am-icon-btn am-secondary am-icon-drupal" style="float: right">
+                    <a  title="点击联系卖家" href = "javascript:void(0)">
+
+                    </a>
                 </div>
             </li>
         </div>
@@ -363,9 +364,8 @@
                 <option value="1">B说：</option>
             </select>
             <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)"
-                   onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+            <input type="button" value="发送" class="talk_sub" id="talksub" href = "javascript:void(0)">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)">
         </div>
     </div>
 </div>
@@ -375,3 +375,81 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(function () {
+    });
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+
+        $("#chat").click(function () {
+            document.getElementById('light').style.display='block';
+            document.getElementById('fade').style.display='block';
+            var name1 = "double1";
+            var name2 = "yans";
+            var ws;
+            var wsUri = "ws://localhost:8080/chat";
+            ws = new WebSocket(wsUri);
+            //alert("this");
+
+            ws.onopen = function(){
+                // n=prompt('请给自己取一个昵称：');
+
+                // name1=getQueryString("name1");
+                // name2 = getQueryString("name2");
+
+                // window.alert("this");
+                //m=m.substr(0,16);
+                //ws.send(n);
+                ws.send(name1+" "+name2);//在服务端必须由OnMessage接收此消息
+            };
+
+            //处理连接后的信息处理
+            ws.onmessage = function(message){
+                writeToScreen(message.data);
+            };
+
+            $("#talksub").click(function () {
+                message = document.getElementById('talkwords').value;
+                document.getElementById('talkwords').value="";
+                //alert(message);
+                //towho = document.getElementById('towho').value + "@";
+                //window.alert("button");
+                ws.send(message);
+            })
+
+            //正则表达式方法火球URL中的参数
+            function getQueryString(name) {
+                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                }
+                return null;
+            }
+            // 这样调用：
+            //alert(GetQueryString("参数名1"));
+
+            function writeToScreen(message){
+                $("#asay").text(message);
+            }
+
+            ws.onerror = function (evt){
+                writeToScreen('<span style="color:red;">ERROR:</span>'+evt.data);
+                ws.close();
+            };
+
+            $("#closesub").click(function () {
+                //ws.close();
+                document.getElementById('light').style.display='none';
+                document.getElementById('fade').style.display='none';
+            })
+        })
+
+    });
+</script>

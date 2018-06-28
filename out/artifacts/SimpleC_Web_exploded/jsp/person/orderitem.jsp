@@ -41,10 +41,9 @@
     <div class="long-title"><span class="all-goods">全部分类</span></div>
     <div class="nav-cont">
         <ul>
-            <li class="index"><a href="#">首页</a></li>
+            <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
         </ul>
-        <div class="nav-extra"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i
-                class="am-icon-angle-right" style="padding-left: 10px;"></i></div>
+        <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
     </div>
 </div>
 <b class="line"></b>

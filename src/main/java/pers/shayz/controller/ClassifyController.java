@@ -24,15 +24,16 @@ public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
-    @RequestMapping(value = "/toClassify/{classifyName}")
-    public String toClassify(@PathVariable("classifyName") String classifyName, ModelMap modelMap) {
-        System.out.println("/toClassify/{classifyName}: "+classifyName);
+    @RequestMapping(value = "/toClassify/{classifyId}")
+    public String toClassify(@PathVariable("classifyId") int classifyId, ModelMap modelMap) {
+        System.out.println("/toClassify/{classifyId}: "+classifyId);
+
+        String classifyName = classifyService.getClassifyById(classifyId);
+        System.out.println("/toClassify/{classifyId}: "+classifyId);
         modelMap.addAttribute("classify", classifyName);
 
-        int classifyId = classifyService.getClassifyByName(classifyName).getClassifyid();
-        System.out.println("/toClassify/{classifyName}: "+classifyId);
         List<Goods> list = goodsService.getGoodsByClassifyId(classifyId);
-        System.out.println("/toClassify/{classifyName}: "+list);
+        System.out.println("/toClassify/{classifyId}: "+list);
         if (list.size() == 0) {
             modelMap.addAttribute("None", "该类商品暂无！");
         } else {

@@ -30,4 +30,8 @@ public class ClassifyService {
         criteria.andClassifyidIsNotNull();
         return classifyMapper.selectByExample(classifyExample);
     }
+
+    public String getClassifyById(Integer classifyidFkGoods) {
+        return classifyMapper.selectByPrimaryKey(classifyidFkGoods).getClassifyname();
+    }
 }

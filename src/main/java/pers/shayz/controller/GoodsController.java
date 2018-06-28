@@ -42,11 +42,11 @@ public class GoodsController {
         modelMap.addAttribute("Goods", goods);
 
         Comment comment = commentService.getCommentById(goodsId);
-        System.out.println("/toIntroduction/{goodsId}: "+comment);
-        if(comment==null){
-            modelMap.addAttribute("result","该商品暂无评论!");
-        }else{
-            modelMap.addAttribute("Comment",comment);
+        System.out.println("/toIntroduction/{goodsId}: " + comment);
+        if (comment == null) {
+            modelMap.addAttribute("result", "该商品暂无评论!");
+        } else {
+            modelMap.addAttribute("Comment", comment);
             System.out.println(comment.getContent());
         }
 
@@ -67,20 +67,24 @@ public class GoodsController {
 //        }
 //    }
 
-    @RequestMapping(value = "/doPublish", method = RequestMethod.POST)
+    @RequestMapping(value = "/doPublish/{type}", method = RequestMethod.POST)
     @ResponseBody
-    public Msg doPublish(MultipartFile imageFile, String goodsname, String goodsprice,
-                         String goodsnumber, String classifyid,
+    public Msg doPublish(@PathVariable("type") String type, MultipartFile imageFile, String goodsname, String goodsprice,
+                         String goodsnumber, String classifyid, String goodsid,
                          String goodsinfo, HttpSession session) throws IOException {
 
-        System.out.println("/doPublish: " + imageFile);
-        System.out.println("/doPublish: " + goodsname);
-        System.out.println("/doPublish: " + goodsprice);
-        System.out.println("/doPublish: " + goodsnumber);
-        System.out.println("/doPublish: " + classifyid);
-        System.out.println("/doPublish: " + goodsinfo);
+        System.out.println("/doPublish imageFile: " + imageFile);
+        System.out.println("/doPublish goodsname: " + goodsname);
+        System.out.println("/doPublish goodsprice: " + goodsprice);
+        System.out.println("/doPublish goodsnumber: " + goodsnumber);
+        System.out.println("/doPublish classifyid: " + classifyid);
+        System.out.println("/doPublish goodsinfo: " + goodsinfo);
+        System.out.println("/doPublish goodsid: " + goodsid);
 
-        if (goodsname.equals("") || goodsprice.equals("") || goodsnumber.equals("")) {
+
+        System.out.println("/doPublish type: " + type);
+
+        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber)) {
             return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
         }
 
@@ -126,21 +130,41 @@ public class GoodsController {
 
         System.out.println("/doPublish: " + goods);
 
+        if ("update".equals(type)) {
 
-        goodsService.saveGoods(goods);
-        return Msg.success().add("msg", "商品发布成功");
+            System.out.println("/doPublish type: " + type);
+
+            goods.setGoodsid(Integer.valueOf(goodsid));
+            goodsService.updateGoods(goods);
+
+            return Msg.success().add("msg", "商品更新成功");
+
+        } else {
+
+            goodsService.saveGoods(goods);
+            return Msg.success().add("msg", "商品发布成功");
+        }
 
     }
 
     @RequestMapping(value = "/toGoodsManage")
     public String toGoodsManage(HttpSession session, ModelMap modelMap) {
         int id = Integer.parseInt((String) session.getAttribute("userid"));
-        System.out.println("/toGoodsManage: "+id);
+        System.out.println("/toGoodsManage: " + id);
 
         List<Goods> list = goodsService.getGoodsByUserId(id);
-        System.out.println("/toGoodsManage: "+list);
+        System.out.println("/toGoodsManage: " + list);
+
+        List<String> goodsClassify = new ArrayList<>();
+        if(list!=null){
+            for (int i = 0; i < list.size(); i++) {
+                goodsClassify.add(classifyService.getClassifyById(list.get(i).getClassifyidFkGoods()));
+            }
+        }
+
 
         modelMap.addAttribute("myGoods", list);
+        modelMap.addAttribute("classifyName", goodsClassify);
 
         List<Classify> classifyList = classifyService.getAllClassify();
         System.out.println("/toGoodsManage: " + classifyList);
@@ -151,8 +175,8 @@ public class GoodsController {
 
     @RequestMapping(value = "/deleteGoods")
     @ResponseBody
-    public Msg deleteGoods(@RequestParam("goodsid")String goodsid) {
-        System.out.println("/deleteGoods: "+goodsid);
+    public Msg deleteGoods(@RequestParam("goodsid") String goodsid) {
+        System.out.println("/deleteGoods: " + goodsid);
 
         goodsService.deleteGoodsById(Integer.parseInt(goodsid));
 
@@ -161,8 +185,8 @@ public class GoodsController {
 
     @RequestMapping(value = "/getGoods")
     @ResponseBody
-    public Goods getGoods(@RequestParam("goodsid")String goodsid) {
-        System.out.println("/getGoods: "+goodsid);
+    public Goods getGoods(@RequestParam("goodsid") String goodsid) {
+        System.out.println("/getGoods: " + goodsid);
 
         return goodsService.getGoodsById(Integer.parseInt(goodsid));
     }

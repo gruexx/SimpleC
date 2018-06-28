@@ -34,17 +34,15 @@
             <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
             <div class="clear"></div>
         </div>
-        </div>
     </article>
 </header>
 <div class="nav-table">
     <div class="long-title"><span class="all-goods">全部分类</span></div>
     <div class="nav-cont">
         <ul>
-            <li class="index"><a href="#">首页</a></li>
+            <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
         </ul>
-        <div class="nav-extra"><i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的潮积分 <i
-                class="am-icon-angle-right" style="padding-left: 10px;"></i></div>
+        <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
     </div>
 </div>
 <b class="line"></b>
@@ -58,13 +56,14 @@
                         <small>Order</small>
                     </div>
                 </div>
-                <button id="addGoodsBtn" type="button" class="am-btn am-btn-primary am-btn-block">发布商品</button>
+                <button id="addGoodsBtn" type="button" class="am-btn am-btn-danger am-btn-block">发布商品</button>
                 <hr/>
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
                     <tr>
                         <th style="font-size: 16px;font-weight: bold">商品编号</th>
                         <th style="font-size: 16px;font-weight: bold">商品名称</th>
+                        <th style="font-size: 16px;font-weight: bold">分类</th>
                         <th style="font-size: 16px;font-weight: bold">商品价格</th>
                         <th style="font-size: 16px;font-weight: bold">库存</th>
                         <th style="font-size: 16px;font-weight: bold">图片信息</th>
@@ -73,10 +72,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${requestScope.myGoods}" var="myg">
-                        <tr>
+                    <c:forEach items="${requestScope.myGoods}" var="myg" varStatus="loop">
+                        <tr data-am-scrollspy="{animation: 'slide-bottom'}">
                             <td>${myg.goodsid}</td>
                             <td>${myg.goodsname}</td>
+                            <td>${requestScope.classifyName[loop.count-1]}</td>
                             <td>${myg.goodsprice}</td>
                             <td>${myg.goodsnumber}</td>
                             <td>
@@ -156,7 +156,7 @@
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
-            <form id="addGoodsForm" class="am-form">
+            <form id="editGoodsForm" class="am-form">
                     <div class="am-form-group">
                         <label for="goodsname">商品名称：</label>
                         <input type="text" id="goodsname" name="goodsname" placeholder="必填"
@@ -165,7 +165,8 @@
 
                     <div class="am-form-group">
                         <label for="classifyid">商品类别:</label>
-                        <select id="classifyid" class="am-datepicker-select" data-am-selected>
+                        <select id="classifyid" class="am-datepicker-select" data-am-selected="{btnStyle: 'primary'}" autocomplete="off">
+                            <option selected value=""></option>
                             <c:forEach items="${requestScope.classifyList}" var="classifyList">
                                 <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
                             </c:forEach>
@@ -193,6 +194,63 @@
                         <input id="imageFile" name="imageFile" type="file" multiple>
                         <div id="file-list"></div>
                     </div>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
+
+
+
+<%--发布--%>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="addModal">
+    <div class="am-modal-dialog" style="width: 400px">
+        <div class="am-modal-hd">
+            SimpleChange
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form id="addGoodsForm" class="am-form">
+                <div class="am-form-group">
+                    <label for="goodsname">商品名称：</label>
+                    <input type="text" id="goodsname1" name="goodsname" placeholder="必填"
+                           class="am-form-field" required/>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="classifyid1">商品类别:</label>
+                    <select id="classifyid1" class="am-datepicker-select" data-am-selected="{btnStyle: 'primary'}">
+                        <c:forEach items="${requestScope.classifyList}" var="classifyList">
+                            <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="goodsprice">商品价格：</label>
+                    <input type="number" id="goodsprice1" placeholder="必填" name="goodsprice" required/>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="goodsnumber">库存量：</label>
+                    <input type="number" id="goodsnumber1" name="goodsnumber" placeholder="必填" required/>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="goodsinfo">详细资料：</label>
+                    <textarea id="goodsinfo1" name="goodsinfo" minlength="10" maxlength="100"></textarea>
+                </div>
+                <div class="am-form-group am-form-file">
+                    <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                        <i class="am-icon-cloud-upload"></i> 选择要上传的图片
+                    </button>
+                    <input id="imageFile1" name="imageFile" type="file" multiple>
+                    <div id="file-list1"></div>
+                </div>
             </form>
         </div>
         <div class="am-modal-footer">
@@ -236,7 +294,7 @@
 
     $('.editGoods').click(function () {
         var goodsid = $(this).data('id');
-        console.log(goodsid);
+        console.log("goodsid: "+goodsid);
         $.ajax({
             url: '${APP_PATH}/getGoods',
             type: 'POST',
@@ -244,55 +302,55 @@
             success: function (result) {
 
                 var id = result.classifyidFkGoods;
-                console.log("id: "+id);
+                console.log("classifyidFkGoods: "+id);
 
                 $('#goodsname').val(result.goodsname);
                 $('#goodsnumber').val(result.goodsnumber);
                 $('#goodsinfo').val(result.goodsinfo);
                 $('#goodsprice').val(result.goodsprice);
-                // $('#classifyid').find('option').eq(id-1).prop('selected', true);
-                $('#classifyid').find('option').eq(id-1).siblings().prop('selected', false);
-                $('#classifyid').find('option').eq(id-1).prop('selected', true);
-                var $a = $('#classifyid').find('option').eq(id-1);
-                console.log($a);
-                console.log($('#classifyid').find('option'));
+                // $('#classifyid').find('option').eq(id).prop('selected', true);
+                // console.log($('#classifyid').find('option'));
+                // document.getElementById(id).selected=true;
+
 
                 $('#editModal').modal({
                     relatedTarget: this,
                     onConfirm: function () {
 
-                        // var form = new FormData(document.getElementById("addGoodsForm"));
-                        // // $("#addGoodsForm").submit();
-                        //
-                        // var classifyidFkGoods = $("#classifyid option:selected").val();
-                        // form.append('classifyid', classifyidFkGoods);
-                        //
-                        // $.ajax({
-                        //     type: "post",
-                        //     url: "/doPublish",
-                        //     data: form,
-                        //     processData: false,
-                        //     contentType: false,
-                        //     success: function (result) {
-                        //         $("#addGoodsForm")[0].reset();
-                        //         if (result.code === 100) {
-                        //             $.toast({
-                        //                 heading: "Success",
-                        //                 text: result.extend.msg,
-                        //                 showHideTransition: 'slide',
-                        //                 icon: 'success',
-                        //                 position: 'top-right'
-                        //             })
-                        //         } else {
-                        //             $.toast({
-                        //                 heading: "Fail",
-                        //                 text: result.extend.msg,
-                        //                 showHideTransition: 'fade',
-                        //                 position: 'top-right'
-                        //             })
-                        //         }
-                        //     }
-                        // })
+                        var form = new FormData(document.getElementById("editGoodsForm"));
+                        // $("#addGoodsForm").submit();
+
+                        var classifyidFkGoods = $("#classifyid option:selected").val();
+                        form.append('classifyid', classifyidFkGoods);
+                        form.append('goodsid',goodsid);
+
+                        $.ajax({
+                            type: "post",
+                            url: "/doPublish/"+"update",
+                            data: form,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                $("#editGoodsForm")[0].reset();
+                                if (result.code === 100) {
+                                    $.toast({
+                                        heading: "Success",
+                                        text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
+                                        showHideTransition: 'slide',
+                                        icon: 'success',
+                                        hideAfter: false,
+                                        position: 'top-right'
+                                    })
+                                } else {
+                                    $.toast({
+                                        heading: "Fail",
+                                        text: result.extend.msg,
+                                        showHideTransition: 'fade',
+                                        position: 'top-right'
+                                    })
+                                }
+                            }
+                        })
                     }
                 });
             }
@@ -303,19 +361,19 @@
 
     $("#addGoodsBtn").click(function () {
 
-        $('#editModal').modal({
+        $('#addModal').modal({
             relatedTarget: this,
             onConfirm: function () {
 
                 var form = new FormData(document.getElementById("addGoodsForm"));
                 // $("#addGoodsForm").submit();
 
-                var classifyidFkGoods = $("#classifyid option:selected").val();
+                var classifyidFkGoods = $("#classifyid1 option:selected").val();
                 form.append('classifyid', classifyidFkGoods);
 
                 $.ajax({
                     type: "post",
-                    url: "/doPublish",
+                    url: "/doPublish/"+"add",
                     data: form,
                     // data: {
                     //     goodsname: goodsname,
@@ -331,8 +389,9 @@
                         if (result.code === 100) {
                             $.toast({
                                 heading: "Success",
-                                text: result.extend.msg,
+                                text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                 showHideTransition: 'slide',
+                                hideAfter: false,
                                 icon: 'success',
                                 position: 'top-right'
                             })
@@ -360,6 +419,16 @@
                 fileNames += '<span class="am-badge">' + this.name + '</span> ';
             });
             $('#file-list').html(fileNames);
+        });
+    });
+
+    $(function () {
+        $('#imageFile1').on('change', function () {
+            var fileNames = '';
+            $.each(this.files, function () {
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+            });
+            $('#file-list1').html(fileNames);
         });
     });
 </script>

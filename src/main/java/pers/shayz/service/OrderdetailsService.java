@@ -17,22 +17,35 @@ import java.util.List;
  */
 @Service
 public class OrderdetailsService {
+
     @Autowired
     OrderdetailsMapper orderdetailsMapper;
+
     @Autowired
     GoodsMapper goodsMapper;
+
     public List<Goods> getGoodsByOrderItemId(int id) {
         OrderdetailsExample orderdetailsExample = new OrderdetailsExample();
         OrderdetailsExample.Criteria criteria = orderdetailsExample.createCriteria();
         criteria.andOrderitemidFkOrderEqualTo(id).andFlagEqualTo(1);
 
-        List<Orderdetails> OrderList = orderdetailsMapper.selectByExample(orderdetailsExample);
+        List<Orderdetails> orderdetailsList = orderdetailsMapper.selectByExample(orderdetailsExample);
+        System.out.println("getGoodsByOrderItemId: "+orderdetailsList);
 
-        List<Goods> GoodsList = new ArrayList<>();
-        for (int i = 0; i <OrderList.size() ; i++) {
-            GoodsList.add(goodsMapper.selectByPrimaryKey(OrderList.get(i).getGoodsidFkOrder()));
+        List<Goods> goodsList = new ArrayList<>();
+        for (int i = 0; i <orderdetailsList.size() ; i++) {
+            goodsList.add(goodsMapper.selectByPrimaryKey(orderdetailsList.get(i).getGoodsidFkOrder()));
         }
 
-        return GoodsList;
+        return goodsList;
+    }
+
+    public List<Orderdetails> getOrderDetailsByOrderItemId(int orderItemId) {
+
+        OrderdetailsExample orderdetailsExample = new OrderdetailsExample();
+        OrderdetailsExample.Criteria criteria = orderdetailsExample.createCriteria();
+        criteria.andOrderitemidFkOrderEqualTo(orderItemId).andFlagEqualTo(1);
+
+        return orderdetailsMapper.selectByExample(orderdetailsExample);
     }
 }

@@ -25,14 +25,14 @@ public class GoodsService {
         return goodsMapper.selectByExample(goodsExample);
     }
 
-    public Goods getGoodsById(int id){
+    public Goods getGoodsById(int id) {
         return goodsMapper.selectByPrimaryKey(id);
     }
 
     public List<Goods> getGoodsBySearch(String search) {
         GoodsExample goodsExample = new GoodsExample();
         GoodsExample.Criteria criteria = goodsExample.createCriteria();
-        criteria.andGoodsnameLike("%"+search+"%").andFlagEqualTo(1);
+        criteria.andGoodsnameLike("%" + search + "%").andFlagEqualTo(1);
 
         return goodsMapper.selectByExample(goodsExample);
     }
@@ -49,9 +49,9 @@ public class GoodsService {
 
         List<Goods> list = goodsMapper.selectByExample(goodsExample);
 
-        if(list.size()==0){
+        if (list.size() == 0) {
             return null;
-        }else {
+        } else {
             return list;
         }
     }
@@ -60,5 +60,26 @@ public class GoodsService {
         Goods goods = goodsMapper.selectByPrimaryKey(id);
         goods.setFlag(0);
         goodsMapper.updateByPrimaryKeySelective(goods);
+    }
+
+    public void updateGoods(Goods goods) {
+        goodsMapper.updateByPrimaryKeySelective(goods);
+    }
+
+    public Goods getGoodsByRandomId(int id) {
+
+        GoodsExample goodsExample = new GoodsExample();
+        GoodsExample.Criteria criteria = goodsExample.createCriteria();
+        criteria.andGoodsidIsNotNull().andFlagEqualTo(1);
+
+        List<Goods> list= goodsMapper.selectByExample(goodsExample);
+
+        int sum = list.size();
+        System.out.println("getGoodsByRandomId id: "+id);
+        System.out.println("getGoodsByRandomId sum: "+sum);
+        int index = Math.abs(id)%sum;
+        System.out.println("getGoodsByRandomId index: "+index);
+
+        return list.get(index);
     }
 }

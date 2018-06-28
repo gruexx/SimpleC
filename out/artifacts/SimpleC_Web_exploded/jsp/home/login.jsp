@@ -122,6 +122,12 @@
     $(function () {
         $('#LoginForm').validator();
     });
+
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('#LoginBtn').click();
+        }
+    });
 </script>
 
 </html>

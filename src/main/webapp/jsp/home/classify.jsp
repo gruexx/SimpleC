@@ -26,7 +26,7 @@
 
         <li><a href="javascript:history.back(-1)">返回</a></li>
         <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
-
+        <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
     </div>
 </div>
 <b class="line"></b>

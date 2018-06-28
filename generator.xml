@@ -41,6 +41,7 @@
         <table tableName="orderitem" domainObjectName=""></table>
         <table tableName="shopcart" domainObjectName=""></table>
         <table tableName="user" domainObjectName=""></table>
+        <table tableName="message" domainObjectName=""></table>
 
     </context>
 </generatorConfiguration>

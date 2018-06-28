@@ -4,19 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import pers.shayz.bean.Classify;
-import pers.shayz.bean.Goods;
-import pers.shayz.bean.Msg;
-import pers.shayz.bean.User;
-import pers.shayz.service.ClassifyService;
-import pers.shayz.service.GoodsService;
-import pers.shayz.service.OrderdetailsService;
-import pers.shayz.service.UserService;
+import org.springframework.web.multipart.MultipartFile;
+import pers.shayz.bean.*;
+import pers.shayz.service.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 
 /**
@@ -29,13 +24,16 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    ClassifyService classifyService;
+    private ClassifyService classifyService;
 
     @Autowired
     private GoodsService goodsService;
 
     @Autowired
     private OrderdetailsService orderdetailsService;
+
+    @Autowired
+    private OrderItemService orderItemService;
 
     @RequestMapping(value = "/toRegister")
     public String toRegister() {
@@ -54,7 +52,7 @@ public class UserController {
         String username = user.getUsername();
 
 
-        if(useremail.equals("")||username.equals("")||user.getUserpassword().equals("")){
+        if (useremail.equals("") || username.equals("") || user.getUserpassword().equals("")) {
             return Msg.fail().add("msg", "用户名/邮箱/密码不能为空");
         }
 
@@ -97,6 +95,11 @@ public class UserController {
         session.setAttribute("username", user.getUsername());
         session.setAttribute("userid", String.valueOf(user.getUserid()));
         session.setAttribute("userchaopoint", String.valueOf(user.getUserchaopoint()));
+        session.setAttribute("image", user.getImage());
+        session.setAttribute("phonenumber", user.getUserphone());
+        session.setAttribute("useremail", user.getUseremail());
+        session.setAttribute("useraddress", user.getAddress());
+
         return "redirect:/toHome";
     }
 
@@ -160,6 +163,11 @@ public class UserController {
         modelMap.addAttribute("beauty", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(6)));
         modelMap.addAttribute("computer", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(7)));
         modelMap.addAttribute("clothes", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(8)));
+
+        Random random = new Random();
+        modelMap.addAttribute("one", goodsService.getGoodsByRandomId(random.nextInt()));
+        modelMap.addAttribute("two", goodsService.getGoodsByRandomId(random.nextInt()));
+        modelMap.addAttribute("three", goodsService.getGoodsByRandomId(random.nextInt()));
         return "home/home";
     }
 
@@ -192,10 +200,21 @@ public class UserController {
     }
 
     @RequestMapping(value = "/toOrderDetails/{orderitemid}")
-    public String toOrderDetails(@PathVariable("orderitemid")String id, ModelMap modelMap) {
+    public String toOrderDetails(@PathVariable("orderitemid") String id, ModelMap modelMap) {
         int orderItemId = Integer.parseInt(id);
+        System.out.println("/toOrderDetails/{orderitemid}: " + orderItemId);
+
         List<Goods> goodsList = orderdetailsService.getGoodsByOrderItemId(orderItemId);
-        modelMap.addAttribute("GoodsList",goodsList);
+        System.out.println("/toOrderDetails/{orderitemid}: " + goodsList);
+        modelMap.addAttribute("GoodsList", goodsList);
+
+        Orderitem orderitem = orderItemService.getOrderItemByOrderitemId(orderItemId);
+        System.out.println("/toOrderDetails/{orderitemid}: " + orderitem);
+        modelMap.addAttribute("OrderItemList", orderitem);
+
+        List<Orderdetails> orderdetailsList = orderdetailsService.getOrderDetailsByOrderItemId(orderItemId);
+        System.out.println("/toOrderDetails/{orderitemid}: " + orderdetailsList);
+        modelMap.addAttribute("OrderDetailList", orderdetailsList);
 
         return "person/orderdetails";
     }
@@ -203,5 +222,47 @@ public class UserController {
     @RequestMapping(value = "/toPassword")
     public String toPassword() {
         return "person/password";
+    }
+
+    @RequestMapping(value = "/userInfo/image", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg changeUserImage(MultipartFile userImage, HttpSession session) throws IOException {
+
+        System.out.println("/doPublish imageFile: " + userImage);
+
+        User user = new User();
+        user.setUserid(Integer.parseInt(String.valueOf(session.getAttribute("userid"))));
+
+        System.out.println("comming!");
+        String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\GoodsImage";
+        System.out.println("path>>" + path);
+
+        String fileName = userImage.getOriginalFilename();
+        System.out.println(fileName);
+        String[] suffix = fileName.split("\\.");
+        System.out.println(Arrays.toString(suffix) + " " + suffix[suffix.length - 1]);
+
+        if (!Objects.equals(suffix[suffix.length - 1], "")) {
+
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            fileName = uuid + "." + suffix[suffix.length - 1];
+            String image = "GoodsImage/" + fileName;
+            System.out.println("fileName>>" + fileName);
+
+            File dir = new File(path, fileName);
+
+            userImage.transferTo(dir);
+
+            user.setImage(image);
+        } else {
+            user.setImage(null);
+        }
+
+        System.out.println("/doPublish: " + user);
+
+        userService.updateUser(user);
+
+        return Msg.success().add("msg", "头像更新成功");
+
     }
 }

@@ -57,4 +57,9 @@ public class OrderItemService {
 
         return "delete success";
     }
+
+    public Orderitem getOrderItemByOrderitemId(int id){
+        return orderitemMapper.selectByPrimaryKey(id);
+    }
+
 }
