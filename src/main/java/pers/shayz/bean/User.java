@@ -1,12 +1,18 @@
 package pers.shayz.bean;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
 public class User {
     private Integer userid;
 
+    @Pattern(regexp="(^[A-Za-z0-9]{3,16}$)"
+            ,message="名字必须是3-16位字符组合")
     private String username;
 
     private String userpassword;
 
+    @Email(message="邮箱格式不正确")
     private String useremail;
 
     private Integer userchaopoint;
@@ -109,5 +115,22 @@ public class User {
 
     public void setImage(String image) {
         this.image = image == null ? null : image.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", userpassword='" + userpassword + '\'' +
+                ", useremail='" + useremail + '\'' +
+                ", userchaopoint=" + userchaopoint +
+                ", userremainder=" + userremainder +
+                ", flag=" + flag +
+                ", administrator=" + administrator +
+                ", userphone='" + userphone + '\'' +
+                ", address='" + address + '\'' +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

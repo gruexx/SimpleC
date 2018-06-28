@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pers.shayz.bean.Goods;
 import pers.shayz.bean.Shopcart;
+import pers.shayz.bean.User;
 import pers.shayz.service.GoodsService;
 import pers.shayz.service.ShopcartService;
 
@@ -27,7 +28,8 @@ public class ShopcartController {
 
     @RequestMapping(value="/toShopcart")
     public String toShopcart(HttpSession session, ModelMap modelMap){
-        int userid = Integer.parseInt(String.valueOf(session.getAttribute("userid")));
+        User userNow = (User)session.getAttribute("user");
+        int userid = userNow.getUserid();
         List<Shopcart> shopcartlist = shopcartService.getShopcartByUserId(userid);
         List<Goods> goodslist = new ArrayList<Goods>();
         for (int i = 0; i < shopcartlist.size(); i++) {

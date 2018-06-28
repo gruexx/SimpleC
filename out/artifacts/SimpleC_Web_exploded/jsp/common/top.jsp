@@ -13,7 +13,7 @@
     <ul class="message-l">
         <div class="topMessage">
             <div class="menu-hd">
-                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.username}</a> |
+                <a href="${APP_PATH}/toHome" target="_top" class="h">Hi,${sessionScope.user.username}</a> |
                 <a href="${APP_PATH}/Logout" target="_top" class="h">退出账号</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     购物车 <span class="am-icon-caret-down"></span>
                 </a>
                 <ul class="am-dropdown-content" style="white-space: nowrap">
-                    <li class="am-dropdown-header" >${sessionScope.username}的购物车</li>
+                    <li class="am-dropdown-header" >${sessionScope.user.username}的购物车</li>
                     <li class="am-divider"></li>
                     <li class="am-active"><a href="${APP_PATH}/toShopcart">前往购物车</a></li>
                     <li class="am-divider"></li>

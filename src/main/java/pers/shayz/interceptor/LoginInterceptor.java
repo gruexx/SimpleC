@@ -21,14 +21,15 @@ public class LoginInterceptor implements HandlerInterceptor {
         String url = request.getRequestURI();
 
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        String userid = (String) session.getAttribute("userid");
-        String userchaopoint = (String) session.getAttribute("userchaopoint");
-        System.out.println("LoginInterceptor: "+username);
-        System.out.println("LoginInterceptor: "+userid);
-        System.out.println("LoginInterceptor: "+userchaopoint);
+//        String username = (String) session.getAttribute("user");
+//        String userid = (String) session.getAttribute("userid");
+//        String userchaopoint = (String) session.getAttribute("userchaopoint");
 
-        if (userid != null) {
+        User user = (User) session.getAttribute("user");
+
+        System.out.println("LoginInterceptor: "+user.toString());
+
+        if (user.getUserid() != null) {
             return true;
         }
 

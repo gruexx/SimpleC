@@ -22,7 +22,7 @@
 <body>
 <div class="hmtop">
     <!--顶部导航条 -->
-    <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+    <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
     <div class="clear"></div>
 </div>
 <div class="banner">
@@ -30,16 +30,16 @@
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
         <ul class="am-slides">
             <li class="banner1">
-                <a href="introduction.jsp"><img src="${APP_PATH}/images/ad1.jpg"/></a>
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad1.jpg"/></a>
             </li>
             <li class="banner2">
-                <a><img src="${APP_PATH}/images/ad2.jpg"/></a>
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad2.jpg"/></a>
             </li>
             <li class="banner3">
-                <a><img src="${APP_PATH}/images/ad3.jpg"/></a>
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad3.jpg"/></a>
             </li>
             <li class="banner4">
-                <a><img src="${APP_PATH}/images/ad4.jpg"/></a>
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad4.jpg"/></a>
             </li>
         </ul>
     </div>
@@ -51,10 +51,11 @@
         <div class="nav-cont">
             <ul>
                 <li class="index" style="padding-left: 690px">
-                    <a href="${APP_PATH}/toGoodsManage" style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
+                    <a href="${APP_PATH}/toGoodsManage"
+                       style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
                 </li>
             </ul>
-            <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
         </div>
         <!--侧边导航 -->
         <div id="nav" class="navfull">
@@ -70,7 +71,7 @@
                                         </h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/2">
+                                    <a href="${APP_PATH}/toClassify/2">
                                 <li class="appliance js_toggle relative first">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -78,7 +79,7 @@
                                         </h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/4">
+                                    <a href="${APP_PATH}/toClassify/4">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -86,7 +87,7 @@
                                         </h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/7">
+                                    <a href="${APP_PATH}/toClassify/7">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -94,47 +95,47 @@
                                         </h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/8">
+                                    <a href="${APP_PATH}/toClassify/8">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="服装">服装</p></h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/5">
+                                    <a href="${APP_PATH}/toClassify/5">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="运动">运动</p></h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/3" >
+                                    <a href="${APP_PATH}/toClassify/3">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="食品">食品</p></h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/6">
+                                    <a href="${APP_PATH}/toClassify/6">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="美妆">美妆</p></h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/1">
+                                    <a href="${APP_PATH}/toClassify/1">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="图书">图书</p></h3>
                                     </div>
 
-                            <a href="${APP_PATH}/toClassify/9">
-                            <li class="appliance js_toggle relative">
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name">
-                                        <p class="ml-22" style="color: #d2364c"     title="其他">其他</p></h3>
-                                </div>
+                                    <a href="${APP_PATH}/toClassify/9">
+                                <li class="appliance js_toggle relative">
+                                    <div class="category-info">
+                                        <h3 class="category-name b-category-name">
+                                            <p class="ml-22" style="color: #d2364c" title="其他">其他</p></h3>
+                                    </div>
 
                         </ul>
                     </div>
@@ -195,7 +196,8 @@
                     <h4>开年福利篇</h4>
                 </div>
                 <div class="recommendationMain one">
-                    <a href="introduction.jsp"><img src="${APP_PATH}/${requestScope.one.image}"/>
+                    <a href="${APP_PATH}/toIntroduction/${requestScope.one.goodsid}">
+                        <img src="${APP_PATH}/${requestScope.one.image}"/>
                     </a>
                 </div>
             </div>
@@ -204,8 +206,10 @@
                     <h3>囤货过冬</h3>
                     <h4>让爱早回家</h4>
                 </div>
-                <div class="recommendationMain two"><img
-                        src="${APP_PATH}/${requestScope.two.image}"/>
+                <div class="recommendationMain two">
+                    <a href="${APP_PATH}/toIntroduction/${requestScope.two.goodsid}">
+                        <img src="${APP_PATH}/${requestScope.two.image}"/>
+                    </a>
                 </div>
             </div>
             <div class="am-u-sm-4 am-u-lg-3 ">
@@ -213,7 +217,10 @@
                     <h3>浪漫情人节</h3>
                     <h4>甜甜蜜蜜</h4>
                 </div>
-                <div class="recommendationMain three"><img src="${APP_PATH}/${requestScope.three.image}"/>
+                <div class="recommendationMain three">
+                    <a href="${APP_PATH}/toIntroduction/${requestScope.three.goodsid}">
+                        <img src="${APP_PATH}/${requestScope.three.image}"/>
+                    </a>
                 </div>
             </div>
         </div>
@@ -224,8 +231,8 @@
                 <h4>家用电器</h4>
                 <h3>每一个家用电器都有一个故事</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/家用电器">更多家用电器</a>
-                        </span>
+                    <a class="more-link " href="${APP_PATH}/toClassify/2">更多家用电器</a>
+                </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
@@ -250,7 +257,7 @@
                 <h4>手机数码</h4>
                 <h3>手机数码</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/手机数码">更多手机数码</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/4">更多手机数码</a>
                         </span>
             </div>
         </div>
@@ -276,7 +283,7 @@
                 <h4>电脑办公</h4>
                 <h3>电脑办公</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/电脑办公">更多电脑办公</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/7">更多电脑办公</a>
                         </span>
             </div>
         </div>
@@ -302,7 +309,7 @@
                 <h4>服装</h4>
                 <h3>服装</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/服装">更多服装</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/8">更多服装</a>
                         </span>
             </div>
         </div>
@@ -328,7 +335,7 @@
                 <h4>运动</h4>
                 <h3>运动</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/运动">更多运动</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/5">更多运动</a>
                         </span>
             </div>
         </div>
@@ -354,7 +361,7 @@
                 <h4>食品</h4>
                 <h3>食品</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/食品">更多食品</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/3">更多食品</a>
                         </span>
             </div>
         </div>
@@ -380,7 +387,7 @@
                 <h4>美妆</h4>
                 <h3>美妆</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/美妆">更多美妆</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/6">更多美妆</a>
                         </span>
             </div>
         </div>
@@ -406,7 +413,7 @@
                 <h4>图书</h4>
                 <h3>知识就是力量</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/图书">更多图书</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/1">更多图书</a>
                         </span>
             </div>
         </div>
@@ -427,7 +434,7 @@
         </div>
 
 
-        <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+        <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
     </div>
 </div>
 
