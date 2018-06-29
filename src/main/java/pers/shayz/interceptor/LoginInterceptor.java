@@ -25,11 +25,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        String userid = (String) session.getAttribute("userid");
 //        String userchaopoint = (String) session.getAttribute("userchaopoint");
 
-        User user = (User) session.getAttribute("user");
 
-        System.out.println("LoginInterceptor: "+user.toString());
 
-        if (user.getUserid() != null) {
+        if (session.getAttribute("user") != null) {
             return true;
         }
 

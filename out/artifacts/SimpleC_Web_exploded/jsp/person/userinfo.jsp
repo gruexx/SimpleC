@@ -241,6 +241,34 @@
             success: function (result) {
                 if (result.code === 100) {
                     window.location.reload();
+                }else {
+                    if (undefined !== result.extend.errorFields.username) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.username,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
+                    if (undefined !== result.extend.errorFields.userphone) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.userphone,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
+                    if (undefined !== result.extend.errorFields.useremail) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.useremail,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
                 }
             },
             error: function () {
@@ -252,7 +280,7 @@
                 })
             }
         })
-    })
+    });
 
     $(function () {
         $("#userInfoForm").validator({

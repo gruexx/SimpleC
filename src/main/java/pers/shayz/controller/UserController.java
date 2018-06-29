@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.*;
@@ -45,29 +46,25 @@ public class UserController {
 
     @RequestMapping(value = "/doRegister", method = RequestMethod.POST)
     @ResponseBody
-    public Msg doRegister(@Valid User user, BindingResult result ,ModelMap modelMap) {
+    public Msg doRegister(@Valid User user, BindingResult bindingResult) {
 
-        if (result.hasErrors()) {
+        System.out.println("/doRegister: "+bindingResult);
+        if (bindingResult.hasErrors()) {
             Map<String, Object> map = new HashMap<>();
-            List<FieldError> errors = result.getFieldErrors();
+            List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError fieldError : errors) {
                 map.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
+            System.out.println("/doRegister: "+map);
             return Msg.fail().add("errorFields", map);
         }
 
         user.setUserid(null);
         System.out.println("/doRegister: " + user);
 
-        modelMap.addAttribute("success", "注册成功，请登录！！！");
-
         String useremail = user.getUseremail();
         String username = user.getUsername();
 
-
-        if (useremail.equals("") || username.equals("") || user.getUserpassword().equals("")) {
-            return Msg.fail().add("msg", "用户名/邮箱/密码不能为空");
-        }
 
         System.out.println("/doRegister: " + username);
         if (userService.getUserByName(username) != null) {
@@ -243,7 +240,7 @@ public class UserController {
     @ResponseBody
     public Msg changeUserImage(MultipartFile userImage, HttpSession session) throws IOException {
 
-        System.out.println("/doPublish imageFile: " + userImage);
+        System.out.println("/userUpdate/image imageFile: " + userImage);
 
         User user = new User();
         User userNow = (User)session.getAttribute("user");
@@ -274,7 +271,7 @@ public class UserController {
             user.setImage(null);
         }
 
-        System.out.println("/doPublish: " + user);
+        System.out.println("/userUpdate/image: " + user);
 
         userService.updateUser(user);
         session.setAttribute("user", userService.getUser(user.getUserid()));
@@ -285,10 +282,29 @@ public class UserController {
 
     @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
     @ResponseBody
-    public Msg userInfoUpdate(User newUser, HttpSession session){
+    public Msg userInfoUpdate(@Valid User newUser, BindingResult bindingResult,HttpSession session){
+
+        System.out.println("/userUpdate: "+bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            Map<String, Object> map = new HashMap<>();
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            System.out.println("/userUpdate: "+errors);
+            for (FieldError fieldError : errors) {
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            System.out.println("/userUpdate: "+map);
+
+            if(bindingResult.getFieldError("username")!=null
+                    || bindingResult.getFieldError("userphone")!=null
+                    || bindingResult.getFieldError("useremail")!=null){
+                return Msg.fail().add("errorFields", map);
+            }
+        }
+
         User userNow = (User)session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
-        System.out.println("/userInfo: "+newUser);
+        System.out.println("/userUpdate: "+newUser);
         userService.updateUser(newUser);
 
         session.setAttribute("user", userService.getUser(userNow.getUserid()));
