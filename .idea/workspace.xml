@@ -6,26 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/SimpleC_Web_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/SimpleC_Web_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/bean/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/interceptor/LoginInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/interceptor/LoginInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/userinfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/userinfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/bean/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/interceptor/LoginInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/interceptor/LoginInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,8 +105,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="304" column="58" selection-start-line="304" selection-start-column="58" selection-end-line="304" selection-end-column="58" />
+            <state relative-caret-position="595">
+              <caret line="302" column="9" lean-forward="true" selection-start-line="302" selection-start-column="9" selection-end-line="302" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -271,7 +252,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="198" />
     <option name="y" value="54" />
     <option name="width" value="1597" />
@@ -698,7 +679,7 @@
       <workItem from="1530100958401" duration="9375000" />
       <workItem from="1530144312630" duration="15145000" />
       <workItem from="1530167530153" duration="11566000" />
-      <workItem from="1530230563408" duration="11803000" />
+      <workItem from="1530230563408" duration="12306000" />
     </task>
     <servers />
   </component>
@@ -735,11 +716,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288526000" />
+    <option name="totallyTimeSpent" value="289029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50179213" side_tool="true" weight="0.22909881" />
@@ -761,7 +741,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32903227" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32899022" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4982079" visible="true" weight="0.3107527" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4982079" weight="0.3107527" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3297491" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3296582" />
       <window_info anchor="bottom" id="SQL" order="11" />
@@ -1196,8 +1176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="304" column="58" selection-start-line="304" selection-start-column="58" selection-end-line="304" selection-end-column="58" />
+        <state relative-caret-position="595">
+          <caret line="302" column="9" lean-forward="true" selection-start-line="302" selection-start-column="9" selection-end-line="302" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
