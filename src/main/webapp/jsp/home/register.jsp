@@ -64,7 +64,7 @@
                     </div>
                     <div class="am-cf">
                         <input type="button" id="RegBtn" value="注册"
-                                class="am-btn am-btn-primary am-btn-sm am-fl am-disabled">
+                               class="am-btn am-btn-primary am-btn-sm am-fl am-disabled">
                     </div>
                 </fieldset>
             </form>
@@ -72,7 +72,7 @@
         </div>
     </div>
 </div>
-<jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+<jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
 
 </body>
 
@@ -107,58 +107,8 @@
         });
     });
 
-    <%--$('#username').blur(function () {--%>
-    <%--var username= $('#username').val();--%>
-    <%--console.log(username);--%>
-    <%--$.ajax({--%>
-    <%--url: '${APP_PATH}/checkUsername',--%>
-    <%--type: 'POST',--%>
-    <%--data: {"username":username},--%>
-    <%--success: function (result) {--%>
-    <%--console.log(result.code);--%>
-    <%--if(result.code===200) {--%>
-    <%--$.toast({--%>
-    <%--heading: $('#username').val(),--%>
-    <%--text: "用户名已存在",--%>
-    <%--showHideTransition: 'slide',--%>
-    <%--afterHidden: function () {--%>
-    <%--window.location.reload();--%>
-    <%--},--%>
-    <%--hideAfter: 1000,--%>
-    <%--position: 'top-right',--%>
-    <%--})--%>
-    <%--}--%>
-    <%--}--%>
-    <%--});--%>
-    <%--});--%>
-
-    <%--$('#useremail').blur(function () {--%>
-    <%--var useremail= $('#useremail').val();--%>
-    <%--console.log(useremail);--%>
-    <%--$.ajax({--%>
-    <%--url: '${APP_PATH}/checkUseremail',--%>
-    <%--type: 'POST',--%>
-    <%--data: {"useremail":useremail},--%>
-    <%--success: function (result) {--%>
-    <%--console.log(result.code);--%>
-    <%--if(result.code===200) {--%>
-    <%--$.toast({--%>
-    <%--heading: $('#useremail').val(),--%>
-    <%--text: "该邮箱已被注册",--%>
-    <%--showHideTransition: 'slide',--%>
-    <%--afterHidden: function () {--%>
-    <%--window.location.reload();--%>
-    <%--},--%>
-    <%--hideAfter: 1000,--%>
-    <%--position: 'top-right',--%>
-    <%--})--%>
-    <%--}--%>
-    <%--}--%>
-    <%--});--%>
-    <%--});--%>
-
     $('#RegBtn').click(function () {
-        if($('#p2').val()==null){
+        if ($('#p2').val() == null || $('#p2').val() !== $('#userpassword').val()) {
             $.toast({
                 text: '请确认密码',
                 showHideTransition: 'slide',
@@ -166,33 +116,61 @@
                 position: 'top-right'
             })
             $('#p2').focus();
-        }
+        } else {
 
-        $.ajax({
-            url: '${APP_PATH}/doRegister',
-            type: 'POST',
-            data: $('#registerForm').serialize(),
-            success: function (result) {
-                console.log(result.code);
-                if (result.code === 100) {
-                    $.toast({
-                        heading: "Success",
-                        text: 'Yes! 注册成功 <a href="${APP_PATH}/toLogin">登录</a>.',
-                        showHideTransition: 'slide',
-                        hideAfter: false,
-                        position: 'top-right',
-                        icon: 'success'
-                    })
-                } else {
-                    $.toast({
-                        heading: "Fail",
-                        text: result.extend.msg+',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
-                        showHideTransition: 'slide',
-                        hideAfter: false,
-                        position: 'top-right'
-                    })
+            $.ajax({
+                url: '${APP_PATH}/doRegister',
+                type: 'POST',
+                data: $('#registerForm').serialize(),
+                success: function (result) {
+                    console.log(result.code);
+                    if (result.code === 100) {
+                        $.toast({
+                            heading: "Success",
+                            text: 'Yes! 注册成功 <a href="${APP_PATH}/toLogin">登录</a>.',
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right',
+                            icon: 'success'
+                        })
+                    } else {
+                        if (undefined != result.extend.msg) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.msg + ',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        } else if (undefined != result.extend.errorFields.username) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.errorFields.username + ',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        } else if (undefined != result.extend.errorFields.useremail) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.errorFields.useremail + ',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        } else if (undefined != result.extend.errorFields.userpassword) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.errorFields.userpassword + ',如果有账号,请直接<a href="${APP_PATH}/toLogin">登录</a>.',
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        }
+                    }
                 }
-            }
-        });
+            });
+
+        }
     })
 </script>

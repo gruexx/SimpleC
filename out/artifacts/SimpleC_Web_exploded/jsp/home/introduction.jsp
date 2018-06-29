@@ -142,7 +142,7 @@
             <ul>
                 <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
             </ul>
-            <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
         </div>
     </div>
     <ol class="am-breadcrumb am-breadcrumb-slash">
@@ -253,7 +253,7 @@
             <li style="float: right;margin-top: 25px;margin-right: 80px;font-size: medium;color: #3bb4f2">联系卖家</li>
             <li class="rightbtn">
                 <div id="chat" class="am-icon-btn am-secondary am-icon-drupal" style="float: right">
-                    <a  title="点击联系卖家" href = "javascript:void(0)">
+                    <a title="点击联系卖家" href="javascript:void(0)">
 
                     </a>
                 </div>
@@ -364,8 +364,8 @@
                 <option value="1">B说：</option>
             </select>
             <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub" href = "javascript:void(0)">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)">
+            <input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">
         </div>
     </div>
 </div>
@@ -388,8 +388,8 @@
         });
 
         $("#chat").click(function () {
-            document.getElementById('light').style.display='block';
-            document.getElementById('fade').style.display='block';
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
             var name1 = "double1";
             var name2 = "yans";
             var ws;
@@ -397,7 +397,7 @@
             ws = new WebSocket(wsUri);
             //alert("this");
 
-            ws.onopen = function(){
+            ws.onopen = function () {
                 // n=prompt('请给自己取一个昵称：');
 
                 // name1=getQueryString("name1");
@@ -406,17 +406,17 @@
                 // window.alert("this");
                 //m=m.substr(0,16);
                 //ws.send(n);
-                ws.send(name1+" "+name2);//在服务端必须由OnMessage接收此消息
+                ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息
             };
 
             //处理连接后的信息处理
-            ws.onmessage = function(message){
+            ws.onmessage = function (message) {
                 writeToScreen(message.data);
             };
 
             $("#talksub").click(function () {
                 message = document.getElementById('talkwords').value;
-                document.getElementById('talkwords').value="";
+                document.getElementById('talkwords').value = "";
                 //alert(message);
                 //towho = document.getElementById('towho').value + "@";
                 //window.alert("button");
@@ -432,22 +432,23 @@
                 }
                 return null;
             }
+
             // 这样调用：
             //alert(GetQueryString("参数名1"));
 
-            function writeToScreen(message){
+            function writeToScreen(message) {
                 $("#asay").text(message);
             }
 
-            ws.onerror = function (evt){
-                writeToScreen('<span style="color:red;">ERROR:</span>'+evt.data);
+            ws.onerror = function (evt) {
+                writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);
                 ws.close();
             };
 
             $("#closesub").click(function () {
                 //ws.close();
-                document.getElementById('light').style.display='none';
-                document.getElementById('fade').style.display='none';
+                document.getElementById('light').style.display = 'none';
+                document.getElementById('fade').style.display = 'none';
             })
         })
 

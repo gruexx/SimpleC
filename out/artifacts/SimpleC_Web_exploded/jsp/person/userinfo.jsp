@@ -64,17 +64,17 @@
                     </form>
                     <%--<img class="am-circle am-img-thumbnail" src="${APP_PATH}/${sessionScope.image}" alt=""/>--%>
                     <img class="am-img-thumbnail am-round am-img-responsive" alt="140*140"
-                         src="${APP_PATH}/${sessionScope.image}" width="140" height="140"/>
+                         src="${APP_PATH}/${sessionScope.user.image}" width="140" height="140"/>
 
                     <p class="am-form-help">头像</p>
                     <div class="info-m">
-                        <div><b>用户名：<i>${sessionScope.username}</i></b></div>
+                        <div><b>用户名：<i>${sessionScope.user.username}</i></b></div>
 
                         <div class="u-safety">
                             <a href="#">
                                 潮积分：
                                 <span class="u-profile">
-                                    <i style="width: 60px;">${sessionScope.userchaopoint}</i>
+                                    <i style="width: 60px;">${sessionScope.user.userchaopoint}</i>
                                 </span>
                             </a>
                         </div>
@@ -82,16 +82,19 @@
                 </div>
                 <!--个人信息 -->
                 <div class="info-main">
-                    <form class="am-form am-form-horizontal">
+                    <form id="userInfoForm" class="am-form am-form-horizontal">
                         <%--<div class="am-form-group">--%>
                         <%--<label class="am-form-label">昵称</label>--%>
                         <%--<div class="am-form-content">--%>
                         <%--<input type="text" placeholder="nickname" value=""></div>--%>
                         <%--</div>--%>
                         <div class="am-form-group">
-                            <label class="am-form-label">姓名</label>
+                            <label class="am-form-label">用户名</label>
                             <div class="am-form-content">
-                                <input type="text" placeholder="name" value="${sessionScope.username}"></div>
+                                <input name="username" type="text" placeholder="name"
+                                       minlength="3" maxlength="12"
+                                       data-validation-message="用户名为3-12字符"
+                                       value="${sessionScope.user.username}"></div>
                         </div>
                         <%--<div class="am-form-group">--%>
                         <%--<label class="am-form-label">性别</label>--%>
@@ -127,22 +130,25 @@
                         <div class="am-form-group">
                             <label for="user-phone" class="am-form-label">电话</label>
                             <div class="am-form-content">
-                                <input id="user-phone" placeholder="telephonenumber" type="tel" value="${sessionScope.phonenumber}"></div>
+                                <input name="userphone" id="user-phone" placeholder="telephonenumber" type="tel"
+                                       value="${sessionScope.user.userphone}"></div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-phone" class="am-form-label">地址</label>
                             <div class="am-form-content">
-                                <input id="user-address" placeholder="address" type="text" value="${sessionScope.useraddress}"></div>
+                                <input name="address" id="user-address" placeholder="address" type="text"
+                                       value="${sessionScope.user.address}"></div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-email" class="am-form-label">电子邮件</label>
                             <div class="am-form-content">
-                                <input id="user-email" placeholder="Email" type="email" value="${sessionScope.useremail}"></div>
+                                <input name="useremail" id="user-email" placeholder="Email" type="email"
+                                       value="${sessionScope.user.useremail}"></div>
                         </div>
 
-
-                        <div class="info-btn">
-                            <button type="button" class="am-btn am-btn-success am-btn-block">保存修改</button>
+                        <div class="am-btn-group am-btn-group-justify">
+                            <a href="/toPassword" class="am-btn am-btn-danger" role="button">修改密码</a>
+                            <a id="userUpdate" class="am-btn am-btn-success" role="button">保存修改</a>
                         </div>
                     </form>
                 </div>
@@ -192,7 +198,7 @@
 
         $.ajax({
             type: "post",
-            url: "/userInfo/image",
+            url: "/userUpdate/image",
             data: form,
             processData: false,
             contentType: false,
@@ -224,5 +230,78 @@
                 })
             }
         })
-    })
+    });
+
+    $('#userUpdate').click(function () {
+
+        $.ajax({
+            type: "post",
+            url: "/userUpdate",
+            data: $('#userInfoForm').serialize(),
+            success: function (result) {
+                if (result.code === 100) {
+                    window.location.reload();
+                }else {
+                    if (undefined !== result.extend.errorFields.username) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.username,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
+                    if (undefined !== result.extend.errorFields.userphone) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.userphone,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
+                    if (undefined !== result.extend.errorFields.useremail) {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.errorFields.useremail,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
+                }
+            },
+            error: function () {
+                $.toast({
+                    heading: "Fail",
+                    text: "用户信息更新失败",
+                    showHideTransition: 'fade',
+                    position: 'top-right'
+                })
+            }
+        })
+    });
+
+    $(function () {
+        $("#userInfoForm").validator({
+            onValid: function (validity) {
+                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+
+            },
+
+            onInValid: function (validity) {
+                var $field = $(validity.field);
+                var $group = $field.closest('.am-form-group');
+                var $alert = $group.find('.am-alert');
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+                if (!$alert.length) {
+                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().appendTo($group);
+                }
+
+                $alert.html(msg).show();
+            }
+        });
+    });
 </script>

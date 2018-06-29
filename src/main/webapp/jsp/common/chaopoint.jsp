@@ -51,7 +51,7 @@
     <div class="am-offcanvas-bar am-offcanvas-bar-flip">
         <div class="am-offcanvas-content">
             <div class="this-title" style="height: 5%;text-align: center;font-weight: bold;font-size: 18px;color: #ab2e2b">积分详情</div>
-            <div class="this-account"  style="height: 10%;font-size: 15px;color: #ab2e2b">积分值:<br><span id="show-font">${sessionScope.userchaopoint} Point</span></div>
+            <div class="this-account"  style="height: 10%;font-size: 15px;color: #ab2e2b">积分值:<br><span id="show-font">${sessionScope.user.userchaopoint} Point</span></div>
             <div class="award" style="height:55%;font-size: 15px;color: #ab2e2b">积分抽奖<br>
                 <div style="height: 90%;">
                     <table>

@@ -4,6 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -11,15 +12,15 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="pers.shayz.service"></context:component-scan>
-    <context:component-scan base-package="pers.shayz.dao"></context:component-scan>
 
     <!--<context:component-scan base-package="pers.shayz">-->
         <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     <!--</context:component-scan>-->
-
 
     <context:property-placeholder location="classpath:dbconfig.properties"/>
     <bean name="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

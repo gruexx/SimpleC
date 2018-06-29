@@ -48,7 +48,8 @@ public class MessageController {
     public void onOpen(Session session){
 
         System.out.println("first");
-        this.session = session; //获取Seession,存入SashMap
+        this.session = session;
+        //获取Seession,存入SashMap
         connect.put(session.getId(),this);
     }
 

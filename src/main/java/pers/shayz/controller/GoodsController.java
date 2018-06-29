@@ -7,10 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pers.shayz.bean.Classify;
-import pers.shayz.bean.Comment;
-import pers.shayz.bean.Goods;
-import pers.shayz.bean.Msg;
+import pers.shayz.bean.*;
 import pers.shayz.service.ClassifyService;
 import pers.shayz.service.CommentService;
 import pers.shayz.service.GoodsService;
@@ -89,7 +86,8 @@ public class GoodsController {
         }
 
         Goods goods = new Goods();
-        goods.setUseridFkGoods(Integer.parseInt(String.valueOf(session.getAttribute("userid"))));
+        User userNow = (User)session.getAttribute("user");
+        goods.setUseridFkGoods(userNow.getUserid());
         goods.setGoodsname(goodsname);
         goods.setGoodsprice(Double.parseDouble(goodsprice));
         goods.setGoodsnumber(Integer.parseInt(goodsnumber));
@@ -149,7 +147,8 @@ public class GoodsController {
 
     @RequestMapping(value = "/toGoodsManage")
     public String toGoodsManage(HttpSession session, ModelMap modelMap) {
-        int id = Integer.parseInt((String) session.getAttribute("userid"));
+        User userNow = (User)session.getAttribute("user");
+        int id = userNow.getUserid();
         System.out.println("/toGoodsManage: " + id);
 
         List<Goods> list = goodsService.getGoodsByUserId(id);

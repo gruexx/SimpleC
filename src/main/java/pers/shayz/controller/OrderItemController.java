@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.shayz.bean.Msg;
 import pers.shayz.bean.Orderitem;
+import pers.shayz.bean.User;
 import pers.shayz.service.OrderItemService;
 
 import javax.servlet.http.HttpSession;
@@ -25,7 +26,8 @@ public class OrderItemController {
 
     @RequestMapping(value = "/toOrderItem")
     public String toOrderItem(HttpSession session, ModelMap modelMap) {
-        int userid = Integer.parseInt(String.valueOf(session.getAttribute("userid")));
+        User userNow = (User)session.getAttribute("user");
+        int userid = userNow.getUserid();
         List<Orderitem> list = orderItemService.getOrderItemByUserId(userid);
         modelMap.addAttribute("OrderItemList", list);
         return "person/orderitem";
