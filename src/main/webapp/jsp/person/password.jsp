@@ -115,11 +115,27 @@
 <script>
 
     $('#oldPassword').blur(function () {
-
+        $.ajax({
+            type: "post",
+            url: "/confirmOldPassword",
+            data: {"oldPassword":$('#oldPassword').val()},
+            success: function (result) {
+                if (result.code === 200) {
+                    $.toast({
+                        text: "原密码不正确",
+                        showHideTransition: 'slide',
+                        hideAfter: false,
+                        position: 'top-right'
+                    });
+                    $('#passwordUpdate')[0].reset();
+                    $('#oldPassword').focus();
+                }
+            }
+        })
     });
 
     $('#passwordUpdateBtn').click(function () {
-        if ($('#p2').val() == null || $('#p2').val() !== $('#userpassword').val() || $('#oldPassword').val()==null) {
+        if ($('#p2').val() !== $('#userpassword').val()) {
             $.toast({
                 text: '请确认密码',
                 showHideTransition: 'slide',
@@ -127,7 +143,15 @@
                 position: 'top-right'
             });
             $('#p2').focus();
-        } else {
+        }else if($('#oldPassword').val()===""){
+            $.toast({
+                text: '请确认原密码',
+                showHideTransition: 'slide',
+                hideAfter: false,
+                position: 'top-right'
+            });
+            $('#oldPassword').focus();
+        }else {
             $.ajax({
                 type: "post",
                 url: "/passwordUpdate",

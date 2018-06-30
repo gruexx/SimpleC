@@ -108,7 +108,7 @@
     });
 
     $('#RegBtn').click(function () {
-        if ($('#p2').val() == null || $('#p2').val() !== $('#userpassword').val()) {
+        if ($('#p2').val() !== $('#userpassword').val()) {
             $.toast({
                 text: '请确认密码',
                 showHideTransition: 'slide',
