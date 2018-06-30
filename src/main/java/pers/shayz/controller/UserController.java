@@ -295,14 +295,30 @@ public class UserController {
             }
             System.out.println("/userUpdate: " + map);
 
-            if (bindingResult.getFieldError("username") != null
-                    || bindingResult.getFieldError("userphone") != null
-                    || bindingResult.getFieldError("useremail") != null) {
+            if (bindingResult.getFieldError("username") != null) {
                 return Msg.fail().add("errorFields", map);
             }
+
+            if (bindingResult.getFieldError("userphone") != null) {
+                return Msg.fail().add("errorFields", map);
+            }
+
+            if (bindingResult.getFieldError("useremail") != null) {
+                return Msg.fail().add("errorFields", map);
+            }
+
+        }
+        User userNow = (User) session.getAttribute("user");
+
+        if (!userNow.getUsername().equals(newUser.getUsername()) && userService.getUserByName(newUser.getUsername()) != null) {
+            return Msg.fail().add("msg", "用户名已存在");
         }
 
-        User userNow = (User) session.getAttribute("user");
+        if (!userNow.getUseremail().equals(newUser.getUseremail()) && userService.getUserByEmail(newUser.getUseremail()) != null) {
+            return Msg.fail().add("msg", "该邮箱已被注册");
+        }
+
+
         newUser.setUserid(userNow.getUserid());
         System.out.println("/userUpdate: " + newUser);
         userService.updateUser(newUser);
@@ -339,6 +355,17 @@ public class UserController {
 
         session.setAttribute("user", userService.getUser(userNow.getUserid()));
         return Msg.success();
+    }
+
+    @RequestMapping(value = "/confirmOldPassword", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg confirmOldPassword(@RequestParam("oldPassword")String oldPassword, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        if (user.getUserpassword().equals(oldPassword)){
+            return Msg.success();
+        }else {
+            return Msg.fail();
+        }
     }
 
     @RequestMapping(value = "/toLotteryDraw")

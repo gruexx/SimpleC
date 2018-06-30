@@ -48,11 +48,13 @@
 
             </div>
 
+
+
             <%--<label for="remember-me">--%>
             <%--<input id="remember-me" type="checkbox">记住密码--%>
             <%--</label>--%>
             <label class="am-checkbox needsclick">
-                <input type="checkbox" checked="checked" value="" data-am-ucheck checked> 记住我
+                <input type="checkbox" value="" data-am-ucheck checked> 记住我
             </label>
             <label class="am-checkbox needsclick">
                 <input type="checkbox" value="" data-am-ucheck> 记住密码

@@ -242,6 +242,15 @@
                 if (result.code === 100) {
                     window.location.reload();
                 }else {
+                    if(result.extend.msg !== undefined){
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.msg,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right'
+                        });
+                    }
                     if (undefined !== result.extend.errorFields.username) {
                         $.toast({
                             heading: "Fail",
