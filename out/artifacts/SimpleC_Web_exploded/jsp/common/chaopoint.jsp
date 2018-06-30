@@ -62,8 +62,7 @@
                     <p style="font-size: 15px;">更多精美礼品等着你！</p>
                 </div>
                 <div style="height: 10%;">
-                    <center><button type="button" class="am-btn am-btn-primary am-btn-hollow" >去抽奖</button></center>
-
+                    <center><button onclick="window.location.href='${APP_PATH}/toLotteryDraw'"  type="button" class="am-btn am-btn-primary am-btn-hollow" >去抽奖</button></center>
                 </div>
             </div>
         </div>
