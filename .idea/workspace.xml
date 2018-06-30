@@ -8,18 +8,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/common/bottom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/common/bottom.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/userinfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/userinfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/lottery_draw.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/lottery_draw.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -79,8 +73,8 @@
       <file leaf-file-name="bottom.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+            <state relative-caret-position="170">
+              <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -89,34 +83,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
-              <caret line="248" column="56" lean-forward="true" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
+              <caret line="248" column="56" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="top.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="935">
-              <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/home.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="33" selection-start-column="33" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="317" column="52" lean-forward="true" selection-start-line="317" selection-start-column="52" selection-end-line="317" selection-end-column="52" />
+            <state relative-caret-position="296">
+              <caret line="312" column="54" selection-start-line="312" selection-start-column="54" selection-end-line="312" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1099#1100#0" expanded="true" />
@@ -146,8 +122,51 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="916">
-              <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+            <state relative-caret-position="544">
+              <caret line="32" column="105" selection-start-line="32" selection-start-column="105" selection-end-line="32" selection-end-column="105" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lottery_draw.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simplechange.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/simplechange.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classify.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chaopoint.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/chaopoint.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -191,6 +210,7 @@
       <find>ChatService</find>
       <find>ChatController</find>
       <find>mapping</find>
+      <find>assets</find>
     </findStrings>
     <replaceStrings>
       <replace>userName</replace>
@@ -204,6 +224,7 @@
       <replace>MessageService</replace>
       <replace>messageService</replace>
       <replace>MessageController</replace>
+      <replace>/scInstruction</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -212,7 +233,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/order.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/menu.jsp" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/CommentService.java" />
@@ -255,14 +275,15 @@
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/home.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/simplechange.html" />
       </list>
     </option>
   </component>
@@ -307,9 +328,9 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="236" />
-    <option name="y" value="20" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="164" />
+    <option name="y" value="77" />
     <option name="width" value="1592" />
     <option name="height" value="1070" />
   </component>
@@ -426,14 +447,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -453,15 +466,6 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="person" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -484,11 +488,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\common" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\person" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages\household" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\home" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="pers.shayz.bean" />
@@ -496,11 +500,11 @@
       <recent name="pers.shayz.controller.generator" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp" />
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\common" />
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp\verify" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\js" />
       <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\controller" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\images" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -821,7 +825,7 @@
       <workItem from="1530167530153" duration="11566000" />
       <workItem from="1530230563408" duration="12306000" />
       <workItem from="1530253871343" duration="14029000" />
-      <workItem from="1530317122939" duration="7481000" />
+      <workItem from="1530317122939" duration="12338000" />
     </task>
     <servers />
   </component>
@@ -858,10 +862,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="310539000" />
+    <option name="totallyTimeSpent" value="315396000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
+    <frame x="164" y="77" width="1592" height="1070" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -884,13 +888,14 @@
       <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32903227" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32899022" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4982079" visible="true" weight="0.33548388" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4982079" weight="0.3340471" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3297491" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3296582" />
       <window_info anchor="bottom" id="SQL" order="11" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2028754" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24837027" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32960597" />
       <window_info id="Web" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.247557" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -899,7 +904,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.2483871" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Application Servers" order="13" weight="0.3296582" />
@@ -954,20 +958,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/generator/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/generator.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="41" column="64" selection-start-line="41" selection-start-column="64" selection-end-line="41" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1112,13 +1102,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/images/4.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/chaopoint.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/awardRotate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="602">
@@ -1185,23 +1168,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4052" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="217" column="17" selection-start-line="217" selection-start-column="17" selection-end-line="217" selection-end-column="17" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp">
@@ -1238,7 +1207,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
-          <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1256,13 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="68" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="674">
@@ -1276,24 +1238,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="916">
-          <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
-          <caret line="248" column="56" lean-forward="true" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
+          <caret line="248" column="56" selection-start-line="248" selection-start-column="56" selection-end-line="248" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="317" column="52" lean-forward="true" selection-start-line="317" selection-start-column="52" selection-end-line="317" selection-end-column="52" />
+        <state relative-caret-position="296">
+          <caret line="312" column="54" selection-start-line="312" selection-start-column="54" selection-end-line="312" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1099#1100#0" expanded="true" />
@@ -1301,6 +1256,62 @@
             <element signature="e#13064#13065#0" expanded="true" />
             <element signature="e#13106#13107#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/verify/css/verify.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="105" selection-start-line="32" selection-start-column="105" selection-end-line="32" selection-end-column="105" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="40" column="59" selection-start-line="40" selection-start-column="59" selection-end-line="40" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/chaopoint.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/simplechange.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>

@@ -18,6 +18,7 @@
     <%--<script src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>--%>
 
     <link rel="stylesheet" type="text/css" href="${APP_PATH}/css/dlstyle.css"/>
+
     <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
@@ -32,7 +33,7 @@
         <div class="login-box" style="height: 350px;opacity: 50%;background-color:rgba(255,255,255,0.4)">
             <h3 class="title">登录商城</h3>
             <div class="clear"></div>
-            <div class="login-form">
+            <div class="login-form" data-am-scrollspy="{animation: 'fade'}">
 
                 <form id="LoginForm" action="${APP_PATH}/doLogin" method="post">
                     <div class="user-name">
@@ -48,8 +49,6 @@
 
             </div>
 
-
-
             <%--<label for="remember-me">--%>
             <%--<input id="remember-me" type="checkbox">记住密码--%>
             <%--</label>--%>
@@ -62,7 +61,7 @@
             <a href="${APP_PATH}/toRegister" class="zcnext am-fr am-btn-default">注册</a>
 
 
-            <div class="am-cf">
+            <div class="am-cf" data-am-scrollspy="{animation: 'slide-top'}">
                 <input onclick="" type="submit" id="LoginBtn" value="登 录"
                        class="am-btn am-btn-primary am-btn-sm">
             </div>
@@ -130,6 +129,7 @@
             $('#LoginBtn').click();
         }
     });
+
 </script>
 
 </html>

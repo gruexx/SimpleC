@@ -47,7 +47,7 @@
                     duration: 8000,
                     callback: function () {
                         alert(txt);
-                        // window.location.reload();
+                        window.location.reload();
                         bRotate = !bRotate;
                     }
                 })
@@ -77,7 +77,7 @@
                     var item = rnd(0, 10000);
                     var x = 0;
                     // alert(item);
-                    if (item < 1000)//90%
+                    if (item < 9000)//90%
                     {
                         x = 0;
                     }
