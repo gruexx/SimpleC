@@ -52,4 +52,14 @@ public class UserService {
     public void updateUser(User user) {
         userMapper.updateByPrimaryKeySelective(user);
     }
+
+    public void updateUserChaoPointByUserId(int id, int chaopoint) {
+        User user = userMapper.selectByPrimaryKey(id);
+        user.setUserchaopoint(chaopoint);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public User getUserById(int id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }

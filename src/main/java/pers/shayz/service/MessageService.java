@@ -23,7 +23,7 @@ public class MessageService {
         messageMapper.insertSelective(u);
     }
 
-    public List<String> getMessage(Message u){
+    public List<Message> getMessage(Message u){
 //        List<String> list = messageMapper.selectByPrimaryKey(u.);
         System.out.println("enter");
         System.out.println("message u:"+u);
@@ -33,14 +33,6 @@ public class MessageService {
                 .andRecivername2EqualTo(u.getRecivername2())
                 .andFlagEqualTo(1);
 
-        List<Message> list = messageMapper.selectByExample(messageExample);
-        System.out.println("list: "+list);
-        List<String> list1 = new ArrayList<String>();
-
-        for (Message m:list) {
-            list1.add(m.getMessage());
-        }
-        System.out.println("list1: "+list1);
-        return  list1;
+        return messageMapper.selectByExample(messageExample);
     }
 }

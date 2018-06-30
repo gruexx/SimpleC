@@ -48,14 +48,14 @@ public class UserController {
     @ResponseBody
     public Msg doRegister(@Valid User user, BindingResult bindingResult) {
 
-        System.out.println("/doRegister: "+bindingResult);
+        System.out.println("/doRegister: " + bindingResult);
         if (bindingResult.hasErrors()) {
             Map<String, Object> map = new HashMap<>();
             List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError fieldError : errors) {
                 map.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
-            System.out.println("/doRegister: "+map);
+            System.out.println("/doRegister: " + map);
             return Msg.fail().add("errorFields", map);
         }
 
@@ -243,7 +243,7 @@ public class UserController {
         System.out.println("/userUpdate/image imageFile: " + userImage);
 
         User user = new User();
-        User userNow = (User)session.getAttribute("user");
+        User userNow = (User) session.getAttribute("user");
         user.setUserid(userNow.getUserid());
 
         System.out.println("comming!");
@@ -282,32 +282,80 @@ public class UserController {
 
     @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
     @ResponseBody
-    public Msg userInfoUpdate(@Valid User newUser, BindingResult bindingResult,HttpSession session){
+    public Msg userInfoUpdate(@Valid User newUser, BindingResult bindingResult, HttpSession session) {
 
-        System.out.println("/userUpdate: "+bindingResult);
+        System.out.println("/userUpdate: " + bindingResult);
 
         if (bindingResult.hasErrors()) {
             Map<String, Object> map = new HashMap<>();
             List<FieldError> errors = bindingResult.getFieldErrors();
-            System.out.println("/userUpdate: "+errors);
+            System.out.println("/userUpdate: " + errors);
             for (FieldError fieldError : errors) {
                 map.put(fieldError.getField(), fieldError.getDefaultMessage());
             }
-            System.out.println("/userUpdate: "+map);
+            System.out.println("/userUpdate: " + map);
 
-            if(bindingResult.getFieldError("username")!=null
-                    || bindingResult.getFieldError("userphone")!=null
-                    || bindingResult.getFieldError("useremail")!=null){
+            if (bindingResult.getFieldError("username") != null
+                    || bindingResult.getFieldError("userphone") != null
+                    || bindingResult.getFieldError("useremail") != null) {
                 return Msg.fail().add("errorFields", map);
             }
         }
 
-        User userNow = (User)session.getAttribute("user");
+        User userNow = (User) session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
-        System.out.println("/userUpdate: "+newUser);
+        System.out.println("/userUpdate: " + newUser);
         userService.updateUser(newUser);
 
         session.setAttribute("user", userService.getUser(userNow.getUserid()));
         return Msg.success();
+    }
+
+    @RequestMapping(value = "/passwordUpdate", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg passwordUpdate(@Valid User newUser, BindingResult bindingResult, HttpSession session) {
+
+        System.out.println("/passwordUpdate: " + newUser);
+        System.out.println("/passwordUpdate: " + bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            Map<String, Object> map = new HashMap<>();
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            System.out.println("/passwordUpdate: " + errors);
+            for (FieldError fieldError : errors) {
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            System.out.println("/passwordUpdate: " + map);
+
+            if (bindingResult.getFieldError("userpassword") != null) {
+                return Msg.fail().add("errorFields", map);
+            }
+        }
+
+        User userNow = (User) session.getAttribute("user");
+        newUser.setUserid(userNow.getUserid());
+        System.out.println("/passwordUpdate: " + newUser);
+        userService.updateUser(newUser);
+
+        session.setAttribute("user", userService.getUser(userNow.getUserid()));
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/toLotteryDraw")
+    public String toLotteryDraw(){
+        return "home/lottery_draw";
+    }
+
+    @RequestMapping(value = "/updateChaopoint")
+    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
+
+        System.out.println("/updateChaopoint: "+chaoPoint);
+
+        User user = (User)session.getAttribute("user");
+        int cp = Integer.parseInt(chaoPoint);
+        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
+
+        session.setAttribute("user", userService.getUser(user.getUserid()));
+        return "home/lottery_draw";
     }
 }

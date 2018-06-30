@@ -70,73 +70,83 @@
                                             <p class="ml-22" style="color: #d2364c" title="首页">首页</p>
                                         </h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/2">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/2">
                                 <li class="appliance js_toggle relative first">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="家用电器">家用电器</p>
                                         </h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/4">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/4">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="手机数码">手机数码</p>
                                         </h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/7">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/7">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="电脑办公">电脑办公</p>
                                         </h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/8">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/8">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="服装">服装</p></h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/5">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/5">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="运动">运动</p></h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/3">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/3">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="食品">食品</p></h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/6">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/6">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="美妆">美妆</p></h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/1">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/1">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="图书">图书</p></h3>
                                     </div>
-
-                                    <a href="${APP_PATH}/toClassify/9">
+                                </li>
+                            </a>
+                            <a href="${APP_PATH}/toClassify/9">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
                                             <p class="ml-22" style="color: #d2364c" title="其他">其他</p></h3>
                                     </div>
-
+                                </li>
+                            </a>
                         </ul>
                     </div>
                 </div>
@@ -424,7 +434,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div  class="pro-title ">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>

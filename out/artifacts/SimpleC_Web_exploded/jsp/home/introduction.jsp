@@ -10,8 +10,11 @@
 
     <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
 
-    <script type="text/javascript" src="${APP_PATH}/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
-    <link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet">--%>
+    <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">--%>
 
     <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css"/>
     <link type="text/css" href="${APP_PATH}/css/optstyle.css" rel="stylesheet"/>
@@ -250,14 +253,15 @@
                 <div class="clearfix tb-btn tb-btn-basket theme-login"><a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
                 </div>
             </li>
-            <li style="float: right;margin-top: 25px;margin-right: 80px;font-size: medium;color: #3bb4f2">联系卖家</li>
-            <li class="rightbtn">
-                <div id="chat" class="am-icon-btn am-secondary am-icon-drupal" style="float: right">
-                    <a title="点击联系卖家" href="javascript:void(0)">
-
-                    </a>
+            <li>
+                <div class="clearfix tb-btn theme-login"><a id="chat" title="点击联系卖家" href="#"><i></i>点击联系卖家</a>
                 </div>
             </li>
+            <%--<li style="float: right;margin-top: 25px;margin-right: 80px;font-size: medium;color: #3bb4f2">联系卖家</li>--%>
+            <%--<li class="rightbtn">--%>
+                <%--<div class="am-icon-btn am-secondary am-icon-drupal"  style="float: right"><a id="chat" title="点击联系卖家" href = "javascript:void(0)"></a>--%>
+                <%--</div>--%>
+            <%--</li>--%>
         </div>
     </div>
 
@@ -355,17 +359,13 @@
 <div id="light" class="white_content">
     <div class="talk_con">
         <div class="talk_show" id="words">
-            <div class="atalk"><span id="asay">A说：吃饭了吗？</span></div>
-            <div class="btalk"><span id="bsay">B说：还没呢，你呢？</span></div>
+
         </div>
+
         <div class="talk_input">
-            <select class="whotalk" id="who">
-                <option value="0">A说：</option>
-                <option value="1">B说：</option>
-            </select>
             <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">
+            <input type="button" value="发送" class="talk_sub" id="talksub" href = "javascript:void(0)">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)">
         </div>
     </div>
 </div>
@@ -378,6 +378,8 @@
 
 <script type="text/javascript">
     $(function () {
+        <%--var this_message = ${"<p>B说：还没呢，你呢？</p>"};--%>
+        <%--${"#words"}.html(this_message);--%>
     });
     $(window).load(function () {
         $('.flexslider').flexslider({
@@ -388,16 +390,16 @@
         });
 
         $("#chat").click(function () {
-            document.getElementById('light').style.display = 'block';
-            document.getElementById('fade').style.display = 'block';
-            var name1 = "double1";
-            var name2 = "yans";
+            document.getElementById('light').style.display='block';
+            document.getElementById('fade').style.display='block';
+            var name1 = "${sessionScope.user.username}";
+            var name2 = "${requestScope.Goods.useridFkGoods}";
             var ws;
-            var wsUri = "ws://localhost:8080/chat";
+            var wsUri = "ws://172.29.19.240:8080/chat";
             ws = new WebSocket(wsUri);
             //alert("this");
 
-            ws.onopen = function () {
+            ws.onopen = function(){
                 // n=prompt('请给自己取一个昵称：');
 
                 // name1=getQueryString("name1");
@@ -406,24 +408,31 @@
                 // window.alert("this");
                 //m=m.substr(0,16);
                 //ws.send(n);
-                ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息
+                ws.send(name1+" "+name2);//在服务端必须由OnMessage接收此消息
             };
 
             //处理连接后的信息处理
-            ws.onmessage = function (message) {
+            ws.onmessage = function(message){
                 writeToScreen(message.data);
+
             };
 
             $("#talksub").click(function () {
                 message = document.getElementById('talkwords').value;
-                document.getElementById('talkwords').value = "";
+                document.getElementById('talkwords').value="";
                 //alert(message);
                 //towho = document.getElementById('towho').value + "@";
                 //window.alert("button");
-                ws.send(message);
+                if(message.length!=0){
+                    ws.send(message);
+                }
+
+                else {
+
+                }
             })
 
-            //正则表达式方法火球URL中的参数
+            //正则表达式方法获取URL中的参数
             function getQueryString(name) {
                 var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
                 var r = window.location.search.substr(1).match(reg);
@@ -432,23 +441,33 @@
                 }
                 return null;
             }
-
             // 这样调用：
             //alert(GetQueryString("参数名1"));
 
-            function writeToScreen(message) {
-                $("#asay").text(message);
+            function writeToScreen(message){
+                var x = new Array();
+                x = message.split(" ");
+                //$("#bsay").append(message+"<br>");
+                //alert(x[0]);
+                if (x[0] == (name1)){
+                    var $this_message = $("<div class='btalk'><span class='bsay'>"+x[1]+"</span></div>");
+                    $("#words").append($this_message);
+                }
+                else{
+                    var $this_message = $("<div class='atalk'><span class='asay'>"+x[1]+"</span></div>");
+                    $("#words").append($this_message);
+                }
             }
 
-            ws.onerror = function (evt) {
-                writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);
+            ws.onerror = function (evt){
+                writeToScreen('<span style="color:red;">ERROR:</span>'+evt.data);
                 ws.close();
             };
 
             $("#closesub").click(function () {
-                //ws.close();
-                document.getElementById('light').style.display = 'none';
-                document.getElementById('fade').style.display = 'none';
+                ws.close();
+                document.getElementById('light').style.display='none';
+                document.getElementById('fade').style.display='none';
             })
         })
 
