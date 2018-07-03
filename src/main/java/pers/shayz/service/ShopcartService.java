@@ -56,4 +56,12 @@ public class ShopcartService {
         shopcart.setIsbuy(1);
         shopcartMapper.updateByExampleSelective(shopcart, shopcartExample);
     }
+
+    public List<Shopcart> getShopcartByUserIdAndIsbuy(int userid) {
+        ShopcartExample shopcartExample = new ShopcartExample();
+        ShopcartExample.Criteria criteria = shopcartExample.createCriteria();
+        criteria.andUseridFkShopcartEqualTo(userid).andFlagEqualTo(1).andIsbuyEqualTo(1);
+
+        return shopcartMapper.selectByExample(shopcartExample);
+    }
 }

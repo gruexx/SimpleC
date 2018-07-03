@@ -30,27 +30,6 @@
 <div class="concent">
     <!--地址 -->
     <div class="paycont">
-        <!--物流 -->
-        <div class="logistics">
-            <h3>选择物流方式</h3>
-            <ul class="op_express_delivery_hot">
-                <li data-value="yuantong" class="OP_LOG_BTN  ">
-                    <i class="c-gap-right" style="background-position:0px -468px"></i>圆通<span></span>
-                </li>
-                <li data-value="shentong" class="OP_LOG_BTN  ">
-                    <i class="c-gap-right" style="background-position:0px -1008px"></i>申通<span></span>
-                </li>
-                <li data-value="yunda" class="OP_LOG_BTN  ">
-                    <i class="c-gap-right" style="background-position:0px -576px"></i>韵达<span></span>
-                </li>
-                <li data-value="zhongtong" class="OP_LOG_BTN op_express_delivery_hot_last ">
-                    <i class="c-gap-right" style="background-position:0px -324px"></i>中通<span></span>
-                </li>
-                <li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom">
-                    <i class="c-gap-right" style="background-position:0px -180px"></i>顺丰<span></span>
-                </li>
-            </ul>
-        </div>
         <div class="clear"></div>
         <!--支付方式-->
         <div class="logistics">
@@ -121,7 +100,6 @@
                             <span class="buy--address-detail">
                                 <span>${sessionScope.user.address}</span>
                             </span>
-                            </span>
                         </p>
                         <p class="buy-footer-address">
                             <span class="buy-line-title">收货人：</span>
@@ -134,7 +112,7 @@
                 </div>
                 <div id="holyshit269" class="submitOrder">
                     <div class="go-btn-wrap">
-                        <a id="" class="btn-go" tabindex="0"
+                        <a id="submitOrder" href="${APP_PATH}/toSuccess" class="btn-go" tabindex="0"
                            title="点击此按钮，提交订单">提交订单</a>
                         <a href="${APP_PATH}/toShopcart" class="btn-go" style="background-color: #d89f58;"
                            title="返回购物车">返回购物车</a>

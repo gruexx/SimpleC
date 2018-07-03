@@ -68,26 +68,23 @@
 
                     <p class="am-form-help">头像</p>
                     <div class="info-m">
-                        <div><b>用户名：<i>${sessionScope.user.username}</i></b></div>
-
+                        <div>用户名：${sessionScope.user.username}</div>
                         <div class="u-safety">
-                            <a href="#">
-                                潮积分：
-                                <span class="u-profile">
-                                    <i style="width: 60px;">${sessionScope.user.userchaopoint}</i>
-                                </span>
-                            </a>
+                            潮积分：${sessionScope.user.userchaopoint}
                         </div>
                     </div>
                 </div>
                 <!--个人信息 -->
                 <div class="info-main">
                     <form id="userInfoForm" class="am-form am-form-horizontal">
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">昵称</label>--%>
-                        <%--<div class="am-form-content">--%>
-                        <%--<input type="text" placeholder="nickname" value=""></div>--%>
-                        <%--</div>--%>
+                        <div class="am-form-group">
+                            <label class="am-form-label">余额</label>
+                            <div class="am-form-content">
+                                <input name="userremainder" type="number"
+                                       value="${sessionScope.user.userremainder}" disabled>
+                            </div>
+
+                        </div>
                         <div class="am-form-group">
                             <label class="am-form-label">用户名</label>
                             <div class="am-form-content">
@@ -96,37 +93,6 @@
                                        data-validation-message="用户名为3-12字符"
                                        value="${sessionScope.user.username}"></div>
                         </div>
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">性别</label>--%>
-                        <%--<div class="am-form-content sex">--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="male" data-am-ucheck> 男 </label>--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="female" data-am-ucheck> 女 </label>--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密 </label>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">生日</label>--%>
-                        <%--<div class="am-form-content birth">--%>
-                        <%--<div class="birth-select">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">2015</option>--%>
-                        <%--<option value="b">1987</option>--%>
-                        <%--<lect> <em>年</em></div>--%>
-                        <%--<div class="birth-select2">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">12</option>--%>
-                        <%--<option value="b">8</option>--%>
-                        <%--<lect> <em>月</em></div>--%>
-                        <%--<div class="birth-select2">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">21</option>--%>
-                        <%--<option value="b">23</option>--%>
-                        <%--<lect> <em>日</em></div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
                         <div class="am-form-group">
                             <label for="user-phone" class="am-form-label">电话</label>
                             <div class="am-form-content">
@@ -147,7 +113,7 @@
                         </div>
 
                         <div class="am-btn-group am-btn-group-justify">
-                            <a href="/toPassword" class="am-btn am-btn-danger" role="button">修改密码</a>
+                            <a href="${APP_PATH}/toPassword" class="am-btn am-btn-danger" role="button">修改密码</a>
                             <a id="userUpdate" class="am-btn am-btn-success" role="button">保存修改</a>
                         </div>
                     </form>
@@ -208,7 +174,9 @@
                         heading: "Success",
                         text: result.extend.msg + ' , <a href="${APP_PATH}/toUserInfo">刷新</a>.',
                         showHideTransition: 'slide',
-                        hideAfter: false,
+                        afterHidden: function () {
+                            window.location.reload();
+                        },
                         icon: 'success',
                         position: 'top-right'
                     })
@@ -241,8 +209,8 @@
             success: function (result) {
                 if (result.code === 100) {
                     window.location.reload();
-                }else {
-                    if(result.extend.msg !== undefined){
+                } else {
+                    if (result.extend.msg !== undefined) {
                         $.toast({
                             heading: "Fail",
                             text: result.extend.msg,

@@ -373,16 +373,34 @@ public class UserController {
         return "home/lottery_draw";
     }
 
-    @RequestMapping(value = "/updateChaopoint")
-    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
+//    @RequestMapping(value = "/updateChaopoint")
+//    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
+//
+//        System.out.println("/updateChaopoint: "+chaoPoint);
+//
+//        User user = (User)session.getAttribute("user");
+//        int cp = Integer.parseInt(chaoPoint);
+//        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
+//
+//        session.setAttribute("user", userService.getUser(user.getUserid()));
+//        return "home/lottery_draw";
+//    }
 
-        System.out.println("/updateChaopoint: "+chaoPoint);
+    @RequestMapping(value = "/lotteryChaopoint")
+    public String lotteryChaopoint(HttpSession session,@RequestParam("award")String chaoPoint){
+
+        System.out.println("/lotteryChaopoint: "+chaoPoint);
 
         User user = (User)session.getAttribute("user");
         int cp = Integer.parseInt(chaoPoint);
-        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
+        int oldchaopoint = user.getUserchaopoint();
+
+        System.out.print("/lotteryChaopoint: ");
+        System.out.println(oldchaopoint+cp);
+        userService.updateUserChaoPointByUserId(user.getUserid(),oldchaopoint+cp-100);
 
         session.setAttribute("user", userService.getUser(user.getUserid()));
         return "home/lottery_draw";
     }
+
 }

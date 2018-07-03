@@ -15,7 +15,7 @@
             <b>|</b>
             <a href="${APP_PATH}/toHome">商城首页</a>
             <b>|</b>
-            <a data-am-smooth-scroll="{speed: 3000}" href="#">返回顶部</a>
+            <a data-am-smooth-scroll="{speed: 1000}" href="#">返回顶部</a>
         </p>
     </div>
     <div class="footer-bd ">

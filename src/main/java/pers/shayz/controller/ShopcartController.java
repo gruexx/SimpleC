@@ -110,14 +110,12 @@ public class ShopcartController {
     public String toPay(HttpSession session, ModelMap modelMap) {
         User userNow = (User) session.getAttribute("user");
         int userid = userNow.getUserid();
-        List<Shopcart> shopcartlist = shopcartService.getShopcartByUserId(userid);
+        List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(userid);
         List<Goods> goodslist = new ArrayList<Goods>();
         Double totalprice = 0.0;
         for (int i = 0; i < shopcartlist.size(); i++) {
             goodslist.add(goodsService.getGoodsById(shopcartlist.get(i).getGoodsidFkShopcart()));
-            if(shopcartlist.get(i).getIsbuy()==1){
-                totalprice += goodslist.get(i).getGoodsprice() * shopcartlist.get(i).getNumber();
-            }
+            totalprice += goodslist.get(i).getGoodsprice() * shopcartlist.get(i).getNumber();
         }
         System.out.println("/toPay: "+totalprice);
 
@@ -129,7 +127,7 @@ public class ShopcartController {
 
     @RequestMapping(value = "/viewShopcart")
     @ResponseBody
-    public Msg viewShopcart(HttpSession session, ModelMap modelMap) {
+    public Msg viewShopcart(HttpSession session) {
         User userNow = (User) session.getAttribute("user");
         int userid = userNow.getUserid();
         List<Shopcart> shopcartlist = shopcartService.getShopcartByUserId(userid);
@@ -139,5 +137,11 @@ public class ShopcartController {
         }
 
         return Msg.success().add("ShopcartList", shopcartlist).add("GoodsList", goodslist);
+    }
+
+
+    @RequestMapping(value = "/toSuccess")
+    public String toSuccess() {
+        return "home/success";
     }
 }

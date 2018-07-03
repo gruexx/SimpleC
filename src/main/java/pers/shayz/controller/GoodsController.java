@@ -81,7 +81,7 @@ public class GoodsController {
 
         System.out.println("/doPublish type: " + type);
 
-        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber)) {
+        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber) || classifyid==null) {
             return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
         }
 
