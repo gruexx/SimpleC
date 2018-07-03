@@ -70,18 +70,15 @@
                 <div id="msg"></div>
             </div>
             <script>
-                // $(document).on('mouse','.sliderContainer', function () {
-                //     $(this).css('display', 'block');
+                // $(function () {
+                //     $("#captcha canvas").css("display","none");
+                //     $(document).on('mouseenter', '.sliderContainer',
+                //         function () {
+                //             console.log("aaaaa");
+                //             // $(this).stop();
+                //             $("#captcha canvas").fadeIn(1000);
+                //         });
                 // });
-                $(function () {
-                    $("#captcha canvas").css("display","none");
-                    $(document).on('mouseenter', '.sliderContainer',
-                        function () {
-                            console.log("aaaaa");
-                            // $(this).stop();
-                            $("#captcha canvas").fadeIn(1000);
-                        });
-                });
 
                 jigsaw.init(document.getElementById('captcha'), function () {
                     document.getElementById('msg').innerHTML = '验证成功！';

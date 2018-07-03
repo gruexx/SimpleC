@@ -127,7 +127,7 @@
                     if (result.code === 100) {
                         $.toast({
                             heading: "Success",
-                            text: 'Yes! 注册成功 <a href="${APP_PATH}/toLogin">登录</a>.',
+                            text: 'Yes! 注册成功, 我们已发送账号激活邮件, 激活后即可登录 <a href="${APP_PATH}/toLogin">登录</a>.',
                             showHideTransition: 'slide',
                             hideAfter: false,
                             position: 'top-right',
