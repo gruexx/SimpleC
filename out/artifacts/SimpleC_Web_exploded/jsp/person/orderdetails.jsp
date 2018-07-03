@@ -21,14 +21,6 @@
     <link href="${APP_PATH}/css/orstyle.css" rel="stylesheet" type="text/css">
 </head>
 
-<script>
-    function mul(a, b, c) {
-        var r=a * b;
-        console.log(r);
-        $('.totalprice').eq(c).text(r);
-    }
-</script>
-
 <body>
 <!--头 -->
 <header>
@@ -137,7 +129,7 @@
                                             <div class="item-amount" style="float: left;">
                                                 合计：
                                                 <p class="totalprice">
-                                                    <script>mul(${GoodsList.goodsprice},${requestScope.OrderDetailList[loop.count-1].number},${loop.count}-1)</script>
+                                                    <script>${GoodsList.goodsprice*requestScope.OrderDetailList[loop.count-1].number}</script>
                                                 </p>
                                             </div>
                                         </li>

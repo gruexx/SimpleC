@@ -49,14 +49,15 @@
 
             </div>
 
+
             <%--<label for="remember-me">--%>
             <%--<input id="remember-me" type="checkbox">记住密码--%>
             <%--</label>--%>
             <label class="am-checkbox needsclick">
-                <input type="checkbox" value="" data-am-ucheck checked> 记住我
+                <input type="checkbox" id="rememberMe" data-am-ucheck checked> 记住我
             </label>
             <label class="am-checkbox needsclick">
-                <input type="checkbox" value="" data-am-ucheck> 记住密码
+                <input type="checkbox" id="rememberPassword" data-am-ucheck> 记住密码
             </label>
             <a href="${APP_PATH}/toRegister" class="zcnext am-fr am-btn-default">注册</a>
 
@@ -80,43 +81,61 @@
         </div>
     </div>
 </div>
-<jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+<jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
 </body>
 
 
 <script>
+
+    $(function () {
+        if($.AMUI.utils.cookie.get("userlogin")!=null){
+            $('#userlogin').val($.AMUI.utils.cookie.get("userlogin"));
+        }
+        if($.AMUI.utils.cookie.get("userpassword")!=null){
+            $('#userpassword').val($.AMUI.utils.cookie.get("userpassword"));
+        }
+    });
+
     $("#LoginBtn").click(function () {
 
-        var userlogin = $('#userlogin').val();
-        var userpassword = $('#userpassword').val();
-        console.log(userlogin);
-        console.log(userpassword);
+            var userlogin = $('#userlogin').val();
+            var userpassword = $('#userpassword').val();
+            console.log(userlogin);
+            console.log(userpassword);
 
-        $.ajax({
-            url: "${APP_PATH}/validateLogin",
-            type: "POST",
-            data: {
-                "userlogin": userlogin,
-                "userpassword": userpassword
-            },
-            success: function (result) {
-                if (result.code == 100) {
-                    $("#LoginForm").submit();
-                } else {
-                    $('#userlogin').removeClass('am-field-valid');
-                    $('#userpassword').removeClass('am-field-valid');
-                    $('#userlogin').addClass('am-field-error');
-                    $('#userpassword').addClass('am-field-error');
-                    $.toast({
-                        heading: "Fail",
-                        text: result.extend.msg,
-                        showHideTransition: 'fade',
-                        position: 'top-right',
-                        icon: 'error'
-                    })
+            $.ajax({
+                url: "${APP_PATH}/validateLogin",
+                type: "POST",
+                data: {
+                    "userlogin": userlogin,
+                    "userpassword": userpassword
+                },
+                success: function (result) {
+                    if (result.code == 100) {
+                        $("#LoginForm").submit();
+
+                        if($('#rememberMe')[0].checked) {
+                            console.log(userlogin);
+                            $.AMUI.utils.cookie.set("userlogin", userlogin);
+                        }
+                        if($('#rememberPassword')[0].checked) {
+                            $.AMUI.utils.cookie.set("userpassword", userpassword);
+                        }
+                    } else {
+                        $('#userlogin').removeClass('am-field-valid');
+                        $('#userpassword').removeClass('am-field-valid');
+                        $('#userlogin').addClass('am-field-error');
+                        $('#userpassword').addClass('am-field-error');
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.msg,
+                            showHideTransition: 'fade',
+                            position: 'top-right',
+                            icon: 'error'
+                        })
+                    }
                 }
-            }
-        });
+            });
 
     });
 
@@ -124,7 +143,7 @@
         $('#LoginForm').validator();
     });
 
-    $("body").keydown(function() {
+    $("body").keydown(function () {
         if (event.keyCode == "13") {//keyCode=13是回车键
             $('#LoginBtn').click();
         }
