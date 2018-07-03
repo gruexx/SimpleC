@@ -60,7 +60,8 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <form id="userImageForm">
-                        <input id="userImage" name="userImage" type="file" class="inputPic">
+                        <input id="userImage" name="userImage" type="file" class="inputPic"
+                               style="width: 140px;height: 91px">
                     </form>
                     <%--<img class="am-circle am-img-thumbnail" src="${APP_PATH}/${sessionScope.image}" alt=""/>--%>
                     <img class="am-img-thumbnail am-round am-img-responsive" alt="140*140"
@@ -69,8 +70,32 @@
                     <p class="am-form-help">头像</p>
                     <div class="info-m">
                         <div>用户名：${sessionScope.user.username}</div>
-                        <div class="u-safety">
+                        <div>
                             潮积分：${sessionScope.user.userchaopoint}
+                        </div>
+                        <div>
+                            余额：<a id="charge" class="am-btn am-btn-link">充值</a>
+                            <script>
+                                $('#charge').click(function () {
+                                    $('#chargeModal').modal({
+                                        relatedTarget: this,
+                                        onConfirm: function (e) {
+                                            // alert('你输入的是：' + e.data || '');
+                                            $.ajax({
+                                                type: "post",
+                                                url: "/charge",
+                                                data: {"remainder": e.data},
+                                                success: function (result) {
+                                                    if (result.code === 100) {
+                                                        // console.log("success")
+                                                        window.location.reload();
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    });
+                                })
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -153,6 +178,25 @@
         </ul>
     </aside>
 </div>
+
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="chargeModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            SimpleChange
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            输入充值金额：
+            <input type="number" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
@@ -209,8 +253,8 @@
             success: function (result) {
                 if (result.code === 100) {
                     window.location.reload();
-                }else {
-                    if(result.extend.msg !== undefined){
+                } else {
+                    if (result.extend.msg !== undefined) {
                         $.toast({
                             heading: "Fail",
                             text: result.extend.msg,

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.*;
 import pers.shayz.service.*;
+import pers.shayz.util.MailUtil;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -77,6 +78,15 @@ public class UserController {
         }
 
         userService.saveUser(user);
+
+        MailUtil mailUtil = new MailUtil();
+        try {
+            mailUtil.sendActiveMail(user.getUseremail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("/doRegister: 发送成功");
+
         return Msg.success();
     }
 
@@ -136,11 +146,15 @@ public class UserController {
             return Msg.fail().add("msg", "用户不存在！！！");
         }
 
-        if (user.getUserpassword().equals(userpassword)) {
-            return Msg.success();
-        } else {
+        if (!user.getUserpassword().equals(userpassword)) {
             return Msg.fail().add("msg", "用户名密码不匹配！！！");
         }
+
+        if (user.getIsactive() == 0) {
+            return Msg.fail().add("msg", "账号未激活！！！");
+        }
+
+        return Msg.success();
     }
 
 //    @RequestMapping(value = "/checkUsername", method = RequestMethod.POST)
@@ -401,6 +415,36 @@ public class UserController {
 
         session.setAttribute("user", userService.getUser(user.getUserid()));
         return "home/lottery_draw";
+    }
+
+    @RequestMapping(value = "/charge", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg charge(HttpSession session, @RequestParam("remainder")String remainder) {
+        User user = (User)session.getAttribute("user");
+        Double oldremainder = user.getUserremainder();
+        user.setUserremainder(oldremainder+Double.parseDouble(remainder));
+        userService.updateUser(user);
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/doActive/{useremail}")
+    public String setIsLogin(@PathVariable("useremail")String useremail, ModelMap modelMap){
+        System.out.println("/doActive/{useremail}: "+useremail);
+        byte[] decoded = Base64.getDecoder().decode(useremail);
+        String uemail = new String(decoded);
+        System.out.println("/doActive/{useremail}: "+uemail);
+        User user = userService.getUserByEmail(uemail);
+        System.out.println("/doActive/{useremail}: "+user);
+        if(user.getIsactive()==1){
+            modelMap.addAttribute("msg", "该账号已经激活了！！！");
+        }else {
+            user.setIsactive(1);
+            modelMap.addAttribute("msg", "成功激活账号！！！");
+        }
+        userService.updateUser(user);
+        System.out.println("/doActive/{useremail}: "+user);
+
+        return "common/active";
     }
 
 }

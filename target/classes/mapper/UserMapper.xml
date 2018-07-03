@@ -13,6 +13,7 @@
     <result column="userPhone" jdbcType="VARCHAR" property="userphone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="isActive" jdbcType="INTEGER" property="isactive" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     userId, userName, userPassword, userEmail, userChaoPoint, userRemainder, flag, Administrator, 
-    userPhone, address, image
+    userPhone, address, image, isActive
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -110,11 +111,13 @@
     insert into user (userId, userName, userPassword, 
       userEmail, userChaoPoint, userRemainder, 
       flag, Administrator, userPhone, 
-      address, image)
+      address, image, isActive
+      )
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
       #{useremail,jdbcType=VARCHAR}, #{userchaopoint,jdbcType=INTEGER}, #{userremainder,jdbcType=DOUBLE}, 
       #{flag,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR})
+      #{address,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.User">
     insert into user
@@ -152,6 +155,9 @@
       <if test="image != null">
         image,
       </if>
+      <if test="isactive != null">
+        isActive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -186,6 +192,9 @@
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -231,6 +240,9 @@
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
+      <if test="record.isactive != null">
+        isActive = #{record.isactive,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +260,8 @@
       Administrator = #{record.administrator,jdbcType=INTEGER},
       userPhone = #{record.userphone,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      image = #{record.image,jdbcType=VARCHAR}
+      image = #{record.image,jdbcType=VARCHAR},
+      isActive = #{record.isactive,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -286,6 +299,9 @@
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
+      <if test="isactive != null">
+        isActive = #{isactive,jdbcType=INTEGER},
+      </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
@@ -300,7 +316,8 @@
       Administrator = #{administrator,jdbcType=INTEGER},
       userPhone = #{userphone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      image = #{image,jdbcType=VARCHAR}
+      image = #{image,jdbcType=VARCHAR},
+      isActive = #{isactive,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>
