@@ -25,7 +25,7 @@
     <script type="text/javascript">
 
         $(function () {
-
+            var award;
             var rotateTimeOut = function () {
                 $('#rotate').rotate({
                     angle: 0,
@@ -46,109 +46,130 @@
                     animateTo: angles + 1800,
                     duration: 8000,
                     callback: function () {
-                        alert(txt);
-                        // window.location.reload();
+                        // alert(txt);
+                        $('#awardInfo').text(txt);
+                        $('#my-alerts').modal({
+                            relatedTarget: this,
+                            onConfirm: function() {
+                                window.location.reload();
+                            }
+                        });
+
                         bRotate = !bRotate;
                     }
                 })
             };
 
 
+            var int = self.setInterval(refresh(), 100);
 
-            var int=self.setInterval(refresh(),100);
-
-            function refresh(){
+            function refresh() {
 
 
-            $('.pointer').click(function () {
-                if (parseInt(${sessionScope.user.userchaopoint}) >= 100) {
-                    <%--var userchaopoint = ${sessionScope.user.userchaopoint};--%>
-                    console.log(${sessionScope.user.userchaopoint});
-                    $.ajax({
-                        url: '${APP_PATH}/updateChaopoint',
-                        type: 'POST',
-                        data: {"chaoPoint": ${sessionScope.user.userchaopoint}},
-                        success:function () {
-                            // $('#chaoPonit').load('/toLotteryDraw #chaoPonit');
+                $('.pointer').click(function () {
+                    if (parseInt(${sessionScope.user.userchaopoint}) >= 100) {
+                        <%--var userchaopoint = ${sessionScope.user.userchaopoint};--%>
+                        console.log(${sessionScope.user.userchaopoint});
+                        $('#cp').text(${sessionScope.user.userchaopoint-100});
+                        <%--$.ajax({--%>
+                        <%--url: '${APP_PATH}/updateChaopoint',--%>
+                        <%--type: 'POST',--%>
+                        <%--data: {"chaoPoint": ${sessionScope.user.userchaopoint}},--%>
+                        <%--success:function () {--%>
+                        <%--// $('#chaoPonit').load('/toLotteryDraw #chaoPonit');--%>
+                        <%--}--%>
+                        <%--});--%>
+
+                        if (bRotate) return;
+                        var item = rnd(0, 10000);
+                        var x = 0;
+                        // alert(item);
+                        if (item < 5000)//90%
+                        {
+                            x = 0;
                         }
-                    });
+                        else if (item < 6000)//10%
+                        {
+                            x = 2;
+                        }
+                        else if (item < 7000)//10%
+                        {
+                            x = 3;
+                        }
+                        else if (item < 7500)//10%
+                        {
+                            x = 4;
+                        }
+                        else if (item < 7600)//10%
+                        {
+                            x = 5;
+                        }
+                        else if (item < 7700)//10%
+                        {
+                            x = 6;
+                        } else if (item < 7800)//10%
+                        {
+                            x = 7;
+                        } else if (item <= 10000) {
+                            x = 1;
+                        }
 
-                    if (bRotate) return;
-                    var item = rnd(0, 10000);
-                    var x = 0;
-                    // alert(item);
-                    if (item < 1000)//90%
-                    {
-                        x = 0;
+                        switch (x) {
+                            case 0:
+                                //var angle = [26, 88, 137, 185, 235, 287, 337];
+                                rotateFn(0, 337, '很遗憾，未中奖');
+                                award = 0;
+                                break;
+                            case 1:
+                                //ar angle = [88, 137, 185, 235, 287];
+                                rotateFn(1, 26, '恭喜您，获得1000潮积分');
+                                award = 1000;
+                                break;
+                            case 2:
+                                //ar angle = [137, 185, 235, 287];
+                                rotateFn(2, 88, '恭喜您，获得500潮积分');
+                                award = 500;
+                                break;
+                            case 3:
+                                //ar angle = [137, 185, 235, 287];
+                                rotateFn(3, 137, '恭喜您，获得300潮积分');
+                                award = 300;
+                                break;
+                            case 4:
+                                //ar angle = [185, 235, 287];
+                                rotateFn(4, 185, '恭喜您，获得150潮积分');
+                                award = 150;
+                                break;
+                            case 5:
+                                //ar angle = [185, 235, 287];
+                                rotateFn(5, 185, '恭喜您，获得150潮积分');
+                                award = 150;
+                                break;
+                            case 6:
+                                //ar angle = [235, 287];
+                                rotateFn(6, 235, '恭喜您，获得100潮积分');
+                                award = 100;
+                                break;
+                            case 7:
+                                //ar angle = [287];
+                                rotateFn(7, 287, '恭喜您，获得50潮积分');
+                                award = 50;
+                                break;
+                        }
+                        console.log("award: " + award);
+                        $.ajax({
+                            url: '${APP_PATH}/lotteryChaopoint',
+                            type: 'POST',
+                            data: {"award": award}
+                        });
+                        console.log(item);
                     }
-                    else if (item < 9100)//10%
-                    {
-                        x = 2;
-                    }
-                    else if (item < 9200)//10%
-                    {
-                        x = 3;
-                    }
-                    else if (item < 9500)//10%
-                    {
-                        x = 4;
-                    }
-                    else if (item < 9600)//10%
-                    {
-                        x = 5;
-                    }
-                    else if (item < 9800)//10%
-                    {
-                        x = 6;
-                    } else if (item < 10000)//10%
-                    {
-                        x = 7;
-                    } else if (item = 10000) {
-                        x = 1;
-                    }
-
-                    switch (x) {
-                        case 0:
-                            //var angle = [26, 88, 137, 185, 235, 287, 337];
-                            rotateFn(0, 337, '未中奖');
-                            break;
-                        case 1:
-                            //var angle = [88, 137, 185, 235, 287];
-                            rotateFn(1, 26, '免单4999元');
-                            break;
-                        case 2:
-                            //var angle = [137, 185, 235, 287];
-                            rotateFn(2, 88, '免单50元');
-                            break;
-                        case 3:
-                            //var angle = [137, 185, 235, 287];
-                            rotateFn(3, 137, '免单10元');
-                            break;
-                        case 4:
-                            //var angle = [185, 235, 287];
-                            rotateFn(4, 185, '免单5元');
-                            break;
-                        case 5:
-                            //var angle = [185, 235, 287];
-                            rotateFn(5, 185, '免单5元');
-                            break;
-                        case 6:
-                            //var angle = [235, 287];
-                            rotateFn(6, 235, '免分期服务费');
-                            break;
-                        case 7:
-                            //var angle = [287];
-                            rotateFn(7, 287, '奖励2点心潮积分');
-                            break;
+                    else {
+                        alert("积分值不足！");
                     }
 
-                    console.log(item);
-                }
-                else {
-                    alert("积分值不足！");
-                }
-
-            });}
+                });
+            }
         });
 
         function rnd(n, m) {
@@ -196,9 +217,12 @@
         积分大抽奖</p><br>
     <div id="test" style="float: left;padding-left: 60px;padding-top: 20px;">
         <p class="am-text-lg am-text-truncate">我的积分：</p>
-        <p class="show-font am-text-lg am-text-truncate" >
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ${sessionScope.user.userchaopoint}
-            Point</p>
+        <p class="show-font am-text-lg am-text-truncate">
+            <br>
+        <sapn id="cp" style="font-size: 40px;text-indent: 2em" class="show-font am-text-lg am-text-truncate">
+            ${sessionScope.user.userchaopoint}
+        </sapn>
+        Point
         <br>
         <br>
         <br>
@@ -239,6 +263,17 @@
     <div class="rotate"><img id="rotate" src="${APP_PATH}/myimages/turntable.png" alt="turntable"/></div>
 </div>
 
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">抽奖结果</div>
+        <div id="awardInfo" class="am-modal-bd">
+
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -50,15 +50,4 @@ public class Message {
     public void setFlag(Integer flag) {
         this.flag = flag;
     }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", sendname1='" + sendname1 + '\'' +
-                ", recivername2='" + recivername2 + '\'' +
-                ", message='" + message + '\'' +
-                ", flag=" + flag +
-                '}';
-    }
 }

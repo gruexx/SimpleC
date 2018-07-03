@@ -823,6 +823,66 @@ public class UserExample {
             addCriterion("image not between", value1, value2, "image");
             return (Criteria) this;
         }
+
+        public Criteria andIsactiveIsNull() {
+            addCriterion("isActive is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveIsNotNull() {
+            addCriterion("isActive is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveEqualTo(Integer value) {
+            addCriterion("isActive =", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotEqualTo(Integer value) {
+            addCriterion("isActive <>", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveGreaterThan(Integer value) {
+            addCriterion("isActive >", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isActive >=", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveLessThan(Integer value) {
+            addCriterion("isActive <", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveLessThanOrEqualTo(Integer value) {
+            addCriterion("isActive <=", value, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveIn(List<Integer> values) {
+            addCriterion("isActive in", values, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotIn(List<Integer> values) {
+            addCriterion("isActive not in", values, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveBetween(Integer value1, Integer value2) {
+            addCriterion("isActive between", value1, value2, "isactive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsactiveNotBetween(Integer value1, Integer value2) {
+            addCriterion("isActive not between", value1, value2, "isactive");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

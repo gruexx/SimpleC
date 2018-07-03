@@ -8,7 +8,8 @@
     %>
     <title>商品页面</title>
 
-    <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
+    <%--<script src="${APP_PATH}/js/jquery-3.1.1.js"></script>--%>
+    <script type="text/javascript" src="${APP_PATH}/basic/js/jquery-1.7.min.js"></script>
 
     <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
     <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
@@ -19,7 +20,6 @@
     <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css"/>
     <link type="text/css" href="${APP_PATH}/css/optstyle.css" rel="stylesheet"/>
     <link type="text/css" href="${APP_PATH}/css/style.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${APP_PATH}/basic/js/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="${APP_PATH}/basic/js/quick_links.js"></script>
     <script type="text/javascript" src="${APP_PATH}/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="${APP_PATH}/js/jquery.flexslider.js"></script>

@@ -37,7 +37,7 @@
             <ul>
                 <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
             </ul>
-            <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
         </div>
     </div> <b class="line"></b>
     <div class="center">
@@ -50,12 +50,41 @@
                     </div>
                     <hr/>
                     <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-                        <li class="user-addresslist defaultAddr"> <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-                            <p class="new-tit new-p-re"> <span class="new-txt">小叮当</span> <span class="new-txt-rd2">159****1622</span> </p>
+                        <li class="user-addresslist defaultAddr">
+                            <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+                            <p class="new-tit new-p-re">
+                                <span class="new-txt">${sessionScope.user.username}</span>
+                                <span class="new-txt-rd2">${sessionScope.user.userphone}</span>
+                            </p>
                             <div class="new-mu_l2a new-p-re">
-                                <p class="new-mu_l2cw"> <span class="title">地址：</span> <span class="province">湖北</span>省 <span class="city">武汉</span>市 <span class="dist">洪山</span>区 <span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+                                <p class="new-mu_l2cw">
+                                    <span class="title">地址：</span>
+                                    <span>${sessionScope.user.address}</span>
+                                </p>
                             </div>
-                            <div class="new-addr-btn"> <a href="#"><i class="am-icon-edit"></i>编辑</a> <span class="new-addr-bar">|</span> <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a> </div>
+                            <div class="new-addr-btn">
+                                <a href="#"><i class="am-icon-edit"></i>编辑</a>
+                                <span class="new-addr-bar">|</span>
+                                <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+                            </div>
+                        </li>
+                        <li class="user-addresslist">
+                            <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+                            <p class="new-tit new-p-re">
+                                <span class="new-txt">${sessionScope.user.username}</span>
+                                <span class="new-txt-rd2">${sessionScope.user.userphone}</span>
+                            </p>
+                            <div class="new-mu_l2a new-p-re">
+                                <p class="new-mu_l2cw">
+                                    <span class="title">地址：</span>
+                                    <span>${sessionScope.user.address}</span>
+                                </p>
+                            </div>
+                            <div class="new-addr-btn">
+                                <a href="#"><i class="am-icon-edit"></i>编辑</a>
+                                <span class="new-addr-bar">|</span>
+                                <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
+                            </div>
                         </li>
                     </ul>
                     <div class="clear"></div> <a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
@@ -109,18 +138,6 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $(".new-option-r").click(function() {
-                            $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
-                        });
-                        var $ww = $(window).width();
-                        if ($ww > 640) {
-                            $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
-                        }
-                    })
-
-                </script>
                 <div class="clear"></div>
             </div>
             <!--      底部      -->
@@ -158,3 +175,16 @@
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".user-addresslist").click(function() {
+            $(this).addClass("defaultAddr").siblings().removeClass("defaultAddr");
+        });
+        var $ww = $(window).width();
+        if ($ww > 640) {
+            $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
+        }
+    })
+
+</script>

@@ -25,4 +25,43 @@ public class ShopcartService {
         return shopcartMapper.selectByExample(shopcartExample);
 
     }
+
+    public void updateShopcartGoodsNumberByShopcartid(int shopcartid, int goodsnumber) {
+        Shopcart shopcart = new Shopcart();
+        shopcart.setShopcartid(shopcartid);
+        shopcart.setNumber(goodsnumber);
+        shopcartMapper.updateByPrimaryKeySelective(shopcart);
+    }
+
+    public void deleteByShopCartId(int shopcartid) {
+        Shopcart shopcart = new Shopcart();
+        shopcart.setShopcartid(shopcartid);
+        shopcart.setFlag(0);
+        shopcartMapper.updateByPrimaryKeySelective(shopcart);
+    }
+
+    public void updateShopcartCheckByShopcartid(int shopcartid, int isBuy) {
+        Shopcart shopcart = new Shopcart();
+        shopcart.setShopcartid(shopcartid);
+        shopcart.setIsbuy(isBuy);
+        shopcartMapper.updateByPrimaryKeySelective(shopcart);
+    }
+
+    public void updateAllShopcartCheck(Integer userid) {
+        ShopcartExample shopcartExample = new ShopcartExample();
+        ShopcartExample.Criteria criteria = shopcartExample.createCriteria();
+        criteria.andUseridFkShopcartEqualTo(userid).andFlagEqualTo(1);
+
+        Shopcart shopcart = new Shopcart();
+        shopcart.setIsbuy(1);
+        shopcartMapper.updateByExampleSelective(shopcart, shopcartExample);
+    }
+
+    public List<Shopcart> getShopcartByUserIdAndIsbuy(int userid) {
+        ShopcartExample shopcartExample = new ShopcartExample();
+        ShopcartExample.Criteria criteria = shopcartExample.createCriteria();
+        criteria.andUseridFkShopcartEqualTo(userid).andFlagEqualTo(1).andIsbuyEqualTo(1);
+
+        return shopcartMapper.selectByExample(shopcartExample);
+    }
 }

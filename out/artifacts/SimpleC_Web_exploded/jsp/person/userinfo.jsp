@@ -60,7 +60,8 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <form id="userImageForm">
-                        <input id="userImage" name="userImage" type="file" class="inputPic">
+                        <input id="userImage" name="userImage" type="file" class="inputPic"
+                               style="width: 140px;height: 91px">
                     </form>
                     <%--<img class="am-circle am-img-thumbnail" src="${APP_PATH}/${sessionScope.image}" alt=""/>--%>
                     <img class="am-img-thumbnail am-round am-img-responsive" alt="140*140"
@@ -68,26 +69,47 @@
 
                     <p class="am-form-help">头像</p>
                     <div class="info-m">
-                        <div><b>用户名：<i>${sessionScope.user.username}</i></b></div>
-
-                        <div class="u-safety">
-                            <a href="#">
-                                潮积分：
-                                <span class="u-profile">
-                                    <i style="width: 60px;">${sessionScope.user.userchaopoint}</i>
-                                </span>
-                            </a>
+                        <div>用户名：${sessionScope.user.username}</div>
+                        <div>
+                            潮积分：${sessionScope.user.userchaopoint}
+                        </div>
+                        <div>
+                            余额：<a id="charge" class="am-btn am-btn-link">充值</a>
+                            <script>
+                                $('#charge').click(function () {
+                                    $('#chargeModal').modal({
+                                        relatedTarget: this,
+                                        onConfirm: function (e) {
+                                            // alert('你输入的是：' + e.data || '');
+                                            $.ajax({
+                                                type: "post",
+                                                url: "/charge",
+                                                data: {"remainder": e.data},
+                                                success: function (result) {
+                                                    if (result.code === 100) {
+                                                        // console.log("success")
+                                                        window.location.reload();
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    });
+                                })
+                            </script>
                         </div>
                     </div>
                 </div>
                 <!--个人信息 -->
                 <div class="info-main">
                     <form id="userInfoForm" class="am-form am-form-horizontal">
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">昵称</label>--%>
-                        <%--<div class="am-form-content">--%>
-                        <%--<input type="text" placeholder="nickname" value=""></div>--%>
-                        <%--</div>--%>
+                        <div class="am-form-group">
+                            <label class="am-form-label">余额</label>
+                            <div class="am-form-content">
+                                <input name="userremainder" type="number"
+                                       value="${sessionScope.user.userremainder}" disabled>
+                            </div>
+
+                        </div>
                         <div class="am-form-group">
                             <label class="am-form-label">用户名</label>
                             <div class="am-form-content">
@@ -96,37 +118,6 @@
                                        data-validation-message="用户名为3-12字符"
                                        value="${sessionScope.user.username}"></div>
                         </div>
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">性别</label>--%>
-                        <%--<div class="am-form-content sex">--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="male" data-am-ucheck> 男 </label>--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="female" data-am-ucheck> 女 </label>--%>
-                        <%--<label class="am-radio-inline">--%>
-                        <%--<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密 </label>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="am-form-group">--%>
-                        <%--<label class="am-form-label">生日</label>--%>
-                        <%--<div class="am-form-content birth">--%>
-                        <%--<div class="birth-select">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">2015</option>--%>
-                        <%--<option value="b">1987</option>--%>
-                        <%--<lect> <em>年</em></div>--%>
-                        <%--<div class="birth-select2">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">12</option>--%>
-                        <%--<option value="b">8</option>--%>
-                        <%--<lect> <em>月</em></div>--%>
-                        <%--<div class="birth-select2">--%>
-                        <%--<select data-am-selected>--%>
-                        <%--<option value="a">21</option>--%>
-                        <%--<option value="b">23</option>--%>
-                        <%--<lect> <em>日</em></div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
                         <div class="am-form-group">
                             <label for="user-phone" class="am-form-label">电话</label>
                             <div class="am-form-content">
@@ -147,7 +138,7 @@
                         </div>
 
                         <div class="am-btn-group am-btn-group-justify">
-                            <a href="/toPassword" class="am-btn am-btn-danger" role="button">修改密码</a>
+                            <a href="${APP_PATH}/toPassword" class="am-btn am-btn-danger" role="button">修改密码</a>
                             <a id="userUpdate" class="am-btn am-btn-success" role="button">保存修改</a>
                         </div>
                     </form>
@@ -187,6 +178,25 @@
         </ul>
     </aside>
 </div>
+
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="chargeModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            SimpleChange
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            输入充值金额：
+            <input type="number" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
@@ -208,7 +218,9 @@
                         heading: "Success",
                         text: result.extend.msg + ' , <a href="${APP_PATH}/toUserInfo">刷新</a>.',
                         showHideTransition: 'slide',
-                        hideAfter: false,
+                        afterHidden: function () {
+                            window.location.reload();
+                        },
                         icon: 'success',
                         position: 'top-right'
                     })
@@ -241,8 +253,8 @@
             success: function (result) {
                 if (result.code === 100) {
                     window.location.reload();
-                }else {
-                    if(result.extend.msg !== undefined){
+                } else {
+                    if (result.extend.msg !== undefined) {
                         $.toast({
                             heading: "Fail",
                             text: result.extend.msg,

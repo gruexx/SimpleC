@@ -25,160 +25,256 @@
 
 <body>
 <!--顶部导航条 -->
-<jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+<jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 <div class="clear"></div>
 <!--购物车 -->
 <div class="concent">
     <div id="cartTable">
 
 
-        <%--<table class="am-table am-table-bordered am-table-radius am-table-striped">--%>
-            <%--<thead>--%>
-            <%--<tr>--%>
-                <%--<th>网站名称</th>--%>
-                <%--<th>网址</th>--%>
-                <%--<th>创建时间</th>--%>
-            <%--</tr>--%>
-            <%--</thead>--%>
-            <%--<tbody>--%>
-            <%--<tr>--%>
-                <%--<td>Amaze UI</td>--%>
-                <%--<td>http://amazeui.org</td>--%>
-                <%--<td>2012-10-01</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>Amaze UI</td>--%>
-                <%--<td>http://amazeui.org</td>--%>
-                <%--<td>2012-10-01</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>Amaze UI</td>--%>
-                <%--<td>http://amazeui.org</td>--%>
-                <%--<td>2012-10-01</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>Amaze UI</td>--%>
-                <%--<td>http://amazeui.org</td>--%>
-                <%--<td>2012-10-01</td>--%>
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>Amaze UI</td>--%>
-                <%--<td>http://amazeui.org</td>--%>
-                <%--<td>2012-10-01</td>--%>
-            <%--</tr>--%>
-            <%--</tbody>--%>
-        <%--</table>--%>
+        <table class="am-table am-table-striped am-table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th style="font-size: 16px;font-weight: bold">商品图片</th>
+                <th style="font-size: 16px;font-weight: bold">商品名称</th>
+                <th style="font-size: 16px;font-weight: bold">单价</th>
+                <th style="font-size: 16px;font-weight: bold">数量</th>
+                <th style="font-size: 16px;font-weight: bold">金额</th>
+                <th style="font-size: 16px;font-weight: bold">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${requestScope.ShopcartList}" var="ShopcartList" varStatus="loop">
+                <tr class="shopcartItem">
+                    <td width="50px">
+                        <label class="am-checkbox needsclick">
+                            <input class="check" type="checkbox" value=""
+                                   data-id="${ShopcartList.shopcartid}"
+                                   data-am-ucheck checked>
+                        </label>
+                    </td>
+                    <td>
+                        <a>
+                            <img src="${APP_PATH}/${requestScope.GoodsList[loop.count-1].image}"
+                                 class="am-img-responsive"
+                                 style="width: 90px;height: 90px;">
+                        </a>
+                    </td>
+                    <td>${requestScope.GoodsList[loop.count-1].goodsname}</td>
+                    <td>${requestScope.GoodsList[loop.count-1].goodsprice}</td>
+                    <td>
+                        <form class="am-form">
+                            <div class="am-form-group" style="width: 60px">
+                                <input type="number" class="goodsNumber" value="${ShopcartList.number}"
+                                       data-id="${ShopcartList.shopcartid}"
+                                       min="0"
+                                       max="100"/>
+                            </div>
+                        </form>
+                    </td>
+                    <td>${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}</td>
+                    <td>
+                        <button type="button"
+                                class="am-btn am-btn-danger deleteShopcart"
+                                data-id="${ShopcartList.shopcartid}">删除
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
 
-
-        <div class="cart-table-th">
-            <div class="wp">
-                <div class="th th-chk">
-                    <div id="J_SelectAll1" class="select-all J_SelectAll"></div>
-                </div>
-                <div class="th th-item">
-                    <div class="td-inner">商品信息</div>
-                </div>
-                <div class="th th-price">
-                    <div class="td-inner">单价</div>
-                </div>
-                <div class="th th-amount">
-                    <div class="td-inner">数量</div>
-                </div>
-                <div class="th th-sum">
-                    <div class="td-inner">金额</div>
-                </div>
-                <div class="th th-op">
-                    <div class="td-inner">操作</div>
-                </div>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <tr class="item-list">
-            <div class="bundle  bundle-last ">
-                <div class="clear"></div>
-
-
-                <div class="bundle-main">
-                    <c:forEach items="${requestScope.ShopcartList}" var="ShopcartList" varStatus="loop">
-                        <ul class="item-content clearfix">
-                            <li class="td td-chk">
-                                <div class="cart-checkbox ">
-                                    <input class="check" id="J_CheckBox_170769542747" name="items[]"
-                                           value="170769542747" type="checkbox">
-                                    <label for="J_CheckBox_170769542747"></label>
-                                </div>
-                            </li>
-                            <li class="td td-item">
-                                <div class="item-pic">
-                                    <a href="#" target="_blank"
-                                       data-title="${requestScope.GoodsList[loop.count-1].goodsname}"
-                                       class="J_MakePoint" data-point="tbcart.8.12">
-                                        <img
-                                                src="${APP_PATH}/${requestScope.GoodsList[loop.count-1].image}"
-                                                class="itempic J_ItemImg" style="width:100%;height: 100%;"></a>
-                                </div>
-                                <div class="item-info">
-                                    <div class="item-basic-info"><a href="#" target="_blank"
-                                                                    title="${requestScope.GoodsList[loop.count-1].goodsname}"
-                                                                    class="item-title J_MakePoint"
-                                                                    data-point="tbcart.8.11">${requestScope.GoodsList[loop.count-1].goodsname}</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="td td-info">
-                                <div class="item-props item-props-can"></div>
-                            </li>
-                            <li class="td td-price">
-                                <div class="item-price price-promo-promo">
-                                    <div class="price-content">
-                                        <div class="price-line"><em
-                                                class="price-original">${requestScope.GoodsList[loop.count-1].goodsprice}</em>
-                                        </div>
-                                        <div class="price-line"><em class="J_Price price-now"
-                                                                    tabindex="0">${requestScope.GoodsList[loop.count-1].goodsprice}</em>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="td td-amount">
-                                <div class="amount-wrapper ">
-                                    <div class="item-amount ">
-                                        <div class="sl">
-                                            <input class="min am-btn" name="" type="button" value="-"/>
-                                            <input class="text_box" name="" type="text" value="${ShopcartList.number}"
-                                                   style="width:30px;"/>
-                                            <input class="add am-btn" name="" type="button" value="+"/></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="td td-sum">
-                                    <%--<div class="td-inner"><em tabindex="0" class="J_ItemSum number">${ShopcartList.number}*${GoodsList[loop.count-1].goodsprice}</em></div>--%>
-                                117
-                            </li>
-                            <li class="td td-op">
-                                <div class="td-inner"><a href="javascript:;" data-point-url="#" class="delete">
-                                    删除</a></div>
-                            </li>
-                        </ul>
-                    </c:forEach>
-                </div>
-
-            </div>
-        </tr>
     </div>
     <div class="clear"></div>
 
-    <div class="am-form-group" style="padding-top: 3px;padding-left: 5px;background-color: #d8d8d8">
-        <label class="am-checkbox-inline">
-            <input type="checkbox"  value="" data-am-ucheck> 全选
+    <div class="am-container" style="padding-top: 3px;padding-left: 5px;background-color: #d8d8d8">
+        <label class="am-checkbox-inline am-u-sm-1">
+            <input type="checkbox" id="selectAll" value="" data-am-ucheck> 全选
         </label>
-        <a style="padding-left: 7px">删除</a>
+        <a id="deleteAll" class="am-u-sm-1" style="padding-left: 7px">删除</a>
+
+        <div class="am-u-sm-3">
+            <button type="button" id="balance" class="am-btn am-btn-danger am-btn-xl">结算</button>
+            <label>合计：${requestScope.totalprice}</label>
+        </div>
+
     </div>
 
-    <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+    <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
 </div>
 <!--操作页面-->
 
 </body>
 
 </html>
+
+<script>
+
+    $(function () {
+        var isbuy = JSON.parse('${requestScope.isbuy}');
+        console.log("isbuys: "+isbuy);
+        var sAll=1;
+        $('.check').each(function (i) {
+
+            console.log("isbuy: "+isbuy[i]);
+
+            if(isbuy[i]===1){
+                $(this).uCheck('check');
+            }else {
+                sAll=0;
+                $(this).uCheck('uncheck');
+            }
+        })
+
+        if(sAll===1){
+            $('#selectAll').uCheck('check');
+        }else {
+            $('#selectAll').uCheck('uncheck');
+        }
+
+    });
+
+    $('.goodsNumber').change(function () {
+
+        console.log($(this).val());
+        var shopcartid = $(this).data('id');
+        console.log(shopcartid);
+
+        $.ajax({
+            url: '${APP_PATH}/updateShopcartGoodsNumber',
+            type: 'POST',
+            data:
+                {
+                    "goodsnumber": $(this).val(),
+                    "shopcartid": shopcartid
+                },
+            success: function () {
+                window.location.reload();
+            },
+            error: function () {
+                console.log("fail")
+            }
+        });
+    });
+
+    $('.deleteShopcart').click(function () {
+        var $ds = $(this);
+
+        var shopcartid = $ds.data('id');
+        console.log(shopcartid);
+        $.ajax({
+            url: '${APP_PATH}/deleteShopcart',
+            type: 'POST',
+            data:
+                {
+                    "shopcartid": shopcartid
+                },
+            success: function () {
+                window.location.reload();
+                console.log("success");
+                // $ds.parents('.shopcartItem').fadeOut(900);
+            },
+            error: function () {
+                console.log("fail")
+            }
+        });
+    });
+
+    $('#selectAll').click(function () {
+        if (this.checked) {
+
+            $('.check').uCheck('check');
+
+            $.ajax({
+                url: '${APP_PATH}/updateShopcartCheck',
+                type: 'POST',
+                data:
+                    {
+                        "isBuy": 0,
+                        "shopcartid": 0
+                    },
+                success: function () {
+                    window.location.reload();
+                    console.log("success")
+                },
+                error: function () {
+                    console.log("fail")
+                }
+            });
+        } else {
+            $('.check').uCheck('uncheck');
+        }
+    });
+
+
+    $('#deleteAll').click(function () {
+
+        var shopcartids = [];
+        var checks = $('.check');
+        // console.log(checks);
+        checks.each(function () {
+            // console.log($(this));
+            if ($(this)[0].checked) {
+                // console.log($(this).data('id'));
+                shopcartids.push($(this).data('id'));
+                console.log(shopcartids);
+            }
+        });
+
+
+        $.ajax({
+            url: '${APP_PATH}/deleteAllShopcart',
+            traditional: true,
+            type: 'POST',
+            data:
+                {
+                    "shopcartids": shopcartids
+                },
+            success: function () {
+                window.location.reload();
+                console.log("success");
+            },
+            error: function () {
+                console.log("fail")
+            }
+        });
+    });
+
+    $('#balance').click(function () {
+        window.location.href = '${APP_PATH}/toPay';
+    });
+
+    $('.check').click(function () {
+
+        var shopcartid = $(this).data('id');
+        console.log(shopcartid);
+        var isBuy;
+        if($(this)[0].checked){
+            isBuy = 1;
+        }else {
+            isBuy = 0;
+            $('#selectAll').uCheck('uncheck');
+        }
+
+        $.ajax({
+            url: '${APP_PATH}/updateShopcartCheck',
+            type: 'POST',
+            data:
+                {
+                    "isBuy":isBuy,
+                    "shopcartid": shopcartid
+                },
+            success: function () {
+                window.location.reload();
+                console.log("success")
+            },
+            error: function () {
+                console.log("fail")
+            }
+        });
+    })
+    // $('.test').mouseenter(function () {
+    //     $(this).fadeOut(1000);
+    // })
+</script>

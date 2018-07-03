@@ -73,7 +73,7 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${requestScope.myGoods}" var="myg" varStatus="loop">
-                        <tr data-am-scrollspy="{animation: 'slide-bottom'}">
+                        <tr class="goodsItem" data-am-scrollspy="{animation: 'slide-bottom'}">
                             <td>${myg.goodsid}</td>
                             <td>${myg.goodsname}</td>
                             <td>${requestScope.classifyName[loop.count-1]}</td>
@@ -265,7 +265,8 @@
 </html>
 <script>
     $('.deleteGoods').click(function () {
-        var goodsid = $(this).data('id');
+        var $dg = $(this);
+        var goodsid = $dg.data('id');
         console.log(goodsid);
         $('#deleteModal').modal({
             relatedTarget: this,
@@ -275,13 +276,15 @@
                     type: 'POST',
                     data: {"goodsid": goodsid},
                     success: function (result) {
-
                         if (result.code === 100) {
+                            // $dg.parents('.goodsItem').fadeOut(1000);
                             $.toast({
                                 heading: "Success",
                                 text: 'Yes! 删除成功 <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                 showHideTransition: 'slide',
-                                hideAfter: false,
+                                afterHidden: function () {
+                                    window.location.reload();
+                                },
                                 position: 'top-right',
                                 icon: 'success'
                             })
@@ -338,7 +341,9 @@
                                         text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                         showHideTransition: 'slide',
                                         icon: 'success',
-                                        hideAfter: false,
+                                        afterHidden: function () {
+                                            window.location.reload();
+                                        },
                                         position: 'top-right'
                                     })
                                 } else {
@@ -391,7 +396,9 @@
                                 heading: "Success",
                                 text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                 showHideTransition: 'slide',
-                                hideAfter: false,
+                                afterHidden: function () {
+                                    window.location.reload();
+                                },
                                 icon: 'success',
                                 position: 'top-right'
                             })

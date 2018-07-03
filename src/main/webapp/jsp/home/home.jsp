@@ -22,8 +22,7 @@
 <body>
 <div class="hmtop">
     <!--顶部导航条 -->
-    <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
-    <div class="clear"></div>
+    <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 </div>
 <div class="banner">
     <!--轮播 -->
@@ -43,14 +42,13 @@
             </li>
         </ul>
     </div>
-    <div class="clear"></div>
 </div>
 <div class="shopNav">
     <div class="slideall">
         <div class="long-title"><span class="all-goods">全部分类</span></div>
         <div class="nav-cont">
             <ul>
-                <li class="index" style="padding-left: 690px">
+                <li class="index">
                     <a href="${APP_PATH}/toGoodsManage"
                        style="font-size: 20px;background:#000000;color: #f3f6ff">发布商品</a>
                 </li>
@@ -152,46 +150,10 @@
                 </div>
             </div>
         </div>
-        <!--轮播-->
-        <script type="text/javascript">
-            function fun1() {
-                $('.am-slider').flexslider();
-            };
-            $(document).ready(function () {
-                $("li").hover(function () {
-                    $(".category-content .category-list li.first .menu-in").css("display", "none");
-                    $(".category-content .category-list li.first").removeClass("hover");
-                    $(this).addClass("hover");
-                    $(this).children("div.menu-in").css("display", "block")
-                }, function () {
-                    $(this).removeClass("hover")
-                    $(this).children("div.menu-in").css("display", "none")
-                });
-            })
-
-        </script>
-        <!--走马灯 -->
-        <div class="clear"></div>
     </div>
-    <script type="text/javascript">
-        if ($(window).width() > 640) {
-            function autoScroll(obj) {
-                $(obj).find("ul").animate({
-                    marginTop: "-39px"
-                }, 500, function () {
-                    $(this).css({
-                        marginTop: "0px"
-                    }).find("li:first").appendTo(this);
-                })
-            }
-
-            $(function () {
-                setInterval('autoScroll(".demo")', 3000);
-            })
-        }
-
-    </script>
 </div>
+
+
 <div class="shopMainbg">
     <div class="shopMain" id="shopmain">
         <!--今日推荐 -->
@@ -448,7 +410,7 @@
     </div>
 </div>
 
-<a href="##" data-am-smooth-scroll="" class="am-icon-btn am-icon-rocket amdoc-totop" style="display: inline;"></a>
+
 
 <script type="text/javascript " src="${APP_PATH}/basic/js/quick_links.js "></script>
 </body>

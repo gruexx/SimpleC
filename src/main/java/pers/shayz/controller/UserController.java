@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.*;
 import pers.shayz.service.*;
+import pers.shayz.util.MailUtil;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.*;
 
 
@@ -76,7 +82,17 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
+        user.setUserpassword(encryptBasedDes(user.getUserpassword()));
         userService.saveUser(user);
+
+        MailUtil mailUtil = new MailUtil();
+        try {
+            mailUtil.sendActiveMail(user.getUseremail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("/doRegister: 发送成功");
+
         return Msg.success();
     }
 
@@ -110,6 +126,8 @@ public class UserController {
 //        session.setAttribute("useremail", user.getUseremail());
 //        session.setAttribute("useraddress", user.getAddress());
 
+        user.setUserpassword(decryptBasedDes(user.getUserpassword()));
+        System.out.println("/doLogin: " + user);
         session.setAttribute("user", user);
 
         return "redirect:/toHome";
@@ -119,7 +137,7 @@ public class UserController {
     @ResponseBody
     public Msg validateLogin(@RequestParam("userlogin") String userlogin,
                              @RequestParam("userpassword") String userpassword) {
-        if (userlogin.equals("") || userpassword.equals("")) {
+        if ("".equals(userlogin) || "".equals(userpassword)) {
             return Msg.fail().add("msg", "用户名/密码不为空！！！");
         }
 
@@ -136,11 +154,15 @@ public class UserController {
             return Msg.fail().add("msg", "用户不存在！！！");
         }
 
-        if (user.getUserpassword().equals(userpassword)) {
-            return Msg.success();
-        } else {
+        if (!decryptBasedDes(user.getUserpassword()).equals(userpassword)) {
             return Msg.fail().add("msg", "用户名密码不匹配！！！");
         }
+
+        if (user.getIsactive() == 0) {
+            return Msg.fail().add("msg", "账号未激活！！！");
+        }
+
+        return Msg.success();
     }
 
 //    @RequestMapping(value = "/checkUsername", method = RequestMethod.POST)
@@ -350,6 +372,7 @@ public class UserController {
 
         User userNow = (User) session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
+        newUser.setUserpassword(encryptBasedDes(newUser.getUserpassword()));
         System.out.println("/passwordUpdate: " + newUser);
         userService.updateUser(newUser);
 
@@ -361,7 +384,7 @@ public class UserController {
     @ResponseBody
     public Msg confirmOldPassword(@RequestParam("oldPassword")String oldPassword, HttpSession session) {
         User user = (User)session.getAttribute("user");
-        if (user.getUserpassword().equals(oldPassword)){
+        if (decryptBasedDes(user.getUserpassword()).equals(oldPassword)){
             return Msg.success();
         }else {
             return Msg.fail();
@@ -373,16 +396,115 @@ public class UserController {
         return "home/lottery_draw";
     }
 
-    @RequestMapping(value = "/updateChaopoint")
-    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
+//    @RequestMapping(value = "/updateChaopoint")
+//    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
+//
+//        System.out.println("/updateChaopoint: "+chaoPoint);
+//
+//        User user = (User)session.getAttribute("user");
+//        int cp = Integer.parseInt(chaoPoint);
+//        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
+//
+//        session.setAttribute("user", userService.getUser(user.getUserid()));
+//        return "home/lottery_draw";
+//    }
 
-        System.out.println("/updateChaopoint: "+chaoPoint);
+    @RequestMapping(value = "/lotteryChaopoint")
+    public String lotteryChaopoint(HttpSession session,@RequestParam("award")String chaoPoint){
+
+        System.out.println("/lotteryChaopoint: "+chaoPoint);
 
         User user = (User)session.getAttribute("user");
         int cp = Integer.parseInt(chaoPoint);
-        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
+        int oldchaopoint = user.getUserchaopoint();
+
+        System.out.print("/lotteryChaopoint: ");
+        System.out.println(oldchaopoint+cp);
+        userService.updateUserChaoPointByUserId(user.getUserid(),oldchaopoint+cp-100);
 
         session.setAttribute("user", userService.getUser(user.getUserid()));
         return "home/lottery_draw";
     }
+
+    @RequestMapping(value = "/charge", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg charge(HttpSession session, @RequestParam("remainder")String remainder) {
+        User user = (User)session.getAttribute("user");
+        Double oldremainder = user.getUserremainder();
+        user.setUserremainder(oldremainder+Double.parseDouble(remainder));
+        userService.updateUser(user);
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/doActive/{useremail}")
+    public String setIsLogin(@PathVariable("useremail")String useremail, ModelMap modelMap){
+        System.out.println("/doActive/{useremail}: "+useremail);
+        byte[] decoded = Base64.getDecoder().decode(useremail);
+        String uemail = new String(decoded);
+        System.out.println("/doActive/{useremail}: "+uemail);
+        User user = userService.getUserByEmail(uemail);
+        System.out.println("/doActive/{useremail}: "+user);
+        if(user.getIsactive()==1){
+            modelMap.addAttribute("msg", "该账号已经激活了！！！");
+        }else {
+            user.setIsactive(1);
+            modelMap.addAttribute("msg", "成功激活账号！！！");
+        }
+        userService.updateUser(user);
+        System.out.println("/doActive/{useremail}: "+user);
+
+        return "common/active";
+    }
+
+
+    /**
+     * DES加密解密代码
+     */
+    private static final byte[] DES_KEY={21,1,-110,82,-32,-85,-128,-65};
+    @SuppressWarnings("restriction")
+    public static String encryptBasedDes(String data){
+        String encryptedData;
+        try {
+            //DES算法要求有一个可信任的随机数源
+            SecureRandom sr=new SecureRandom();
+            DESKeySpec deskey=new DESKeySpec(DES_KEY);
+            //创建一个秘钥工厂，然后用它把DESKeySpec转换成一个SecretKey对象
+            SecretKeyFactory keyFactory=SecretKeyFactory.getInstance("DES");
+            SecretKey key=keyFactory.generateSecret(deskey);
+            //加密对象
+            Cipher cipher=Cipher.getInstance("DES");
+            cipher.init(Cipher.ENCRYPT_MODE, key,sr);
+            //加密
+            encryptedData=Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes()));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException("加密错误，错误信息：",e);
+        }
+        return encryptedData;
+    }
+    @SuppressWarnings("restriction")
+    public static String decryptBasedDes(String cryptData){
+        String decryptedData;
+
+        try {
+            //DES算法要求有一个可信任的随机数源
+            SecureRandom sr=new SecureRandom();
+            DESKeySpec deskey=new DESKeySpec(DES_KEY);
+            //创建一个秘钥工厂，然后用它把DESKeySpec转换成一个SecretKey对象
+            SecretKeyFactory keyFactory=SecretKeyFactory.getInstance("DES");
+            SecretKey key=keyFactory.generateSecret(deskey);
+            //解密对象
+            Cipher cipher=Cipher.getInstance("DES");
+            cipher.init(Cipher.DECRYPT_MODE, key,sr);
+            //把字符串进行解码，解码为字节数组，并解密
+            decryptedData=new String(cipher.doFinal(Base64.getDecoder().decode(cryptData)));
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException("解密错误，错误信息：",e);
+        }
+
+        return decryptedData;
+    }
+
 }
