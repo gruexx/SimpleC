@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.AddressMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.Address">
+    <id column="addressid" jdbcType="INTEGER" property="addressid" />
+    <result column="userid_fk_address" jdbcType="INTEGER" property="useridFkAddress" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="isdefult" jdbcType="INTEGER" property="isdefult" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="detiladdress" jdbcType="VARCHAR" property="detiladdress" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    addressid, userid_fk_address, address, flag, isdefult, phone, receiver, province, 
+    city, area, detiladdress
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.AddressExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from address
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.AddressExample">
+    delete from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.Address">
+    insert into address (addressid, userid_fk_address, address, 
+      flag, isdefult, phone, 
+      receiver, province, city, 
+      area, detiladdress)
+    values (#{addressid,jdbcType=INTEGER}, #{useridFkAddress,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{isdefult,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{receiver,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{detiladdress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        addressid,
+      </if>
+      <if test="useridFkAddress != null">
+        userid_fk_address,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="isdefult != null">
+        isdefult,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="receiver != null">
+        receiver,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="detiladdress != null">
+        detiladdress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressid != null">
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="useridFkAddress != null">
+        #{useridFkAddress,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="isdefult != null">
+        #{isdefult,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detiladdress != null">
+        #{detiladdress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.AddressExample" resultType="java.lang.Long">
+    select count(*) from address
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update address
+    <set>
+      <if test="record.addressid != null">
+        addressid = #{record.addressid,jdbcType=INTEGER},
+      </if>
+      <if test="record.useridFkAddress != null">
+        userid_fk_address = #{record.useridFkAddress,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdefult != null">
+        isdefult = #{record.isdefult,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detiladdress != null">
+        detiladdress = #{record.detiladdress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update address
+    set addressid = #{record.addressid,jdbcType=INTEGER},
+      userid_fk_address = #{record.useridFkAddress,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER},
+      isdefult = #{record.isdefult,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      receiver = #{record.receiver,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      detiladdress = #{record.detiladdress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Address">
+    update address
+    <set>
+      <if test="useridFkAddress != null">
+        userid_fk_address = #{useridFkAddress,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="isdefult != null">
+        isdefult = #{isdefult,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detiladdress != null">
+        detiladdress = #{detiladdress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Address">
+    update address
+    set userid_fk_address = #{useridFkAddress,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      isdefult = #{isdefult,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      detiladdress = #{detiladdress,jdbcType=VARCHAR}
+    where addressid = #{addressid,jdbcType=INTEGER}
+  </update>
+</mapper>

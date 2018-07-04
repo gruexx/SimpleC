@@ -8,12 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/ShopcartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/ShopcartController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/introduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/introduction.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/pay.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/pay.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/shopcart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/shopcart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/controller/ShopcartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/controller/ShopcartController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -62,50 +65,55 @@
     </expand>
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SimpleC" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="register.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp">
+      <file leaf-file-name="ShopcartController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="129" column="105" lean-forward="true" selection-start-line="129" selection-start-column="105" selection-end-line="129" selection-end-column="105" />
+              <caret line="182" selection-start-line="182" selection-end-line="182" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
+      <file leaf-file-name="shopcart.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="386" column="73" lean-forward="true" selection-start-line="386" selection-start-column="73" selection-end-line="386" selection-end-column="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#16788#16820#0" expanded="true" />
-                <element signature="e#17679#17711#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="261">
+              <caret line="243" column="8" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="top.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp">
+      <file leaf-file-name="AddressController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/AddressController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
-              <folding>
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1">
+              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
+      <file leaf-file-name="address.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+            <state relative-caret-position="-646">
+              <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pay.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="602">
+              <caret line="214" column="57" lean-forward="true" selection-start-line="214" selection-start-column="57" selection-end-line="214" selection-end-column="57" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ins#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#5;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,8 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ai-top</find>
-      <find>&lt;a</find>
       <find>userId</find>
       <find>descri</find>
       <find>..</find>
@@ -154,6 +160,8 @@
       <find>ses</find>
       <find>rotateFn</find>
       <find>jst</find>
+      <find>address</find>
+      <find>submitOrder</find>
     </findStrings>
     <replaceStrings>
       <replace>userName</replace>
@@ -176,18 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderItemService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Orderitem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Orderdetails.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderdetailsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/ClassifyController.java" />
-        <option value="$PROJECT_DIR$/generator.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/bill.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/billlist.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/orderitem.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/giterror.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Message.java" />
-        <option value="$PROJECT_DIR$/src/test/java/pers/shayz/dao/TestDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/OrderItemController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/interceptor/LoginInterceptor.java" />
@@ -202,31 +198,43 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/dao/AuthImage.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/goodsmanage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/orderdetails.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/GoodsController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rebel.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/ShopcartService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/simplechange.html" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/success.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/User.java" />
         <option value="$PROJECT_DIR$/src/main/resources/springMvc-servlet.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/util/MailUtil.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/util/DesUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/util/MailUtil.java" />
+        <option value="$PROJECT_DIR$/src/test/java/pers/shayz/util/MailUtilTest.java" />
+        <option value="$PROJECT_DIR$/generator.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/success.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/addressSelect/index.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/pcasunzip.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/ssx.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Shopcart.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/ShopcartService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/service/AddressService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Address.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/AddressController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp" />
       </list>
     </option>
   </component>
@@ -271,10 +279,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="141" />
-    <option name="y" value="144" />
-    <option name="width" value="1515" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="22" />
+    <option name="width" value="1703" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -283,7 +291,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -447,7 +456,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="UserImage" type="462c0819:PsiDirectoryNode" />
+              <item name="myimages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="picture" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
@@ -465,8 +491,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -485,11 +510,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\common" />
-      <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\util" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp" />
+      <recent name="D:\JetBrains\SimpleC\readme" />
+      <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\service" />
+      <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\controller" />
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp\static\picture" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
-      <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\dao" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="pers.shayz.bean" />
@@ -530,6 +555,29 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="MailUtilTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SimpleC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pers.shayz.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="pers.shayz.util" />
+      <option name="MAIN_CLASS_NAME" value="pers.shayz.util.MailUtilTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="TestDao.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SimpleC" />
@@ -806,9 +854,11 @@
       <item itemvalue="JUnit.TestDao.test3" />
       <item itemvalue="Tomcat Server.classify.jsp" />
       <item itemvalue="Tomcat Server.home.jsp" />
+      <item itemvalue="JUnit.MailUtilTest.test1" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MailUtilTest.test1" />
         <item itemvalue="JUnit.TestDao.test1" />
         <item itemvalue="JUnit.TestDao.test3" />
         <item itemvalue="Tomcat Server.home.jsp" />
@@ -865,23 +915,13 @@
       <workItem from="1530513400666" duration="14693000" />
       <workItem from="1530576324215" duration="2323000" />
       <workItem from="1530578963787" duration="12194000" />
-      <workItem from="1530599562380" duration="11148000" />
+      <workItem from="1530599562380" duration="11639000" />
+      <workItem from="1530662550434" duration="14519000" />
+      <workItem from="1530685975836" duration="11886000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TestDao_test2 - 2018.06.19 at 11h 55m 56s.xml">
-      <configuration name="TestDao.test2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestDao_test2 - 2018.06.19 at 11h 56m 26s.xml">
-      <configuration name="TestDao.test2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestDao_test2 - 2018.06.19 at 12h 07m 43s.xml">
-      <configuration name="TestDao.test2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestDao_test1 - 2018.06.20 at 10h 57m 05s.xml">
-      <configuration name="TestDao.test1" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TestDao_test1 - 2018.06.20 at 11h 02m 51s.xml">
       <configuration name="TestDao.test1" configurationId="JUnit" />
     </history-entry>
@@ -900,9 +940,21 @@
     <history-entry file="TestDao_test1 - 2018.06.29 at 17h 20m 45s.xml">
       <configuration name="TestDao.test1" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MailUtilTest_test1 - 2018.07.04 at 08h 36m 49s.xml">
+      <configuration name="MailUtilTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MailUtilTest_test1 - 2018.07.04 at 08h 38m 08s.xml">
+      <configuration name="MailUtilTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MailUtilTest_test1 - 2018.07.04 at 08h 38m 20s.xml">
+      <configuration name="MailUtilTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MailUtilTest_test1 - 2018.07.04 at 08h 47m 18s.xml">
+      <configuration name="MailUtilTest.test1" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="384452000" />
+    <option name="totallyTimeSpent" value="411348000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -914,48 +966,47 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1936" height="1066" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.5021299" side_tool="true" weight="0.22903226" />
+      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50159746" side_tool="true" weight="0.38412017" />
       <window_info anchor="bottom" id="Application Servers" order="13" weight="0.3296582" />
       <window_info anchor="bottom" id="JRebel Console" order="16" sideWeight="0.50106496" side_tool="true" weight="0.38626608" />
       <window_info anchor="right" id="Redis Servers" order="9" />
       <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49861112" weight="0.32960597" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="JRebel Executor" order="16" sideWeight="0.49893504" visible="true" weight="0.2918455" />
+      <window_info anchor="bottom" id="JRebel Executor" order="16" sideWeight="0.49893504" weight="0.22961374" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="6" weight="0.1685196" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Database" order="6" weight="0.1682641" />
+      <window_info id="Structure" order="1" sideWeight="0.5032189" side_tool="true" weight="0.20926517" />
       <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49861112" weight="0.24973376" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35053763" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.22424893" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.22318527" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32903227" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978701" weight="0.38136512" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49840257" weight="0.39055794" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978701" weight="0.38090128" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.3297491" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3296582" />
       <window_info anchor="bottom" id="SQL" order="11" />
       <window_info anchor="bottom" id="Problems" order="16" weight="0.32903227" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49607536" visible="true" weight="0.20500532" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4965157" visible="true" weight="0.20926517" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32960597" />
-      <window_info id="Web" order="6" side_tool="true" />
-      <window_info id="JRebel" order="2" sideWeight="0.50392467" side_tool="true" weight="0.20500532" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.24731183" />
+      <window_info id="Web" order="6" sideWeight="0.5034843" side_tool="true" weight="0.20926517" />
+      <window_info id="JRebel" order="2" sideWeight="0.5032189" side_tool="true" weight="0.20926517" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Favorites" order="5" sideWeight="0.5032189" side_tool="true" weight="0.20926517" />
       <window_info anchor="right" id="Coverage" order="10" sideWeight="0.5013889" side_tool="true" weight="0.32960597" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="16" weight="0.32899022" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.24731183" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
@@ -999,6 +1050,42 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -1012,227 +1099,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4052" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="997">
-          <caret line="159" column="46" lean-forward="true" selection-start-line="159" selection-start-column="46" selection-end-line="159" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/jigsaw.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/verify/css/verify.css" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/chaopoint.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scInstruction/sc.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scInstruction/style.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scInstruction/introduction.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scInstruction/bg1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/scInstruction/1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/interceptor/VerifyCodeUtils.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/dao/AuthImage.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Goods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="74" column="88" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/home.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="66" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/orderdetails.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="131" column="142" lean-forward="true" selection-start-line="131" selection-start-column="142" selection-end-line="131" selection-end-column="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/GoodsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
-          <folding>
-            <element signature="e#741#742#0" expanded="true" />
-            <element signature="e#798#799#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rebel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/myimages/turntable.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1809">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2023">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
-          <folding>
-            <element signature="e#5831#5832#0" expanded="true" />
-            <element signature="e#5868#5869#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Shopcart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/success.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jigsaw/index.html" />
-    <entry file="das://3f27a044-1053-4e67-83b7-8f63d5189251/schema/simplechange/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#sapn#0;n#p#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/simplechange.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jigsaw/jigsaw.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="18" lean-forward="true" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="14" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jigsaw/jigsaw.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="116" column="6" selection-start-line="116" selection-start-column="6" selection-end-line="116" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/publish.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/ShopcartService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/goodsmanage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6766">
-          <caret line="398" column="32" selection-start-line="398" selection-start-column="32" selection-end-line="400" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="117" column="50" selection-start-line="117" selection-start-column="50" selection-end-line="117" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
-          <folding>
-            <element signature="e#1426#1427#0" expanded="true" />
-            <element signature="e#1486#1487#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/generator/Generator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="129" column="44" lean-forward="true" selection-start-line="129" selection-start-column="44" selection-end-line="129" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1255,48 +1121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="90" column="81" selection-start-line="90" selection-start-column="81" selection-end-line="90" selection-end-column="81" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#aside#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#aside#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#2;n#ul#0;n#aside#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#3;n#ul#0;n#aside#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#7378#7385#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/util/MailUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="77" column="71" lean-forward="true" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/GoodsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="789">
-          <caret line="84" column="59" selection-start-line="84" selection-start-column="59" selection-end-line="84" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1304,51 +1128,332 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp">
+    <entry file="file://$PROJECT_DIR$/src/test/java/pers/shayz/util/MailUtilTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2479">
-          <caret line="367" column="42" selection-start-line="367" selection-start-column="40" selection-end-line="367" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="289">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="733">
+          <caret line="44" column="63" selection-start-line="44" selection-start-column="63" selection-end-line="44" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="111" column="5" selection-start-line="111" selection-start-column="5" selection-end-line="111" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Comment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/MessageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/interceptor/LoginInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/ClassifyService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/CommentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/GoodsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/MessageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderdetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderItemService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/util/DesUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/util/MailUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="69" column="62" selection-start-line="69" selection-start-column="62" selection-end-line="69" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/userinfo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1550">
+          <caret line="153" column="69" selection-start-line="153" selection-start-column="69" selection-end-line="153" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/orderdetails.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-404">
+          <caret line="131" column="142" selection-start-line="131" selection-start-column="142" selection-end-line="131" selection-end-column="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/orderitem.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1559" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/goodsmanage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="111" column="54" selection-start-line="111" selection-start-column="47" selection-end-line="111" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/success.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="36" column="32" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/publish.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/addressSelect/js/plugins/jquery/dist/jquery.min.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/addressSelect/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pcasunzip.js" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/ClassifyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/top.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="90" column="36" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+        <state relative-caret-position="189">
+          <caret line="74" column="40" lean-forward="true" selection-start-line="71" selection-start-column="12" selection-end-line="74" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Goods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="27" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+        <state relative-caret-position="397">
+          <caret line="48" column="52" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="52" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+          <folding>
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1486#1487#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/ShopcartService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="72" column="63" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/classify.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="129" column="105" lean-forward="true" selection-start-line="129" selection-start-column="105" selection-end-line="129" selection-end-column="105" />
+        <state relative-caret-position="160">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/service/AddressService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Address.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="85">
+            <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/ssx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-562">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="386" column="73" lean-forward="true" selection-start-line="386" selection-start-column="73" selection-end-line="386" selection-end-column="73" />
+        <state relative-caret-position="3281">
+          <caret line="215" column="5" selection-start-line="215" selection-start-column="5" selection-end-line="215" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/GoodsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="35" column="56" lean-forward="true" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16788#16820#0" expanded="true" />
-            <element signature="e#17679#17711#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/bean/Shopcart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/introduction.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="242" column="93" lean-forward="true" selection-start-line="242" selection-start-column="93" selection-end-line="242" selection-end-column="93" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/AddressController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/OrderitemMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/OrderItemController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/shopcart.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="243" column="8" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/ShopcartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-646">
+          <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/pay.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="602">
+          <caret line="214" column="57" lean-forward="true" selection-start-line="214" selection-start-column="57" selection-end-line="214" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#ins#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

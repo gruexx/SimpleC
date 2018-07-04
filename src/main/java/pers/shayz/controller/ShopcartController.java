@@ -6,10 +6,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pers.shayz.bean.Goods;
-import pers.shayz.bean.Msg;
-import pers.shayz.bean.Shopcart;
-import pers.shayz.bean.User;
+import pers.shayz.bean.*;
+import pers.shayz.service.AddressService;
 import pers.shayz.service.GoodsService;
 import pers.shayz.service.ShopcartService;
 
@@ -31,6 +29,9 @@ public class ShopcartController {
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    AddressService addressService;
 
     @RequestMapping(value = "/toShopcart")
     public String toShopcart(HttpSession session, ModelMap modelMap) {
@@ -88,21 +89,29 @@ public class ShopcartController {
 
     @RequestMapping(value = "/deleteShopcart")
     @ResponseBody
-    public Msg deleteShopcart(@RequestParam(value = "shopcartid") String shopcartid) {
+    public Msg deleteShopcart(@RequestParam(value = "shopcartid") String shopcartid, HttpSession session) {
         System.out.println("/deleteShopcart: " + shopcartid);
         shopcartService.deleteByShopCartId(Integer.parseInt(shopcartid));
+
+        User user = (User)session.getAttribute("user");
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
         return Msg.success();
     }
 
     @RequestMapping(value = "/deleteAllShopcart")
     @ResponseBody
-    public Msg deleteAllShopcart(@RequestParam(value = "shopcartids") String shopcartids) {
+    public Msg deleteAllShopcart(@RequestParam(value = "shopcartids") String shopcartids, HttpSession session) {
         System.out.println("/deleteAllShopcart: " + shopcartids);
         String[] ids = shopcartids.split(",");
         System.out.println("/deleteAllShopcart: " + Arrays.toString(ids));
         for (String id : ids) {
             shopcartService.deleteByShopCartId(Integer.parseInt(id));
         }
+
+        User user = (User)session.getAttribute("user");
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
         return Msg.success();
     }
 
@@ -122,6 +131,16 @@ public class ShopcartController {
         modelMap.addAttribute("ShopcartList", shopcartlist);
         modelMap.addAttribute("GoodsList", goodslist);
         modelMap.addAttribute("totalprice", totalprice);
+
+        User user = (User) session.getAttribute("user");
+        List<Address> list = addressService.getAllAddress(user.getUserid());
+        modelMap.addAttribute("addressList", list);
+
+        List<Integer> isdefault = new ArrayList<>();
+        for (Address address : list) {
+            isdefault.add(address.getIsdefult());
+        }
+        modelMap.addAttribute("isdefault", isdefault);
         return "home/pay";
     }
 
@@ -143,5 +162,25 @@ public class ShopcartController {
     @RequestMapping(value = "/toSuccess")
     public String toSuccess() {
         return "home/success";
+    }
+
+    @RequestMapping(value = "/addToShopcart")
+    @ResponseBody
+    public Msg addToShopcart(Shopcart shopcart, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        shopcart.setUseridFkShopcart(user.getUserid());
+        System.out.println("/addToShopcart: "+shopcart);
+        shopcartService.saveShopcart(shopcart, user.getUserid());
+
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/Balance")
+    @ResponseBody
+    public Msg Balance(HttpSession session) {
+
+        return Msg.success();
     }
 }

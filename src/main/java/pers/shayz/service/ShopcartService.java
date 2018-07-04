@@ -64,4 +64,17 @@ public class ShopcartService {
 
         return shopcartMapper.selectByExample(shopcartExample);
     }
+
+    public void saveShopcart(Shopcart shopcart, Integer userid) {
+        List<Shopcart> list = getShopcartByUserId(userid);
+        for (Shopcart sc : list) {
+            if(sc.getGoodsidFkShopcart().equals(shopcart.getGoodsidFkShopcart())){
+                sc.setNumber(sc.getNumber()+shopcart.getNumber());
+                shopcartMapper.updateByPrimaryKeySelective(sc);
+                return;
+            }
+        }
+
+        shopcartMapper.insertSelective(shopcart);
+    }
 }

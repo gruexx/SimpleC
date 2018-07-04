@@ -11,6 +11,8 @@ public class Orderitem {
 
     private Integer flag;
 
+    private String identifier;
+
     public Integer getOrderitemid() {
         return orderitemid;
     }
@@ -49,5 +51,13 @@ public class Orderitem {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier == null ? null : identifier.trim();
     }
 }

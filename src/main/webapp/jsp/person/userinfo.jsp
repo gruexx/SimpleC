@@ -125,12 +125,6 @@
                                        value="${sessionScope.user.userphone}"></div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-phone" class="am-form-label">地址</label>
-                            <div class="am-form-content">
-                                <input name="address" id="user-address" placeholder="address" type="text"
-                                       value="${sessionScope.user.address}"></div>
-                        </div>
-                        <div class="am-form-group">
                             <label for="user-email" class="am-form-label">电子邮件</label>
                             <div class="am-form-content">
                                 <input name="useremail" id="user-email" placeholder="Email" type="email"
