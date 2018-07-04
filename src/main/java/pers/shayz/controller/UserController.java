@@ -215,11 +215,6 @@ public class UserController {
         return "person/userinfo";
     }
 
-    @RequestMapping(value = "/toAddress")
-    public String toAddress() {
-        return "person/address";
-    }
-
     @RequestMapping(value = "/toBill")
     public String toBill() {
         return "person/bill";

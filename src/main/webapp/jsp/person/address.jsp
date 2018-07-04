@@ -21,6 +21,9 @@
     <link href="${APP_PATH}/css/addstyle.css" rel="stylesheet" type="text/css">
 
     <script src="${APP_PATH}/js/ssx.js" type="text/javascript"></script>
+
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -57,42 +60,30 @@
                 </div>
                 <hr/>
                 <ul class="am-avg-sm-1 am-avg-md-3 am-thumbnails">
-                    <li class="user-addresslist defaultAddr">
-                        <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-                        <p class="new-tit new-p-re">
-                            <span class="new-txt">${sessionScope.user.username}</span>
-                            <span class="new-txt-rd2">${sessionScope.user.userphone}</span>
-                        </p>
-                        <div class="new-mu_l2a new-p-re">
-                            <p class="new-mu_l2cw">
-                                <span class="title">地址：</span>
-                                <span></span>
+                    <c:forEach items="${requestScope.addressList}" var="address">
+                        <li class="user-addresslist defaultAddr" data-id="${address.addressid}">
+
+                            <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
+                            <p class="new-tit new-p-re">
+                                <span class="new-txt">${address.receiver}</span>
+                                <span class="new-txt-rd2">${address.phone}</span>
                             </p>
-                        </div>
-                        <div class="new-addr-btn">
-                            <a href="#"><i class="am-icon-edit"></i>编辑</a>
-                            <span class="new-addr-bar">|</span>
-                            <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-                        </div>
-                    </li>
-                    <li class="user-addresslist">
-                        <span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-                        <p class="new-tit new-p-re">
-                            <span class="new-txt">${sessionScope.user.username}</span>
-                            <span class="new-txt-rd2">${sessionScope.user.userphone}</span>
-                        </p>
-                        <div class="new-mu_l2a new-p-re">
-                            <p class="new-mu_l2cw">
-                                <span class="title">地址：</span>
-                                <span></span>
-                            </p>
-                        </div>
-                        <div class="new-addr-btn">
-                            <a href="#"><i class="am-icon-edit"></i>编辑</a>
-                            <span class="new-addr-bar">|</span>
-                            <a href="javascript:void(0);" onclick="delClick(this);"><i class="am-icon-trash"></i>删除</a>
-                        </div>
-                    </li>
+                            <div class="new-mu_l2a new-p-re">
+                                <p class="new-mu_l2cw">
+                                    <span class="title">地址：</span>
+                                    <span>${address.address}</span>
+                                </p>
+                            </div>
+                            <div class="new-addr-btn">
+                                <a href="#" class="am-icon-edit" data-id="${address.addressid}"><i></i>编辑</a>
+                                <span class="new-addr-bar">|</span>
+                                <a href="javascript:void(0);" class="deladdress"
+                                   data-id="${address.addressid}">
+                                    <i class="am-icon-trash"></i>删除
+                                </a>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
                 <div class="clear"></div>
                 <a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
@@ -118,37 +109,26 @@
                                     <div class="am-form-content">
                                         <input id="user-phone" placeholder="手机号必填" type="email"></div>
                                 </div>
-                                <%--<div class="am-form-group">--%>
-                                <%--<label class="am-form-label">所在地</label>--%>
-                                <%--<div class="am-form-content address">--%>
-                                <%--<select data-am-selected>--%>
-                                <%--<option value="a">浙江省</option>--%>
-                                <%--<option value="b" selected>湖北省</option>--%>
-                                <%--</select>--%>
-                                <%--<select data-am-selected>--%>
-                                <%--<option value="a">温州市</option>--%>
-                                <%--<option value="b" selected>武汉市</option>--%>
-                                <%--</select>--%>
-                                <%--<select data-am-selected>--%>
-                                <%--<option value="a">瑞安区</option>--%>
-                                <%--<option value="b" selected>洪山区</option>--%>
-                                <%--</select>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+
                                 <div class="am-form-group" style="display: inline;float: left;">
                                     <label class="am-form-label">选择地址</label>
 
                                     <div class="am-form-content">
-                                        <select name="user.province" id="province"
+                                        <select name="user.province"
+                                                id="selectprovince"
                                                 style="width: 191px;float: left;"></select>
-                                        <select name="user.city" id="city" style="width: 191px;float: left;"></select>
-                                        <select name="user.area" id="area"
+                                        <select name="user.city"
+                                                id="selectcity"
+                                                style="width: 191px;float: left;"></select>
+                                        <select name="user.area"
+                                                id="selectarea"
                                                 style="width: 191px;float: left;"></select><br>
                                     </div>
                                     <script language="javascript" defer>
                                         new PCAS("user.province", "user.city", "user.area", "", "", "");
                                     </script>
                                 </div>
+
                                 <div class="am-form-group">
                                     <label for="user-intro" class="am-form-label">详细地址</label>
                                     <div class="am-form-content">
@@ -157,9 +137,16 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
-                                    <div class="am-u-sm-9 am-u-sm-push-3"><a class="am-btn am-btn-danger">保存</a> <a
-                                            href="javascript: void(0)" class="am-close am-btn am-btn-danger"
-                                            data-am-modal-close>取消</a></div>
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <a id="save" class="am-btn am-btn-danger"
+                                           style="display: inline;float: left ">保存</a>
+                                        <a id="edit" class="am-btn am-btn-danger"
+                                           style="display: none;float: left">修改</a>
+                                        <a href="javascript: void(0)" id="cancel"
+                                           class="am-close am-btn am-btn-danger"
+                                           data-am-modal-close
+                                           style="display: inline;float: left ">取消</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -205,14 +192,181 @@
 </html>
 
 <script type="text/javascript">
+
+    $(function () {
+        var isdefault = JSON.parse('${requestScope.isdefault}');
+        console.log("isdefault: " + isdefault);
+
+        $('.user-addresslist').each(function (i) {
+
+            console.log("isdefault: " + isdefault[i]);
+
+            if (isdefault[i] !== 1) {
+                $(this).removeClass('defaultAddr');
+            }
+        });
+    });
+
+
     $(document).ready(function () {
         $(".user-addresslist").click(function () {
             $(this).addClass("defaultAddr").siblings().removeClass("defaultAddr");
+            var addressid = $(this).data('id');
+            $.ajax({
+                url: "${APP_PATH}/editDefault",
+                type: "POST",
+                data: {"addressid": addressid},
+            })
         });
         var $ww = $(window).width();
         if ($ww > 640) {
             $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
         }
-    })
+    });
 
+    $("#cancel").click(function () {
+        window.location.reload();
+    });
+
+    $("#save").click(function () {
+        var useridFkAddress = "${sessionScope.user.userid}";
+        var receiver = $('#user-name').val();
+        var phone = $('#user-phone').val();
+        var province = $('#selectprovince  option:selected').text();
+        var city = $('#selectcity option:selected').text();
+        var area = $('#selectarea option:selected').text();
+        var detiladdress = $('#user-intro').val();
+        $.ajax({
+            url: "${APP_PATH}/toSaveAddress",
+            type: "POST",
+            data: {
+                "receiver": receiver,
+                "phone": phone,
+                "province": province,
+                "city": city,
+                "area": area,
+                "detiladdress": detiladdress,
+                "useridFkAddress": useridFkAddress
+            },
+            success: function (result) {
+                if (result.code === 100) {
+                    $.toast({
+                        heading: "success",
+                        text: result.extend.success,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'success'
+                    });
+                    window.location.reload();
+                }
+                else {
+                    $.toast({
+                        heading: "fail",
+                        text: result.extend.fail,
+                        showHideTransition: 'slide',
+                        position: 'top-right'
+
+                    })
+                }
+            },
+            error: function () {
+                console.log("fail return");
+            }
+        })
+    });
+
+    $('.deladdress').click(function () {
+        var addressid = $(this).data('id');
+        $.ajax({
+            url: "${APP_PATH}/toDelAddress",
+            type: "POST",
+            data: {
+                "addressid": addressid
+            },
+            success: function () {
+                window.location.reload();
+            }
+        })
+
+    });
+
+    $('.am-icon-edit').click(function () {
+        var addressid = $(this).data('id');
+        $('#edit').css({
+            display: 'block'
+        });
+
+        $('#save').css({
+            display: 'none'
+        });
+
+        $('#edit').attr("data-id", $(this).data('id'));
+
+        $.ajax({
+            url: "${APP_PATH}/editAddress",
+            type: "POST",
+            data: {
+                "addressid": addressid
+            },
+            success: function (result) {
+
+                $('#user-name').val(result.receiver);
+                $('#user-phone').val(result.phone);
+                $('#user-intro').val(result.detiladdress);
+                new PCAS("user.province", "user.city", "user.area", result.province, result.city, result.area);
+                //此处添加下拉框对应
+            }
+        })
+
+    });
+
+
+    $('#edit').click(function () {
+        $(this).css({
+            display: 'none'
+        });
+
+        var addressid = $(this).data('id');
+
+        var userid = "${sessionScope.user.userid}";
+        var receiver = $('#user-name').val();
+        var phone = $('#user-phone').val();
+        var province = $('#selectprovince  option:selected').text();
+        var city = $('#selectcity option:selected').text();
+        var area = $('#selectarea option:selected').text();
+        var detiladdress = $('#user-intro').val();
+        $.ajax({
+            url: "${APP_PATH}/toReplaceAddress",
+            type: "POST",
+            data: {
+                "receiver": receiver,
+                "phone": phone,
+                "province": province,
+                "city": city,
+                "area": area,
+                "detiladdress": detiladdress,
+                "userid": userid,
+                "addressid": addressid
+            },
+            success: function (result) {
+                if (result.code === 100) {
+                    window.location.reload();
+                }
+                else {
+                    $.toast({
+                        heading: "fail",
+                        text: result.extend.fail,
+                        showHideTransition: 'slide',
+                        hideAfter: false,
+                        position: 'top-right'
+
+                    })
+                }
+            },
+            error: function () {
+                console.log("fail return");
+            }
+        })
+
+    });
 </script>

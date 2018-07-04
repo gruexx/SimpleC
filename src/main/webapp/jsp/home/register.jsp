@@ -28,7 +28,8 @@
     <a href="${APP_PATH}/toLogin"><img alt="logo" src="${APP_PATH}/static/picture/logoPro.png"
                                        style="height: 100px"/></a>
 </div>
-<div class="res-banner" style="background: url(${APP_PATH}/static/picture/reg.jpg) center fixed;height: 700px">
+<div class="res-banner" style="background: url(${APP_PATH}/static/picture/register.jpg)no-repeat center fixed;
+        height: 700px;background-size: 100%">
     <div class="res-main">
         <div class="login-box" style="background-color:rgba(0,0,0,0.4);height: 500px">
 

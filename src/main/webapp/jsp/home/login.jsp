@@ -44,7 +44,9 @@
     <a href="${APP_PATH}/toHome"><img alt="logo" src="${APP_PATH}/static/picture/logoPro.png"
                                       style="height: 100px"/></a>
 </div>
-<div class="login-banner" style="background: url(${APP_PATH}/static/picture/login.jpg) center fixed;height: 700px">
+<div class="login-banner" style="height: 700px;
+        background: url(${APP_PATH}/static/picture/loginImage.jpg)
+        no-repeat fixed center;background-size: 100%">
     <div class="login-main" style="padding-top: 80px;padding-left: 1300px">
         <div class="login-box" style="height: 600px;opacity: 50%;background-color:rgba(255,255,255,0.4)">
             <h3 class="title">登录商城</h3>
