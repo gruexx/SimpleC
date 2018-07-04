@@ -7,25 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/picture/loginImage.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/picture/register.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/bean/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/bean/Address.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/address.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/address.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/static/picture/login.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/static/picture/reg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/bean/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/picture/login.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/picture/reg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/bean/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/bean/Address.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/login-2018-07-04.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -83,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/AddressController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="685">
-              <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+              <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,8 +85,8 @@
       <file leaf-file-name="address.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="315" column="111" lean-forward="true" selection-start-line="315" selection-start-column="111" selection-end-line="315" selection-end-column="111" />
+            <state relative-caret-position="374">
+              <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#1;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -131,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="397">
-              <caret line="48" column="52" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="52" />
+              <caret line="48" column="52" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="52" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -558,11 +540,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\SimpleC\readme" />
       <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\service" />
       <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\controller" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\static\picture" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\js" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="pers.shayz.bean" />
@@ -965,7 +947,7 @@
       <workItem from="1530578963787" duration="12194000" />
       <workItem from="1530599562380" duration="11639000" />
       <workItem from="1530662550434" duration="14519000" />
-      <workItem from="1530685975836" duration="6535000" />
+      <workItem from="1530685975836" duration="6806000" />
     </task>
     <servers />
   </component>
@@ -1002,7 +984,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405997000" />
+    <option name="totallyTimeSpent" value="406268000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1015,7 +997,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50159746" side_tool="true" weight="0.38412017" />
@@ -1024,7 +1005,7 @@
       <window_info anchor="right" id="Redis Servers" order="9" />
       <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49861112" weight="0.32960597" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="JRebel Executor" order="16" sideWeight="0.49893504" visible="true" weight="0.35515022" />
+      <window_info anchor="bottom" id="JRebel Executor" order="16" sideWeight="0.49893504" visible="true" weight="0.35515022" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="6" weight="0.1682641" />
@@ -1044,7 +1025,7 @@
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.3296582" />
       <window_info anchor="bottom" id="SQL" order="11" />
       <window_info anchor="bottom" id="Problems" order="16" weight="0.32903227" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4965157" visible="true" weight="0.20926517" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4965157" visible="true" weight="0.20926517" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32960597" />
       <window_info id="Web" order="6" sideWeight="0.5034843" side_tool="true" weight="0.20926517" />
       <window_info id="JRebel" order="2" sideWeight="0.5032189" side_tool="true" weight="0.20926517" />
@@ -1410,7 +1391,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
-          <caret line="48" column="52" lean-forward="true" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="52" />
+          <caret line="48" column="52" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="52" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1489,7 +1470,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/pers/shayz/controller/AddressController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="685">
-          <caret line="126" column="9" lean-forward="true" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1505,8 +1486,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/person/address.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="315" column="111" lean-forward="true" selection-start-line="315" selection-start-column="111" selection-end-line="315" selection-end-column="111" />
+        <state relative-caret-position="374">
+          <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
           <folding>
             <element signature="n#style#0;n#select#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#1;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
