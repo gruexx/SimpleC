@@ -34,7 +34,7 @@
                     <div class="user-info">
                         <p>收货人：${sessionScope.user.username}</p>
                         <p>联系电话：${sessionScope.user.userphone}</p>
-                        <p>收货地址：${sessionScope.user.address}</p>
+                        <p>收货地址：</p>
                     </div> 请认真核对您的收货信息，如有错误请联系客服 </ul>
                 <div class="option">
                     <span class="info">您可以</span>

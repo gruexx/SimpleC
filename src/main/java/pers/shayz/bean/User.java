@@ -19,8 +19,6 @@ public class User {
 
     private String userphone;
 
-    private String address;
-
     private String image;
 
     private Integer isactive;
@@ -97,14 +95,6 @@ public class User {
         this.userphone = userphone == null ? null : userphone.trim();
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
     public String getImage() {
         return image;
     }
@@ -119,23 +109,5 @@ public class User {
 
     public void setIsactive(Integer isactive) {
         this.isactive = isactive;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userid=" + userid +
-                ", username='" + username + '\'' +
-                ", userpassword='" + userpassword + '\'' +
-                ", useremail='" + useremail + '\'' +
-                ", userchaopoint=" + userchaopoint +
-                ", userremainder=" + userremainder +
-                ", flag=" + flag +
-                ", administrator=" + administrator +
-                ", userphone='" + userphone + '\'' +
-                ", address='" + address + '\'' +
-                ", image='" + image + '\'' +
-                ", isactive=" + isactive +
-                '}';
     }
 }

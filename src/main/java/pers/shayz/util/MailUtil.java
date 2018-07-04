@@ -69,8 +69,6 @@ public class MailUtil {
         //加密收件人地址
         String encoded = DesUtil.encryptBasedDes(receiveMail);
 
-        // receiveMail = MD5Util.md5(receiveMail);
-
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);
 

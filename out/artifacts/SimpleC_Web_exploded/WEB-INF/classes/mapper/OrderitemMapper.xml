@@ -7,6 +7,7 @@
     <result column="totalPrice" jdbcType="DOUBLE" property="totalprice" />
     <result column="userId_fk_orderitem" jdbcType="INTEGER" property="useridFkOrderitem" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="identifier" jdbcType="VARCHAR" property="identifier" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    orderitemId, address, totalPrice, userId_fk_orderitem, flag
+    orderitemId, address, totalPrice, userId_fk_orderitem, flag, identifier
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.OrderitemExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="pers.shayz.bean.Orderitem">
     insert into orderitem (orderitemId, address, totalPrice, 
-      userId_fk_orderitem, flag)
+      userId_fk_orderitem, flag, identifier
+      )
     values (#{orderitemid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{totalprice,jdbcType=DOUBLE}, 
-      #{useridFkOrderitem,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER})
+      #{useridFkOrderitem,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{identifier,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Orderitem">
     insert into orderitem
@@ -123,6 +126,9 @@
       <if test="flag != null">
         flag,
       </if>
+      <if test="identifier != null">
+        identifier,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderitemid != null">
@@ -139,6 +145,9 @@
       </if>
       <if test="flag != null">
         #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="identifier != null">
+        #{identifier,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.flag != null">
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
+      <if test="record.identifier != null">
+        identifier = #{record.identifier,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       address = #{record.address,jdbcType=VARCHAR},
       totalPrice = #{record.totalprice,jdbcType=DOUBLE},
       userId_fk_orderitem = #{record.useridFkOrderitem,jdbcType=INTEGER},
-      flag = #{record.flag,jdbcType=INTEGER}
+      flag = #{record.flag,jdbcType=INTEGER},
+      identifier = #{record.identifier,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="flag != null">
         flag = #{flag,jdbcType=INTEGER},
       </if>
+      <if test="identifier != null">
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
     </set>
     where orderitemId = #{orderitemid,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set address = #{address,jdbcType=VARCHAR},
       totalPrice = #{totalprice,jdbcType=DOUBLE},
       userId_fk_orderitem = #{useridFkOrderitem,jdbcType=INTEGER},
-      flag = #{flag,jdbcType=INTEGER}
+      flag = #{flag,jdbcType=INTEGER},
+      identifier = #{identifier,jdbcType=VARCHAR}
     where orderitemId = #{orderitemid,jdbcType=INTEGER}
   </update>
 </mapper>

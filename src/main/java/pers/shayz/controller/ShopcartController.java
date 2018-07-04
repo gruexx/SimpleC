@@ -88,21 +88,29 @@ public class ShopcartController {
 
     @RequestMapping(value = "/deleteShopcart")
     @ResponseBody
-    public Msg deleteShopcart(@RequestParam(value = "shopcartid") String shopcartid) {
+    public Msg deleteShopcart(@RequestParam(value = "shopcartid") String shopcartid, HttpSession session) {
         System.out.println("/deleteShopcart: " + shopcartid);
         shopcartService.deleteByShopCartId(Integer.parseInt(shopcartid));
+
+        User user = (User)session.getAttribute("user");
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
         return Msg.success();
     }
 
     @RequestMapping(value = "/deleteAllShopcart")
     @ResponseBody
-    public Msg deleteAllShopcart(@RequestParam(value = "shopcartids") String shopcartids) {
+    public Msg deleteAllShopcart(@RequestParam(value = "shopcartids") String shopcartids, HttpSession session) {
         System.out.println("/deleteAllShopcart: " + shopcartids);
         String[] ids = shopcartids.split(",");
         System.out.println("/deleteAllShopcart: " + Arrays.toString(ids));
         for (String id : ids) {
             shopcartService.deleteByShopCartId(Integer.parseInt(id));
         }
+
+        User user = (User)session.getAttribute("user");
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
         return Msg.success();
     }
 
@@ -143,5 +151,18 @@ public class ShopcartController {
     @RequestMapping(value = "/toSuccess")
     public String toSuccess() {
         return "home/success";
+    }
+
+    @RequestMapping(value = "/addToShopcart")
+    @ResponseBody
+    public Msg addToShopcart(Shopcart shopcart, HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        shopcart.setUseridFkShopcart(user.getUserid());
+        System.out.println("/addToShopcart: "+shopcart);
+        shopcartService.saveShopcart(shopcart, user.getUserid());
+
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
+        return Msg.success();
     }
 }

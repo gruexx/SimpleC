@@ -33,6 +33,7 @@
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                     购物车
                     <span class="am-icon-caret-down"></span>
+                    <span class="am-badge am-badge-danger am-round">${sessionScope.shopcartNum}</span>
                 </a>
                 <ul class="am-dropdown-content" style="white-space: nowrap">
                     <li class="am-dropdown-header">${sessionScope.user.username}的购物车</li>

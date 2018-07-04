@@ -7,6 +7,7 @@
     <result column="userId_fk_comment" jdbcType="INTEGER" property="useridFkComment" />
     <result column="goodsId_fk_comment" jdbcType="INTEGER" property="goodsidFkComment" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    commentId, content, userId_fk_comment, goodsId_fk_comment, flag
+    commentId, content, userId_fk_comment, goodsId_fk_comment, flag, time
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.CommentExample" resultMap="BaseResultMap">
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="pers.shayz.bean.Comment">
     insert into comment (commentId, content, userId_fk_comment, 
-      goodsId_fk_comment, flag)
+      goodsId_fk_comment, flag, time
+      )
     values (#{commentid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{useridFkComment,jdbcType=INTEGER}, 
-      #{goodsidFkComment,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER})
+      #{goodsidFkComment,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Comment">
     insert into comment
@@ -123,6 +126,9 @@
       <if test="flag != null">
         flag,
       </if>
+      <if test="time != null">
+        time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="commentid != null">
@@ -139,6 +145,9 @@
       </if>
       <if test="flag != null">
         #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.flag != null">
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       content = #{record.content,jdbcType=VARCHAR},
       userId_fk_comment = #{record.useridFkComment,jdbcType=INTEGER},
       goodsId_fk_comment = #{record.goodsidFkComment,jdbcType=INTEGER},
-      flag = #{record.flag,jdbcType=INTEGER}
+      flag = #{record.flag,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="flag != null">
         flag = #{flag,jdbcType=INTEGER},
       </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where commentId = #{commentid,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set content = #{content,jdbcType=VARCHAR},
       userId_fk_comment = #{useridFkComment,jdbcType=INTEGER},
       goodsId_fk_comment = #{goodsidFkComment,jdbcType=INTEGER},
-      flag = #{flag,jdbcType=INTEGER}
+      flag = #{flag,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP}
     where commentId = #{commentid,jdbcType=INTEGER}
   </update>
 </mapper>

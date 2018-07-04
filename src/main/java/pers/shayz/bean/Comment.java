@@ -1,5 +1,7 @@
 package pers.shayz.bean;
 
+import java.util.Date;
+
 public class Comment {
     private Integer commentid;
 
@@ -10,6 +12,8 @@ public class Comment {
     private Integer goodsidFkComment;
 
     private Integer flag;
+
+    private Date time;
 
     public Integer getCommentid() {
         return commentid;
@@ -49,5 +53,13 @@ public class Comment {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

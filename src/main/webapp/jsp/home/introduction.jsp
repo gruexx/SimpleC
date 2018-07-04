@@ -11,8 +11,10 @@
     <%--<script src="${APP_PATH}/js/jquery-3.1.1.js"></script>--%>
     <script type="text/javascript" src="${APP_PATH}/basic/js/jquery-1.7.min.js"></script>
 
-    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet" type="text/css">
-    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js" type="text/javascript"></script>
+    <link href="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/css/amazeui.min.css" rel="stylesheet"
+          type="text/css">
+    <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js"
+            type="text/javascript"></script>
 
     <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet">--%>
     <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">--%>
@@ -233,11 +235,11 @@
             <div class="theme-options">
                 <div class="cart-title number">数量</div>
                 <dd>
-                    <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
-                    <input id="text_box" name="" type="text" value="1" style="width:30px;"/>
-                    <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
-                    <span id="Stock" class="tb-hidden">库存<span
-                            class="stock">${requestScope.Goods.goodsnumber}</span>件</span>
+                    <input id="number" type="number" value="1" style="width:60px;height: 30px;"/>
+                    <span id="Stock" class="tb-hidden">库存
+                        <span class="stock">${requestScope.Goods.goodsnumber}
+                        </span>件
+                    </span>
                 </dd>
 
             </div>
@@ -245,23 +247,25 @@
 
         <div class="pay">
             <li>
-                <div class="clearfix tb-btn tb-btn-buy theme-login"><a id="LikBuy" title="点此按钮到下一步确认购买信息"
-                                                                       href="#">立即购买</a>
+                <div class="clearfix tb-btn tb-btn-buy theme-login">
+                    <a id="LikBuy" title="点此按钮到下一步确认购买信息"
+                       href="#">立即购买</a>
                 </div>
             </li>
             <li>
-                <div class="clearfix tb-btn tb-btn-basket theme-login"><a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
+                <div class="clearfix tb-btn tb-btn-basket theme-login">
+                    <a id="addToShopcart" title="加入购物车" href="#">
+                        加入购物车
+                    </a>
                 </div>
             </li>
             <li>
-                <div class="clearfix tb-btn theme-login"><a id="chat" title="点击联系卖家" href="#"><i></i>点击联系卖家</a>
+                <div class="clearfix tb-btn theme-login">
+                    <a id="chat" title="点击联系卖家" href="#">
+                        点击联系卖家
+                    </a>
                 </div>
             </li>
-            <%--<li style="float: right;margin-top: 25px;margin-right: 80px;font-size: medium;color: #3bb4f2">联系卖家</li>--%>
-            <%--<li class="rightbtn">--%>
-                <%--<div class="am-icon-btn am-secondary am-icon-drupal"  style="float: right"><a id="chat" title="点击联系卖家" href = "javascript:void(0)"></a>--%>
-                <%--</div>--%>
-            <%--</li>--%>
         </div>
     </div>
 
@@ -364,8 +368,8 @@
 
         <div class="talk_input">
             <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub" href = "javascript:void(0)">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href = "javascript:void(0)">
+            <input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">
+            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">
         </div>
     </div>
 </div>
@@ -375,6 +379,23 @@
 </body>
 
 </html>
+<script>
+    $('#addToShopcart').click(function () {
+        var goodsidFkShopcart = '${requestScope.Goods.goodsid}';
+        var number = $('#number').val();
+        $.ajax({
+            url: '${APP_PATH}/addToShopcart',
+            type: 'POST',
+            data: {
+                "goodsidFkShopcart": goodsidFkShopcart,
+                "number": number
+            },
+            success: function () {
+                window.location.reload();
+            }
+        })
+    })
+</script>
 
 <script type="text/javascript">
     $(function () {
@@ -390,8 +411,8 @@
         });
 
         $("#chat").click(function () {
-            document.getElementById('light').style.display='block';
-            document.getElementById('fade').style.display='block';
+            document.getElementById('light').style.display = 'block';
+            document.getElementById('fade').style.display = 'block';
             var name1 = "${sessionScope.user.username}";
             var name2 = "${requestScope.Goods.useridFkGoods}";
             var ws;
@@ -399,7 +420,7 @@
             ws = new WebSocket(wsUri);
             //alert("this");
 
-            ws.onopen = function(){
+            ws.onopen = function () {
                 // n=prompt('请给自己取一个昵称：');
 
                 // name1=getQueryString("name1");
@@ -408,22 +429,22 @@
                 // window.alert("this");
                 //m=m.substr(0,16);
                 //ws.send(n);
-                ws.send(name1+" "+name2);//在服务端必须由OnMessage接收此消息
+                ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息
             };
 
             //处理连接后的信息处理
-            ws.onmessage = function(message){
+            ws.onmessage = function (message) {
                 writeToScreen(message.data);
 
             };
 
             $("#talksub").click(function () {
                 message = document.getElementById('talkwords').value;
-                document.getElementById('talkwords').value="";
+                document.getElementById('talkwords').value = "";
                 //alert(message);
                 //towho = document.getElementById('towho').value + "@";
                 //window.alert("button");
-                if(message.length!=0){
+                if (message.length != 0) {
                     ws.send(message);
                 }
 
@@ -441,33 +462,34 @@
                 }
                 return null;
             }
+
             // 这样调用：
             //alert(GetQueryString("参数名1"));
 
-            function writeToScreen(message){
+            function writeToScreen(message) {
                 var x = new Array();
                 x = message.split(" ");
                 //$("#bsay").append(message+"<br>");
                 //alert(x[0]);
-                if (x[0] == (name1)){
-                    var $this_message = $("<div class='btalk'><span class='bsay'>"+x[1]+"</span></div>");
+                if (x[0] == (name1)) {
+                    var $this_message = $("<div class='btalk'><span class='bsay'>" + x[1] + "</span></div>");
                     $("#words").append($this_message);
                 }
-                else{
-                    var $this_message = $("<div class='atalk'><span class='asay'>"+x[1]+"</span></div>");
+                else {
+                    var $this_message = $("<div class='atalk'><span class='asay'>" + x[1] + "</span></div>");
                     $("#words").append($this_message);
                 }
             }
 
-            ws.onerror = function (evt){
-                writeToScreen('<span style="color:red;">ERROR:</span>'+evt.data);
+            ws.onerror = function (evt) {
+                writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);
                 ws.close();
             };
 
             $("#closesub").click(function () {
                 ws.close();
-                document.getElementById('light').style.display='none';
-                document.getElementById('fade').style.display='none';
+                document.getElementById('light').style.display = 'none';
+                document.getElementById('fade').style.display = 'none';
             })
         })
 

@@ -11,7 +11,6 @@
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="Administrator" jdbcType="INTEGER" property="administrator" />
     <result column="userPhone" jdbcType="VARCHAR" property="userphone" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="isActive" jdbcType="INTEGER" property="isactive" />
   </resultMap>
@@ -75,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     userId, userName, userPassword, userEmail, userChaoPoint, userRemainder, flag, Administrator, 
-    userPhone, address, image, isActive
+    userPhone, image, isActive
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -111,13 +110,11 @@
     insert into user (userId, userName, userPassword, 
       userEmail, userChaoPoint, userRemainder, 
       flag, Administrator, userPhone, 
-      address, image, isActive
-      )
+      image, isActive)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
       #{useremail,jdbcType=VARCHAR}, #{userchaopoint,jdbcType=INTEGER}, #{userremainder,jdbcType=DOUBLE}, 
       #{flag,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER}
-      )
+      #{image,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.User">
     insert into user
@@ -148,9 +145,6 @@
       </if>
       <if test="userphone != null">
         userPhone,
-      </if>
-      <if test="address != null">
-        address,
       </if>
       <if test="image != null">
         image,
@@ -186,9 +180,6 @@
       </if>
       <if test="userphone != null">
         #{userphone,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
@@ -234,9 +225,6 @@
       <if test="record.userphone != null">
         userPhone = #{record.userphone,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
@@ -259,7 +247,6 @@
       flag = #{record.flag,jdbcType=INTEGER},
       Administrator = #{record.administrator,jdbcType=INTEGER},
       userPhone = #{record.userphone,jdbcType=VARCHAR},
-      address = #{record.address,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       isActive = #{record.isactive,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -293,9 +280,6 @@
       <if test="userphone != null">
         userPhone = #{userphone,jdbcType=VARCHAR},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
@@ -315,7 +299,6 @@
       flag = #{flag,jdbcType=INTEGER},
       Administrator = #{administrator,jdbcType=INTEGER},
       userPhone = #{userphone,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       isActive = #{isactive,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}

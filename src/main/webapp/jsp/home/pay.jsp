@@ -83,46 +83,71 @@
             <p class="price g_price "> 合计（含运费）
                 <span>¥</span><em class="pay-sum">${requestScope.totalprice}</em>
             </p>
+            <div class="am-u-sm-6 am-u-md-3" style="float:right">
+                <label class="am-checkbox am-success">
+                    <input type="checkbox" value="" id="isUsing" data-am-ucheck>
+                    使用潮积分抵扣<p id="isUsingp">${sessionScope.user.userchaopoint*0.001}</p>元
+                </label>
+            </div>
         </div>
-        <!--信息 -->
-        <div class="order-go clearfix">
-            <div class="pay-confirm clearfix">
-                <div class="box">
-                    <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
-                        <span class="price g_price ">
+        <script>
+            $(function () {
+                if(${sessionScope.user.userchaopoint*0.001}>${requestScope.totalprice}){
+                    $('#isUsingp').text(${requestScope.totalprice});
+                }
+            })
+            $('#isUsing').click(function () {
+                if (this.checked){
+                    var decent = $('#isUsingp').text();
+                    console.log(decent);
+                    var result = ${requestScope.totalprice}-decent;
+                    console.log(result);
+                    $('#J_ActualFee').text(parseFloat(result).toFixed(3));
+                }
+                else
+                    $('#J_ActualFee').text('${requestScope.totalprice}');
+            })
+        </script>
+
+    <!--信息 -->
+    <div class="order-go clearfix">
+        <div class="pay-confirm clearfix">
+            <div class="box">
+                <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
+                    <span class="price g_price ">
                             <span>¥</span>
                             <em class="style-large-bold-red " id="J_ActualFee">${requestScope.totalprice}</em>
                         </span>
-                    </div>
-                    <div id="holyshit268" class="pay-address">
-                        <p class="buy-footer-address">
-                            <span class="buy-line-title buy-line-title-type">寄送至：</span>
-                            <span class="buy--address-detail">
-                                <span>${sessionScope.user.address}</span>
+                </div>
+                <div id="holyshit268" class="pay-address">
+                    <p class="buy-footer-address">
+                        <span class="buy-line-title buy-line-title-type">寄送至：</span>
+                        <span class="buy--address-detail">
+                                <span></span>
                             </span>
-                        </p>
-                        <p class="buy-footer-address">
-                            <span class="buy-line-title">收货人：</span>
-                            <span class="buy-address-detail">
+                    </p>
+                    <p class="buy-footer-address">
+                        <span class="buy-line-title">收货人：</span>
+                        <span class="buy-address-detail">
                                 <span class="buy-user">${sessionScope.user.username}</span>
                                 <span class="buy-phone">${sessionScope.user.userphone}</span>
                             </span>
-                        </p>
-                    </div>
+                    </p>
                 </div>
-                <div id="holyshit269" class="submitOrder">
-                    <div class="go-btn-wrap">
-                        <a id="submitOrder" href="${APP_PATH}/toSuccess" class="btn-go" tabindex="0"
-                           title="点击此按钮，提交订单">提交订单</a>
-                        <a href="${APP_PATH}/toShopcart" class="btn-go" style="background-color: #d89f58;"
-                           title="返回购物车">返回购物车</a>
-                    </div>
-                </div>
-                <div class="clear"></div>
             </div>
+            <div id="holyshit269" class="submitOrder">
+                <div class="go-btn-wrap">
+                    <a id="submitOrder" href="${APP_PATH}/toSuccess" class="btn-go" tabindex="0"
+                       title="点击此按钮，提交订单">提交订单</a>
+                    <a href="${APP_PATH}/toShopcart" class="btn-go" style="background-color: #d89f58;"
+                       title="返回购物车">返回购物车</a>
+                </div>
+            </div>
+            <div class="clear"></div>
         </div>
     </div>
-    <div class="clear"></div>
+</div>
+<div class="clear"></div>
 </div>
 
 <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>

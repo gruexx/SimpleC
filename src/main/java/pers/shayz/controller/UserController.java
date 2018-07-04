@@ -28,7 +28,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ClassifyService classifyService;
+    private ShopcartService shopcartService;
 
     @Autowired
     private GoodsService goodsService;
@@ -123,6 +123,9 @@ public class UserController {
         user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
         System.out.println("/doLogin: " + user);
         session.setAttribute("user", user);
+
+        List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
+        session.setAttribute("shopcartNum", list.size());
 
         return "redirect:/toHome";
     }
