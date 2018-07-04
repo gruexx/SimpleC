@@ -30,7 +30,37 @@
 <div class="concent">
     <!--地址 -->
     <div class="paycont">
-        <div class="clear"></div>
+        <div class="address">
+            <h3>确认收货地址 </h3>
+            <div class="control">
+                <div class="tc-btn createAddr theme-login am-btn am-btn-danger" id="manageAddress">管理我的地址</div>
+            </div>
+            <div class="clear"></div>
+            <ul>
+                <c:forEach items="${requestScope.addressList}" var="address">
+                    <div class="per-border"></div>
+                    <li class="user-addresslist defaultAddr" data-address="${address}">
+                        <div class="address-left">
+                            <div class="user DefaultAddr">
+                                <span class="buy-address-detail">
+                                    <span class="buy-user">${address.receiver}</span>
+                                    <span class="buy-phone">${address.phone}</span>
+                                </span>
+                            </div>
+                            <div class="default-address DefaultAddr">
+                                <span class="buy-line-title buy-line-title-type">收货地址</span>
+                                <span class="buy--address-detail">
+								   <span class="province">${address.address}</span>
+                                </span>
+                            </div>
+                            <ins class="deftip" style="display: none">默认地址</ins>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+
+            <div class="clear"></div>
+        </div>
         <!--支付方式-->
         <div class="logistics">
             <h3>选择支付方式</h3>
@@ -61,7 +91,6 @@
                             <td>
                                 <a>
                                     <img src="${APP_PATH}/${requestScope.GoodsList[loop.count-1].image}"
-                                         class="am-img-responsive"
                                          style="width: 90px;height: 90px;">
                                 </a>
                             </td>
@@ -83,21 +112,23 @@
             <p class="price g_price "> 合计（含运费）
                 <span>¥</span><em class="pay-sum">${requestScope.totalprice}</em>
             </p>
-            <div class="am-u-sm-6 am-u-md-3" style="float:right">
+            <div style="float:right">
                 <label class="am-checkbox am-success">
-                    <input type="checkbox" value="" id="isUsing" data-am-ucheck>
-                    使用潮积分抵扣<p id="isUsingp">${sessionScope.user.userchaopoint*0.001}</p>元
+                    <input type="checkbox" value="" id="isUsing" data-am-ucheck>使用潮积分抵扣
+                    <p id="isUsingp">${sessionScope.user.userchaopoint*0.001}</p>元
                 </label>
             </div>
         </div>
         <script>
             $(function () {
-                if(${sessionScope.user.userchaopoint*0.001}>${requestScope.totalprice}){
+                if (${sessionScope.user.userchaopoint*0.001}>
+                ${requestScope.totalprice})
+                {
                     $('#isUsingp').text(${requestScope.totalprice});
                 }
-            })
+            });
             $('#isUsing').click(function () {
-                if (this.checked){
+                if (this.checked) {
                     var decent = $('#isUsingp').text();
                     console.log(decent);
                     var result = ${requestScope.totalprice}-decent;
@@ -109,45 +140,45 @@
             })
         </script>
 
-    <!--信息 -->
-    <div class="order-go clearfix">
-        <div class="pay-confirm clearfix">
-            <div class="box">
-                <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
-                    <span class="price g_price ">
+        <!--信息 -->
+        <div class="order-go clearfix">
+            <div class="pay-confirm clearfix">
+                <div class="box">
+                    <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
+                        <span class="price g_price ">
                             <span>¥</span>
                             <em class="style-large-bold-red " id="J_ActualFee">${requestScope.totalprice}</em>
                         </span>
-                </div>
-                <div id="holyshit268" class="pay-address">
-                    <p class="buy-footer-address">
-                        <span class="buy-line-title buy-line-title-type">寄送至：</span>
-                        <span class="buy--address-detail">
+                    </div>
+                    <div id="holyshit268" class="pay-address">
+                        <p class="buy-footer-address">
+                            <span class="buy-line-title buy-line-title-type">寄送至：</span>
+                            <span class="buy--address-detail">
                                 <span></span>
                             </span>
-                    </p>
-                    <p class="buy-footer-address">
-                        <span class="buy-line-title">收货人：</span>
-                        <span class="buy-address-detail">
+                        </p>
+                        <p class="buy-footer-address">
+                            <span class="buy-line-title">收货人：</span>
+                            <span class="buy-address-detail">
                                 <span class="buy-user">${sessionScope.user.username}</span>
                                 <span class="buy-phone">${sessionScope.user.userphone}</span>
                             </span>
-                    </p>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div id="holyshit269" class="submitOrder">
-                <div class="go-btn-wrap">
-                    <a id="submitOrder" href="${APP_PATH}/toSuccess" class="btn-go" tabindex="0"
-                       title="点击此按钮，提交订单">提交订单</a>
-                    <a href="${APP_PATH}/toShopcart" class="btn-go" style="background-color: #d89f58;"
-                       title="返回购物车">返回购物车</a>
+                <div id="holyshit269" class="submitOrder">
+                    <div class="go-btn-wrap">
+                        <a id="submitOrder" class="btn-go" tabindex="0"
+                           title="点击此按钮，提交订单">提交订单</a>
+                        <a href="${APP_PATH}/toShopcart" class="btn-go" style="background-color: #d89f58;"
+                           title="返回购物车">返回购物车</a>
+                    </div>
                 </div>
+                <div class="clear"></div>
             </div>
-            <div class="clear"></div>
         </div>
     </div>
-</div>
-<div class="clear"></div>
+    <div class="clear"></div>
 </div>
 
 <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
@@ -155,3 +186,38 @@
 </body>
 
 </html>
+
+<script>
+    $(function () {
+        var isdefault = JSON.parse('${requestScope.isdefault}');
+        console.log("isdefault: " + isdefault);
+
+        $('.user-addresslist').each(function (i) {
+
+            console.log("isdefault: " + isdefault[i]);
+
+            if (isdefault[i] !== 1) {
+                $(this).removeClass('defaultAddr');
+            }else {
+                $(this).find('.deftip').css({
+                    display: 'block'
+                });
+                $(this).addClass('selectAddress');
+            }
+        });
+    });
+
+    $('#manageAddress').click(function () {
+        window.location.href = '${APP_PATH}/toAddress';
+    });
+
+    $('#submitOrder').click(function () {
+        console.log($('.selectAddress').data('address'));
+
+        <%--$.ajax({--%>
+            <%--url: "${APP_PATH}/Balance",--%>
+            <%--type: "POST",--%>
+            <%--data: {},--%>
+        <%--})--%>
+    })
+</script>

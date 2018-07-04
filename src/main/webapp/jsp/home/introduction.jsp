@@ -233,15 +233,14 @@
                 <div class="clear"></div>
             </div>
             <div class="theme-options">
-                <div class="cart-title number">数量</div>
                 <dd>
-                    <input id="number" type="number" value="1" style="width:60px;height: 30px;"/>
                     <span id="Stock" class="tb-hidden">库存
                         <span class="stock">${requestScope.Goods.goodsnumber}
                         </span>件
                     </span>
                 </dd>
-
+                <span>购买数量：</span>
+                <input id="number" type="number" value="1" style="width:60px;height: 30px;"/>
             </div>
         </div>
 

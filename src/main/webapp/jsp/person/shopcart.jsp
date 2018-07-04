@@ -55,9 +55,8 @@
                         </label>
                     </td>
                     <td>
-                        <a>
+                        <a href="${APP_PATH}/toIntroduction/${ShopcartList.goodsidFkShopcart}">
                             <img src="${APP_PATH}/${requestScope.GoodsList[loop.count-1].image}"
-                                 class="am-img-responsive"
                                  style="width: 90px;height: 90px;">
                         </a>
                     </td>

@@ -6,10 +6,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pers.shayz.bean.Goods;
-import pers.shayz.bean.Msg;
-import pers.shayz.bean.Shopcart;
-import pers.shayz.bean.User;
+import pers.shayz.bean.*;
+import pers.shayz.service.AddressService;
 import pers.shayz.service.GoodsService;
 import pers.shayz.service.ShopcartService;
 
@@ -31,6 +29,9 @@ public class ShopcartController {
 
     @Autowired
     GoodsService goodsService;
+
+    @Autowired
+    AddressService addressService;
 
     @RequestMapping(value = "/toShopcart")
     public String toShopcart(HttpSession session, ModelMap modelMap) {
@@ -130,6 +131,16 @@ public class ShopcartController {
         modelMap.addAttribute("ShopcartList", shopcartlist);
         modelMap.addAttribute("GoodsList", goodslist);
         modelMap.addAttribute("totalprice", totalprice);
+
+        User user = (User) session.getAttribute("user");
+        List<Address> list = addressService.getAllAddress(user.getUserid());
+        modelMap.addAttribute("addressList", list);
+
+        List<Integer> isdefault = new ArrayList<>();
+        for (Address address : list) {
+            isdefault.add(address.getIsdefult());
+        }
+        modelMap.addAttribute("isdefault", isdefault);
         return "home/pay";
     }
 
@@ -163,6 +174,13 @@ public class ShopcartController {
 
         List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
         session.setAttribute("shopcartNum", list.size());
+        return Msg.success();
+    }
+
+    @RequestMapping(value = "/Balance")
+    @ResponseBody
+    public Msg Balance(HttpSession session) {
+
         return Msg.success();
     }
 }
