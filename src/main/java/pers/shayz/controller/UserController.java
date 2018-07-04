@@ -5,24 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.*;
 import pers.shayz.service.*;
+import pers.shayz.util.DesUtil;
 import pers.shayz.util.MailUtil;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.*;
-
 
 /**
  * @author ZhouXiaoyu
@@ -82,7 +76,7 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
-        user.setUserpassword(encryptBasedDes(user.getUserpassword()));
+        user.setUserpassword(DesUtil.encryptBasedDes(user.getUserpassword()));
         userService.saveUser(user);
 
         MailUtil mailUtil = new MailUtil();
@@ -126,7 +120,7 @@ public class UserController {
 //        session.setAttribute("useremail", user.getUseremail());
 //        session.setAttribute("useraddress", user.getAddress());
 
-        user.setUserpassword(decryptBasedDes(user.getUserpassword()));
+        user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
         System.out.println("/doLogin: " + user);
         session.setAttribute("user", user);
 
@@ -154,7 +148,7 @@ public class UserController {
             return Msg.fail().add("msg", "用户不存在！！！");
         }
 
-        if (!decryptBasedDes(user.getUserpassword()).equals(userpassword)) {
+        if (!DesUtil.decryptBasedDes(user.getUserpassword()).equals(userpassword)) {
             return Msg.fail().add("msg", "用户名密码不匹配！！！");
         }
 
@@ -281,7 +275,7 @@ public class UserController {
 
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             fileName = uuid + "." + suffix[suffix.length - 1];
-            String image = "GoodsImage/" + fileName;
+            String image = "UserImage/" + fileName;
             System.out.println("fileName>>" + fileName);
 
             File dir = new File(path, fileName);
@@ -372,7 +366,7 @@ public class UserController {
 
         User userNow = (User) session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
-        newUser.setUserpassword(encryptBasedDes(newUser.getUserpassword()));
+        newUser.setUserpassword(DesUtil.encryptBasedDes(newUser.getUserpassword()));
         System.out.println("/passwordUpdate: " + newUser);
         userService.updateUser(newUser);
 
@@ -384,7 +378,7 @@ public class UserController {
     @ResponseBody
     public Msg confirmOldPassword(@RequestParam("oldPassword")String oldPassword, HttpSession session) {
         User user = (User)session.getAttribute("user");
-        if (decryptBasedDes(user.getUserpassword()).equals(oldPassword)){
+        if (DesUtil.decryptBasedDes(user.getUserpassword()).equals(oldPassword)){
             return Msg.success();
         }else {
             return Msg.fail();
@@ -439,10 +433,11 @@ public class UserController {
     @RequestMapping(value = "/doActive/{useremail}")
     public String setIsLogin(@PathVariable("useremail")String useremail, ModelMap modelMap){
         System.out.println("/doActive/{useremail}: "+useremail);
-        byte[] decoded = Base64.getDecoder().decode(useremail);
-        String uemail = new String(decoded);
+        String uemail = DesUtil.decryptBasedDes(useremail);
+
         System.out.println("/doActive/{useremail}: "+uemail);
         User user = userService.getUserByEmail(uemail);
+
         System.out.println("/doActive/{useremail}: "+user);
         if(user.getIsactive()==1){
             modelMap.addAttribute("msg", "该账号已经激活了！！！");
@@ -454,57 +449,6 @@ public class UserController {
         System.out.println("/doActive/{useremail}: "+user);
 
         return "common/active";
-    }
-
-
-    /**
-     * DES加密解密代码
-     */
-    private static final byte[] DES_KEY={21,1,-110,82,-32,-85,-128,-65};
-    @SuppressWarnings("restriction")
-    public static String encryptBasedDes(String data){
-        String encryptedData;
-        try {
-            //DES算法要求有一个可信任的随机数源
-            SecureRandom sr=new SecureRandom();
-            DESKeySpec deskey=new DESKeySpec(DES_KEY);
-            //创建一个秘钥工厂，然后用它把DESKeySpec转换成一个SecretKey对象
-            SecretKeyFactory keyFactory=SecretKeyFactory.getInstance("DES");
-            SecretKey key=keyFactory.generateSecret(deskey);
-            //加密对象
-            Cipher cipher=Cipher.getInstance("DES");
-            cipher.init(Cipher.ENCRYPT_MODE, key,sr);
-            //加密
-            encryptedData=Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes()));
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException("加密错误，错误信息：",e);
-        }
-        return encryptedData;
-    }
-    @SuppressWarnings("restriction")
-    public static String decryptBasedDes(String cryptData){
-        String decryptedData;
-
-        try {
-            //DES算法要求有一个可信任的随机数源
-            SecureRandom sr=new SecureRandom();
-            DESKeySpec deskey=new DESKeySpec(DES_KEY);
-            //创建一个秘钥工厂，然后用它把DESKeySpec转换成一个SecretKey对象
-            SecretKeyFactory keyFactory=SecretKeyFactory.getInstance("DES");
-            SecretKey key=keyFactory.generateSecret(deskey);
-            //解密对象
-            Cipher cipher=Cipher.getInstance("DES");
-            cipher.init(Cipher.DECRYPT_MODE, key,sr);
-            //把字符串进行解码，解码为字节数组，并解密
-            decryptedData=new String(cipher.doFinal(Base64.getDecoder().decode(cryptData)));
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException("解密错误，错误信息：",e);
-        }
-
-        return decryptedData;
     }
 
 }

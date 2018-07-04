@@ -9,7 +9,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * @author MengWeiJia
+ */
 public class MailUtil {
+
     //本人邮箱信息
     public static String myEmailAccount = "simplechange2018@sohu.com";
 
@@ -25,24 +29,29 @@ public class MailUtil {
 
     public void sendActiveMail(String receiveMailAccount) throws Exception {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
-        Properties props = new Properties();                    // 参数配置
-        props.setProperty("mail.transport.protocol", "smtp");   // 使用的协议（JavaMail规范要求）
-        props.setProperty("mail.smtp.host", myEmailSMTPHost);   // 发件人的邮箱的 SMTP 服务器地址
-        props.setProperty("mail.smtp.auth", "true");            // 需要请求认证
+        // 参数配置
+        Properties props = new Properties();
+        // 使用的协议（JavaMail规范要求）
+        props.setProperty("mail.transport.protocol", "smtp");
+        // 发件人的邮箱的 SMTP 服务器地址
+        props.setProperty("mail.smtp.host", myEmailSMTPHost);
+        // 需要请求认证
+        props.setProperty("mail.smtp.auth", "true");
 
-        /*
-        // SMTP 服务器的端口 (非 SSL 连接的端口一般默认为 25, 可以不添加, 如果开启了 SSL 连接,
-        //                  需要改为对应邮箱的 SMTP 服务器的端口, 具体可查看对应邮箱服务的帮助,
-        //                  QQ邮箱的SMTP(SLL)端口为465或587, 其他邮箱自行去查看)
-        final String smtpPort = "465";
-        props.setProperty("mail.smtp.port", smtpPort);
-        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.setProperty("mail.smtp.socketFactory.port", smtpPort);
-        */
+        /**
+         SMTP 服务器的端口 (非 SSL 连接的端口一般默认为 25, 可以不添加, 如果开启了 SSL 连接,
+         需要改为对应邮箱的 SMTP 服务器的端口, 具体可查看对应邮箱服务的帮助,
+         QQ邮箱的SMTP(SLL)端口为465或587, 其他邮箱自行去查看)
+         final String smtpPort = "465";
+         props.setProperty("mail.smtp.port", smtpPort);
+         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+         props.setProperty("mail.smtp.socketFactory.fallback", "false");
+         props.setProperty("mail.smtp.socketFactory.port", smtpPort);
+         */
 
         Session session = Session.getDefaultInstance(props);
-        session.setDebug(true);            // 设置为debug模式, 可以查看详细的发送 log
+        // 设置为debug模式, 可以查看详细的发送 log
+        session.setDebug(true);
 
         MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount);
 
@@ -58,9 +67,7 @@ public class MailUtil {
 
     public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail) throws Exception {
         //加密收件人地址
-        byte[] bytes = receiveMail.getBytes();
-
-        String encoded = Base64.getEncoder().encodeToString(bytes);
+        String encoded = DesUtil.encryptBasedDes(receiveMail);
 
         // receiveMail = MD5Util.md5(receiveMail);
 
