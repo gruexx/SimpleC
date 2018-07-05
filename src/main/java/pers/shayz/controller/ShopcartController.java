@@ -3,6 +3,7 @@ package pers.shayz.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -142,6 +143,34 @@ public class ShopcartController {
         }
         modelMap.addAttribute("isdefault", isdefault);
         return "home/pay";
+    }
+
+    @RequestMapping(value = "/tolikPay/{goodsid}/{number}")
+    public String tolikPay(HttpSession session, @PathVariable("goodsid")int goodsid, @PathVariable("number")int number,
+                           ModelMap modelMap){
+        System.out.println("/tolikPay/{goodsid}/{number}: "+goodsid);
+        System.out.println("/tolikPay/{goodsid}/{number}: "+number);
+
+        Goods goods = goodsService.getGoodsById(goodsid);
+        System.out.println("/tolikPay/{goodsid}/{number}: "+goods);
+
+        modelMap.addAttribute("Goods", goods);
+        modelMap.addAttribute("number", number);
+
+        User user = (User) session.getAttribute("user");
+        List<Address> list = addressService.getAllAddress(user.getUserid());
+        modelMap.addAttribute("addressList", list);
+
+        List<Integer> isdefault = new ArrayList<>();
+        for (Address address : list) {
+            isdefault.add(address.getIsdefult());
+        }
+        modelMap.addAttribute("isdefault", isdefault);
+
+        Double totalprice = number*goods.getGoodsprice();
+        modelMap.addAttribute("totalprice", totalprice);
+
+        return "/home/likpay";
     }
 
     @RequestMapping(value = "/viewShopcart")

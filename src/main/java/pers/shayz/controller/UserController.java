@@ -186,14 +186,14 @@ public class UserController {
 
     @RequestMapping(value = "/toHome")
     public String toHome(ModelMap modelMap) {
-        modelMap.addAttribute("book", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(1)));
-        modelMap.addAttribute("household", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(2)));
-        modelMap.addAttribute("snack", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(3)));
-        modelMap.addAttribute("phone", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(4)));
+        modelMap.addAttribute("book", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(8)));
+        modelMap.addAttribute("household", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(1)));
+        modelMap.addAttribute("snack", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(6)));
+        modelMap.addAttribute("phone", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(2)));
         modelMap.addAttribute("sport", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(5)));
-        modelMap.addAttribute("beauty", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(6)));
-        modelMap.addAttribute("computer", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(7)));
-        modelMap.addAttribute("clothes", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(8)));
+        modelMap.addAttribute("beauty", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(7)));
+        modelMap.addAttribute("computer", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(3)));
+        modelMap.addAttribute("clothes", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(4)));
 
         Random random = new Random();
         modelMap.addAttribute("one", goodsService.getGoodsByRandomId(random.nextInt()));
@@ -261,7 +261,7 @@ public class UserController {
         user.setUserid(userNow.getUserid());
 
         System.out.println("comming!");
-        String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\GoodsImage";
+        String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\UserImage";
         System.out.println("path>>" + path);
 
         String fileName = userImage.getOriginalFilename();
@@ -431,7 +431,7 @@ public class UserController {
     @RequestMapping(value = "/doActive/{useremail}")
     public String setIsLogin(@PathVariable("useremail")String useremail, ModelMap modelMap){
         System.out.println("/doActive/{useremail}: "+useremail);
-        String uemail = DesUtil.decryptBasedDes(useremail);
+        String uemail = new String(Base64.getDecoder().decode(useremail));
 
         System.out.println("/doActive/{useremail}: "+uemail);
         User user = userService.getUserByEmail(uemail);

@@ -247,8 +247,15 @@
         <div class="pay">
             <li>
                 <div class="clearfix tb-btn tb-btn-buy theme-login">
-                    <a id="LikBuy" title="点此按钮到下一步确认购买信息"
-                       href="#">立即购买</a>
+                    <a id="LikBuy" title="点此按钮到下一步确认购买信息">
+                        立即购买
+                    </a>
+                    <script>
+                        $('#LikBuy').click(function () {
+                            var number = $('#number').val();
+                            window.location.href = "${APP_PATH}/tolikPay/${requestScope.Goods.goodsid}/"+number;
+                        })
+                    </script>
                 </div>
             </li>
             <li>

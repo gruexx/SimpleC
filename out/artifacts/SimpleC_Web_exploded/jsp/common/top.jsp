@@ -10,7 +10,7 @@
 <%
     pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-<div class="am-container header">
+<div class="am-container header" data-am-sticky="{animation: 'slide-top'}" style="background-color: white; z-index:9999">
     <ul class="message-l">
         <div class="topMessage">
             <div class="menu-hd">

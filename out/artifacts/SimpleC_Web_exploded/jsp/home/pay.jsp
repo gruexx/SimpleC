@@ -150,21 +150,6 @@
                             <em class="style-large-bold-red " id="J_ActualFee">${requestScope.totalprice}</em>
                         </span>
                     </div>
-                    <div id="holyshit268" class="pay-address">
-                        <p class="buy-footer-address">
-                            <span class="buy-line-title buy-line-title-type">寄送至：</span>
-                            <span class="buy--address-detail">
-                                <span></span>
-                            </span>
-                        </p>
-                        <p class="buy-footer-address">
-                            <span class="buy-line-title">收货人：</span>
-                            <span class="buy-address-detail">
-                                <span class="buy-user">${sessionScope.user.username}</span>
-                                <span class="buy-phone">${sessionScope.user.userphone}</span>
-                            </span>
-                        </p>
-                    </div>
                 </div>
                 <div id="holyshit269" class="submitOrder">
                     <div class="go-btn-wrap">
@@ -212,8 +197,10 @@
     });
 
     $('#submitOrder').click(function () {
-        console.log($('.selectAddress').data('address'));
-
+        var address = $('.selectAddress').data('address');
+        console.log(address);
+        var totalprice = '${requestScope.totalprice}';
+        console.log(totalprice);
         <%--$.ajax({--%>
             <%--url: "${APP_PATH}/Balance",--%>
             <%--type: "POST",--%>

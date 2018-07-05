@@ -67,7 +67,9 @@ public class MailUtil {
 
     public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail) throws Exception {
         //加密收件人地址
-        String encoded = DesUtil.encryptBasedDes(receiveMail);
+        byte[] bytes = receiveMail.getBytes();
+
+        String encoded = Base64.getEncoder().encodeToString(bytes);
 
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);

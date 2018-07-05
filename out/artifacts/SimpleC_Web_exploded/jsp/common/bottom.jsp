@@ -11,7 +11,7 @@
 %>
 <div class="footer ">
     <div class="footer-hd ">
-        <p><a href="${APP_PATH}/jsp/common/simplechange.html">心潮工作室</a>
+        <p><a href="${APP_PATH}/jsp/common/simplechange.jsp">心潮工作室</a>
             <b>|</b>
             <a href="${APP_PATH}/toHome">商城首页</a>
             <b>|</b>
@@ -19,9 +19,9 @@
         </p>
     </div>
     <div class="footer-bd ">
-        <p><a href="${APP_PATH}/jsp/common/simplechange.html">关于心潮</a>
+        <p><a href="${APP_PATH}/jsp/common/simplechange.jsp">关于心潮</a>
             <a href="#">合作伙伴</a>
-            <a href="${APP_PATH}/jsp/common/simplechange.html">联系我们</a>
+            <a href="${APP_PATH}/jsp/common/simplechange.jsp">联系我们</a>
             <a href="#">网站地图</a>
             <em>©
                 2018-2038

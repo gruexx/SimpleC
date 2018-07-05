@@ -8,7 +8,7 @@ ul {
 }
 .tab {
     width: 100%;
-    background-image: url(bg1.png);
+    background-image: url(../scInstruction/bg1.png);
     background-size: cover;
     margin-top: 50px;
 }

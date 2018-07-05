@@ -85,6 +85,7 @@
                 jigsaw.init(document.getElementById('captcha'), function () {
                     document.getElementById('msg').innerHTML = '验证成功！';
                     $('#LoginBtn').removeAttr("disabled");
+                    $('#LoginBtn').click();
                 })
             </script>
 

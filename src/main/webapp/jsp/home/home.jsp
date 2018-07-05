@@ -70,7 +70,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/2">
+                            <a href="${APP_PATH}/toClassify/1">
                                 <li class="appliance js_toggle relative first">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -79,7 +79,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/4">
+                            <a href="${APP_PATH}/toClassify/2">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -88,7 +88,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/7">
+                            <a href="${APP_PATH}/toClassify/3">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -97,7 +97,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/8">
+                            <a href="${APP_PATH}/toClassify/4">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -113,7 +113,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/3">
+                            <a href="${APP_PATH}/toClassify/6">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -121,7 +121,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/6">
+                            <a href="${APP_PATH}/toClassify/7">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -129,7 +129,7 @@
                                     </div>
                                 </li>
                             </a>
-                            <a href="${APP_PATH}/toClassify/1">
+                            <a href="${APP_PATH}/toClassify/8">
                                 <li class="appliance js_toggle relative">
                                     <div class="category-info">
                                         <h3 class="category-name b-category-name">
@@ -203,13 +203,13 @@
                 <h4>家用电器</h4>
                 <h3>每一个家用电器都有一个故事</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/2">更多家用电器</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/1">更多家用电器</a>
                 </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.household}" var="list" end="11">
+                <c:forEach items="${requestScope.household}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -229,13 +229,13 @@
                 <h4>手机数码</h4>
                 <h3>手机数码</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/4">更多手机数码</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/2">更多手机数码</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.phone}" var="list" end="11">
+                <c:forEach items="${requestScope.phone}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -255,13 +255,13 @@
                 <h4>电脑办公</h4>
                 <h3>电脑办公</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/7">更多电脑办公</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/3">更多电脑办公</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.computer}" var="list" end="11">
+                <c:forEach items="${requestScope.computer}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -281,13 +281,13 @@
                 <h4>服装</h4>
                 <h3>服装</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/8">更多服装</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/4">更多服装</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.clothes}" var="list" end="11">
+                <c:forEach items="${requestScope.clothes}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -313,7 +313,7 @@
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.sport}" var="list" end="11">
+                <c:forEach items="${requestScope.sport}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -333,13 +333,13 @@
                 <h4>食品</h4>
                 <h3>食品</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/3">更多食品</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/6">更多食品</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.snack}" var="list" end="11">
+                <c:forEach items="${requestScope.snack}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -359,13 +359,13 @@
                 <h4>美妆</h4>
                 <h3>美妆</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/6">更多美妆</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/7">更多美妆</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.beauty}" var="list" end="11">
+                <c:forEach items="${requestScope.beauty}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
@@ -385,13 +385,13 @@
                 <h4>图书</h4>
                 <h3>知识就是力量</h3>
                 <span class="more ">
-                    <a class="more-link " href="${APP_PATH}/toClassify/1">更多图书</a>
+                    <a class="more-link " href="${APP_PATH}/toClassify/8">更多图书</a>
                         </span>
             </div>
         </div>
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
-                <c:forEach items="${requestScope.book}" var="list" end="11">
+                <c:forEach items="${requestScope.book}" var="list" end="5">
                     <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
