@@ -60,16 +60,4 @@ public class Shopcart {
     public void setFlag(Integer flag) {
         this.flag = flag;
     }
-
-    @Override
-    public String toString() {
-        return "Shopcart{" +
-                "shopcartid=" + shopcartid +
-                ", useridFkShopcart=" + useridFkShopcart +
-                ", goodsidFkShopcart=" + goodsidFkShopcart +
-                ", number=" + number +
-                ", isbuy=" + isbuy +
-                ", flag=" + flag +
-                '}';
-    }
 }

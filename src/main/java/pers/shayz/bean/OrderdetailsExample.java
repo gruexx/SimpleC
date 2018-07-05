@@ -463,6 +463,66 @@ public class OrderdetailsExample {
             addCriterion("flag not between", value1, value2, "flag");
             return (Criteria) this;
         }
+
+        public Criteria andIsoutIsNull() {
+            addCriterion("isOut is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutIsNotNull() {
+            addCriterion("isOut is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutEqualTo(Integer value) {
+            addCriterion("isOut =", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutNotEqualTo(Integer value) {
+            addCriterion("isOut <>", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutGreaterThan(Integer value) {
+            addCriterion("isOut >", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isOut >=", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutLessThan(Integer value) {
+            addCriterion("isOut <", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutLessThanOrEqualTo(Integer value) {
+            addCriterion("isOut <=", value, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutIn(List<Integer> values) {
+            addCriterion("isOut in", values, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutNotIn(List<Integer> values) {
+            addCriterion("isOut not in", values, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutBetween(Integer value1, Integer value2) {
+            addCriterion("isOut between", value1, value2, "isout");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoutNotBetween(Integer value1, Integer value2) {
+            addCriterion("isOut not between", value1, value2, "isout");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

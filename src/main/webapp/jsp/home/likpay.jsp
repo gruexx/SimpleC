@@ -202,7 +202,7 @@
         var totalprice = '${requestScope.totalprice}';
         console.log(totalprice);
         <%--$.ajax({--%>
-        <%--url: "${APP_PATH}/Balance",--%>
+        <%--url: "${APP_PATH}/balance",--%>
         <%--type: "POST",--%>
         <%--data: {},--%>
         <%--})--%>

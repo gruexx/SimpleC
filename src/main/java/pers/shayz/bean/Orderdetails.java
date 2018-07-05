@@ -13,6 +13,8 @@ public class Orderdetails {
 
     private Integer flag;
 
+    private Integer isout;
+
     public Integer getOrderid() {
         return orderid;
     }
@@ -59,5 +61,13 @@ public class Orderdetails {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Integer getIsout() {
+        return isout;
+    }
+
+    public void setIsout(Integer isout) {
+        this.isout = isout;
     }
 }

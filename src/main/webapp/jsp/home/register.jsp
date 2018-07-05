@@ -23,6 +23,24 @@
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
+<style type="text/css">
+    .default {
+        background: transparent;
+    }
+
+    .weak {
+        background: #FF0000;
+    }
+
+    .medium {
+        background: #FF7F24;
+    }
+
+    .strong {
+        background: #33CC00;
+    }
+</style>
+
 <body>
 <div class="login-boxtitle" style="height: 100px">
     <a href="${APP_PATH}/toLogin"><img alt="logo" src="${APP_PATH}/static/picture/logoPro.png"
@@ -56,6 +74,12 @@
                                placeholder="设置密码" required/>
                         <span style="display: none" class="am-icon-check"></span>
                     </div>
+                    <span style="display: inline-block;width:100px;height:14px;line-height:15px;text-align: center;margin: 1px 1px;font-size:15px;"
+                          class="default"></span>
+                    <span style="display: inline-block;width:100px;height:14px;line-height:15px;text-align: center;margin: 1px 1px;font-size:15px;"
+                          class="default"></span>
+                    <span style="display: inline-block;width:100px;height:14px;line-height:15px;text-align: center;margin: 1px 1px;font-size:15px;"
+                          class="default"></span>
                     <div class="am-form-group am-form-icon am-form-feedback">
 
                         <input type="password" id="p2" placeholder="确认密码" class="am-form-field"
@@ -174,4 +198,75 @@
 
         }
     })
+</script>
+
+<script type="text/javascript">
+    window.onload = function () {
+
+        var oInput = document.getElementById('userpassword');
+        <!-- oInput.value = '';-->
+        var spans = document.getElementsByTagName('span');
+
+        oInput.onkeyup = function () {
+            //强度状态设为默认
+            spans[3].className = spans[4].className = spans[5].className = "default";
+
+            var pwd = this.value;
+            var result = 0;
+            for (var i = 0, len = pwd.length; i < len; ++i) {
+                result |= charType(pwd.charCodeAt(i));
+            }
+
+            var level = 0;
+            //对result进行四次循环，计算其level
+            for (var i = 0; i <= 4; i++) {
+                if (result & 1) {
+                    level++;
+                }
+                //右移一位
+                result = result >>> 1;
+            }
+
+            if (pwd.length > 0) {
+                switch (level) {
+                    case 1:
+                        spans[3].className = "weak";
+                        spans[3].innerText = "弱";
+                        break;
+                    case 2:
+                        spans[3].className = "medium";
+                        spans[4].className = "medium";
+                        spans[4].innerText = "中";
+                        break;
+                    case 3:
+                    case 4:
+                        spans[3].className = "strong";
+                        spans[4].className = "strong";
+                        spans[5].className = "strong";
+                        spans[5].innerText = "强";
+                        break;
+                }
+            }
+        }
+    };
+
+    /*
+        定义一个函数，对给定的数分为四类(判断密码类型)，返回十进制1，2，4，8
+        数字 0001 -->1  48~57
+        小写字母 0010 -->2  97~122
+        大写字母 0100 -->4  65~90
+        特殊 1000 --> 8 其它
+    */
+    function charType(num) {
+        if (num >= 48 && num <= 57) {
+            return 1;
+        }
+        if (num >= 97 && num <= 122) {
+            return 2;
+        }
+        if (num >= 65 && num <= 90) {
+            return 4;
+        }
+        return 8;
+    }
 </script>

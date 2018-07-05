@@ -22,7 +22,7 @@
     <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 
-    <script src="${APP_PATH}/jigsaw/jigsaw.js"></script>
+    <script src="${APP_PATH}/jigsaw/jigsaw.js" charset="UTF-8"></script>
     <link rel="stylesheet" href="${APP_PATH}/jigsaw/jigsaw.css">
     <style>
         .container {
@@ -86,6 +86,12 @@
                     document.getElementById('msg').innerHTML = '验证成功！';
                     $('#LoginBtn').removeAttr("disabled");
                     $('#LoginBtn').click();
+                    $("body").keydown(function () {
+                        if (event.keyCode == "13") {//keyCode=13是回车键
+
+                            $('#LoginBtn').click();
+                        }
+                    });
                 })
             </script>
 
@@ -180,12 +186,6 @@
 
     $(function () {
         $('#LoginForm').validator();
-    });
-
-    $("body").keydown(function () {
-        if (event.keyCode == "13") {//keyCode=13是回车键
-            $('#LoginBtn').click();
-        }
     });
 
 </script>

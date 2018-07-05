@@ -10,7 +10,9 @@
 <%
     pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-<div class="am-container header" data-am-sticky="{animation: 'slide-top'}" style="background-color: white; z-index:9999">
+<div id="top" class="am-container header"
+<%--data-am-sticky="{animation: 'slide-top'}"--%>
+     style="background-color: white;">
     <ul class="message-l">
         <div class="topMessage">
             <div class="menu-hd">
@@ -93,8 +95,8 @@
             // $(this).css("height", "200px");
             $(this).stop();
             $(this).animate({
-                height:'200px'
-            },1000);
+                height: '200px'
+            }, 300);
         }).trigger(".am-dropdown-header");
 
     $(document).on('mouseout', '.goods li',
@@ -102,8 +104,9 @@
             // console.log("aaaaa");
             $(this).stop();
             $(this).animate({
-                height:'50px'
-            },1000);
+                height: '50px'
+            }, 300);
         });
 
+    // $('#top').sticky();
 </script>

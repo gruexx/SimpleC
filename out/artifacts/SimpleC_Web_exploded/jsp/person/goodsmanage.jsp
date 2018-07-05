@@ -42,7 +42,7 @@
         <ul>
             <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
         </ul>
-        <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
+        <jsp:include page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
     </div>
 </div>
 <b class="line"></b>
@@ -80,10 +80,14 @@
                             <td>${myg.goodsprice}</td>
                             <td>${myg.goodsnumber}</td>
                             <td>
-                                <img src="${APP_PATH}/${myg.image}" class="am-img-responsive">
+                                <img src="${APP_PATH}/${myg.image}" style="width: 90px;height: auto">
                             </td>
                             <td>${myg.goodsinfo}</td>
                             <td>
+                                <button data-id="${myg.goodsid}" type="button"
+                                        class="am-btn am-btn-success orderdetail">
+                                    订单
+                                </button>
                                 <button data-id="${myg.goodsid}" type="button" class="am-btn am-btn-primary editGoods">
                                     编辑
                                 </button>
@@ -130,6 +134,29 @@
         </ul>
     </aside>
 </div>
+
+<%--订单--%>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="orderModal">
+    <div class="am-modal-dialog" style="width: 400px">
+        <div class="am-modal-hd">
+            此商品的所有订单
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form id="orderDetailForm" class="am-form">
+                <%--<div class="am-form-group">--%>
+                    <%----%>
+                <%--</div>--%>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>关闭
+            </button>
+        </div>
+    </div>
+</div>
+
+
 <%--删除--%>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="deleteModal">
     <div class="am-modal-dialog">
@@ -148,6 +175,8 @@
         </div>
     </div>
 </div>
+
+
 <%--编辑--%>
 <div class="am-modal am-modal-prompt" tabindex="-1" id="editModal">
     <div class="am-modal-dialog" style="width: 400px">
@@ -157,43 +186,44 @@
         </div>
         <div class="am-modal-bd">
             <form id="editGoodsForm" class="am-form">
-                    <div class="am-form-group">
-                        <label for="goodsname">商品名称：</label>
-                        <input type="text" id="goodsname" name="goodsname" placeholder="必填"
-                               class="am-form-field" required/>
-                    </div>
+                <div class="am-form-group">
+                    <label for="goodsname">商品名称：</label>
+                    <input type="text" id="goodsname" name="goodsname" placeholder="必填"
+                           class="am-form-field" required/>
+                </div>
 
-                    <div class="am-form-group">
-                        <label for="classifyid">商品类别:</label>
-                        <select id="classifyid" class="am-datepicker-select" data-am-selected="{btnStyle: 'primary'}" autocomplete="off">
-                            <option selected value=""></option>
-                            <c:forEach items="${requestScope.classifyList}" var="classifyList">
-                                <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                <div class="am-form-group">
+                    <label for="classifyid">商品类别:</label>
+                    <select id="classifyid" class="am-datepicker-select" data-am-selected="{btnStyle: 'primary'}"
+                            autocomplete="off">
+                        <option selected value=""></option>
+                        <c:forEach items="${requestScope.classifyList}" var="classifyList">
+                            <option value="${classifyList.classifyid}">${classifyList.classifyname}</option>
+                        </c:forEach>
+                    </select>
+                </div>
 
-                    <div class="am-form-group">
-                        <label for="goodsprice">商品价格：</label>
-                        <input type="number" id="goodsprice" placeholder="必填" name="goodsprice" required/>
-                    </div>
+                <div class="am-form-group">
+                    <label for="goodsprice">商品价格：</label>
+                    <input type="number" id="goodsprice" placeholder="必填" name="goodsprice" required/>
+                </div>
 
-                    <div class="am-form-group">
-                        <label for="goodsnumber">库存量：</label>
-                        <input type="number" id="goodsnumber" name="goodsnumber" placeholder="必填" required/>
-                    </div>
+                <div class="am-form-group">
+                    <label for="goodsnumber">库存量：</label>
+                    <input type="number" id="goodsnumber" name="goodsnumber" placeholder="必填" required/>
+                </div>
 
-                    <div class="am-form-group">
-                        <label for="goodsinfo">详细资料：</label>
-                        <textarea id="goodsinfo" name="goodsinfo" minlength="10" maxlength="100"></textarea>
-                    </div>
-                    <div class="am-form-group am-form-file">
-                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                            <i class="am-icon-cloud-upload"></i> 选择要上传的图片
-                        </button>
-                        <input id="imageFile" name="imageFile" type="file" multiple>
-                        <div id="file-list"></div>
-                    </div>
+                <div class="am-form-group">
+                    <label for="goodsinfo">详细资料：</label>
+                    <textarea id="goodsinfo" name="goodsinfo" minlength="10" maxlength="100"></textarea>
+                </div>
+                <div class="am-form-group am-form-file">
+                    <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                        <i class="am-icon-cloud-upload"></i> 选择要上传的图片
+                    </button>
+                    <input id="imageFile" name="imageFile" type="file" multiple>
+                    <div id="file-list"></div>
+                </div>
             </form>
         </div>
         <div class="am-modal-footer">
@@ -203,7 +233,6 @@
         </div>
     </div>
 </div>
-
 
 
 <%--发布--%>
@@ -264,6 +293,39 @@
 
 </html>
 <script>
+
+
+    $('.orderdetail').click(function () {
+        var $od = $(this);
+        var goodsid = $od.data('id');
+        var goodname = $od.data('goodsname');
+        $('#orderModal').modal();
+        $.ajax({
+            url: '${APP_PATH}/orderDetail',
+            type: 'POST',
+            data: {"goodsid": goodsid},
+            success: function (result) {
+                var orderDetailList = result.extend.orderDetailList;
+
+                $.each(orderDetailList, function (i) {
+                    console.log(i);
+                    console.log(orderDetailList[i].orderId);
+                    $('#orderDetailForm').append(
+                        '<div class="am-form-group">' +
+                        '<label for="goodsname">商品名称："' + goodname + '"' +
+                        '</label>' +
+                        '<p>数量："' + orderDetailList[i].number + '"' +
+                        '</p>' +
+                        '<button class="confirmout" value="确认发货" data-id="' + orderDetailList[i].orderId + '"/>' +
+                        '</div>'
+                    )
+                })
+
+            }
+        })
+    });
+
+
     $('.deleteGoods').click(function () {
         var $dg = $(this);
         var goodsid = $dg.data('id');
@@ -297,7 +359,7 @@
 
     $('.editGoods').click(function () {
         var goodsid = $(this).data('id');
-        console.log("goodsid: "+goodsid);
+        console.log("goodsid: " + goodsid);
         $.ajax({
             url: '${APP_PATH}/getGoods',
             type: 'POST',
@@ -305,7 +367,7 @@
             success: function (result) {
 
                 var id = result.classifyidFkGoods;
-                console.log("classifyidFkGoods: "+id);
+                console.log("classifyidFkGoods: " + id);
 
                 $('#goodsname').val(result.goodsname);
                 $('#goodsnumber').val(result.goodsnumber);
@@ -325,11 +387,11 @@
 
                         var classifyidFkGoods = $("#classifyid option:selected").val();
                         form.append('classifyid', classifyidFkGoods);
-                        form.append('goodsid',goodsid);
+                        form.append('goodsid', goodsid);
 
                         $.ajax({
                             type: "post",
-                            url: "/doPublish/"+"update",
+                            url: "/doPublish/" + "update",
                             data: form,
                             processData: false,
                             contentType: false,
@@ -338,7 +400,7 @@
                                 if (result.code === 100) {
                                     $.toast({
                                         heading: "Success",
-                                        text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
+                                        text: result.extend.msg + ' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                         showHideTransition: 'slide',
                                         icon: 'success',
                                         afterHidden: function () {
@@ -378,7 +440,7 @@
 
                 $.ajax({
                     type: "post",
-                    url: "/doPublish/"+"add",
+                    url: "/doPublish/" + "add",
                     data: form,
                     // data: {
                     //     goodsname: goodsname,
@@ -394,7 +456,7 @@
                         if (result.code === 100) {
                             $.toast({
                                 heading: "Success",
-                                text: result.extend.msg+' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
+                                text: result.extend.msg + ' , <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
                                 showHideTransition: 'slide',
                                 afterHidden: function () {
                                     window.location.reload();
@@ -437,5 +499,33 @@
             });
             $('#file-list1').html(fileNames);
         });
+    });
+
+
+    $(function () {
+        $(document).on("click", ".confirmout", function () {
+            var orderid = $(this).data('id');
+            $.ajax({
+                url: "${APP_PATH}/updateIsout",
+                method: 'POST',
+                data: {
+                    "orderid": orderid
+                },
+                success: function (result) {
+                    if (result === 100) {
+                        $.toast({
+                            heading: "Success",
+                            text: 'Yes! 发货成功 <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
+                            showHideTransition: 'slide',
+                            afterHidden: function () {
+                                window.location.reload();
+                            },
+                            position: 'top-right',
+                            icon: 'success'
+                        })
+                    }
+                }
+            })
+        })
     });
 </script>

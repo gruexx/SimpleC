@@ -190,7 +190,7 @@
                 type: 'POST',
                 data:
                     {
-                        "isBuy": 0,
+                        "isBuy": 1,
                         "shopcartid": 0
                     },
                 success: function () {
@@ -203,6 +203,22 @@
             });
         } else {
             $('.check').uCheck('uncheck');
+            $.ajax({
+                url: '${APP_PATH}/updateShopcartCheck',
+                type: 'POST',
+                data:
+                    {
+                        "isBuy": 0,
+                        "shopcartid": 0
+                    },
+                success: function () {
+                    window.location.reload();
+                    console.log("success")
+                },
+                error: function () {
+                    console.log("fail")
+                }
+            });
         }
     });
 

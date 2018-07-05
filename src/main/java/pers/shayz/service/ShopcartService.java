@@ -47,13 +47,13 @@ public class ShopcartService {
         shopcartMapper.updateByPrimaryKeySelective(shopcart);
     }
 
-    public void updateAllShopcartCheck(Integer userid) {
+    public void updateAllShopcartCheck(Integer userid, String isBuy) {
         ShopcartExample shopcartExample = new ShopcartExample();
         ShopcartExample.Criteria criteria = shopcartExample.createCriteria();
         criteria.andUseridFkShopcartEqualTo(userid).andFlagEqualTo(1);
 
         Shopcart shopcart = new Shopcart();
-        shopcart.setIsbuy(1);
+        shopcart.setIsbuy(Integer.parseInt(isBuy));
         shopcartMapper.updateByExampleSelective(shopcart, shopcartExample);
     }
 

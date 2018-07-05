@@ -21,6 +21,9 @@
     <link href="${APP_PATH}/css/cartstyle.css" rel="stylesheet" type="text/css"/>
     <link href="${APP_PATH}/css/jsstyle.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${APP_PATH}/js/address.js"></script>
+
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
             <ul>
                 <c:forEach items="${requestScope.addressList}" var="address">
                     <div class="per-border"></div>
-                    <li class="user-addresslist defaultAddr" data-address="${address}">
+                    <li class="user-addresslist defaultAddr" data-addressid="${address.addressid}">
                         <div class="address-left">
                             <div class="user DefaultAddr">
                                 <span class="buy-address-detail">
@@ -121,10 +124,14 @@
         </div>
         <script>
             $(function () {
-                if (${sessionScope.user.userchaopoint*0.001}>
-                ${requestScope.totalprice})
-                {
+                var chao = '${sessionScope.user.userchaopoint*0.001}';
+                var remainder = '${requestScope.totalprice}';
+                if (chao > remainder) {
                     $('#isUsingp').text(${requestScope.totalprice});
+                    $('#submitOrder').attr("data-chao", ${requestScope.totalprice*1000});
+                }
+                else {
+                    $('#submitOrder').attr("data-chao", ${sessionScope.user.userchaopoint});
                 }
             });
             $('#isUsing').click(function () {
@@ -183,7 +190,7 @@
 
             if (isdefault[i] !== 1) {
                 $(this).removeClass('defaultAddr');
-            }else {
+            } else {
                 $(this).find('.deftip').css({
                     display: 'block'
                 });
@@ -197,14 +204,37 @@
     });
 
     $('#submitOrder').click(function () {
-        var address = $('.selectAddress').data('address');
-        console.log(address);
+        var setoff = 0;
+        if ($('#isUsing')[0].checked) {
+            setoff = $(this).data("chao");
+            console.log("chao: " + setoff);
+        }
+        var addressid = $('.selectAddress').data('addressid');
+        console.log(addressid);
         var totalprice = '${requestScope.totalprice}';
         console.log(totalprice);
-        <%--$.ajax({--%>
-            <%--url: "${APP_PATH}/Balance",--%>
-            <%--type: "POST",--%>
-            <%--data: {},--%>
-        <%--})--%>
+        $.ajax({
+            url: "${APP_PATH}/Balance",
+            type: "POST",
+            data: {
+                "addressid": addressid,
+                "totalprice": totalprice,
+                "setoff": setoff
+            },
+            success: function (result) {
+                if(result.code===100){
+                    window.location.href = "${APP_PATH}/toSuccess/"+result.extend.orderitemid;
+                }else {
+                    $.toast({
+                        heading: "Fail",
+                        text: result.extend.msg,
+                        showHideTransition: 'slide',
+                        hideAfter: false,
+                        position: 'top-right',
+                    })
+                }
+                console.log("success");
+            }
+        })
     })
 </script>

@@ -90,7 +90,7 @@
                                 <div class="dd-num">订单编号：<a
                                         href="javascript:;">${requestScope.OrderItemList.orderitemid}</a></div>
                                 <span>成交时间：2015-12-20</span>
-                                <!--    <em>店铺：小桔灯</em>--></div>
+                            </div>
                             <c:forEach items="${requestScope.GoodsList}" var="GoodsList" varStatus="loop">
                                 <div class="order-content">
                                     <div class="order-left">
@@ -137,7 +137,7 @@
                                             <li class="td td-status">
                                                 <div class="item-status">
                                                     <p class="Mystatus">卖家已发货</p>
-                                                    <p class="order-info"><a href="logistics.html">查看物流</a></p>
+                                                    <p class="order-info"><a href="#">查看物流</a></p>
                                                     <p class="order-info"><a href="#">延长收货</a></p>
                                                 </div>
                                             </li>

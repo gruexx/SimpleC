@@ -164,73 +164,63 @@ public class OrderitemExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNull() {
-            addCriterion("address is null");
+        public Criteria andAddressidFkOrderitemidIsNull() {
+            addCriterion("addressId_fk_orderitemId is null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIsNotNull() {
-            addCriterion("address is not null");
+        public Criteria andAddressidFkOrderitemidIsNotNull() {
+            addCriterion("addressId_fk_orderitemId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAddressEqualTo(String value) {
-            addCriterion("address =", value, "address");
+        public Criteria andAddressidFkOrderitemidEqualTo(Integer value) {
+            addCriterion("addressId_fk_orderitemId =", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotEqualTo(String value) {
-            addCriterion("address <>", value, "address");
+        public Criteria andAddressidFkOrderitemidNotEqualTo(Integer value) {
+            addCriterion("addressId_fk_orderitemId <>", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThan(String value) {
-            addCriterion("address >", value, "address");
+        public Criteria andAddressidFkOrderitemidGreaterThan(Integer value) {
+            addCriterion("addressId_fk_orderitemId >", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("address >=", value, "address");
+        public Criteria andAddressidFkOrderitemidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("addressId_fk_orderitemId >=", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThan(String value) {
-            addCriterion("address <", value, "address");
+        public Criteria andAddressidFkOrderitemidLessThan(Integer value) {
+            addCriterion("addressId_fk_orderitemId <", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLessThanOrEqualTo(String value) {
-            addCriterion("address <=", value, "address");
+        public Criteria andAddressidFkOrderitemidLessThanOrEqualTo(Integer value) {
+            addCriterion("addressId_fk_orderitemId <=", value, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressLike(String value) {
-            addCriterion("address like", value, "address");
+        public Criteria andAddressidFkOrderitemidIn(List<Integer> values) {
+            addCriterion("addressId_fk_orderitemId in", values, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotLike(String value) {
-            addCriterion("address not like", value, "address");
+        public Criteria andAddressidFkOrderitemidNotIn(List<Integer> values) {
+            addCriterion("addressId_fk_orderitemId not in", values, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIn(List<String> values) {
-            addCriterion("address in", values, "address");
+        public Criteria andAddressidFkOrderitemidBetween(Integer value1, Integer value2) {
+            addCriterion("addressId_fk_orderitemId between", value1, value2, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
-        public Criteria andAddressNotIn(List<String> values) {
-            addCriterion("address not in", values, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressBetween(String value1, String value2) {
-            addCriterion("address between", value1, value2, "address");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressNotBetween(String value1, String value2) {
-            addCriterion("address not between", value1, value2, "address");
+        public Criteria andAddressidFkOrderitemidNotBetween(Integer value1, Integer value2) {
+            addCriterion("addressId_fk_orderitemId not between", value1, value2, "addressidFkOrderitemid");
             return (Criteria) this;
         }
 
@@ -481,6 +471,66 @@ public class OrderitemExample {
 
         public Criteria andIdentifierNotBetween(String value1, String value2) {
             addCriterion("identifier not between", value1, value2, "identifier");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffIsNull() {
+            addCriterion("setoff is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffIsNotNull() {
+            addCriterion("setoff is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffEqualTo(Double value) {
+            addCriterion("setoff =", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffNotEqualTo(Double value) {
+            addCriterion("setoff <>", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffGreaterThan(Double value) {
+            addCriterion("setoff >", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffGreaterThanOrEqualTo(Double value) {
+            addCriterion("setoff >=", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffLessThan(Double value) {
+            addCriterion("setoff <", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffLessThanOrEqualTo(Double value) {
+            addCriterion("setoff <=", value, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffIn(List<Double> values) {
+            addCriterion("setoff in", values, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffNotIn(List<Double> values) {
+            addCriterion("setoff not in", values, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffBetween(Double value1, Double value2) {
+            addCriterion("setoff between", value1, value2, "setoff");
+            return (Criteria) this;
+        }
+
+        public Criteria andSetoffNotBetween(Double value1, Double value2) {
+            addCriterion("setoff not between", value1, value2, "setoff");
             return (Criteria) this;
         }
     }

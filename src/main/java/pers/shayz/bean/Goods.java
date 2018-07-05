@@ -13,11 +13,11 @@ public class Goods {
 
     private Integer goodsnumber;
 
-    private Integer flag;
-
     private String image;
 
     private String goodsinfo;
+
+    private Integer flag;
 
     public Integer getGoodsid() {
         return goodsid;
@@ -67,14 +67,6 @@ public class Goods {
         this.goodsnumber = goodsnumber;
     }
 
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
-
     public String getImage() {
         return image;
     }
@@ -91,18 +83,11 @@ public class Goods {
         this.goodsinfo = goodsinfo == null ? null : goodsinfo.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "goodsid=" + goodsid +
-                ", goodsname='" + goodsname + '\'' +
-                ", classifyidFkGoods=" + classifyidFkGoods +
-                ", useridFkGoods=" + useridFkGoods +
-                ", goodsprice=" + goodsprice +
-                ", goodsnumber=" + goodsnumber +
-                ", flag=" + flag +
-                ", image='" + image + '\'' +
-                ", goodsinfo='" + goodsinfo + '\'' +
-                '}';
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

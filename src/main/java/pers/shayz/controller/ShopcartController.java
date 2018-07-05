@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.shayz.bean.*;
-import pers.shayz.service.AddressService;
-import pers.shayz.service.GoodsService;
-import pers.shayz.service.ShopcartService;
+import pers.shayz.service.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author ZhouXiaoyu & WangKai
@@ -34,6 +33,12 @@ public class ShopcartController {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    OrderItemService orderItemService;
+
+    @Autowired
+    OrderdetailsService orderdetailsService;
+
     @RequestMapping(value = "/toShopcart")
     public String toShopcart(HttpSession session, ModelMap modelMap) {
         User userNow = (User) session.getAttribute("user");
@@ -43,13 +48,13 @@ public class ShopcartController {
         Double totalprice = 0.0;
         for (int i = 0; i < shopcartlist.size(); i++) {
             goodslist.add(goodsService.getGoodsById(shopcartlist.get(i).getGoodsidFkShopcart()));
-            if(shopcartlist.get(i).getIsbuy()==1){
+            if (shopcartlist.get(i).getIsbuy() == 1) {
                 totalprice += goodslist.get(i).getGoodsprice() * shopcartlist.get(i).getNumber();
             }
         }
 
         List<Integer> isbuy = new ArrayList<>();
-        for (Shopcart i:shopcartlist) {
+        for (Shopcart i : shopcartlist) {
             isbuy.add(i.getIsbuy());
         }
 
@@ -79,10 +84,12 @@ public class ShopcartController {
                                    HttpSession session) {
         System.out.println("/updateShopcartCheck: " + isBuy);
         System.out.println("/updateShopcartCheck: " + shopcartid);
-        if("0".equals(isBuy) && "0".equals(shopcartid)){
-            User user = (User)session.getAttribute("user");
-            shopcartService.updateAllShopcartCheck(user.getUserid());
-        }else {
+        User user = (User) session.getAttribute("user");
+        if ("1".equals(isBuy) && "0".equals(shopcartid)) {
+            shopcartService.updateAllShopcartCheck(user.getUserid(), isBuy);
+        } else if("0".equals(isBuy) && "0".equals(shopcartid)){
+            shopcartService.updateAllShopcartCheck(user.getUserid(), isBuy);
+        } else{
             shopcartService.updateShopcartCheckByShopcartid(Integer.parseInt(shopcartid), Integer.parseInt(isBuy));
         }
         return Msg.success();
@@ -94,7 +101,7 @@ public class ShopcartController {
         System.out.println("/deleteShopcart: " + shopcartid);
         shopcartService.deleteByShopCartId(Integer.parseInt(shopcartid));
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
         session.setAttribute("shopcartNum", list.size());
         return Msg.success();
@@ -110,7 +117,7 @@ public class ShopcartController {
             shopcartService.deleteByShopCartId(Integer.parseInt(id));
         }
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
         session.setAttribute("shopcartNum", list.size());
         return Msg.success();
@@ -127,7 +134,7 @@ public class ShopcartController {
             goodslist.add(goodsService.getGoodsById(shopcartlist.get(i).getGoodsidFkShopcart()));
             totalprice += goodslist.get(i).getGoodsprice() * shopcartlist.get(i).getNumber();
         }
-        System.out.println("/toPay: "+totalprice);
+        System.out.println("/toPay: " + totalprice);
 
         modelMap.addAttribute("ShopcartList", shopcartlist);
         modelMap.addAttribute("GoodsList", goodslist);
@@ -146,13 +153,13 @@ public class ShopcartController {
     }
 
     @RequestMapping(value = "/tolikPay/{goodsid}/{number}")
-    public String tolikPay(HttpSession session, @PathVariable("goodsid")int goodsid, @PathVariable("number")int number,
-                           ModelMap modelMap){
-        System.out.println("/tolikPay/{goodsid}/{number}: "+goodsid);
-        System.out.println("/tolikPay/{goodsid}/{number}: "+number);
+    public String tolikPay(HttpSession session, @PathVariable("goodsid") int goodsid, @PathVariable("number") int number,
+                           ModelMap modelMap) {
+        System.out.println("/tolikPay/{goodsid}/{number}: " + goodsid);
+        System.out.println("/tolikPay/{goodsid}/{number}: " + number);
 
         Goods goods = goodsService.getGoodsById(goodsid);
-        System.out.println("/tolikPay/{goodsid}/{number}: "+goods);
+        System.out.println("/tolikPay/{goodsid}/{number}: " + goods);
 
         modelMap.addAttribute("Goods", goods);
         modelMap.addAttribute("number", number);
@@ -167,7 +174,7 @@ public class ShopcartController {
         }
         modelMap.addAttribute("isdefault", isdefault);
 
-        Double totalprice = number*goods.getGoodsprice();
+        Double totalprice = number * goods.getGoodsprice();
         modelMap.addAttribute("totalprice", totalprice);
 
         return "/home/likpay";
@@ -188,17 +195,12 @@ public class ShopcartController {
     }
 
 
-    @RequestMapping(value = "/toSuccess")
-    public String toSuccess() {
-        return "home/success";
-    }
-
     @RequestMapping(value = "/addToShopcart")
     @ResponseBody
     public Msg addToShopcart(Shopcart shopcart, HttpSession session) {
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         shopcart.setUseridFkShopcart(user.getUserid());
-        System.out.println("/addToShopcart: "+shopcart);
+        System.out.println("/addToShopcart: " + shopcart);
         shopcartService.saveShopcart(shopcart, user.getUserid());
 
         List<Shopcart> list = shopcartService.getShopcartByUserId(user.getUserid());
@@ -208,8 +210,69 @@ public class ShopcartController {
 
     @RequestMapping(value = "/Balance")
     @ResponseBody
-    public Msg Balance(HttpSession session) {
+    public Msg balance(@RequestParam("addressid") int addressid,
+                       @RequestParam("totalprice") Double totalprice,
+                       @RequestParam("setoff") String setoff,
+                       HttpSession session) {
+        Double chaoRate = 0.001;
 
-        return Msg.success();
+        User user = (User) session.getAttribute("user");
+        if (user.getUserremainder() < (totalprice - Double.parseDouble(setoff) * chaoRate)) {
+            return Msg.fail().add("msg", "余额不足，请先充值");
+        }
+        user.setUserremainder(user.getUserremainder() - totalprice + Double.parseDouble(setoff) * chaoRate);
+        user.setUserchaopoint(user.getUserchaopoint() - Integer.parseInt(setoff));
+        session.setAttribute("user", user);
+
+        System.out.println("/Balance: " + totalprice);
+
+        String identifier = String.valueOf(UUID.randomUUID());
+
+        System.out.println("/Balance: " + identifier);
+
+        Orderitem orderitem = new Orderitem();
+        orderitem.setAddressidFkOrderitemid(addressid);
+        orderitem.setTotalprice(totalprice);
+        orderitem.setUseridFkOrderitem(user.getUserid());
+        orderitem.setIdentifier(identifier);
+        orderitem.setSetoff(Double.parseDouble(setoff) * chaoRate);
+        orderItemService.createOrderItem(orderitem);
+
+        int orderitemid = orderItemService.getOrderItemByIdentifier(identifier).getOrderitemid();
+
+        System.out.println("/Balance: " + orderitemid);
+
+        List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(user.getUserid());
+
+        System.out.println("/Balance: " + shopcartlist.toString());
+
+        for (Shopcart shopcart : shopcartlist) {
+            Orderdetails orderdetails = new Orderdetails();
+            orderdetails.setUseridFkOrder(user.getUserid());
+            orderdetails.setGoodsidFkOrder(shopcart.getGoodsidFkShopcart());
+            orderdetails.setNumber(shopcart.getNumber());
+            orderdetails.setOrderitemidFkOrder(orderitemid);
+
+            System.out.println("/Balance: " + orderdetails);
+            orderdetailsService.createOrderdetails(orderdetails);
+        }
+
+        return Msg.success().add("orderitemid", orderitemid);
+    }
+
+    @RequestMapping(value = "/toSuccess/{orderitemid}")
+    public String toSuccess(@PathVariable("orderitemid") String orderitemid, ModelMap modelMap) {
+        System.out.println("/toSuccess/{orderitemid}: " + orderitemid);
+
+        Orderitem orderitem = orderItemService.getOrderItemById(Integer.parseInt(orderitemid));
+        System.out.println("/toSuccess/{orderitemid}: " + orderitem);
+
+        Address address = addressService.getAddressById(orderitem.getAddressidFkOrderitemid());
+        System.out.println("/toSuccess/{orderitemid}: " + address);
+
+        modelMap.addAttribute("address", address);
+        modelMap.addAttribute("orderitem", orderitem);
+
+        return "home/success";
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pers.shayz.bean.Msg;
+import pers.shayz.bean.Orderdetails;
 import pers.shayz.bean.Orderitem;
 import pers.shayz.bean.User;
 import pers.shayz.service.OrderItemService;
@@ -41,4 +42,19 @@ public class OrderItemController {
                 orderItemService.deleteOrderItemByOId(Integer.parseInt(orderitemid)));
         return Msg.success();
     }
+
+    @RequestMapping(value = "/orderDetail", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg findOrderDetail(@RequestParam("goodsid") String goodsid) {
+        List<Orderdetails> list = orderItemService.getOderDetailsByGoodsId(Integer.parseInt(goodsid));
+        return Msg.success().add("orderDetailList",list);
+    }
+
+    @RequestMapping(value = "/updateIsout", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg updateIsout(@RequestParam("orderid") String orderid) {
+        orderItemService.updateIsoutByOrderId(Integer.parseInt(orderid));
+        return Msg.success();
+    }
+
 }

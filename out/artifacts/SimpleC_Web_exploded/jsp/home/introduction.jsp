@@ -20,113 +20,113 @@
     <%--<link href="${APP_PATH}/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet">--%>
 
     <link href="${APP_PATH}/basic/css/demo.css" rel="stylesheet" type="text/css"/>
-    <link type="text/css" href="${APP_PATH}/css/optstyle.css" rel="stylesheet"/>
+    <%--<link type="text/css" href="${APP_PATH}/css/optstyle.css" rel="stylesheet"/>--%>
     <link type="text/css" href="${APP_PATH}/css/style.css" rel="stylesheet"/>
-    <script type="text/javascript" src="${APP_PATH}/basic/js/quick_links.js"></script>
+    <%--<script type="text/javascript" src="${APP_PATH}/basic/js/quick_links.js"></script>--%>
     <script type="text/javascript" src="${APP_PATH}/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="${APP_PATH}/js/jquery.flexslider.js"></script>
-    <script type="text/javascript" src="${APP_PATH}/js/list.js"></script>
+    <%--<script type="text/javascript" src="${APP_PATH}/js/list.js"></script>--%>
 
-    <style>
-        .talk_con {
-            width: 600px;
-            height: 500px;
-            border: 1px solid #666;
-            margin: 50px auto 0;
-            background: #f9f9f9;
-        }
+    <%--<style>--%>
+    <%--.talk_con {--%>
+    <%--width: 600px;--%>
+    <%--height: 500px;--%>
+    <%--border: 1px solid #666;--%>
+    <%--margin: 50px auto 0;--%>
+    <%--background: #f9f9f9;--%>
+    <%--}--%>
 
-        .talk_show {
-            width: 580px;
-            height: 420px;
-            border: 1px solid #666;
-            background: #fff;
-            margin: 10px auto 0;
-            overflow: auto;
-        }
+    <%--.talk_show {--%>
+    <%--width: 580px;--%>
+    <%--height: 420px;--%>
+    <%--border: 1px solid #666;--%>
+    <%--background: #fff;--%>
+    <%--margin: 10px auto 0;--%>
+    <%--overflow: auto;--%>
+    <%--}--%>
 
-        .talk_input {
-            width: 580px;
-            margin: 10px auto 0;
-        }
+    <%--.talk_input {--%>
+    <%--width: 580px;--%>
+    <%--margin: 10px auto 0;--%>
+    <%--}--%>
 
-        .whotalk {
-            width: 80px;
-            height: 30px;
-            float: left;
-            outline: none;
-        }
+    <%--.whotalk {--%>
+    <%--width: 80px;--%>
+    <%--height: 30px;--%>
+    <%--float: left;--%>
+    <%--outline: none;--%>
+    <%--}--%>
 
-        .talk_word {
-            width: 350px;
-            height: 26px;
-            padding: 0px;
-            float: left;
-            margin-left: 10px;
-            outline: none;
-            text-indent: 10px;
-        }
+    <%--.talk_word {--%>
+    <%--width: 350px;--%>
+    <%--height: 26px;--%>
+    <%--padding: 0px;--%>
+    <%--float: left;--%>
+    <%--margin-left: 10px;--%>
+    <%--outline: none;--%>
+    <%--text-indent: 10px;--%>
+    <%--}--%>
 
-        .talk_sub {
-            width: 56px;
-            height: 30px;
-            float: left;
-            margin-left: 10px;
-        }
+    <%--.talk_sub {--%>
+    <%--width: 56px;--%>
+    <%--height: 30px;--%>
+    <%--float: left;--%>
+    <%--margin-left: 10px;--%>
+    <%--}--%>
 
-        .atalk {
-            margin: 10px;
-        }
+    <%--.atalk {--%>
+    <%--margin: 10px;--%>
+    <%--}--%>
 
-        .atalk span {
-            display: inline-block;
-            background: #0181cc;
-            border-radius: 10px;
-            color: #fff;
-            padding: 5px 10px;
-        }
+    <%--.atalk span {--%>
+    <%--display: inline-block;--%>
+    <%--background: #0181cc;--%>
+    <%--border-radius: 10px;--%>
+    <%--color: #fff;--%>
+    <%--padding: 5px 10px;--%>
+    <%--}--%>
 
-        .btalk {
-            margin: 10px;
-            text-align: right;
-        }
+    <%--.btalk {--%>
+    <%--margin: 10px;--%>
+    <%--text-align: right;--%>
+    <%--}--%>
 
-        .btalk span {
-            display: inline-block;
-            background: #ef8201;
-            border-radius: 10px;
-            color: #fff;
-            padding: 5px 10px;
-        }
+    <%--.btalk span {--%>
+    <%--display: inline-block;--%>
+    <%--background: #ef8201;--%>
+    <%--border-radius: 10px;--%>
+    <%--color: #fff;--%>
+    <%--padding: 5px 10px;--%>
+    <%--}--%>
 
-        .black_overlay {
-            display: none;
-            position: fixed;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 1001;
-            -moz-opacity: 0.8;
-            opacity: .80;
-            filter: alpha(opacity=88);
-        }
+    <%--.black_overlay {--%>
+    <%--display: none;--%>
+    <%--position: fixed;--%>
+    <%--top: 0%;--%>
+    <%--left: 0%;--%>
+    <%--width: 100%;--%>
+    <%--height: 100%;--%>
+    <%--background-color: black;--%>
+    <%--z-index: 1001;--%>
+    <%---moz-opacity: 0.8;--%>
+    <%--opacity: .80;--%>
+    <%--filter: alpha(opacity=88);--%>
+    <%--}--%>
 
-        .white_content {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 25%;
-            width: 55%;
-            height: 100%;
-            padding: 20px;
-            border: 10px solid orange;
-            background-color: white;
-            z-index: 1002;
-            overflow: auto;
-        }
-    </style>
+    <%--.white_content {--%>
+    <%--display: none;--%>
+    <%--position: fixed;--%>
+    <%--top: 0;--%>
+    <%--left: 25%;--%>
+    <%--width: 55%;--%>
+    <%--height: 100%;--%>
+    <%--padding: 20px;--%>
+    <%--border: 10px solid orange;--%>
+    <%--background-color: white;--%>
+    <%--z-index: 1002;--%>
+    <%--overflow: auto;--%>
+    <%--}--%>
+    <%--</style>--%>
 </head>
 
 <body>
@@ -253,7 +253,7 @@
                     <script>
                         $('#LikBuy').click(function () {
                             var number = $('#number').val();
-                            window.location.href = "${APP_PATH}/tolikPay/${requestScope.Goods.goodsid}/"+number;
+                            window.location.href = "${APP_PATH}/tolikPay/${requestScope.Goods.goodsid}/" + number;
                         })
                     </script>
                 </div>
@@ -331,7 +331,7 @@
                                     <header class="am-comment-hd">
                                         <!--<h3 class="am-comment-title">评论标题</h3>-->
                                         <div class="am-comment-meta">
-                                            <!-- 评论元数据 --><a href="#link-to-user" class="am-comment-author">b***1
+                                            <!-- 评论元数据 --><a href="" class="am-comment-author">b***1
                                             (匿名)</a>
                                             <!-- 评论者 -->评论于
                                             <time datetime="">2015年11月02日 17:46</time>
@@ -366,22 +366,36 @@
 </div>
 
 
-<div id="light" class="white_content">
-    <div class="talk_con">
-        <div class="talk_show" id="words">
+<%--<div id="light" class="white_content">--%>
+<%--<div class="talk_con">--%>
+<%--<div class="talk_show" id="words">--%>
 
+<%--</div>--%>
+
+<%--<div class="talk_input">--%>
+<%--<input type="text" class="talk_word" id="talkwords">--%>
+<%--<input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">--%>
+<%--<input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">--%>
+<%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
+
+
+<%--<div id="fade" class="black_overlay"></div>--%>
+
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="addSuccess">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">SimpleChange</div>
+        <div class="am-modal-bd">
+            加入购物车成功！
         </div>
-
-        <div class="talk_input">
-            <input type="text" class="talk_word" id="talkwords">
-            <input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">
-            <input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-danger" id="toShopcart">前往购物车</button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
         </div>
     </div>
 </div>
-
-
-<div id="fade" class="black_overlay"></div>
 </body>
 
 </html>
@@ -397,107 +411,131 @@
                 "number": number
             },
             success: function () {
-                window.location.reload();
+                $('#addSuccess').modal({
+                    onConfirm: function () {
+                        window.location.reload();
+                    }
+                });
+                $('#toShopcart').click(function () {
+                    window.location.href = "${APP_PATH}/toShopcart";
+                })
             }
         })
-    })
+    });
+
+    $('#number').change(function () {
+        var num = document.getElementById('number').value;
+        if (num >${requestScope.Goods.goodsnumber}) {
+            alert("库存不足，请重新输入数量！");
+            $('#number').val(1);
+        }
+        if (num === "") {
+            alert("数量不能为空！");
+            $('#number').val(1);
+        }
+        if (num <= 0 && num !== "") {
+            alert("数量不合法！");
+            $('#number').val(1);
+        }
+    });
+
 </script>
 
-<script type="text/javascript">
-    $(function () {
-        <%--var this_message = ${"<p>B说：还没呢，你呢？</p>"};--%>
-        <%--${"#words"}.html(this_message);--%>
-    });
-    $(window).load(function () {
-        $('.flexslider').flexslider({
-            animation: "slide",
-            start: function (slider) {
-                $('body').removeClass('loading');
-            }
-        });
+<%--<script type="text/javascript">--%>
+<%--$(function () {--%>
+<%--&lt;%&ndash;var this_message = ${"<p>B说：还没呢，你呢？</p>"};&ndash;%&gt;--%>
+<%--&lt;%&ndash;${"#words"}.html(this_message);&ndash;%&gt;--%>
+<%--});--%>
+<%--$(window).load(function () {--%>
+<%--$('.flexslider').flexslider({--%>
+<%--animation: "slide",--%>
+<%--start: function (slider) {--%>
+<%--$('body').removeClass('loading');--%>
+<%--}--%>
+<%--});--%>
 
-        $("#chat").click(function () {
-            document.getElementById('light').style.display = 'block';
-            document.getElementById('fade').style.display = 'block';
-            var name1 = "${sessionScope.user.username}";
-            var name2 = "${requestScope.Goods.useridFkGoods}";
-            var ws;
-            var wsUri = "ws://172.29.19.240:8080/chat";
-            ws = new WebSocket(wsUri);
-            //alert("this");
+<%--$("#chat").click(function () {--%>
+<%--document.getElementById('light').style.display = 'block';--%>
+<%--document.getElementById('fade').style.display = 'block';--%>
+<%--var name1 = "${sessionScope.user.username}";--%>
+<%--var name2 = "${requestScope.Goods.useridFkGoods}";--%>
+<%--var ws;--%>
+<%--var wsUri = "ws://172.29.19.240:8080/chat";--%>
+<%--ws = new WebSocket(wsUri);--%>
+<%--//alert("this");--%>
 
-            ws.onopen = function () {
-                // n=prompt('请给自己取一个昵称：');
+<%--ws.onopen = function () {--%>
+<%--// n=prompt('请给自己取一个昵称：');--%>
 
-                // name1=getQueryString("name1");
-                // name2 = getQueryString("name2");
+<%--// name1=getQueryString("name1");--%>
+<%--// name2 = getQueryString("name2");--%>
 
-                // window.alert("this");
-                //m=m.substr(0,16);
-                //ws.send(n);
-                ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息
-            };
+<%--// window.alert("this");--%>
+<%--//m=m.substr(0,16);--%>
+<%--//ws.send(n);--%>
+<%--ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息--%>
+<%--};--%>
 
-            //处理连接后的信息处理
-            ws.onmessage = function (message) {
-                writeToScreen(message.data);
+<%--//处理连接后的信息处理--%>
+<%--ws.onmessage = function (message) {--%>
+<%--writeToScreen(message.data);--%>
 
-            };
+<%--};--%>
 
-            $("#talksub").click(function () {
-                message = document.getElementById('talkwords').value;
-                document.getElementById('talkwords').value = "";
-                //alert(message);
-                //towho = document.getElementById('towho').value + "@";
-                //window.alert("button");
-                if (message.length != 0) {
-                    ws.send(message);
-                }
+<%--$("#talksub").click(function () {--%>
+<%--message = document.getElementById('talkwords').value;--%>
+<%--document.getElementById('talkwords').value = "";--%>
+<%--//alert(message);--%>
+<%--//towho = document.getElementById('towho').value + "@";--%>
+<%--//window.alert("button");--%>
+<%--if (message.length != 0) {--%>
+<%--ws.send(message);--%>
+<%--}--%>
 
-                else {
+<%--else {--%>
 
-                }
-            })
+<%--}--%>
+<%--})--%>
 
-            //正则表达式方法获取URL中的参数
-            function getQueryString(name) {
-                var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-                var r = window.location.search.substr(1).match(reg);
-                if (r != null) {
-                    return unescape(r[2]);
-                }
-                return null;
-            }
+<%--//正则表达式方法获取URL中的参数--%>
+<%--function getQueryString(name) {--%>
+<%--var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');--%>
+<%--var r = window.location.search.substr(1).match(reg);--%>
+<%--if (r != null) {--%>
+<%--return unescape(r[2]);--%>
+<%--}--%>
+<%--return null;--%>
+<%--}--%>
 
-            // 这样调用：
-            //alert(GetQueryString("参数名1"));
+<%--// 这样调用：--%>
+<%--//alert(GetQueryString("参数名1"));--%>
 
-            function writeToScreen(message) {
-                var x = new Array();
-                x = message.split(" ");
-                //$("#bsay").append(message+"<br>");
-                //alert(x[0]);
-                if (x[0] == (name1)) {
-                    var $this_message = $("<div class='btalk'><span class='bsay'>" + x[1] + "</span></div>");
-                    $("#words").append($this_message);
-                }
-                else {
-                    var $this_message = $("<div class='atalk'><span class='asay'>" + x[1] + "</span></div>");
-                    $("#words").append($this_message);
-                }
-            }
+<%--function writeToScreen(message) {--%>
+<%--var x = new Array();--%>
+<%--x = message.split(" ");--%>
+<%--//$("#bsay").append(message+"<br>");--%>
+<%--//alert(x[0]);--%>
+<%--if (x[0] == (name1)) {--%>
+<%--var $this_message = $("<div class='btalk'><span class='bsay'>" + x[1] + "</span></div>");--%>
+<%--$("#words").append($this_message);--%>
+<%--}--%>
+<%--else {--%>
+<%--var $this_message = $("<div class='atalk'><span class='asay'>" + x[1] + "</span></div>");--%>
+<%--$("#words").append($this_message);--%>
+<%--}--%>
+<%--}--%>
 
-            ws.onerror = function (evt) {
-                writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);
-                ws.close();
-            };
+<%--ws.onerror = function (evt) {--%>
+<%--writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);--%>
+<%--ws.close();--%>
+<%--};--%>
 
-            $("#closesub").click(function () {
-                ws.close();
-                document.getElementById('light').style.display = 'none';
-                document.getElementById('fade').style.display = 'none';
-            })
-        })
+<%--$("#closesub").click(function () {--%>
+<%--ws.close();--%>
+<%--document.getElementById('light').style.display = 'none';--%>
+<%--document.getElementById('fade').style.display = 'none';--%>
+<%--})--%>
+<%--})--%>
 
-    });
-</script>
+<%--});--%>
+<%--</script>--%>

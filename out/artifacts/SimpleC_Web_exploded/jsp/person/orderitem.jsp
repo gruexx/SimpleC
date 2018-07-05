@@ -72,7 +72,7 @@
                     <c:forEach items="${requestScope.OrderItemList}" var="oiList">
                         <tr >
                             <td class="orderitemid" style="font-size: 20px">${oiList.orderitemid}</td>
-                            <td style="font-size: 20px">${oiList.address}</td>
+                            <td style="font-size: 20px"></td>
                             <td style="font-size: 20px">${oiList.totalprice}</td>
                             <td style="font-size: 20px">
                                 <a href="/toOrderDetails/${oiList.orderitemid}" class="am-btn am-btn-success OrderDetail">订单详情</a>
@@ -168,24 +168,25 @@
         console.log(orderitemid);
         $('#my-delete').modal({
             relatedTarget: this,
-            onConfirm: function(e) {
+            onConfirm: function() {
                 $.ajax({
                     url: '${APP_PATH}/deleteOrderItem',
                     type: 'POST',
                     data: {"orderitemid": orderitemid},
                     success: function (result) {
                         if(result.code===100){
-                            $.toast({
-                                afterHidden: function () {
-                                    window.location.reload();
-                                },
-                                heading: "Success",
-                                text: "删除成功",
-                                showHideTransition: 'fade',
-                                position: 'top-right',
-                                icon: 'success'
-
-                            })
+                            window.location.reload();
+                            // $.toast({
+                            //     afterHidden: function () {
+                            //         window.location.reload();
+                            //     },
+                            //     heading: "Success",
+                            //     text: "删除成功",
+                            //     showHideTransition: 'fade',
+                            //     position: 'top-right',
+                            //     icon: 'success'
+                            //
+                            // })
                         }
                     }
                 });

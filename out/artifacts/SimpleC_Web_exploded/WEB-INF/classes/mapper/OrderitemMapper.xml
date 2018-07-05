@@ -3,11 +3,12 @@
 <mapper namespace="pers.shayz.dao.OrderitemMapper">
   <resultMap id="BaseResultMap" type="pers.shayz.bean.Orderitem">
     <id column="orderitemId" jdbcType="INTEGER" property="orderitemid" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="addressId_fk_orderitemId" jdbcType="INTEGER" property="addressidFkOrderitemid" />
     <result column="totalPrice" jdbcType="DOUBLE" property="totalprice" />
     <result column="userId_fk_orderitem" jdbcType="INTEGER" property="useridFkOrderitem" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="identifier" jdbcType="VARCHAR" property="identifier" />
+    <result column="setoff" jdbcType="DOUBLE" property="setoff" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    orderitemId, address, totalPrice, userId_fk_orderitem, flag, identifier
+    orderitemId, addressId_fk_orderitemId, totalPrice, userId_fk_orderitem, flag, identifier, 
+    setoff
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.OrderitemExample" resultMap="BaseResultMap">
     select
@@ -101,12 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="pers.shayz.bean.Orderitem">
-    insert into orderitem (orderitemId, address, totalPrice, 
-      userId_fk_orderitem, flag, identifier
-      )
-    values (#{orderitemid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{totalprice,jdbcType=DOUBLE}, 
-      #{useridFkOrderitem,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{identifier,jdbcType=VARCHAR}
-      )
+    insert into orderitem (orderitemId, addressId_fk_orderitemId, 
+      totalPrice, userId_fk_orderitem, flag, 
+      identifier, setoff)
+    values (#{orderitemid,jdbcType=INTEGER}, #{addressidFkOrderitemid,jdbcType=INTEGER}, 
+      #{totalprice,jdbcType=DOUBLE}, #{useridFkOrderitem,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
+      #{identifier,jdbcType=VARCHAR}, #{setoff,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Orderitem">
     insert into orderitem
@@ -114,8 +116,8 @@
       <if test="orderitemid != null">
         orderitemId,
       </if>
-      <if test="address != null">
-        address,
+      <if test="addressidFkOrderitemid != null">
+        addressId_fk_orderitemId,
       </if>
       <if test="totalprice != null">
         totalPrice,
@@ -129,13 +131,16 @@
       <if test="identifier != null">
         identifier,
       </if>
+      <if test="setoff != null">
+        setoff,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderitemid != null">
         #{orderitemid,jdbcType=INTEGER},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
+      <if test="addressidFkOrderitemid != null">
+        #{addressidFkOrderitemid,jdbcType=INTEGER},
       </if>
       <if test="totalprice != null">
         #{totalprice,jdbcType=DOUBLE},
@@ -148,6 +153,9 @@
       </if>
       <if test="identifier != null">
         #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="setoff != null">
+        #{setoff,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -163,8 +171,8 @@
       <if test="record.orderitemid != null">
         orderitemId = #{record.orderitemid,jdbcType=INTEGER},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.addressidFkOrderitemid != null">
+        addressId_fk_orderitemId = #{record.addressidFkOrderitemid,jdbcType=INTEGER},
       </if>
       <if test="record.totalprice != null">
         totalPrice = #{record.totalprice,jdbcType=DOUBLE},
@@ -178,6 +186,9 @@
       <if test="record.identifier != null">
         identifier = #{record.identifier,jdbcType=VARCHAR},
       </if>
+      <if test="record.setoff != null">
+        setoff = #{record.setoff,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -186,11 +197,12 @@
   <update id="updateByExample" parameterType="map">
     update orderitem
     set orderitemId = #{record.orderitemid,jdbcType=INTEGER},
-      address = #{record.address,jdbcType=VARCHAR},
+      addressId_fk_orderitemId = #{record.addressidFkOrderitemid,jdbcType=INTEGER},
       totalPrice = #{record.totalprice,jdbcType=DOUBLE},
       userId_fk_orderitem = #{record.useridFkOrderitem,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
-      identifier = #{record.identifier,jdbcType=VARCHAR}
+      identifier = #{record.identifier,jdbcType=VARCHAR},
+      setoff = #{record.setoff,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,8 +210,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Orderitem">
     update orderitem
     <set>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
+      <if test="addressidFkOrderitemid != null">
+        addressId_fk_orderitemId = #{addressidFkOrderitemid,jdbcType=INTEGER},
       </if>
       <if test="totalprice != null">
         totalPrice = #{totalprice,jdbcType=DOUBLE},
@@ -213,16 +225,20 @@
       <if test="identifier != null">
         identifier = #{identifier,jdbcType=VARCHAR},
       </if>
+      <if test="setoff != null">
+        setoff = #{setoff,jdbcType=DOUBLE},
+      </if>
     </set>
     where orderitemId = #{orderitemid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Orderitem">
     update orderitem
-    set address = #{address,jdbcType=VARCHAR},
+    set addressId_fk_orderitemId = #{addressidFkOrderitemid,jdbcType=INTEGER},
       totalPrice = #{totalprice,jdbcType=DOUBLE},
       userId_fk_orderitem = #{useridFkOrderitem,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
-      identifier = #{identifier,jdbcType=VARCHAR}
+      identifier = #{identifier,jdbcType=VARCHAR},
+      setoff = #{setoff,jdbcType=DOUBLE}
     where orderitemId = #{orderitemid,jdbcType=INTEGER}
   </update>
 </mapper>

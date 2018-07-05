@@ -24,6 +24,10 @@ public class OrderdetailsService {
     @Autowired
     GoodsMapper goodsMapper;
 
+    public void createOrderdetails(Orderdetails orderdetails) {
+        orderdetailsMapper.insertSelective(orderdetails);
+    }
+
     public List<Goods> getGoodsByOrderItemId(int id) {
         OrderdetailsExample orderdetailsExample = new OrderdetailsExample();
         OrderdetailsExample.Criteria criteria = orderdetailsExample.createCriteria();

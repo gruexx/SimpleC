@@ -3,7 +3,7 @@ package pers.shayz.bean;
 public class Orderitem {
     private Integer orderitemid;
 
-    private String address;
+    private Integer addressidFkOrderitemid;
 
     private Double totalprice;
 
@@ -13,6 +13,8 @@ public class Orderitem {
 
     private String identifier;
 
+    private Double setoff;
+
     public Integer getOrderitemid() {
         return orderitemid;
     }
@@ -21,12 +23,12 @@ public class Orderitem {
         this.orderitemid = orderitemid;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getAddressidFkOrderitemid() {
+        return addressidFkOrderitemid;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setAddressidFkOrderitemid(Integer addressidFkOrderitemid) {
+        this.addressidFkOrderitemid = addressidFkOrderitemid;
     }
 
     public Double getTotalprice() {
@@ -59,5 +61,26 @@ public class Orderitem {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier == null ? null : identifier.trim();
+    }
+
+    public Double getSetoff() {
+        return setoff;
+    }
+
+    public void setSetoff(Double setoff) {
+        this.setoff = setoff;
+    }
+
+    @Override
+    public String toString() {
+        return "Orderitem{" +
+                "orderitemid=" + orderitemid +
+                ", addressidFkOrderitemid=" + addressidFkOrderitemid +
+                ", totalprice=" + totalprice +
+                ", useridFkOrderitem=" + useridFkOrderitem +
+                ", flag=" + flag +
+                ", identifier='" + identifier + '\'' +
+                ", setoff=" + setoff +
+                '}';
     }
 }

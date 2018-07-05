@@ -110,21 +110,4 @@ public class Address {
     public void setDetiladdress(String detiladdress) {
         this.detiladdress = detiladdress == null ? null : detiladdress.trim();
     }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressid=" + addressid +
-                ", useridFkAddress=" + useridFkAddress +
-                ", address='" + address + '\'' +
-                ", flag=" + flag +
-                ", isdefult=" + isdefult +
-                ", phone='" + phone + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", area='" + area + '\'' +
-                ", detiladdress='" + detiladdress + '\'' +
-                '}';
-    }
 }
