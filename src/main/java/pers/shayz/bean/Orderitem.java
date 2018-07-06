@@ -70,17 +70,4 @@ public class Orderitem {
     public void setSetoff(Double setoff) {
         this.setoff = setoff;
     }
-
-    @Override
-    public String toString() {
-        return "Orderitem{" +
-                "orderitemid=" + orderitemid +
-                ", addressidFkOrderitemid=" + addressidFkOrderitemid +
-                ", totalprice=" + totalprice +
-                ", useridFkOrderitem=" + useridFkOrderitem +
-                ", flag=" + flag +
-                ", identifier='" + identifier + '\'' +
-                ", setoff=" + setoff +
-                '}';
-    }
 }

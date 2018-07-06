@@ -21,6 +21,9 @@
     <link href="${APP_PATH}/css/cartstyle.css" rel="stylesheet" type="text/css"/>
     <link href="${APP_PATH}/css/jsstyle.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${APP_PATH}/js/address.js"></script>
+
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@
             <ul>
                 <c:forEach items="${requestScope.addressList}" var="address">
                     <div class="per-border"></div>
-                    <li class="user-addresslist defaultAddr" data-address="${address}">
+                    <li class="user-addresslist defaultAddr eachAddress" data-addressid="${address.addressid}">
                         <div class="address-left">
                             <div class="user DefaultAddr">
                                 <span class="buy-address-detail">
@@ -86,21 +89,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <a>
-                                    <img src="${APP_PATH}/${requestScope.Goods.image}"
-                                         style="width: 90px;height: 90px;">
-                                </a>
-                            </td>
-                            <td>${requestScope.Goods.goodsname}</td>
-                            <td>${(requestScope.Goods.goodsprice)}</td>
-                            <td>${requestScope.number}</td>
-                            <td>${requestScope.totalprice}</td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <a>
+                                <img src="${APP_PATH}/${requestScope.Goods.image}"
+                                     style="width: 90px;height: 90px;">
+                            </a>
+                        </td>
+                        <td>${requestScope.Goods.goodsname}</td>
+                        <td>${requestScope.Goods.goodsprice}</td>
+                        <td>${requestScope.number}</td>
+                        <td>${requestScope.totalprice}</td>
+                    </tr>
                     </tbody>
                 </table>
-
 
 
             </div>
@@ -121,10 +123,14 @@
         </div>
         <script>
             $(function () {
-                if (${sessionScope.user.userchaopoint*0.001}>
-                ${requestScope.totalprice})
-                {
+                var chao = '${sessionScope.user.userchaopoint*0.001}';
+                var remainder = '${requestScope.totalprice}';
+                if (chao > remainder) {
                     $('#isUsingp').text(${requestScope.totalprice});
+                    $('#submitOrder').attr("data-chao", ${requestScope.totalprice*1000});
+                }
+                else {
+                    $('#submitOrder').attr("data-chao", ${sessionScope.user.userchaopoint});
                 }
             });
             $('#isUsing').click(function () {
@@ -183,7 +189,7 @@
 
             if (isdefault[i] !== 1) {
                 $(this).removeClass('defaultAddr');
-            }else {
+            } else {
                 $(this).find('.deftip').css({
                     display: 'block'
                 });
@@ -192,19 +198,55 @@
         });
     });
 
+    $('.user-addresslist').click(function () {
+        $('.eachAddress').each(function () {
+            $(this).removeClass('selectAddress');
+        });
+        $(this).addClass('selectAddress');
+        console.log($('.selectAddress').data('addressid'));
+    });
+
     $('#manageAddress').click(function () {
         window.location.href = '${APP_PATH}/toAddress';
     });
 
     $('#submitOrder').click(function () {
-        var address = $('.selectAddress').data('address');
-        console.log(address);
+        var goodsid = '${requestScope.Goods.goodsid}';
+        var number = '${requestScope.number}';
+
+        var setoff = 0;
+        if ($('#isUsing')[0].checked) {
+            setoff = $(this).data("chao");
+            console.log("chao: " + setoff);
+        }
+        var addressid = $('.selectAddress').data('addressid');
+        console.log("addressid:"+addressid);
         var totalprice = '${requestScope.totalprice}';
-        console.log(totalprice);
-        <%--$.ajax({--%>
-        <%--url: "${APP_PATH}/balance",--%>
-        <%--type: "POST",--%>
-        <%--data: {},--%>
-        <%--})--%>
+        console.log("totalprice: "+totalprice);
+        $.ajax({
+            url: "${APP_PATH}/Balance",
+            type: "POST",
+            data: {
+                "addressid": addressid,
+                "totalprice": totalprice,
+                "setoff": setoff,
+                "goodsid": goodsid,
+                "number": number
+            },
+            success: function (result) {
+                if (result.code === 100) {
+                    window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
+                } else {
+                    $.toast({
+                        heading: "Fail",
+                        text: result.extend.msg,
+                        showHideTransition: 'slide',
+                        hideAfter: false,
+                        position: 'top-right',
+                    })
+                }
+                console.log("success");
+            }
+        })
     })
 </script>

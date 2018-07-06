@@ -27,106 +27,6 @@
     <script type="text/javascript" src="${APP_PATH}/js/jquery.flexslider.js"></script>
     <%--<script type="text/javascript" src="${APP_PATH}/js/list.js"></script>--%>
 
-    <%--<style>--%>
-    <%--.talk_con {--%>
-    <%--width: 600px;--%>
-    <%--height: 500px;--%>
-    <%--border: 1px solid #666;--%>
-    <%--margin: 50px auto 0;--%>
-    <%--background: #f9f9f9;--%>
-    <%--}--%>
-
-    <%--.talk_show {--%>
-    <%--width: 580px;--%>
-    <%--height: 420px;--%>
-    <%--border: 1px solid #666;--%>
-    <%--background: #fff;--%>
-    <%--margin: 10px auto 0;--%>
-    <%--overflow: auto;--%>
-    <%--}--%>
-
-    <%--.talk_input {--%>
-    <%--width: 580px;--%>
-    <%--margin: 10px auto 0;--%>
-    <%--}--%>
-
-    <%--.whotalk {--%>
-    <%--width: 80px;--%>
-    <%--height: 30px;--%>
-    <%--float: left;--%>
-    <%--outline: none;--%>
-    <%--}--%>
-
-    <%--.talk_word {--%>
-    <%--width: 350px;--%>
-    <%--height: 26px;--%>
-    <%--padding: 0px;--%>
-    <%--float: left;--%>
-    <%--margin-left: 10px;--%>
-    <%--outline: none;--%>
-    <%--text-indent: 10px;--%>
-    <%--}--%>
-
-    <%--.talk_sub {--%>
-    <%--width: 56px;--%>
-    <%--height: 30px;--%>
-    <%--float: left;--%>
-    <%--margin-left: 10px;--%>
-    <%--}--%>
-
-    <%--.atalk {--%>
-    <%--margin: 10px;--%>
-    <%--}--%>
-
-    <%--.atalk span {--%>
-    <%--display: inline-block;--%>
-    <%--background: #0181cc;--%>
-    <%--border-radius: 10px;--%>
-    <%--color: #fff;--%>
-    <%--padding: 5px 10px;--%>
-    <%--}--%>
-
-    <%--.btalk {--%>
-    <%--margin: 10px;--%>
-    <%--text-align: right;--%>
-    <%--}--%>
-
-    <%--.btalk span {--%>
-    <%--display: inline-block;--%>
-    <%--background: #ef8201;--%>
-    <%--border-radius: 10px;--%>
-    <%--color: #fff;--%>
-    <%--padding: 5px 10px;--%>
-    <%--}--%>
-
-    <%--.black_overlay {--%>
-    <%--display: none;--%>
-    <%--position: fixed;--%>
-    <%--top: 0%;--%>
-    <%--left: 0%;--%>
-    <%--width: 100%;--%>
-    <%--height: 100%;--%>
-    <%--background-color: black;--%>
-    <%--z-index: 1001;--%>
-    <%---moz-opacity: 0.8;--%>
-    <%--opacity: .80;--%>
-    <%--filter: alpha(opacity=88);--%>
-    <%--}--%>
-
-    <%--.white_content {--%>
-    <%--display: none;--%>
-    <%--position: fixed;--%>
-    <%--top: 0;--%>
-    <%--left: 25%;--%>
-    <%--width: 55%;--%>
-    <%--height: 100%;--%>
-    <%--padding: 20px;--%>
-    <%--border: 10px solid orange;--%>
-    <%--background-color: white;--%>
-    <%--z-index: 1002;--%>
-    <%--overflow: auto;--%>
-    <%--}--%>
-    <%--</style>--%>
 </head>
 
 <body>
@@ -233,21 +133,23 @@
                 <div class="clear"></div>
             </div>
             <div class="theme-options">
-                <dd>
-                    <span id="Stock" class="tb-hidden">库存
-                        <span class="stock">${requestScope.Goods.goodsnumber}
+                <dd style="padding-top: 20px;padding-left: 20px;">
+                    <span id="Stock" class="tb-hidden">库存:
+                        <span id="inventory" class="stock" style="padding-left: 50px;">${requestScope.Goods.goodsnumber}
                         </span>件
-                    </span>
+                    </span><br>
+                    <span style="padding-top: 0px;">购买数量：</span>
+                    <span><input id="number" type="number" value="1" style="width:50px;height: 30px;"/></span>
+                    <div id="percent" data-am-progressbar="{percentage:'1', type: 'circle'}"
+                         style="left: 80px;top: 0px;"></div>
                 </dd>
-                <span>购买数量：</span>
-                <input id="number" type="number" value="1" style="width:60px;height: 30px;"/>
             </div>
         </div>
 
         <div class="pay">
             <li>
                 <div class="clearfix tb-btn tb-btn-buy theme-login">
-                    <a id="LikBuy" title="点此按钮到下一步确认购买信息">
+                    <a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">
                         立即购买
                     </a>
                     <script>
@@ -267,7 +169,8 @@
             </li>
             <li>
                 <div class="clearfix tb-btn theme-login">
-                    <a id="chat" title="点击联系卖家" href="#">
+                    <a id="chat" title="点击联系卖家"
+                       href="${APP_PATH}/jsp/person/chat.jsp?name1=${sessionScope.user.username}&name2=${requestScope.Goods.useridFkGoods}">
                         点击联系卖家
                     </a>
                 </div>
@@ -320,33 +223,37 @@
                         <div class="clear"></div>
                         <div class="clear"></div>
                         <ul class="am-comments-list am-comments-list-flip">
-
-                            <li class="am-comment">
-                                <!-- 评论容器 -->
-                                <a href=""> <img class="am-comment-avatar" src="${APP_PATH}/images/hwbn40x40.jpg"/>
-                                    <!-- 评论者头像 -->
-                                </a>
-                                <div class="am-comment-main">
-                                    <!-- 评论内容容器 -->
-                                    <header class="am-comment-hd">
-                                        <!--<h3 class="am-comment-title">评论标题</h3>-->
-                                        <div class="am-comment-meta">
-                                            <!-- 评论元数据 --><a href="" class="am-comment-author">b***1
-                                            (匿名)</a>
-                                            <!-- 评论者 -->评论于
-                                            <time datetime="">2015年11月02日 17:46</time>
-                                        </div>
-                                    </header>
-                                    <div class="am-comment-bd">
-                                        <div class="tb-rev-item " data-id="255776406962">
-                                            <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-                                                ${requestScope.result}
-                                                ${requestScope.Comment.content}
+                            <c:forEach items="${requestScope.commentList}" var="commentList" varStatus="loop">
+                                <li class="am-comment">
+                                    <!-- 评论容器 -->
+                                    <a href=""> <img class="am-comment-avatar"
+                                                     src="${APP_PATH}/${requestScope.User[loop.count-1].image}"/>
+                                        <!-- 评论者头像 -->
+                                    </a>
+                                    <div class="am-comment-main">
+                                        <!-- 评论内容容器 -->
+                                        <header class="am-comment-hd">
+                                            <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                            <div class="am-comment-meta" style="color: black">
+                                                <!-- 评论元数据 -->
+                                                <a href="#" class="am-btn am-btn-link" style="color: black">
+                                                        ${requestScope.User[loop.count-1].username}
+                                                </a>
+                                                <!-- 评论者 -->评论于
+                                                <time>${commentList.time}</time>
+                                            </div>
+                                        </header>
+                                        <div class="am-comment-bd">
+                                            <div class="tb-rev-item " data-id="255776406962">
+                                                <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
+                                                        ${requestScope.result}
+                                                        ${commentList.content}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            </c:forEach>
 
                         </ul>
                         <div class="clear"></div>
@@ -366,24 +273,6 @@
 </div>
 
 
-<%--<div id="light" class="white_content">--%>
-<%--<div class="talk_con">--%>
-<%--<div class="talk_show" id="words">--%>
-
-<%--</div>--%>
-
-<%--<div class="talk_input">--%>
-<%--<input type="text" class="talk_word" id="talkwords">--%>
-<%--<input type="button" value="发送" class="talk_sub" id="talksub" href="javascript:void(0)">--%>
-<%--<input type="button" value="关闭" class="talk_sub" id="closesub" href="javascript:void(0)">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-
-
-<%--<div id="fade" class="black_overlay"></div>--%>
-
-
 <div class="am-modal am-modal-alert" tabindex="-1" id="addSuccess">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">SimpleChange</div>
@@ -399,6 +288,36 @@
 </body>
 
 </html>
+
+<script>
+    $(function () {
+        $('#number').mouseleave(function () {
+            var number = $('#number').val();
+            number = parseFloat(number);
+            var inventory = $('#inventory').text();
+            inventory = parseFloat(inventory);
+            var percent = (number / inventory * 100).toFixed(2);
+            $('#percent').progressbar('set', percent);
+        })
+        $('#number').change(function () {
+            var number = $('#number').val();
+            number = parseFloat(number);
+            var inventory = $('#inventory').text();
+            inventory = parseFloat(inventory);
+            var percent = (number / inventory * 100).toFixed(2);
+            $('#percent').progressbar('set', percent);
+        })
+        $('#number').mousedown(function () {
+            var number = $('#number').val();
+            number = parseFloat(number);
+            var inventory = $('#inventory').text();
+            inventory = parseFloat(inventory);
+            var percent = (number / inventory * 100).toFixed(2);
+            $('#percent').progressbar('set', percent);
+        })
+    })
+</script>
+
 <script>
     $('#addToShopcart').click(function () {
         var goodsidFkShopcart = '${requestScope.Goods.goodsid}';
@@ -440,102 +359,3 @@
     });
 
 </script>
-
-<%--<script type="text/javascript">--%>
-<%--$(function () {--%>
-<%--&lt;%&ndash;var this_message = ${"<p>B说：还没呢，你呢？</p>"};&ndash;%&gt;--%>
-<%--&lt;%&ndash;${"#words"}.html(this_message);&ndash;%&gt;--%>
-<%--});--%>
-<%--$(window).load(function () {--%>
-<%--$('.flexslider').flexslider({--%>
-<%--animation: "slide",--%>
-<%--start: function (slider) {--%>
-<%--$('body').removeClass('loading');--%>
-<%--}--%>
-<%--});--%>
-
-<%--$("#chat").click(function () {--%>
-<%--document.getElementById('light').style.display = 'block';--%>
-<%--document.getElementById('fade').style.display = 'block';--%>
-<%--var name1 = "${sessionScope.user.username}";--%>
-<%--var name2 = "${requestScope.Goods.useridFkGoods}";--%>
-<%--var ws;--%>
-<%--var wsUri = "ws://172.29.19.240:8080/chat";--%>
-<%--ws = new WebSocket(wsUri);--%>
-<%--//alert("this");--%>
-
-<%--ws.onopen = function () {--%>
-<%--// n=prompt('请给自己取一个昵称：');--%>
-
-<%--// name1=getQueryString("name1");--%>
-<%--// name2 = getQueryString("name2");--%>
-
-<%--// window.alert("this");--%>
-<%--//m=m.substr(0,16);--%>
-<%--//ws.send(n);--%>
-<%--ws.send(name1 + " " + name2);//在服务端必须由OnMessage接收此消息--%>
-<%--};--%>
-
-<%--//处理连接后的信息处理--%>
-<%--ws.onmessage = function (message) {--%>
-<%--writeToScreen(message.data);--%>
-
-<%--};--%>
-
-<%--$("#talksub").click(function () {--%>
-<%--message = document.getElementById('talkwords').value;--%>
-<%--document.getElementById('talkwords').value = "";--%>
-<%--//alert(message);--%>
-<%--//towho = document.getElementById('towho').value + "@";--%>
-<%--//window.alert("button");--%>
-<%--if (message.length != 0) {--%>
-<%--ws.send(message);--%>
-<%--}--%>
-
-<%--else {--%>
-
-<%--}--%>
-<%--})--%>
-
-<%--//正则表达式方法获取URL中的参数--%>
-<%--function getQueryString(name) {--%>
-<%--var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');--%>
-<%--var r = window.location.search.substr(1).match(reg);--%>
-<%--if (r != null) {--%>
-<%--return unescape(r[2]);--%>
-<%--}--%>
-<%--return null;--%>
-<%--}--%>
-
-<%--// 这样调用：--%>
-<%--//alert(GetQueryString("参数名1"));--%>
-
-<%--function writeToScreen(message) {--%>
-<%--var x = new Array();--%>
-<%--x = message.split(" ");--%>
-<%--//$("#bsay").append(message+"<br>");--%>
-<%--//alert(x[0]);--%>
-<%--if (x[0] == (name1)) {--%>
-<%--var $this_message = $("<div class='btalk'><span class='bsay'>" + x[1] + "</span></div>");--%>
-<%--$("#words").append($this_message);--%>
-<%--}--%>
-<%--else {--%>
-<%--var $this_message = $("<div class='atalk'><span class='asay'>" + x[1] + "</span></div>");--%>
-<%--$("#words").append($this_message);--%>
-<%--}--%>
-<%--}--%>
-
-<%--ws.onerror = function (evt) {--%>
-<%--writeToScreen('<span style="color:red;">ERROR:</span>' + evt.data);--%>
-<%--ws.close();--%>
-<%--};--%>
-
-<%--$("#closesub").click(function () {--%>
-<%--ws.close();--%>
-<%--document.getElementById('light').style.display = 'none';--%>
-<%--document.getElementById('fade').style.display = 'none';--%>
-<%--})--%>
-<%--})--%>
-
-<%--});--%>
-<%--</script>--%>

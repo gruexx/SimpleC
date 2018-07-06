@@ -225,26 +225,6 @@ public class UserController {
         return "person/billlist";
     }
 
-    @RequestMapping(value = "/toOrderDetails/{orderitemid}")
-    public String toOrderDetails(@PathVariable("orderitemid") String id, ModelMap modelMap) {
-        int orderItemId = Integer.parseInt(id);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderItemId);
-
-        List<Goods> goodsList = orderdetailsService.getGoodsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + goodsList);
-        modelMap.addAttribute("GoodsList", goodsList);
-
-        Orderitem orderitem = orderItemService.getOrderItemByOrderitemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderitem);
-        modelMap.addAttribute("OrderItemList", orderitem);
-
-        List<Orderdetails> orderdetailsList = orderdetailsService.getOrderDetailsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderdetailsList);
-        modelMap.addAttribute("OrderDetailList", orderdetailsList);
-
-        return "person/orderdetails";
-    }
-
     @RequestMapping(value = "/toPassword")
     public String toPassword() {
         return "person/password";

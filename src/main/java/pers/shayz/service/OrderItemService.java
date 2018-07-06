@@ -81,7 +81,7 @@ public class OrderItemService {
     public List<Orderdetails> getOderDetailsByGoodsId(int goodsid){
         OrderdetailsExample orderdetailsExample = new OrderdetailsExample();
         OrderdetailsExample.Criteria criteria = orderdetailsExample.createCriteria();
-        criteria.andOrderitemidFkOrderEqualTo(goodsid).andIsoutEqualTo(1);
+        criteria.andGoodsidFkOrderEqualTo(goodsid).andIsoutEqualTo(0);
 
         return  orderdetailsMapper.selectByExample(orderdetailsExample);
     }
@@ -90,7 +90,7 @@ public class OrderItemService {
         Orderdetails orderdetails = new Orderdetails();
         orderdetails.setOrderid(orderid);
         orderdetails.setIsout(1);
-        orderdetailsMapper.updateByPrimaryKey(orderdetails);
+        orderdetailsMapper.updateByPrimaryKeySelective(orderdetails);
     }
 
 }

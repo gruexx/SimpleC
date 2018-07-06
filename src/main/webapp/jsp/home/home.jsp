@@ -214,7 +214,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -240,7 +240,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -266,7 +266,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -292,7 +292,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -314,11 +314,11 @@
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
                 <c:forEach items="${requestScope.sport}" var="list" end="5">
-                    <li data-am-scrollspy="{animation: 'fade'}">
+                    <li data-am-scrollspy="{animation: 'fade'}" >
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
-                                <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <img style="height: 188px" src="${APP_PATH}/${list.image}"/>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -344,7 +344,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -370,7 +370,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div class="pro-title ">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -396,7 +396,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div  class="pro-title ">${list.goodsname}</div>
+                                <div  class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>

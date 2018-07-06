@@ -523,6 +523,66 @@ public class OrderdetailsExample {
             addCriterion("isOut not between", value1, value2, "isout");
             return (Criteria) this;
         }
+
+        public Criteria andIsreceiveIsNull() {
+            addCriterion("isReceive is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveIsNotNull() {
+            addCriterion("isReceive is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveEqualTo(Integer value) {
+            addCriterion("isReceive =", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveNotEqualTo(Integer value) {
+            addCriterion("isReceive <>", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveGreaterThan(Integer value) {
+            addCriterion("isReceive >", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isReceive >=", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveLessThan(Integer value) {
+            addCriterion("isReceive <", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveLessThanOrEqualTo(Integer value) {
+            addCriterion("isReceive <=", value, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveIn(List<Integer> values) {
+            addCriterion("isReceive in", values, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveNotIn(List<Integer> values) {
+            addCriterion("isReceive not in", values, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveBetween(Integer value1, Integer value2) {
+            addCriterion("isReceive between", value1, value2, "isreceive");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsreceiveNotBetween(Integer value1, Integer value2) {
+            addCriterion("isReceive not between", value1, value2, "isreceive");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

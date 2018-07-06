@@ -43,7 +43,7 @@
             </ul>
             <div class="option">
                 <span class="info">您可以</span>
-                <a href="${APP_PATH}/toOrderItem">查看
+                <a href="${APP_PATH}/toOrderDetails/${requestScope.orderitem.orderitemid}">查看
                     <span>订单详情</span></a>
             </div>
         </div>

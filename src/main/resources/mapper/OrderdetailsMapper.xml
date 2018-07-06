@@ -9,6 +9,7 @@
     <result column="orderitemId_fk_order" jdbcType="INTEGER" property="orderitemidFkOrder" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="isOut" jdbcType="INTEGER" property="isout" />
+    <result column="isReceive" jdbcType="INTEGER" property="isreceive" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    orderId, userId_fk_order, goodsId_fk_order, number, orderitemId_fk_order, flag, isOut
+    orderId, userId_fk_order, goodsId_fk_order, number, orderitemId_fk_order, flag, isOut, 
+    isReceive
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.OrderdetailsExample" resultMap="BaseResultMap">
     select
@@ -104,10 +106,10 @@
   <insert id="insert" parameterType="pers.shayz.bean.Orderdetails">
     insert into orderdetails (orderId, userId_fk_order, goodsId_fk_order, 
       number, orderitemId_fk_order, flag, 
-      isOut)
+      isOut, isReceive)
     values (#{orderid,jdbcType=INTEGER}, #{useridFkOrder,jdbcType=INTEGER}, #{goodsidFkOrder,jdbcType=INTEGER}, 
       #{number,jdbcType=INTEGER}, #{orderitemidFkOrder,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
-      #{isout,jdbcType=INTEGER})
+      #{isout,jdbcType=INTEGER}, #{isreceive,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Orderdetails">
     insert into orderdetails
@@ -133,6 +135,9 @@
       <if test="isout != null">
         isOut,
       </if>
+      <if test="isreceive != null">
+        isReceive,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderid != null">
@@ -155,6 +160,9 @@
       </if>
       <if test="isout != null">
         #{isout,jdbcType=INTEGER},
+      </if>
+      <if test="isreceive != null">
+        #{isreceive,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -188,6 +196,9 @@
       <if test="record.isout != null">
         isOut = #{record.isout,jdbcType=INTEGER},
       </if>
+      <if test="record.isreceive != null">
+        isReceive = #{record.isreceive,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +212,8 @@
       number = #{record.number,jdbcType=INTEGER},
       orderitemId_fk_order = #{record.orderitemidFkOrder,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
-      isOut = #{record.isout,jdbcType=INTEGER}
+      isOut = #{record.isout,jdbcType=INTEGER},
+      isReceive = #{record.isreceive,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +239,9 @@
       <if test="isout != null">
         isOut = #{isout,jdbcType=INTEGER},
       </if>
+      <if test="isreceive != null">
+        isReceive = #{isreceive,jdbcType=INTEGER},
+      </if>
     </set>
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
@@ -237,7 +252,8 @@
       number = #{number,jdbcType=INTEGER},
       orderitemId_fk_order = #{orderitemidFkOrder,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
-      isOut = #{isout,jdbcType=INTEGER}
+      isOut = #{isout,jdbcType=INTEGER},
+      isReceive = #{isreceive,jdbcType=INTEGER}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
 </mapper>

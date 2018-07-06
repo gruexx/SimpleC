@@ -32,7 +32,7 @@
         </div>
         <div class="topMessage mini-cart">
             <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                <a class="am-dropdown-toggle am-mark" data-am-dropdown-toggle href="javascript:;">
                     购物车
                     <span class="am-icon-caret-down"></span>
                     <span class="am-badge am-badge-danger am-round">${sessionScope.shopcartNum}</span>

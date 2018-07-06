@@ -11,6 +11,7 @@ import pers.shayz.bean.*;
 import pers.shayz.service.ClassifyService;
 import pers.shayz.service.CommentService;
 import pers.shayz.service.GoodsService;
+import pers.shayz.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,19 +34,28 @@ public class GoodsController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value = "/toIntroduction/{goodsId}")
     public String toIntroduction(@PathVariable(value = "goodsId") int goodsId, ModelMap modelMap) {
         Goods goods = goodsService.getGoodsById(goodsId);
         modelMap.addAttribute("Goods", goods);
 
-        Comment comment = commentService.getCommentById(goodsId);
-        System.out.println("/toIntroduction/{goodsId}: " + comment);
-        if (comment == null) {
+        List<Comment> commentList = commentService.getCommentById(goodsId);
+        System.out.println("/toIntroduction/{goodsId}: " + commentList);
+
+        if (commentList.size() == 0) {
             modelMap.addAttribute("result", "该商品暂无评论!");
         } else {
-            modelMap.addAttribute("Comment", comment);
-            System.out.println(comment.getContent());
+            modelMap.addAttribute("commentList", commentList);
         }
+
+        List<User> userList = new ArrayList<User>();
+        for (Comment comment : commentList) {
+            userList.add(userService.getUserById(comment.getUseridFkComment()));
+        }
+        modelMap.addAttribute("User", userList);
 
         return "home/introduction";
     }
@@ -81,12 +91,12 @@ public class GoodsController {
 
         System.out.println("/doPublish type: " + type);
 
-        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber) || classifyid==null) {
+        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber) || classifyid == null) {
             return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
         }
 
         Goods goods = new Goods();
-        User userNow = (User)session.getAttribute("user");
+        User userNow = (User) session.getAttribute("user");
         goods.setUseridFkGoods(userNow.getUserid());
         goods.setGoodsname(goodsname);
         goods.setGoodsprice(Double.parseDouble(goodsprice));
@@ -147,7 +157,7 @@ public class GoodsController {
 
     @RequestMapping(value = "/toGoodsManage")
     public String toGoodsManage(HttpSession session, ModelMap modelMap) {
-        User userNow = (User)session.getAttribute("user");
+        User userNow = (User) session.getAttribute("user");
         int id = userNow.getUserid();
         System.out.println("/toGoodsManage: " + id);
 
@@ -155,7 +165,7 @@ public class GoodsController {
         System.out.println("/toGoodsManage: " + list);
 
         List<String> goodsClassify = new ArrayList<>();
-        if(list!=null){
+        if (list != null) {
             for (int i = 0; i < list.size(); i++) {
                 goodsClassify.add(classifyService.getClassifyById(list.get(i).getClassifyidFkGoods()));
             }

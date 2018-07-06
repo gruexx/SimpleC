@@ -60,7 +60,7 @@
                 <hr/>
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
-                    <tr>
+                    <tr style="white-space: nowrap">
                         <th style="font-size: 16px;font-weight: bold">商品编号</th>
                         <th style="font-size: 16px;font-weight: bold">商品名称</th>
                         <th style="font-size: 16px;font-weight: bold">分类</th>
@@ -84,7 +84,7 @@
                             </td>
                             <td>${myg.goodsinfo}</td>
                             <td>
-                                <button data-id="${myg.goodsid}" type="button"
+                                <button data-id="${myg.goodsid}" data-goodsname="${myg.goodsname}" type="button"
                                         class="am-btn am-btn-success orderdetail">
                                     订单
                                 </button>
@@ -134,6 +134,26 @@
         </ul>
     </aside>
 </div>
+<%--物流单号--%>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="logisticsModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            输入物流单号
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form class="am-form">
+                <input type="text">
+            </form>
+
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
 
 <%--订单--%>
 <div class="am-modal am-modal-prompt" tabindex="-1" id="orderModal">
@@ -143,11 +163,20 @@
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
-            <form id="orderDetailForm" class="am-form">
-                <%--<div class="am-form-group">--%>
-                    <%----%>
-                <%--</div>--%>
-            </form>
+
+            <table class="am-table">
+                <thead>
+                <tr style="white-space: nowrap">
+                    <th>商品名称</th>
+                    <th>数量</th>
+                    <th>买家</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="orderDetailForm">
+
+                </tbody>
+            </table>
         </div>
         <div class="am-modal-footer">
             <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>关闭
@@ -289,6 +318,26 @@
         </div>
     </div>
 </div>
+
+<%--<table class="am-table">--%>
+    <%--<thead>--%>
+    <%--<tr>--%>
+        <%--<th>商品名称</th>--%>
+        <%--<th>数量</th>--%>
+        <%--<th>买家</th>--%>
+        <%--<th>操作</th>--%>
+    <%--</tr>--%>
+    <%--</thead>--%>
+    <%--<tbody>--%>
+    <%--<tr>--%>
+        <%--<td></td>--%>
+        <%--<td></td>--%>
+        <%--<td></td>--%>
+        <%--<td></td>--%>
+    <%--</tr>--%>
+    <%--</tbody>--%>
+<%--</table>--%>
+
 </body>
 
 </html>
@@ -298,29 +347,45 @@
     $('.orderdetail').click(function () {
         var $od = $(this);
         var goodsid = $od.data('id');
+        console.log("goodsid: " + goodsid);
         var goodname = $od.data('goodsname');
-        $('#orderModal').modal();
+        $('#orderModal').modal({
+            onCancel: function () {
+                $('#orderDetailForm').html('');
+            }
+        });
         $.ajax({
             url: '${APP_PATH}/orderDetail',
             type: 'POST',
             data: {"goodsid": goodsid},
             success: function (result) {
                 var orderDetailList = result.extend.orderDetailList;
-
+                console.log("orderDetailList: " + orderDetailList);
+                $('#orderDetailForm').html('');
                 $.each(orderDetailList, function (i) {
                     console.log(i);
-                    console.log(orderDetailList[i].orderId);
-                    $('#orderDetailForm').append(
-                        '<div class="am-form-group">' +
-                        '<label for="goodsname">商品名称："' + goodname + '"' +
-                        '</label>' +
-                        '<p>数量："' + orderDetailList[i].number + '"' +
-                        '</p>' +
-                        '<button class="confirmout" value="确认发货" data-id="' + orderDetailList[i].orderId + '"/>' +
-                        '</div>'
-                    )
-                })
+                    console.log(orderDetailList[i].orderid);
 
+                    // $('#orderDetailForm').append(
+                    //     '<div class="am-form-group">' +
+                    //     '<label for="goodsname">商品名称："' + goodname + '"' +
+                    //     '</label>' +
+                    //     '<p>数量："' + orderDetailList[i].number + '"' +
+                    //     '</p>' +
+                    //     '<button class="confirmout" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
+                    //     '</div>'
+                    // )
+
+                    $('#orderDetailForm').append(
+                        '<tr>' +
+                        '        <td>' + goodname + '</td>' +
+                        '        <td>' + orderDetailList[i].number + '</td>' +
+                        '        <td>user</td>' +
+                        '        <td>' +
+                        '<button class="confirmout" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
+                        '</td>' +
+                        '</tr>')
+                })
             }
         })
     });
@@ -422,8 +487,6 @@
                 });
             }
         });
-
-
     });
 
     $("#addGoodsBtn").click(function () {
@@ -476,8 +539,8 @@
                 })
             }
         });
-
     })
+
 </script>
 
 <script>
@@ -502,30 +565,21 @@
     });
 
 
-    $(function () {
-        $(document).on("click", ".confirmout", function () {
-            var orderid = $(this).data('id');
-            $.ajax({
-                url: "${APP_PATH}/updateIsout",
-                method: 'POST',
-                data: {
-                    "orderid": orderid
-                },
-                success: function (result) {
-                    if (result === 100) {
-                        $.toast({
-                            heading: "Success",
-                            text: 'Yes! 发货成功 <a href="${APP_PATH}/toGoodsManage">刷新</a>.',
-                            showHideTransition: 'slide',
-                            afterHidden: function () {
-                                window.location.reload();
-                            },
-                            position: 'top-right',
-                            icon: 'success'
-                        })
-                    }
+    $(document).on("click", ".confirmout", function () {
+        var orderid = $(this).data('id');
+        alert("orderid: " + orderid);
+        $.ajax({
+            url: "${APP_PATH}/updateIsout",
+            method: 'POST',
+            data: {
+                "orderid": orderid
+            },
+            success: function (result) {
+                if (result.code === 100) {
+                    $('#logisticsModal').modal();
+                    alert("asdasda");
                 }
-            })
+            }
         })
-    });
+    })
 </script>

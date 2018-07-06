@@ -42,7 +42,7 @@
             <ul>
                 <c:forEach items="${requestScope.addressList}" var="address">
                     <div class="per-border"></div>
-                    <li class="user-addresslist defaultAddr" data-addressid="${address.addressid}">
+                    <li class="user-addresslist defaultAddr eachAddress" data-addressid="${address.addressid}">
                         <div class="address-left">
                             <div class="user DefaultAddr">
                                 <span class="buy-address-detail">
@@ -195,8 +195,17 @@
                     display: 'block'
                 });
                 $(this).addClass('selectAddress');
+                console.log($('.selectAddress').data('addressid'));
             }
         });
+    });
+
+    $('.user-addresslist').click(function () {
+        $('.eachAddress').each(function () {
+            $(this).removeClass('selectAddress');
+        });
+        $(this).addClass('selectAddress');
+        console.log($('.selectAddress').data('addressid'));
     });
 
     $('#manageAddress').click(function () {
@@ -204,6 +213,9 @@
     });
 
     $('#submitOrder').click(function () {
+        var goodsid = 0;
+        var number = 0;
+
         var setoff = 0;
         if ($('#isUsing')[0].checked) {
             setoff = $(this).data("chao");
@@ -219,12 +231,14 @@
             data: {
                 "addressid": addressid,
                 "totalprice": totalprice,
-                "setoff": setoff
+                "setoff": setoff,
+                "goodsid": goodsid,
+                "number": number
             },
             success: function (result) {
-                if(result.code===100){
-                    window.location.href = "${APP_PATH}/toSuccess/"+result.extend.orderitemid;
-                }else {
+                if (result.code === 100) {
+                    window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
+                } else {
                     $.toast({
                         heading: "Fail",
                         text: result.extend.msg,

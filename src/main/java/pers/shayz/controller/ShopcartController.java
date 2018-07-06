@@ -87,9 +87,9 @@ public class ShopcartController {
         User user = (User) session.getAttribute("user");
         if ("1".equals(isBuy) && "0".equals(shopcartid)) {
             shopcartService.updateAllShopcartCheck(user.getUserid(), isBuy);
-        } else if("0".equals(isBuy) && "0".equals(shopcartid)){
+        } else if ("0".equals(isBuy) && "0".equals(shopcartid)) {
             shopcartService.updateAllShopcartCheck(user.getUserid(), isBuy);
-        } else{
+        } else {
             shopcartService.updateShopcartCheckByShopcartid(Integer.parseInt(shopcartid), Integer.parseInt(isBuy));
         }
         return Msg.success();
@@ -213,6 +213,8 @@ public class ShopcartController {
     public Msg balance(@RequestParam("addressid") int addressid,
                        @RequestParam("totalprice") Double totalprice,
                        @RequestParam("setoff") String setoff,
+                       @RequestParam("goodsid") int goodsid,
+                       @RequestParam("number") int number,
                        HttpSession session) {
         Double chaoRate = 0.001;
 
@@ -242,15 +244,27 @@ public class ShopcartController {
 
         System.out.println("/Balance: " + orderitemid);
 
-        List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(user.getUserid());
+        if (goodsid == 0 && number == 0) {
 
-        System.out.println("/Balance: " + shopcartlist.toString());
+            List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(user.getUserid());
 
-        for (Shopcart shopcart : shopcartlist) {
+            System.out.println("/Balance: " + shopcartlist.toString());
+
+            for (Shopcart shopcart : shopcartlist) {
+                Orderdetails orderdetails = new Orderdetails();
+                orderdetails.setUseridFkOrder(user.getUserid());
+                orderdetails.setGoodsidFkOrder(shopcart.getGoodsidFkShopcart());
+                orderdetails.setNumber(shopcart.getNumber());
+                orderdetails.setOrderitemidFkOrder(orderitemid);
+
+                System.out.println("/Balance: " + orderdetails);
+                orderdetailsService.createOrderdetails(orderdetails);
+            }
+        } else {
             Orderdetails orderdetails = new Orderdetails();
             orderdetails.setUseridFkOrder(user.getUserid());
-            orderdetails.setGoodsidFkOrder(shopcart.getGoodsidFkShopcart());
-            orderdetails.setNumber(shopcart.getNumber());
+            orderdetails.setGoodsidFkOrder(goodsid);
+            orderdetails.setNumber(number);
             orderdetails.setOrderitemidFkOrder(orderitemid);
 
             System.out.println("/Balance: " + orderdetails);

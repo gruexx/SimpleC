@@ -31,7 +31,7 @@
     <article>
         <div class="mt-logo">
             <!--顶部导航条 -->
-            <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+            <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
             <div class="clear"></div>
         </div>
         </div>
@@ -43,7 +43,7 @@
         <ul>
             <li class="index"><a href="${APP_PATH}/toHome">首页</a></li>
         </ul>
-        <jsp:include   page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
+        <jsp:include page="${APP_PATH}/jsp/common/chaopoint.jsp" flush="true"/>
     </div>
 </div>
 <b class="line"></b>
@@ -60,28 +60,34 @@
                 <hr/>
                 <table class="am-table am-table-striped am-table-hover">
                     <thead>
-                    <tr>
-                        <th style="font-size: 20px;font-weight: bold">订单编号</th>
-                        <th style="font-size: 20px;font-weight: bold">地址</th>
-                        <th style="font-size: 20px;font-weight: bold">合计</th>
-                        <th style="font-size: 20px;font-weight: bold">交易状态</th>
-                        <th style="font-size: 20px;font-weight: bold">交易操作</th>
+                    <tr style="white-space: nowrap">
+                        <th style="font-size: 17px;font-weight: bold">订单编号</th>
+                        <th style="font-size: 17px;font-weight: bold">收货人</th>
+                        <th style="font-size: 17px;font-weight: bold">电话</th>
+                        <th style="font-size: 17px;font-weight: bold">地址</th>
+                        <th style="font-size: 17px;font-weight: bold">合计</th>
+                        <th style="font-size: 17px;font-weight: bold">潮积分抵扣</th>
+                        <th style="font-size: 17px;font-weight: bold">交易状态</th>
+                        <th style="font-size: 17px;font-weight: bold">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${requestScope.OrderItemList}" var="oiList">
-                        <tr >
-                            <td class="orderitemid" style="font-size: 20px">${oiList.orderitemid}</td>
-                            <td style="font-size: 20px"></td>
-                            <td style="font-size: 20px">${oiList.totalprice}</td>
-                            <td style="font-size: 20px">
-                                <a href="/toOrderDetails/${oiList.orderitemid}" class="am-btn am-btn-success OrderDetail">订单详情</a>
+                    <c:forEach items="${requestScope.OrderItemList}" var="oiList" varStatus="loop">
+                        <tr>
+                            <td class="orderitemid">${oiList.orderitemid}</td>
+                            <td class="orderitemid"
+                                style="font-size: 14px">${requestScope.AddressList[loop.count-1].receiver}</td>
+                            <td class="orderitemid">${requestScope.AddressList[loop.count-1].phone}</td>
+                            <td>${requestScope.AddressList[loop.count-1].address}</td>
+                            <td>${oiList.totalprice}</td>
+                            <td style="color: red">-${oiList.setoff}</td>
+                            <td>
+                                <a href="/toOrderDetails/${oiList.orderitemid}"
+                                   class="am-btn am-btn-success OrderDetail">订单详情</a>
                             </td>
                             <td>
-                                <button type="button" data-id="${oiList.orderitemid}"
-                                        class="am-btn am-btn-primary OrderBtn">
-                                    删除订单
-                                </button>
+                                <a href="#" data-id="${oiList.orderitemid}"
+                                   class="am-btn am-btn-primary OrderBtn">删除订单</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -91,7 +97,7 @@
             </div>
         </div>
         <!--底部-->
-        <jsp:include   page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
+        <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
     </div>
     <aside class="menu">
         <ul>
@@ -134,7 +140,8 @@
             <p>确定收货后订单交易完成</p>
         </div>
         <div class="am-modal-footer">
-            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow"  data-am-modal-cancel>取消</button>
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
             <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定收货</button>
         </div>
     </div>
@@ -151,7 +158,8 @@
             <p>你确定要永久的删除这些内容么？</p>
         </div>
         <div class="am-modal-footer">
-            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow"  data-am-modal-cancel>取消</button>
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
             <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
         </div>
     </div>
@@ -168,13 +176,13 @@
         console.log(orderitemid);
         $('#my-delete').modal({
             relatedTarget: this,
-            onConfirm: function() {
+            onConfirm: function () {
                 $.ajax({
                     url: '${APP_PATH}/deleteOrderItem',
                     type: 'POST',
                     data: {"orderitemid": orderitemid},
                     success: function (result) {
-                        if(result.code===100){
+                        if (result.code === 100) {
                             window.location.reload();
                             // $.toast({
                             //     afterHidden: function () {
@@ -195,51 +203,51 @@
     });
 
     <%--$('.OrderDetail').click(function () {--%>
-        <%--var orderitemid = $(this).data('id');--%>
-        <%--console.log(orderitemid);--%>
-        <%--$.ajax({--%>
-            <%--url:  '${APP_PATH}/toOrderDetails',--%>
-            <%--type: 'POST',--%>
-            <%--data: {"orderitemid": orderitemid}--%>
-        <%--})--%>
+    <%--var orderitemid = $(this).data('id');--%>
+    <%--console.log(orderitemid);--%>
+    <%--$.ajax({--%>
+    <%--url:  '${APP_PATH}/toOrderDetails',--%>
+    <%--type: 'POST',--%>
+    <%--data: {"orderitemid": orderitemid}--%>
+    <%--})--%>
     <%--})--%>
 
     <%--$('#confirmBtn').click(function () {--%>
 
 
-            <%--$('.preBtn p').eq(index1).text("删除订单");--%>
-            <%--$('.preBtn').eq(index1).removeAttr("data-am-modal");--%>
-            <%--$('.preBtn').eq(index1).addClass('deleteBtn');--%>
-            <%--$('.preBtn').eq(index1).removeClass('preBtn');--%>
+    <%--$('.preBtn p').eq(index1).text("删除订单");--%>
+    <%--$('.preBtn').eq(index1).removeAttr("data-am-modal");--%>
+    <%--$('.preBtn').eq(index1).addClass('deleteBtn');--%>
+    <%--$('.preBtn').eq(index1).removeClass('preBtn');--%>
 
-            <%--$('.deleteBtn').click(function () {--%>
-                <%--var index2 = $(this).index();--%>
-                <%--console.log(index2);--%>
-                <%--var orderitemid = $('.orderitemid').eq(index2).text();--%>
-                <%--console.log(orderitemid);--%>
+    <%--$('.deleteBtn').click(function () {--%>
+    <%--var index2 = $(this).index();--%>
+    <%--console.log(index2);--%>
+    <%--var orderitemid = $('.orderitemid').eq(index2).text();--%>
+    <%--console.log(orderitemid);--%>
 
-                <%--$.ajax({--%>
-                    <%--url: '${APP_PATH}/deleteOrder',--%>
-                    <%--type: 'POST',--%>
-                    <%--data: {"orderitemid": orderitemid},--%>
-                    <%--success: function (result) {--%>
-                        <%--if(result.code===100){--%>
-                            <%--$.toast({--%>
-                                <%--afterHidden: function () {--%>
-                                    <%--window.location.reload();--%>
-                                <%--},--%>
-                                <%--heading: "Success",--%>
-                                <%--text: "删除成功",--%>
-                                <%--showHideTransition: 'fade',--%>
-                                <%--position: 'top-right',--%>
-                                <%--icon: 'success'--%>
+    <%--$.ajax({--%>
+    <%--url: '${APP_PATH}/deleteOrder',--%>
+    <%--type: 'POST',--%>
+    <%--data: {"orderitemid": orderitemid},--%>
+    <%--success: function (result) {--%>
+    <%--if(result.code===100){--%>
+    <%--$.toast({--%>
+    <%--afterHidden: function () {--%>
+    <%--window.location.reload();--%>
+    <%--},--%>
+    <%--heading: "Success",--%>
+    <%--text: "删除成功",--%>
+    <%--showHideTransition: 'fade',--%>
+    <%--position: 'top-right',--%>
+    <%--icon: 'success'--%>
 
-                            <%--})--%>
-                        <%--}--%>
-                    <%--}--%>
-                <%--});--%>
-            <%--})--%>
-        <%--});--%>
+    <%--})--%>
+    <%--}--%>
+    <%--}--%>
+    <%--});--%>
+    <%--})--%>
+    <%--});--%>
 
 
 </script>

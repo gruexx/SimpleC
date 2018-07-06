@@ -52,4 +52,11 @@ public class OrderdetailsService {
 
         return orderdetailsMapper.selectByExample(orderdetailsExample);
     }
+
+    public void updateIsReceive(int orderid) {
+        Orderdetails orderdetails = new Orderdetails();
+        orderdetails.setOrderid(orderid);
+        orderdetails.setIsreceive(1);
+        orderdetailsMapper.updateByPrimaryKeySelective(orderdetails);
+    }
 }

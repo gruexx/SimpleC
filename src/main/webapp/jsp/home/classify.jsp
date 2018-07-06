@@ -37,10 +37,10 @@
             <div class="am-u-sm-12">
                 <div class="Row">
                     <c:forEach items="${requestScope.GoodsList}" var="goodsList">
-                        <li data-am-scrollspy="{animation: 'fade'}" style="height: 278px;width: 277px;">
+                        <li data-am-scrollspy="{animation: 'fade'}" style="height: 278px;width: 277px;overflow:hidden"
+                            data-am-popover="{position: 'bottom' ,theme: 'primary lg' ,content: '${goodsList.goodsname}', trigger: 'hover focus'}">
                             <a href="${APP_PATH}/toIntroduction/${goodsList.goodsid}">
-                                <img src="${APP_PATH}/${goodsList.image}"
-                                     data-am-popover="{position: 'bottom' ,theme: 'primary lg' ,content: '${goodsList.goodsname}', trigger: 'hover focus'}"/>
+                                <img src="${APP_PATH}/${goodsList.image}"/>
                             </a>
                         </li>
                     </c:forEach>

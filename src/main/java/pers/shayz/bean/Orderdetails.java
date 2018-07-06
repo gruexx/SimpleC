@@ -15,6 +15,8 @@ public class Orderdetails {
 
     private Integer isout;
 
+    private Integer isreceive;
+
     public Integer getOrderid() {
         return orderid;
     }
@@ -69,5 +71,27 @@ public class Orderdetails {
 
     public void setIsout(Integer isout) {
         this.isout = isout;
+    }
+
+    public Integer getIsreceive() {
+        return isreceive;
+    }
+
+    public void setIsreceive(Integer isreceive) {
+        this.isreceive = isreceive;
+    }
+
+    @Override
+    public String toString() {
+        return "Orderdetails{" +
+                "orderid=" + orderid +
+                ", useridFkOrder=" + useridFkOrder +
+                ", goodsidFkOrder=" + goodsidFkOrder +
+                ", number=" + number +
+                ", orderitemidFkOrder=" + orderitemidFkOrder +
+                ", flag=" + flag +
+                ", isout=" + isout +
+                ", isreceive=" + isreceive +
+                '}';
     }
 }
