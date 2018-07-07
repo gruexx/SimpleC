@@ -12,7 +12,8 @@
 %>
 <div id="top" class="am-container header"
 <%--data-am-sticky="{animation: 'slide-top'}"--%>
-     style="background-color: white;">
+     <%--style="background-color: white;"--%>
+>
     <ul class="message-l">
         <div class="topMessage">
             <div class="menu-hd">
@@ -32,7 +33,7 @@
         </div>
         <div class="topMessage mini-cart">
             <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle am-mark" data-am-dropdown-toggle href="javascript:;">
+                <a id="shopCartMessage" class="am-dropdown-toggle am-mark" data-am-dropdown-toggle href="javascript:;">
                     购物车
                     <span class="am-icon-caret-down"></span>
                     <span class="am-badge am-badge-danger am-round">${sessionScope.shopcartNum}</span>
@@ -45,6 +46,18 @@
                     <div class="goods">
 
                     </div>
+                </ul>
+            </li>
+        </div>
+        <div class="topMessage">
+            <li class="am-dropdown" data-am-dropdown>
+                <a id="userMessage" class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+                    消息
+                    <span class="am-icon-caret-down"></span>
+                    <span id="messageNum" class="am-badge am-badge-warning am-round"></span>
+                </a>
+                <ul id="sendnames" class="am-dropdown-content" style="white-space: nowrap">
+
                 </ul>
             </li>
         </div>
@@ -69,7 +82,7 @@
 </div>
 
 <script>
-    $(".am-dropdown-toggle").one("click", function () {
+    $("#shopCartMessage").one("click", function () {
         $.ajax({
             url: '${APP_PATH}/viewShopcart',
             type: 'POST',
@@ -87,7 +100,27 @@
                 });
             }
         })
-    })
+    });
+
+    // $('#userMessage').one("click", function () {
+    $(function () {
+        var username='${sessionScope.user.username}';
+        var apppath='${APP_PATH}';
+        $.ajax({
+            url: '${APP_PATH}/getMessage',
+            type: 'POST',
+            dateType: "json",
+            success:function (result) {
+                $('#messageNum').append(result.extend.messageNum);
+                $.each(result.extend.sendnames, function (i) {
+                    $('#sendnames').append('<li><a href="' +
+                        apppath+'/jsp/person/chat.jsp?name1='+username+'&name2='+ result.extend.useridList[i]+
+                        '">'+result.extend.sendnames[i]+'</a></li>');
+                });
+            }
+        })
+    });
+    // });
 
     $(document).on('mouseenter', '.goods li',
         function () {

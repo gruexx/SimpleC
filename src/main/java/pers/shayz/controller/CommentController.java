@@ -13,6 +13,7 @@ import pers.shayz.bean.Comment;
 import pers.shayz.bean.Msg;
 import pers.shayz.bean.User;
 import pers.shayz.service.CommentService;
+import pers.shayz.service.OrderdetailsService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,9 +34,13 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    OrderdetailsService orderdetailsService;
+
     @RequestMapping(value = "/addComment")
     @ResponseBody
-    public Msg writeComment(HttpSession session, @Valid Comment comment, BindingResult bindingResult) {
+    public Msg writeComment(HttpSession session, @Valid Comment comment, BindingResult bindingResult,
+                            @RequestParam("orderid")int orderid) {
 
         System.out.println("/addComment: " + bindingResult);
         if (bindingResult.hasErrors()) {
@@ -50,15 +55,16 @@ public class CommentController {
             return Msg.fail().add("errorFields", map);
         }
 
-        User userNow = (User) session.getAttribute("user");
-        comment.setUseridFkComment(userNow.getUserid());
+        User user = (User) session.getAttribute("user");
+        comment.setUseridFkComment(user.getUserid());
 
         Date date = new Date();
         comment.setTime(date);
 
         System.out.println("/addComment: " + comment);
 
-        commentService.writeContent(comment);
+        commentService.writeContent(comment, user.getUserid());
+        orderdetailsService.setIsCommentByOrderId(orderid);
 
         return Msg.success();
     }

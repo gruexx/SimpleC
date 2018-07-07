@@ -134,18 +134,29 @@
         </ul>
     </aside>
 </div>
+
 <%--物流单号--%>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="logisticsModal">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
-            输入物流单号
+            输入物流信息
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd">
             <form class="am-form">
-                <input type="text">
+                <label>选择物流方式：
+                    <select id="company" name="test" data-am-selected>
+                        <option value="shentong">申通</option>
+                        <option value="shunfeng">顺丰</option>
+                        <option value="yuantong">圆通速递</option>
+                        <option value="yunda">韵达快运</option>
+                        <option value="zhongtong">中通速递</option>
+                    </select>
+                </label>
+                <label>快递单号：
+                    <input type="text" id="identifier">
+                </label>
             </form>
-
         </div>
         <div class="am-modal-footer">
             <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
@@ -157,7 +168,7 @@
 
 <%--订单--%>
 <div class="am-modal am-modal-prompt" tabindex="-1" id="orderModal">
-    <div class="am-modal-dialog" style="width: 400px">
+    <div class="am-modal-dialog" style="width: auto;height: auto">
         <div class="am-modal-hd">
             此商品的所有订单
             <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
@@ -299,7 +310,7 @@
                 </div>
 
                 <div class="am-form-group">
-                    <label for="goodsinfo">详细资料：</label>
+                    <label for="goodsinfo1">详细资料：</label>
                     <textarea id="goodsinfo1" name="goodsinfo" minlength="10" maxlength="100"></textarea>
                 </div>
                 <div class="am-form-group am-form-file">
@@ -318,25 +329,6 @@
         </div>
     </div>
 </div>
-
-<%--<table class="am-table">--%>
-    <%--<thead>--%>
-    <%--<tr>--%>
-        <%--<th>商品名称</th>--%>
-        <%--<th>数量</th>--%>
-        <%--<th>买家</th>--%>
-        <%--<th>操作</th>--%>
-    <%--</tr>--%>
-    <%--</thead>--%>
-    <%--<tbody>--%>
-    <%--<tr>--%>
-        <%--<td></td>--%>
-        <%--<td></td>--%>
-        <%--<td></td>--%>
-        <%--<td></td>--%>
-    <%--</tr>--%>
-    <%--</tbody>--%>
-<%--</table>--%>
 
 </body>
 
@@ -366,28 +358,55 @@
                     console.log(i);
                     console.log(orderDetailList[i].orderid);
 
-                    // $('#orderDetailForm').append(
-                    //     '<div class="am-form-group">' +
-                    //     '<label for="goodsname">商品名称："' + goodname + '"' +
-                    //     '</label>' +
-                    //     '<p>数量："' + orderDetailList[i].number + '"' +
-                    //     '</p>' +
-                    //     '<button class="confirmout" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
-                    //     '</div>'
-                    // )
-
                     $('#orderDetailForm').append(
-                        '<tr>' +
-                        '        <td>' + goodname + '</td>' +
-                        '        <td>' + orderDetailList[i].number + '</td>' +
-                        '        <td>user</td>' +
-                        '        <td>' +
-                        '<button class="confirmout" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
+                        '<tr style="white-space: nowrap">' +
+                        '<td>' + goodname + '</td>' +
+                        '<td>' + orderDetailList[i].number + '</td>' +
+                        '<td>' + result.extend.userList[i].username + '</td>' +
+                        '<td>' +
+                        '<button class="confirmout am-btn am-btn-secondary" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
                         '</td>' +
                         '</tr>')
-                })
+                });
             }
         })
+    });
+
+    $(document).on("click", ".confirmout", function () {
+        var orderid = $(this).data('id');
+
+        $('#orderModal').modal('toggle');
+        $('#logisticsModal').modal({
+            onConfirm: function () {
+                var company = $('#company option:selected').val();
+                var identifier = $('#identifier').val();
+                console.log(company);
+                console.log(identifier);
+                $.ajax({
+                    url: "${APP_PATH}/updateIsout",
+                    method: 'POST',
+                    data: {
+                        "orderid": orderid,
+                        "company":company,
+                        "identifier":identifier
+                    },
+                    success: function (result) {
+                        if (result.code === 100) {
+                            window.location.reload();
+                        }
+                        if (undefined != result.extend.errorFields.identifier) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.errorFields.identifier,
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        }
+                    }
+                })
+            }
+        });
     });
 
 
@@ -563,23 +582,4 @@
             $('#file-list1').html(fileNames);
         });
     });
-
-
-    $(document).on("click", ".confirmout", function () {
-        var orderid = $(this).data('id');
-        alert("orderid: " + orderid);
-        $.ajax({
-            url: "${APP_PATH}/updateIsout",
-            method: 'POST',
-            data: {
-                "orderid": orderid
-            },
-            success: function (result) {
-                if (result.code === 100) {
-                    $('#logisticsModal').modal();
-                    alert("asdasda");
-                }
-            }
-        })
-    })
 </script>

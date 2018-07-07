@@ -25,16 +25,8 @@ public class CommentService {
         return commentMapper.selectByExample(commentExample);
     }
 
-    public List<Comment> getCommentByUserId(int userId) {
-        CommentExample commentExample = new CommentExample();
-        CommentExample.Criteria criteria = commentExample.createCriteria();
-        criteria.andUseridFkCommentEqualTo(userId).andFlagEqualTo(1);
 
-        return commentMapper.selectByExample(commentExample);
-    }
-
-    public void writeContent(Comment comment) {
-        
+    public void writeContent(Comment comment, int userId) {
         commentMapper.insertSelective(comment);
     }
 }

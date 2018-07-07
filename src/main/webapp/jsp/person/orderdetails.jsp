@@ -84,7 +84,13 @@
                             <td>${GoodsList.goodsprice}</td>
                             <td><span>×</span>${requestScope.OrderDetailList[loop.count-1].number}</td>
                             <td>${requestScope.OrderDetailList[loop.count-1].number*GoodsList.goodsprice}</td>
-                            <td>${requestScope.OrderDetailList[loop.count-1].number*GoodsList.goodsprice}</td>
+                            <td class="statusTd">
+                                <span class="isout">卖家已发货</span>
+                                <span class="notout">卖家未发货</span>
+                                <a class="searchForTransport" style="color: black;cursor:pointer;"
+                                   data-company="${requestScope.OrderDetailList[loop.count-1].company}"
+                                   data-identifier="${requestScope.OrderDetailList[loop.count-1].identifier}">查看物流</a>
+                            </td>
                             <td class="operationTd">
                                 <button type="button"
                                         class="am-btn am-btn-danger confirmReceive"
@@ -92,8 +98,10 @@
                                 </button>
                                 <button type="button"
                                         class="am-btn am-btn-success addComment"
-                                        data-id="${GoodsList.goodsid}">评论商品
+                                        data-id="${GoodsList.goodsid}"
+                                        data-orderid="${requestScope.OrderDetailList[loop.count-1].orderid}">评论商品
                                 </button>
+                                <a href="/toIntroduction/${GoodsList.goodsid}" class="am-btn am-btn-link isComment">你已经评论了</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -158,10 +166,52 @@
 </div>
 
 </html>
+
 <script>
+    $('.searchForTransport').click(function () {
+        var company = $(this).data("company");
+        var identifier = $(this).data("identifier");
+
+        window.location.href = "${APP_PATH}/toGistics/" + company + "/" + identifier;
+    })
+
+    $(function () {
+        var isOut = JSON.parse('${requestScope.isOut}');
+        console.log("isOut: " + isOut);
+
+        $('.statusTd').each(function (i) {
+            if (isOut[i] === 0) {
+                $(this).find('.isout').css({
+                    display: 'none'
+                })
+                $(this).find('.notout').css({
+                    display: 'block'
+                })
+                $(this).find('.searchForTransport').css({
+                    display: 'none'
+                })
+                $(this).parents().find('.operationTd').find('.confirmReceive').addClass('am-disabled');
+            } else {
+                $(this).find('.isout').css({
+                    display: 'block'
+                })
+                $(this).find('.notout').css({
+                    display: 'none'
+                })
+                $(this).find('.searchForTransport').css({
+                    display: 'block'
+                })
+                $(this).parents().find('.operationTd').find('.confirmReceive').removeClass('am-disabled');
+            }
+        });
+    });
+
     $(function () {
         var isReceive = JSON.parse('${requestScope.isReceive}');
         console.log("isReceive: " + isReceive);
+
+        var isComment = JSON.parse('${requestScope.isComment}');
+        console.log("isComment: " + isComment);
 
         $('.operationTd').each(function (i) {
             if (isReceive[i] === 0) {
@@ -171,6 +221,9 @@
                 $(this).find('.confirmReceive').css({
                     display: 'block'
                 })
+                $(this).find('.isComment').css({
+                    display: 'none'
+                })
             } else {
                 $(this).find('.addComment').css({
                     display: 'block'
@@ -178,6 +231,21 @@
                 $(this).find('.confirmReceive').css({
                     display: 'none'
                 })
+                if (isComment[i] === 1) {
+                    $(this).find('.addComment').css({
+                        display: 'none'
+                    });
+                    $(this).find('.isComment').css({
+                        display: 'block'
+                    })
+                } else {
+                    $(this).find('.addComment').css({
+                        display: 'block'
+                    });
+                    $(this).find('.isComment').css({
+                        display: 'none'
+                    })
+                }
             }
         })
     });
@@ -201,14 +269,18 @@
         var goodsid = $(this).data('id');
         console.log(goodsid);
 
+        var orderid = $(this).data('orderid');
+        console.log(orderid);
+
         $('#commentModal').modal({
             onConfirm: function () {
                 $.ajax({
                     url: '${APP_PATH}/addComment',
                     type: 'POST',
-                    data: {"goodsidFkComment": goodsid, "content": $('#commentContent').val()},
+                    data: {"goodsidFkComment": goodsid, "content": $('#commentContent').val(), "orderid": orderid},
                     success: function (result) {
-                        if(result.code ===100){
+                        $('#commentContent').val('');
+                        if (result.code === 100) {
                             window.location.reload();
                         }
                         if (undefined != result.extend.errorFields.content) {

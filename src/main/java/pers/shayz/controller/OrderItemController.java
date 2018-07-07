@@ -3,15 +3,22 @@ package pers.shayz.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import pers.shayz.bean.*;
+import pers.shayz.dao.UserMapper;
 import pers.shayz.service.AddressService;
 import pers.shayz.service.OrderItemService;
 import pers.shayz.service.OrderdetailsService;
+import pers.shayz.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ZhouXiaoyu
@@ -27,6 +34,9 @@ public class OrderItemController {
 
     @Autowired
     OrderdetailsService orderdetailsService;
+
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = "/toOrderItem")
     public String toOrderItem(HttpSession session, ModelMap modelMap) {
@@ -44,39 +54,6 @@ public class OrderItemController {
         return "person/orderitem";
     }
 
-    @RequestMapping(value = "/toOrderDetails/{orderitemid}")
-    public String toOrderDetails(@PathVariable("orderitemid") String id, ModelMap modelMap) {
-        int orderItemId = Integer.parseInt(id);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderItemId);
-
-        List<Goods> goodsList = orderdetailsService.getGoodsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + goodsList);
-        modelMap.addAttribute("GoodsList", goodsList);
-
-        Orderitem orderitem = orderItemService.getOrderItemByOrderitemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderitem);
-        modelMap.addAttribute("OrderItemList", orderitem);
-
-        List<Orderdetails> orderdetailsList = orderdetailsService.getOrderDetailsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderdetailsList);
-        modelMap.addAttribute("OrderDetailList", orderdetailsList);
-
-        List<Integer> isReceive = new ArrayList<>();
-        for (Orderdetails orderdetails : orderdetailsList) {
-            isReceive.add(orderdetails.getIsreceive());
-        }
-        modelMap.addAttribute("isReceive", isReceive);
-
-        return "person/orderdetails";
-    }
-
-    @RequestMapping(value = "/confirmReceive", method = RequestMethod.POST)
-    @ResponseBody
-    public Msg confirmReceive(@RequestParam("orderid")int orderid){
-        orderdetailsService.updateIsReceive(orderid);
-        return Msg.success();
-    }
-
     @RequestMapping(value = "/deleteOrderItem", method = RequestMethod.POST)
     @ResponseBody
     public Msg deleteOrderItem(@RequestParam("orderitemid") String orderitemid) {
@@ -88,16 +65,33 @@ public class OrderItemController {
 
     @RequestMapping(value = "/orderDetail", method = RequestMethod.POST)
     @ResponseBody
-    public Msg findOrderDetail(@RequestParam("goodsid") String goodsid) {
-        List<Orderdetails> list = orderItemService.getOderDetailsByGoodsId(Integer.parseInt(goodsid));
-        return Msg.success().add("orderDetailList", list);
+    public Msg findOrderDetail(@RequestParam("goodsid") int goodsid) {
+        List<Orderdetails> orderdetailsList = orderItemService.getOderDetailsByGoodsId(goodsid);
+        List<User> userList = new ArrayList<>();
+        for (Orderdetails orderdetails : orderdetailsList) {
+            userList.add(userService.getUserById(orderdetails.getUseridFkOrder()));
+        }
+        return Msg.success().add("orderDetailList", orderdetailsList).add("userList", userList);
     }
 
     @RequestMapping(value = "/updateIsout", method = RequestMethod.POST)
     @ResponseBody
-    public Msg updateIsout(@RequestParam("orderid") String orderid) {
-        orderItemService.updateIsoutByOrderId(Integer.parseInt(orderid));
+    public Msg updateIsout(@Valid Orderdetails orderdetails, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, Object> map = new HashMap<>();
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            System.out.println("/updateIsout: " + errors);
+            for (FieldError fieldError : errors) {
+                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+            }
+            System.out.println("/updateIsout: " + map);
+            return Msg.fail().add("errorFields", map);
+        }
+
+        orderdetails.setIsout(1);
+        System.out.println("/updateIsout: "+orderdetails);
+
+        orderdetailsService.updateOrderdetails(orderdetails);
         return Msg.success();
     }
-
 }

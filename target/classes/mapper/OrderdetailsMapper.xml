@@ -10,6 +10,9 @@
     <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="isOut" jdbcType="INTEGER" property="isout" />
     <result column="isReceive" jdbcType="INTEGER" property="isreceive" />
+    <result column="isComment" jdbcType="INTEGER" property="iscomment" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="identifier" jdbcType="VARCHAR" property="identifier" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     orderId, userId_fk_order, goodsId_fk_order, number, orderitemId_fk_order, flag, isOut, 
-    isReceive
+    isReceive, isComment, company, identifier
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.OrderdetailsExample" resultMap="BaseResultMap">
     select
@@ -106,10 +109,12 @@
   <insert id="insert" parameterType="pers.shayz.bean.Orderdetails">
     insert into orderdetails (orderId, userId_fk_order, goodsId_fk_order, 
       number, orderitemId_fk_order, flag, 
-      isOut, isReceive)
+      isOut, isReceive, isComment, 
+      company, identifier)
     values (#{orderid,jdbcType=INTEGER}, #{useridFkOrder,jdbcType=INTEGER}, #{goodsidFkOrder,jdbcType=INTEGER}, 
       #{number,jdbcType=INTEGER}, #{orderitemidFkOrder,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
-      #{isout,jdbcType=INTEGER}, #{isreceive,jdbcType=INTEGER})
+      #{isout,jdbcType=INTEGER}, #{isreceive,jdbcType=INTEGER}, #{iscomment,jdbcType=INTEGER}, 
+      #{company,jdbcType=VARCHAR}, #{identifier,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Orderdetails">
     insert into orderdetails
@@ -138,6 +143,15 @@
       <if test="isreceive != null">
         isReceive,
       </if>
+      <if test="iscomment != null">
+        isComment,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="identifier != null">
+        identifier,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderid != null">
@@ -163,6 +177,15 @@
       </if>
       <if test="isreceive != null">
         #{isreceive,jdbcType=INTEGER},
+      </if>
+      <if test="iscomment != null">
+        #{iscomment,jdbcType=INTEGER},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        #{identifier,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -199,6 +222,15 @@
       <if test="record.isreceive != null">
         isReceive = #{record.isreceive,jdbcType=INTEGER},
       </if>
+      <if test="record.iscomment != null">
+        isComment = #{record.iscomment,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identifier != null">
+        identifier = #{record.identifier,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -213,7 +245,10 @@
       orderitemId_fk_order = #{record.orderitemidFkOrder,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
       isOut = #{record.isout,jdbcType=INTEGER},
-      isReceive = #{record.isreceive,jdbcType=INTEGER}
+      isReceive = #{record.isreceive,jdbcType=INTEGER},
+      isComment = #{record.iscomment,jdbcType=INTEGER},
+      company = #{record.company,jdbcType=VARCHAR},
+      identifier = #{record.identifier,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -242,6 +277,15 @@
       <if test="isreceive != null">
         isReceive = #{isreceive,jdbcType=INTEGER},
       </if>
+      <if test="iscomment != null">
+        isComment = #{iscomment,jdbcType=INTEGER},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
     </set>
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
@@ -253,7 +297,10 @@
       orderitemId_fk_order = #{orderitemidFkOrder,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
       isOut = #{isout,jdbcType=INTEGER},
-      isReceive = #{isreceive,jdbcType=INTEGER}
+      isReceive = #{isreceive,jdbcType=INTEGER},
+      isComment = #{iscomment,jdbcType=INTEGER},
+      company = #{company,jdbcType=VARCHAR},
+      identifier = #{identifier,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
 </mapper>

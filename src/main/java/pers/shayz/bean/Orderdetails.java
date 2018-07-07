@@ -1,5 +1,7 @@
 package pers.shayz.bean;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Orderdetails {
     private Integer orderid;
 
@@ -16,6 +18,13 @@ public class Orderdetails {
     private Integer isout;
 
     private Integer isreceive;
+
+    private Integer iscomment;
+
+    private String company;
+
+    @NotBlank(message = "快递单号不能为空")
+    private String identifier;
 
     public Integer getOrderid() {
         return orderid;
@@ -81,6 +90,30 @@ public class Orderdetails {
         this.isreceive = isreceive;
     }
 
+    public Integer getIscomment() {
+        return iscomment;
+    }
+
+    public void setIscomment(Integer iscomment) {
+        this.iscomment = iscomment;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company == null ? null : company.trim();
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier == null ? null : identifier.trim();
+    }
+
     @Override
     public String toString() {
         return "Orderdetails{" +
@@ -92,6 +125,9 @@ public class Orderdetails {
                 ", flag=" + flag +
                 ", isout=" + isout +
                 ", isreceive=" + isreceive +
+                ", iscomment=" + iscomment +
+                ", company='" + company + '\'' +
+                ", identifier='" + identifier + '\'' +
                 '}';
     }
 }

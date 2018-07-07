@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class User {
-
     private Integer userid;
 
     @Pattern(regexp="(^[A-Za-z0-9]{3,16}$)"

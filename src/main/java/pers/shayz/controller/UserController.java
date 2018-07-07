@@ -34,6 +34,9 @@ public class UserController {
     private GoodsService goodsService;
 
     @Autowired
+    MessageService messageService;
+
+    @Autowired
     private OrderdetailsService orderdetailsService;
 
     @Autowired
@@ -429,4 +432,28 @@ public class UserController {
         return "common/active";
     }
 
+    @RequestMapping(value = "/getMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg charge(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        List<Message> messageList = messageService.getMessageByReceiverName(user.getUsername());
+        System.out.println("/getMessage: "+messageList);
+
+        Set<String> set = new HashSet<>();
+        for (Message message : messageList) {
+            set.add(message.getSendname1());
+        }
+        System.out.println("/getMessage: "+set.toString());
+
+        List<User> userList = new ArrayList<>();
+        for (String username : set) {
+            userList.add(userService.getUserByName(username));
+        }
+        List<Integer> useridList = new ArrayList<>();
+        for (User u :userList) {
+            useridList.add(u.getUserid());
+        }
+
+        return Msg.success().add("sendnames", set).add("messageNum", set.size()).add("useridList", useridList);
+    }
 }

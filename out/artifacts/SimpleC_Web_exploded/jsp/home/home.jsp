@@ -29,16 +29,20 @@
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
         <ul class="am-slides">
             <li class="banner1">
+                <div style="background: url(${APP_PATH}/myimages/ad1-bg.jpg); filter: blur(4px);position: absolute;
+                        width: 1903px;height: 430px;"></div>
                 <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad1.jpg"/></a>
             </li>
             <li class="banner2">
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad2.jpg"/></a>
+                <div style="background: url(${APP_PATH}/myimages/ad2-bg.jpg); filter: blur(4px);position: absolute;
+                        width: 1903px;height: 430px;"></div>
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad2.jpeg"/></a>
             </li>
-            <li class="banner3">
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad3.jpg"/></a>
+            <li class="banner3" style="background-color: #02529b">
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/3.jpg"/></a>
             </li>
-            <li class="banner4">
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad4.jpg"/></a>
+            <li class="banner4" style="background-color: #004473">
+                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/4.jpg"/></a>
             </li>
         </ul>
     </div>
@@ -158,7 +162,7 @@
     <div class="shopMain" id="shopmain">
         <!--今日推荐 -->
         <div data-am-scrollspy="{animation: 'fade'}" class="am-g am-g-fixed recommendation">
-            <div class="clock am-u-sm-3">
+            <div class="clock am-u-sm-3" style="background-image: url(${APP_PATH}/myimages/todaygoods.jpeg)">
                 <p>今日
                     <br>推荐</p>
             </div>

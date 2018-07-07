@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import java.util.Date;
 
 public class Comment {
-
     private Integer commentid;
 
     @NotBlank(message = "评论不能为空")
@@ -65,18 +64,5 @@ public class Comment {
 
     public void setTime(Date time) {
         this.time = time;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "commentid=" + commentid +
-                ", content='" + content + '\'' +
-                ", useridFkComment=" + useridFkComment +
-                ", goodsidFkComment=" + goodsidFkComment +
-                ", flag=" + flag +
-                ", time=" + time +
-                '}';
     }
 }
