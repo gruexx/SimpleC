@@ -9,7 +9,6 @@
     <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/common/active.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/common/active.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -82,10 +81,9 @@
       <file leaf-file-name="active.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="255">
+              <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
               <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h1#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -314,8 +312,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="140" />
-    <option name="y" value="13" />
+    <option name="x" value="-8" />
+    <option name="y" value="22" />
     <option name="width" value="1705" />
     <option name="height" value="1100" />
   </component>
@@ -437,41 +435,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="person" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SimpleC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SimpleC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="myimages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -565,9 +528,9 @@
       <recent name="pers.shayz.controller.generator" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
       <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\controller" />
       <recent name="D:\JetBrains\SimpleC\src\main\java\pers\shayz\service" />
-      <recent name="D:\JetBrains\SimpleC\src\main\webapp\myimages" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp\jsp\person" />
       <recent name="D:\JetBrains\SimpleC\src\main\webapp" />
     </key>
@@ -969,7 +932,7 @@
       <workItem from="1530932673430" duration="16393000" />
       <workItem from="1531094846476" duration="1798000" />
       <workItem from="1531097890277" duration="12031000" />
-      <workItem from="1531118072154" duration="13831000" />
+      <workItem from="1531118072154" duration="14501000" />
     </task>
     <task id="LOCAL-00001" summary="2018.07.09(14:38)">
       <created>1531118452652</created>
@@ -992,7 +955,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531131691270</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2018.07.09(18:26)">
+      <created>1531132012679</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1531132012679</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1028,7 +998,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="511518000" />
+    <option name="totallyTimeSpent" value="512188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1040,8 +1010,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-342" y="110" width="1705" height="1100" extended-state="0" />
-    <editor active="true" />
+    <frame x="449" y="77" width="1705" height="1100" extended-state="0" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50159746" side_tool="true" weight="0.38412017" />
@@ -1050,7 +1019,7 @@
       <window_info anchor="right" id="Redis Servers" order="8" />
       <window_info anchor="right" id="Maven Projects" order="5" sideWeight="0.49861112" weight="0.32960597" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="JRebel Executor" order="17" sideWeight="0.49840257" visible="true" weight="0.26501036" />
+      <window_info anchor="bottom" id="JRebel Executor" order="17" sideWeight="0.49840257" weight="0.26501036" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Database" order="9" weight="0.16778116" />
@@ -1168,7 +1137,8 @@
     <MESSAGE value="2018.07.09(14:38)" />
     <MESSAGE value="2018.07.09(17:07)" />
     <MESSAGE value="2018.07.09(18:20)" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018.07.09(18:20)" />
+    <MESSAGE value="2018.07.09(18:26)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018.07.09(18:26)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1560,10 +1530,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/active.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="255">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h1#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />

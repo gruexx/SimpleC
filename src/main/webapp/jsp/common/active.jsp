@@ -13,7 +13,7 @@
 <head>
     <title>SC账号激活</title>
 </head>
-<body style="background: url(${APP_PATH}/myimages/active.jpg) no-repeat">
+<body style="background: url(${APP_PATH}/myimages/active.jpg) center no-repeat">
 
 <script>
     function delayURL(url) {
