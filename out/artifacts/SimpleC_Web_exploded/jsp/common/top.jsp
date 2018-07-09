@@ -12,7 +12,7 @@
 %>
 <div id="top" class="am-container header"
 <%--data-am-sticky="{animation: 'slide-top'}"--%>
-     <%--style="background-color: white;"--%>
+<%--style="background-color: white;"--%>
 >
     <ul class="message-l">
         <div class="topMessage">
@@ -104,18 +104,18 @@
 
     // $('#userMessage').one("click", function () {
     $(function () {
-        var username='${sessionScope.user.username}';
-        var apppath='${APP_PATH}';
+        var username = '${sessionScope.user.username}';
+        var apppath = '${APP_PATH}';
         $.ajax({
             url: '${APP_PATH}/getMessage',
             type: 'POST',
             dateType: "json",
-            success:function (result) {
+            success: function (result) {
                 $('#messageNum').append(result.extend.messageNum);
                 $.each(result.extend.sendnames, function (i) {
                     $('#sendnames').append('<li><a href="' +
-                        apppath+'/jsp/person/chat.jsp?name1='+username+'&name2='+ result.extend.useridList[i]+
-                        '">'+result.extend.sendnames[i]+'</a></li>');
+                        apppath + '/toChat/' + result.extend.useridList[i] +
+                        '">' + result.extend.sendnames[i] + '</a></li>');
                 });
             }
         })

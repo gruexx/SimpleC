@@ -31,18 +31,22 @@
             <li class="banner1">
                 <div style="background: url(${APP_PATH}/myimages/ad1-bg.jpg); filter: blur(4px);position: absolute;
                         width: 1903px;height: 430px;"></div>
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad1.jpg"/></a>
+                <a href="${APP_PATH}/toClassify/8"><img src="${APP_PATH}/myimages/ad1.jpg"/></a>
             </li>
             <li class="banner2">
                 <div style="background: url(${APP_PATH}/myimages/ad2-bg.jpg); filter: blur(4px);position: absolute;
                         width: 1903px;height: 430px;"></div>
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/ad2.jpeg"/></a>
+                <a href="${APP_PATH}/toClassify/2"><img src="${APP_PATH}/myimages/ad2.jpeg"/></a>
             </li>
-            <li class="banner3" style="background-color: #02529b">
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/3.jpg"/></a>
+            <li class="banner3">
+                <div style="background: url(${APP_PATH}/myimages/ad3-bg.jpeg) center; filter: blur(4px);position: absolute;
+                        width: 1903px;height: 430px;"></div>
+                <a href="${APP_PATH}/toClassify/6"><img src="${APP_PATH}/myimages/ad3.jpeg"/></a>
             </li>
-            <li class="banner4" style="background-color: #004473">
-                <a href="${APP_PATH}/toClassify/9"><img src="${APP_PATH}/myimages/4.jpg"/></a>
+            <li class="banner4">
+                <div style="background: url(${APP_PATH}/myimages/ad4-bg.jpeg) center; filter: blur(4px);position: absolute;
+                        width: 1903px;height: 430px;"></div>
+                <a href="${APP_PATH}/toClassify/4"><img src="${APP_PATH}/myimages/ad4.jpeg"/></a>
             </li>
         </ul>
     </div>

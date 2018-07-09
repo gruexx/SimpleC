@@ -32,7 +32,7 @@
 <span id="time" style="background: #00BFFF">5</span>秒钟后自动跳转，如果不跳转，请<a href="${APP_PATH}/toLogin">点击这里</a>
 
 <script type="text/javascript">
-    delayURL("http://localhost:8080/toLogin");
+    delayURL("http://"+'${requestScope.ip}'+":8080/toLogin");
 </script>
 </body>
 </html>

@@ -19,21 +19,6 @@ public class Goods {
 
     private Integer flag;
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "goodsid=" + goodsid +
-                ", goodsname='" + goodsname + '\'' +
-                ", classifyidFkGoods=" + classifyidFkGoods +
-                ", useridFkGoods=" + useridFkGoods +
-                ", goodsprice=" + goodsprice +
-                ", goodsnumber=" + goodsnumber +
-                ", image='" + image + '\'' +
-                ", goodsinfo='" + goodsinfo + '\'' +
-                ", flag=" + flag +
-                '}';
-    }
-
     public Integer getGoodsid() {
         return goodsid;
     }

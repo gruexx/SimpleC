@@ -44,6 +44,7 @@
         <table tableName="message" domainObjectName=""></table>
         <table tableName="address" domainObjectName=""></table>
         <table tableName="bill" domainObjectName=""></table>
+        <table tableName="lottery_draw" domainObjectName=""></table>
 
     </context>
 </generatorConfiguration>

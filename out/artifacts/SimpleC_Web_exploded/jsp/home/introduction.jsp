@@ -170,7 +170,7 @@
             <li>
                 <div class="clearfix tb-btn theme-login">
                     <a id="chat" title="点击联系卖家"
-                       href="${APP_PATH}/jsp/person/chat.jsp?name1=${sessionScope.user.username}&name2=${requestScope.Goods.useridFkGoods}">
+                       href="${APP_PATH}/toChat/${requestScope.Goods.useridFkGoods}">
                         点击联系卖家
                     </a>
                 </div>

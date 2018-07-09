@@ -13,7 +13,6 @@
 %>
 <script src="${APP_PATH}/js/jquery-3.1.1.js"></script>
 
-
 <script src="${APP_PATH}/amazeui-3.0.0-alpha.beta/AmazeUIdemo/assets/js/amazeui.min.js"
         type="text/javascript"></script>
 
@@ -28,8 +27,9 @@
             margin: 0;
             padding: 0;
             list-style: none;
-            font-family: ''
+            font-family: '', serif
         }
+
         #container {
             width: 450px;
             height: 780px;
@@ -38,6 +38,7 @@
             position: relative;
             box-shadow: 20px 20px 55px #777;
         }
+
         .header {
             background: #000;
             height: 40px;
@@ -46,6 +47,7 @@
             font-size: 20px;
             padding: 0 10px;
         }
+
         .footer {
             width: 430px;
             height: 50px;
@@ -54,6 +56,7 @@
             bottom: 0;
             padding: 10px;
         }
+
         .footer input {
             width: 275px;
             height: 45px;
@@ -64,6 +67,7 @@
             border-radius: 6px;
             right: 80px;
         }
+
         .footer span {
             display: inline-block;
             width: 62px;
@@ -77,10 +81,12 @@
             right: 10px;
             border-radius: 6px;
         }
+
         .footer span:hover {
             color: #fff;
             background: #999;
         }
+
         #user_face_icon {
             display: inline-block;
             background: red;
@@ -93,10 +99,12 @@
             cursor: pointer;
             overflow: hidden;
         }
+
         img {
             width: 60px;
             height: 60px;
         }
+
         .content {
             font-size: 20px;
             width: 435px;
@@ -104,6 +112,7 @@
             overflow: auto;
             padding: 7.5px;
         }
+
         .content li {
             margin-top: 10px;
             padding-left: 10px;
@@ -112,10 +121,12 @@
             clear: both;
             overflow: hidden;
         }
+
         .content li img {
             float: left;
         }
-        .content li span{
+
+        .content li span {
             background: #7cfc00;
             padding: 10px;
             border-radius: 10px;
@@ -125,16 +136,20 @@
             border: 1px solid #ccc;
             box-shadow: 0 0 3px #ccc;
         }
+
         .content li img.imgleft {
             float: left;
         }
+
         .content li img.imgright {
             float: right;
         }
+
         .content li span.spanleft {
             float: left;
             background: #fff;
         }
+
         .content li span.spanright {
             float: right;
             background: #7cfc00;
@@ -142,7 +157,7 @@
     </style>
     <script>
         window.onload = function () {
-            if (typeof WebSocket == 'undefined') {
+            if (typeof WebSocket === undefined) {
                 alert("not support websocket")
             }
 
@@ -157,15 +172,15 @@
 
             //连接后台
             var ws;
-            var wsUri = "ws://172.29.19.155:8080/chat";
+            var wsUri = "ws://"+'${requestScope.ip}'+":8080/chat";
             ws = new WebSocket(wsUri);
-            name1 = getQueryString("name1");
-            name2 = getQueryString("name2");
+            name1 = '${requestScope.name1}';
+            name2 = '${requestScope.name2}';
             console.log(name1);
             console.log(name2);
 
 
-            var arrIcon = ['${APP_PATH}/${sessionScope.user.image}','${APP_PATH}/images/1-item_pic.jpg_220x220.jpg']
+            var arrIcon = ['${APP_PATH}/${sessionScope.user.image}', '${APP_PATH}/${requestScope.image2}'];
 
             //初始化
             ws.onopen = function () {

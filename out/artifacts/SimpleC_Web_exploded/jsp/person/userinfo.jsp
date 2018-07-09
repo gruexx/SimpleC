@@ -74,30 +74,6 @@
                         <div>
                             潮积分：${sessionScope.user.userchaopoint}
                         </div>
-                        <div>
-                            余额：<a id="charge" class="am-btn am-btn-link">充值</a>
-                            <script>
-                                $('#charge').click(function () {
-                                    $('#chargeModal').modal({
-                                        relatedTarget: this,
-                                        onConfirm: function (e) {
-                                            // alert('你输入的是：' + e.data || '');
-                                            $.ajax({
-                                                type: "post",
-                                                url: "/charge",
-                                                data: {"remainder": e.data},
-                                                success: function (result) {
-                                                    if (result.code === 100) {
-                                                        // console.log("success")
-                                                        window.location.reload();
-                                                    }
-                                                }
-                                            })
-                                        }
-                                    });
-                                })
-                            </script>
-                        </div>
                     </div>
                 </div>
                 <!--个人信息 -->
@@ -106,13 +82,18 @@
                         <div class="am-form-group">
                             <label class="am-form-label">余额</label>
                             <div class="am-form-content">
-                                <input name="userremainder" type="number"
-                                       value="<fmt:formatNumber type="number"
+                                <div class="am-input-group am-input-group-primary">
+                                    <span class="am-input-group-label">¥</span>
+                                    <input type="text" class="am-form-field" value="<fmt:formatNumber type="number"
                                                   value="${sessionScope.user.userremainder}"
                                                   pattern="#.##"/>" disabled>
+                                    <span class="am-input-group-btn">
+                                        <button id="charge" class="am-btn am-btn-primary" type="button">充值</button>
+                                    </span>
+                                </div>
                             </div>
-
                         </div>
+
                         <div class="am-form-group">
                             <label class="am-form-label">用户名</label>
                             <div class="am-form-content">
@@ -322,4 +303,24 @@
             }
         });
     });
+
+    $('#charge').click(function () {
+        $('#chargeModal').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                // alert('你输入的是：' + e.data || '');
+                $.ajax({
+                    type: "post",
+                    url: "/charge",
+                    data: {"remainder": e.data},
+                    success: function (result) {
+                        if (result.code === 100) {
+                            // console.log("success")
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        });
+    })
 </script>

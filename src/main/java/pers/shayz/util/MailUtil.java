@@ -1,5 +1,6 @@
 package pers.shayz.util;
 
+import java.net.InetAddress;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
@@ -82,11 +83,13 @@ public class MailUtil {
 
         // 4. Subject: 邮件主题
         message.setSubject("SimpleChange", "UTF-8");
-        String activeUrl = "http://localhost:8080/doActive/" + encoded;
+        InetAddress addr = InetAddress.getLocalHost();
+        String ip=addr.getHostAddress();
+        String activeUrl = "http://"+ip+":8080/doActive/" + encoded;
         // 5. Content: 邮件正文（可以使用html标签）
         //StringBuffer messageText = new StringBuffer();
         //messageText.append("<h>"+"hello world"+"</h>"+"<br>"+activeUrl+"<br>");
-        message.setContent("<h>" + "hello world" + "</h>" + "<br>" + activeUrl + "<br>", "text/html;charset=UTF-8");
+        message.setContent("<h>" + "点击链接激活账号:" + "</h>" + "<br>" + activeUrl + "<br>", "text/html;charset=UTF-8");
 
         // 6. 设置发件时间
         message.setSentDate(new Date());

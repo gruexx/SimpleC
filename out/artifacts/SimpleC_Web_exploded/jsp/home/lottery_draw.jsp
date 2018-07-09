@@ -50,8 +50,19 @@
                         $('#awardInfo').text(txt);
                         $('#my-alerts').modal({
                             relatedTarget: this,
-                            onConfirm: function() {
-                                window.location.reload();
+                            onConfirm: function () {
+                                var useridfklotterDraw = "${sessionScope.user.userid}";
+                                $.ajax({
+                                    url: "${APP_PATH}/toSavelottery_drawdetils",
+                                    type: "POST",
+                                    data: {
+                                        "useridfklotterDraw": useridfklotterDraw,
+                                        "lotteryDrawdetils": txt
+                                    },
+                                    success: function () {
+                                        window.location.reload();
+                                    }
+                                });
                             }
                         });
 
@@ -71,14 +82,6 @@
                         <%--var userchaopoint = ${sessionScope.user.userchaopoint};--%>
                         console.log(${sessionScope.user.userchaopoint});
                         $('#cp').text(${sessionScope.user.userchaopoint-100});
-                        <%--$.ajax({--%>
-                        <%--url: '${APP_PATH}/updateChaopoint',--%>
-                        <%--type: 'POST',--%>
-                        <%--data: {"chaoPoint": ${sessionScope.user.userchaopoint}},--%>
-                        <%--success:function () {--%>
-                        <%--// $('#chaoPonit').load('/toLotteryDraw #chaoPonit');--%>
-                        <%--}--%>
-                        <%--});--%>
 
                         if (bRotate) return;
                         var item = rnd(0, 10000);
@@ -204,12 +207,6 @@
         }
     </style>
 
-    <%--<script>--%>
-    <%--$(function () {--%>
-    <%--var a=$("<p>1</p>");--%>
-    <%--$("#test").append(a);--%>
-    <%--})--%>
-    <%--</script>--%>
 </head>
 <body style="background-color:#ffc40a;">
 <div class="text" style="float: left;" id="chaoPonit">
@@ -219,27 +216,25 @@
         <p class="am-text-lg am-text-truncate">我的积分：</p>
         <p class="show-font am-text-lg am-text-truncate">
             <br>
-        <sapn id="cp" style="font-size: 40px;text-indent: 2em" class="show-font am-text-lg am-text-truncate">
-            ${sessionScope.user.userchaopoint}
-        </sapn>
-        Point
-        <br>
-        <br>
-        <br>
-
-
-        <button
-                type="button"
-                class="am-btn am-btn-danger"
-                data-am-modal="{target: '#my-popup'}">
-            Popup
-        </button>
-        <button
-                type="button"
-                class="am-btn am-btn-secondary"
-                onclick="window.location.href='${APP_PATH}/toHome'"><!-- 后期改为跳到账户信息-->
-            返回首页
-        </button>
+            <sapn id="cp" style="font-size: 40px;text-indent: 2em" class="show-font am-text-lg am-text-truncate">
+                ${sessionScope.user.userchaopoint}
+            </sapn>
+            Point
+            <br>
+            <br>
+            <br>
+            <button
+                    type="button"
+                    class="am-btn am-btn-danger"
+                    data-am-modal="{target: '#my-popup'}">
+                Popup
+            </button>
+            <button
+                    type="button"
+                    class="am-btn am-btn-secondary"
+                    onclick="window.location.href='${APP_PATH}/toHome'"><!-- 后期改为跳到账户信息-->
+                返回首页
+            </button>
         <div class="am-popup" id="my-popup">
             <div class="am-popup-inner">
                 <div class="am-popup-hd">
@@ -247,12 +242,22 @@
                     <span data-am-modal-close
                           class="am-close">&times;</span>
                 </div>
-                <div class="am-popup-bd" style="background-color: black;">
-                    <p>为你封了国境<br/>为你赦了罪<br/>为你撤了历史记载<br/>为你涂了装扮<br/>为你喝了醉<br/>为你建了城池围墙<br/>一颗热的心穿着冰冷外衣<br/>一张白的脸漆上多少褪色的情节<br/>在我的空虚身体里面<br/>爱上哪个肤浅的王位<br/>在你的空虚宝座里面<br/>爱过什麽女爵的滋味<br/>为你封了国境
-                    </p>
-
-                    <p>为你赦了罪<br/>为你撤了历史记载<br/>一颗热的心<br/>穿着冰冷外衣<br/>一张白的脸<br/>漆上多少褪色的情节<br/>在我的空虚身体里面<br/>爱上哪个肤浅的王位<br/>在你的空虚宝座里面<br/>爱过什麽女爵的滋味<br/>在我的空虚身体里面<br/>爱上哪个肤浅的王位<br/>在你的空虚宝座里面<br/>爱过什麽女爵的滋味
-                    </p></div>
+                <table class="am-table am-table-striped am-table-hover">
+                    <thead>
+                    <tr>
+                        <th>详情</th>
+                        <th>时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.lotter_drawLists}" var="lotter_drawList">
+                        <tr style="white-space: nowrap">
+                            <td>${lotter_drawList.lotteryDrawdetils}</td>
+                            <td>${lotter_drawList.lotteryDrawdate}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
