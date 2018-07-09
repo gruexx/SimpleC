@@ -8,10 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.shayz.bean.*;
-import pers.shayz.service.ClassifyService;
-import pers.shayz.service.CommentService;
-import pers.shayz.service.GoodsService;
-import pers.shayz.service.UserService;
+import pers.shayz.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,6 +33,9 @@ public class GoodsController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    OrderdetailsService orderdetailsService;
 
     @RequestMapping(value = "/toIntroduction/{goodsId}")
     public String toIntroduction(@PathVariable(value = "goodsId") int goodsId, ModelMap modelMap) {
@@ -161,23 +161,47 @@ public class GoodsController {
         int id = userNow.getUserid();
         System.out.println("/toGoodsManage: " + id);
 
-        List<Goods> list = goodsService.getGoodsByUserId(id);
-        System.out.println("/toGoodsManage: " + list);
+        List<Goods> goodsList = goodsService.getGoodsByUserId(id);
+        System.out.println("/toGoodsManage: " + goodsList);
 
         List<String> goodsClassify = new ArrayList<>();
-        if (list != null) {
-            for (int i = 0; i < list.size(); i++) {
-                goodsClassify.add(classifyService.getClassifyById(list.get(i).getClassifyidFkGoods()));
+        if (goodsList != null) {
+            for (int i = 0; i < goodsList.size(); i++) {
+                goodsClassify.add(classifyService.getClassifyById(goodsList.get(i).getClassifyidFkGoods()));
             }
         }
 
-
-        modelMap.addAttribute("myGoods", list);
+        modelMap.addAttribute("myGoods", goodsList);
         modelMap.addAttribute("classifyName", goodsClassify);
 
         List<Classify> classifyList = classifyService.getAllClassify();
         System.out.println("/toGoodsManage: " + classifyList);
         modelMap.addAttribute("classifyList", classifyList);
+
+        List<Orderdetails> orderdetailsList = new ArrayList<>();
+        assert goodsList != null;
+        for (Goods goods : goodsList) {
+            Orderdetails orderdetails = orderdetailsService.getGoodsByGoodsIdAndIsOut(goods.getGoodsid());
+            if (orderdetails != null) {
+                orderdetailsList.add(orderdetails);
+            }
+            goods.setHasorders(0);
+            goodsService.updateGoods(goods);
+        }
+        for (Orderdetails od :orderdetailsList) {
+            Goods goods = new Goods();
+            goods.setGoodsid(od.getGoodsidFkOrder());
+            goods.setHasorders(1);
+            goodsService.updateGoods(goods);
+        }
+
+        List<Integer> hasOrder = new ArrayList<>();
+        List<Goods> goodsList2 = goodsService.getGoodsByUserId(id);
+        for (Goods goods : goodsList2) {
+            hasOrder.add(goods.getHasorders());
+        }
+        System.out.println("/toGoodsManage: "+hasOrder.toString());
+        modelMap.addAttribute("hasOrder", hasOrder);
 
         return "person/goodsmanage";
     }

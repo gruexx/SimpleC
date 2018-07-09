@@ -673,6 +673,66 @@ public class GoodsExample {
             addCriterion("flag not between", value1, value2, "flag");
             return (Criteria) this;
         }
+
+        public Criteria andHasordersIsNull() {
+            addCriterion("hasOrders is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersIsNotNull() {
+            addCriterion("hasOrders is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersEqualTo(Integer value) {
+            addCriterion("hasOrders =", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotEqualTo(Integer value) {
+            addCriterion("hasOrders <>", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersGreaterThan(Integer value) {
+            addCriterion("hasOrders >", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hasOrders >=", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersLessThan(Integer value) {
+            addCriterion("hasOrders <", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersLessThanOrEqualTo(Integer value) {
+            addCriterion("hasOrders <=", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersIn(List<Integer> values) {
+            addCriterion("hasOrders in", values, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotIn(List<Integer> values) {
+            addCriterion("hasOrders not in", values, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersBetween(Integer value1, Integer value2) {
+            addCriterion("hasOrders between", value1, value2, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotBetween(Integer value1, Integer value2) {
+            addCriterion("hasOrders not between", value1, value2, "hasorders");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

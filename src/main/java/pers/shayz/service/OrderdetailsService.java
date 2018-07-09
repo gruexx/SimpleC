@@ -129,4 +129,18 @@ public class OrderdetailsService {
     public void updateOrderdetails(Orderdetails orderdetails) {
         orderdetailsMapper.updateByPrimaryKeySelective(orderdetails);
     }
+
+    public Orderdetails getGoodsByGoodsIdAndIsOut(Integer goodsid) {
+        OrderdetailsExample orderdetailsExample = new OrderdetailsExample();
+        OrderdetailsExample.Criteria criteria = orderdetailsExample.createCriteria();
+        criteria.andGoodsidFkOrderEqualTo(goodsid).andIsoutEqualTo(0).andFlagEqualTo(1);
+
+        List<Orderdetails> orderdetailsList = orderdetailsMapper.selectByExample(orderdetailsExample);
+        if(orderdetailsList.size()==0){
+            return null;
+        }else {
+            return orderdetailsList.get(0);
+        }
+
+    }
 }

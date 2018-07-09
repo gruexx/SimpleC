@@ -11,6 +11,7 @@
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="goodsInfo" jdbcType="VARCHAR" property="goodsinfo" />
     <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="hasOrders" jdbcType="INTEGER" property="hasorders" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     goodsId, goodsName, classifyId_fk_goods, userId_fk_goods, goodsPrice, goodsNumber, 
-    image, goodsInfo, flag
+    image, goodsInfo, flag, hasOrders
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.GoodsExample" resultMap="BaseResultMap">
     select
@@ -107,12 +108,12 @@
   <insert id="insert" parameterType="pers.shayz.bean.Goods">
     insert into goods (goodsId, goodsName, classifyId_fk_goods, 
       userId_fk_goods, goodsPrice, goodsNumber, 
-      image, goodsInfo, flag
-      )
+      image, goodsInfo, flag, 
+      hasOrders)
     values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{classifyidFkGoods,jdbcType=INTEGER}, 
       #{useridFkGoods,jdbcType=INTEGER}, #{goodsprice,jdbcType=DOUBLE}, #{goodsnumber,jdbcType=INTEGER}, 
-      #{image,jdbcType=VARCHAR}, #{goodsinfo,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
-      )
+      #{image,jdbcType=VARCHAR}, #{goodsinfo,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{hasorders,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.Goods">
     insert into goods
@@ -144,6 +145,9 @@
       <if test="flag != null">
         flag,
       </if>
+      <if test="hasorders != null">
+        hasOrders,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="goodsid != null">
@@ -172,6 +176,9 @@
       </if>
       <if test="flag != null">
         #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="hasorders != null">
+        #{hasorders,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -211,6 +218,9 @@
       <if test="record.flag != null">
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
+      <if test="record.hasorders != null">
+        hasOrders = #{record.hasorders,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +236,8 @@
       goodsNumber = #{record.goodsnumber,jdbcType=INTEGER},
       image = #{record.image,jdbcType=VARCHAR},
       goodsInfo = #{record.goodsinfo,jdbcType=VARCHAR},
-      flag = #{record.flag,jdbcType=INTEGER}
+      flag = #{record.flag,jdbcType=INTEGER},
+      hasOrders = #{record.hasorders,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,6 +269,9 @@
       <if test="flag != null">
         flag = #{flag,jdbcType=INTEGER},
       </if>
+      <if test="hasorders != null">
+        hasOrders = #{hasorders,jdbcType=INTEGER},
+      </if>
     </set>
     where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
@@ -270,7 +284,8 @@
       goodsNumber = #{goodsnumber,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       goodsInfo = #{goodsinfo,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=INTEGER}
+      flag = #{flag,jdbcType=INTEGER},
+      hasOrders = #{hasorders,jdbcType=INTEGER}
     where goodsId = #{goodsid,jdbcType=INTEGER}
   </update>
 </mapper>

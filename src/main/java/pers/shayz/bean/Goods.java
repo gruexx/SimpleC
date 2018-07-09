@@ -19,6 +19,8 @@ public class Goods {
 
     private Integer flag;
 
+    private Integer hasorders;
+
     public Integer getGoodsid() {
         return goodsid;
     }
@@ -89,5 +91,13 @@ public class Goods {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Integer getHasorders() {
+        return hasorders;
+    }
+
+    public void setHasorders(Integer hasorders) {
+        this.hasorders = hasorders;
     }
 }

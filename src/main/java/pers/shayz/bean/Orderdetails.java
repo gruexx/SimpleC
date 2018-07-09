@@ -1,7 +1,5 @@
 package pers.shayz.bean;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class Orderdetails {
     private Integer orderid;
 
@@ -23,7 +21,6 @@ public class Orderdetails {
 
     private String company;
 
-    @NotBlank(message = "快递单号不能为空")
     private String identifier;
 
     public Integer getOrderid() {

@@ -1,13 +1,10 @@
 package pers.shayz.bean;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import java.util.Date;
 
 public class Comment {
     private Integer commentid;
 
-    @NotBlank(message = "评论不能为空")
     private String content;
 
     private Integer useridFkComment;

@@ -85,8 +85,9 @@
                             <td>${myg.goodsinfo}</td>
                             <td>
                                 <button data-id="${myg.goodsid}" data-goodsname="${myg.goodsname}" type="button"
-                                        class="am-btn am-btn-success orderdetail">
+                                        class="am-btn am-btn-success orderdetail am-mark">
                                     订单
+                                    <sup class="hasNew">new</sup>
                                 </button>
                                 <button data-id="${myg.goodsid}" type="button" class="am-btn am-btn-primary editGoods">
                                     编辑
@@ -334,6 +335,23 @@
 
 </html>
 <script>
+
+    $(function () {
+        var hasOrder = JSON.parse('${requestScope.hasOrder}');
+        console.log(hasOrder);
+
+        $('.hasNew').each(function (i) {
+            if(hasOrder[i]===0){
+                $(this).css({
+                    display:'none'
+                })
+            }else {
+                $(this).css({
+                    display:'block'
+                })
+            }
+        })
+    });
 
 
     $('.orderdetail').click(function () {
