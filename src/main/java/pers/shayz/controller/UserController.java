@@ -37,7 +37,7 @@ public class UserController {
     MessageService messageService;
 
     @Autowired
-    private OrderdetailsService orderdetailsService;
+    private BillService billService;
 
     @Autowired
     private OrderItemService orderItemService;
@@ -216,16 +216,6 @@ public class UserController {
     @RequestMapping(value = "/toUserInfo")
     public String toUserInfo() {
         return "person/userinfo";
-    }
-
-    @RequestMapping(value = "/toBill")
-    public String toBill() {
-        return "person/bill";
-    }
-
-    @RequestMapping(value = "/toBillList")
-    public String toBillList() {
-        return "person/billlist";
     }
 
     @RequestMapping(value = "/toPassword")
@@ -407,7 +397,15 @@ public class UserController {
         User user = (User)session.getAttribute("user");
         Double oldremainder = user.getUserremainder();
         user.setUserremainder(oldremainder+Double.parseDouble(remainder));
+
         userService.updateUser(user);
+
+        Bill bill = new Bill();
+        bill.setUseridFkBill(user.getUserid());
+        bill.setDate(new Date());
+        bill.setIncome(Double.parseDouble(remainder));
+        billService.createBill(bill);
+
         return Msg.success();
     }
 
@@ -434,7 +432,7 @@ public class UserController {
 
     @RequestMapping(value = "/getMessage", method = RequestMethod.POST)
     @ResponseBody
-    public Msg charge(HttpSession session) {
+    public Msg getMessage(HttpSession session) {
         User user = (User)session.getAttribute("user");
         List<Message> messageList = messageService.getMessageByReceiverName(user.getUsername());
         System.out.println("/getMessage: "+messageList);

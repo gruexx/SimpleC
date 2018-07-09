@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.BillMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.Bill">
+    <id column="billId" jdbcType="INTEGER" property="billid" />
+    <result column="income" jdbcType="DOUBLE" property="income" />
+    <result column="outcome" jdbcType="DOUBLE" property="outcome" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="userId_fk_bill" jdbcType="INTEGER" property="useridFkBill" />
+    <result column="chaoincome" jdbcType="INTEGER" property="chaoincome" />
+    <result column="chaooutcome" jdbcType="INTEGER" property="chaooutcome" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    billId, income, outcome, date, userId_fk_bill, chaoincome, chaooutcome
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.BillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bill
+    where billId = #{billid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bill
+    where billId = #{billid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.BillExample">
+    delete from bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.Bill">
+    insert into bill (billId, income, outcome, 
+      date, userId_fk_bill, chaoincome, 
+      chaooutcome)
+    values (#{billid,jdbcType=INTEGER}, #{income,jdbcType=DOUBLE}, #{outcome,jdbcType=DOUBLE}, 
+      #{date,jdbcType=TIMESTAMP}, #{useridFkBill,jdbcType=INTEGER}, #{chaoincome,jdbcType=INTEGER}, 
+      #{chaooutcome,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.Bill">
+    insert into bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billid != null">
+        billId,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="outcome != null">
+        outcome,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="useridFkBill != null">
+        userId_fk_bill,
+      </if>
+      <if test="chaoincome != null">
+        chaoincome,
+      </if>
+      <if test="chaooutcome != null">
+        chaooutcome,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billid != null">
+        #{billid,jdbcType=INTEGER},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="outcome != null">
+        #{outcome,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useridFkBill != null">
+        #{useridFkBill,jdbcType=INTEGER},
+      </if>
+      <if test="chaoincome != null">
+        #{chaoincome,jdbcType=INTEGER},
+      </if>
+      <if test="chaooutcome != null">
+        #{chaooutcome,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.BillExample" resultType="java.lang.Long">
+    select count(*) from bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bill
+    <set>
+      <if test="record.billid != null">
+        billId = #{record.billid,jdbcType=INTEGER},
+      </if>
+      <if test="record.income != null">
+        income = #{record.income,jdbcType=DOUBLE},
+      </if>
+      <if test="record.outcome != null">
+        outcome = #{record.outcome,jdbcType=DOUBLE},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useridFkBill != null">
+        userId_fk_bill = #{record.useridFkBill,jdbcType=INTEGER},
+      </if>
+      <if test="record.chaoincome != null">
+        chaoincome = #{record.chaoincome,jdbcType=INTEGER},
+      </if>
+      <if test="record.chaooutcome != null">
+        chaooutcome = #{record.chaooutcome,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bill
+    set billId = #{record.billid,jdbcType=INTEGER},
+      income = #{record.income,jdbcType=DOUBLE},
+      outcome = #{record.outcome,jdbcType=DOUBLE},
+      date = #{record.date,jdbcType=TIMESTAMP},
+      userId_fk_bill = #{record.useridFkBill,jdbcType=INTEGER},
+      chaoincome = #{record.chaoincome,jdbcType=INTEGER},
+      chaooutcome = #{record.chaooutcome,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.Bill">
+    update bill
+    <set>
+      <if test="income != null">
+        income = #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="outcome != null">
+        outcome = #{outcome,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useridFkBill != null">
+        userId_fk_bill = #{useridFkBill,jdbcType=INTEGER},
+      </if>
+      <if test="chaoincome != null">
+        chaoincome = #{chaoincome,jdbcType=INTEGER},
+      </if>
+      <if test="chaooutcome != null">
+        chaooutcome = #{chaooutcome,jdbcType=INTEGER},
+      </if>
+    </set>
+    where billId = #{billid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.Bill">
+    update bill
+    set income = #{income,jdbcType=DOUBLE},
+      outcome = #{outcome,jdbcType=DOUBLE},
+      date = #{date,jdbcType=TIMESTAMP},
+      userId_fk_bill = #{useridFkBill,jdbcType=INTEGER},
+      chaoincome = #{chaoincome,jdbcType=INTEGER},
+      chaooutcome = #{chaooutcome,jdbcType=INTEGER}
+    where billId = #{billid,jdbcType=INTEGER}
+  </update>
+</mapper>

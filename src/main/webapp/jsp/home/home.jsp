@@ -22,7 +22,7 @@
 <body>
 <div class="hmtop">
     <!--顶部导航条 -->
-    <jsp:include   page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
+    <jsp:include page="${APP_PATH}/jsp/common/top.jsp" flush="true"/>
 </div>
 <div class="banner">
     <!--轮播 -->
@@ -168,8 +168,8 @@
             </div>
             <div class="am-u-sm-4 am-u-lg-3 ">
                 <div class="info ">
-                    <h3>真的有鱼</h3>
-                    <h4>开年福利篇</h4>
+                    <h3>SimpleChange</h3>
+                    <h4>心潮</h4>
                 </div>
                 <div class="recommendationMain one">
                     <a href="${APP_PATH}/toIntroduction/${requestScope.one.goodsid}">
@@ -179,8 +179,8 @@
             </div>
             <div class="am-u-sm-4 am-u-lg-3 ">
                 <div class="info ">
-                    <h3>囤货过冬</h3>
-                    <h4>让爱早回家</h4>
+                    <h3>SimpleChange</h3>
+                    <h4>心潮</h4>
                 </div>
                 <div class="recommendationMain two">
                     <a href="${APP_PATH}/toIntroduction/${requestScope.two.goodsid}">
@@ -190,8 +190,8 @@
             </div>
             <div class="am-u-sm-4 am-u-lg-3 ">
                 <div class="info ">
-                    <h3>浪漫情人节</h3>
-                    <h4>甜甜蜜蜜</h4>
+                    <h3>SimpleChange</h3>
+                    <h4>每日福利</h4>
                 </div>
                 <div class="recommendationMain three">
                     <a href="${APP_PATH}/toIntroduction/${requestScope.three.goodsid}">
@@ -318,7 +318,7 @@
         <div class="am-g am-g-fixed flood method3 ">
             <ul class="am-thumbnails ">
                 <c:forEach items="${requestScope.sport}" var="list" end="5">
-                    <li data-am-scrollspy="{animation: 'fade'}" >
+                    <li data-am-scrollspy="{animation: 'fade'}">
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img style="height: 188px" src="${APP_PATH}/${list.image}"/>
@@ -400,7 +400,7 @@
                         <div class="list ">
                             <a href="${APP_PATH}/toIntroduction/${list.goodsid}">
                                 <img src="${APP_PATH}/${list.image}"/>
-                                <div  class="pro-title am-text-truncate">${list.goodsname}</div>
+                                <div class="pro-title am-text-truncate">${list.goodsname}</div>
                                 <span class="e-price ">¥${list.goodsprice}</span>
                             </a>
                         </div>
@@ -413,7 +413,6 @@
         <jsp:include page="${APP_PATH}/jsp/common/bottom.jsp" flush="true"/>
     </div>
 </div>
-
 
 
 <script type="text/javascript " src="${APP_PATH}/basic/js/quick_links.js "></script>

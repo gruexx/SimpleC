@@ -113,21 +113,4 @@ public class Orderdetails {
     public void setIdentifier(String identifier) {
         this.identifier = identifier == null ? null : identifier.trim();
     }
-
-    @Override
-    public String toString() {
-        return "Orderdetails{" +
-                "orderid=" + orderid +
-                ", useridFkOrder=" + useridFkOrder +
-                ", goodsidFkOrder=" + goodsidFkOrder +
-                ", number=" + number +
-                ", orderitemidFkOrder=" + orderitemidFkOrder +
-                ", flag=" + flag +
-                ", isout=" + isout +
-                ", isreceive=" + isreceive +
-                ", iscomment=" + iscomment +
-                ", company='" + company + '\'' +
-                ", identifier='" + identifier + '\'' +
-                '}';
-    }
 }

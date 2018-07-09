@@ -24,8 +24,6 @@ public class User {
 
     private Double userremainder;
 
-    private Integer flag;
-
     private Integer administrator;
 
     @Pattern(regexp = "(^1((3|5|8){1}\\d|70)\\d{8}$)"
@@ -35,6 +33,8 @@ public class User {
     private String image;
 
     private Integer isactive;
+
+    private Integer flag;
 
     public Integer getUserid() {
         return userid;
@@ -84,14 +84,6 @@ public class User {
         this.userremainder = userremainder;
     }
 
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
-
     public Integer getAdministrator() {
         return administrator;
     }
@@ -122,5 +114,13 @@ public class User {
 
     public void setIsactive(Integer isactive) {
         this.isactive = isactive;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }

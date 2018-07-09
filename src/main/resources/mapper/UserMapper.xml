@@ -8,11 +8,11 @@
     <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
     <result column="userChaoPoint" jdbcType="INTEGER" property="userchaopoint" />
     <result column="userRemainder" jdbcType="DOUBLE" property="userremainder" />
-    <result column="flag" jdbcType="INTEGER" property="flag" />
     <result column="Administrator" jdbcType="INTEGER" property="administrator" />
     <result column="userPhone" jdbcType="VARCHAR" property="userphone" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="isActive" jdbcType="INTEGER" property="isactive" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userId, userName, userPassword, userEmail, userChaoPoint, userRemainder, flag, Administrator, 
-    userPhone, image, isActive
+    userId, userName, userPassword, userEmail, userChaoPoint, userRemainder, Administrator, 
+    userPhone, image, isActive, flag
   </sql>
   <select id="selectByExample" parameterType="pers.shayz.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -109,12 +109,12 @@
   <insert id="insert" parameterType="pers.shayz.bean.User">
     insert into user (userId, userName, userPassword, 
       userEmail, userChaoPoint, userRemainder, 
-      flag, Administrator, userPhone, 
-      image, isActive)
+      Administrator, userPhone, image, 
+      isActive, flag)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
       #{useremail,jdbcType=VARCHAR}, #{userchaopoint,jdbcType=INTEGER}, #{userremainder,jdbcType=DOUBLE}, 
-      #{flag,jdbcType=INTEGER}, #{administrator,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{isactive,jdbcType=INTEGER})
+      #{administrator,jdbcType=INTEGER}, #{userphone,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{isactive,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="pers.shayz.bean.User">
     insert into user
@@ -137,9 +137,6 @@
       <if test="userremainder != null">
         userRemainder,
       </if>
-      <if test="flag != null">
-        flag,
-      </if>
       <if test="administrator != null">
         Administrator,
       </if>
@@ -151,6 +148,9 @@
       </if>
       <if test="isactive != null">
         isActive,
+      </if>
+      <if test="flag != null">
+        flag,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -172,9 +172,6 @@
       <if test="userremainder != null">
         #{userremainder,jdbcType=DOUBLE},
       </if>
-      <if test="flag != null">
-        #{flag,jdbcType=INTEGER},
-      </if>
       <if test="administrator != null">
         #{administrator,jdbcType=INTEGER},
       </if>
@@ -186,6 +183,9 @@
       </if>
       <if test="isactive != null">
         #{isactive,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -216,9 +216,6 @@
       <if test="record.userremainder != null">
         userRemainder = #{record.userremainder,jdbcType=DOUBLE},
       </if>
-      <if test="record.flag != null">
-        flag = #{record.flag,jdbcType=INTEGER},
-      </if>
       <if test="record.administrator != null">
         Administrator = #{record.administrator,jdbcType=INTEGER},
       </if>
@@ -230,6 +227,9 @@
       </if>
       <if test="record.isactive != null">
         isActive = #{record.isactive,jdbcType=INTEGER},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -244,11 +244,11 @@
       userEmail = #{record.useremail,jdbcType=VARCHAR},
       userChaoPoint = #{record.userchaopoint,jdbcType=INTEGER},
       userRemainder = #{record.userremainder,jdbcType=DOUBLE},
-      flag = #{record.flag,jdbcType=INTEGER},
       Administrator = #{record.administrator,jdbcType=INTEGER},
       userPhone = #{record.userphone,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
-      isActive = #{record.isactive,jdbcType=INTEGER}
+      isActive = #{record.isactive,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -271,9 +271,6 @@
       <if test="userremainder != null">
         userRemainder = #{userremainder,jdbcType=DOUBLE},
       </if>
-      <if test="flag != null">
-        flag = #{flag,jdbcType=INTEGER},
-      </if>
       <if test="administrator != null">
         Administrator = #{administrator,jdbcType=INTEGER},
       </if>
@@ -286,6 +283,9 @@
       <if test="isactive != null">
         isActive = #{isactive,jdbcType=INTEGER},
       </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
@@ -296,11 +296,11 @@
       userEmail = #{useremail,jdbcType=VARCHAR},
       userChaoPoint = #{userchaopoint,jdbcType=INTEGER},
       userRemainder = #{userremainder,jdbcType=DOUBLE},
-      flag = #{flag,jdbcType=INTEGER},
       Administrator = #{administrator,jdbcType=INTEGER},
       userPhone = #{userphone,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
-      isActive = #{isactive,jdbcType=INTEGER}
+      isActive = #{isactive,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

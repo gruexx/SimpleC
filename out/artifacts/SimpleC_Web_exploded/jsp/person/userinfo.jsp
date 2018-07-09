@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -106,7 +107,9 @@
                             <label class="am-form-label">余额</label>
                             <div class="am-form-content">
                                 <input name="userremainder" type="number"
-                                       value="${sessionScope.user.userremainder}" disabled>
+                                       value="<fmt:formatNumber type="number"
+                                                  value="${sessionScope.user.userremainder}"
+                                                  pattern="#.##"/>" disabled>
                             </div>
 
                         </div>

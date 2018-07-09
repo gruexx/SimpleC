@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -83,7 +84,11 @@
                             <td>${GoodsList.goodsname}</td>
                             <td>${GoodsList.goodsprice}</td>
                             <td><span>×</span>${requestScope.OrderDetailList[loop.count-1].number}</td>
-                            <td>${requestScope.OrderDetailList[loop.count-1].number*GoodsList.goodsprice}</td>
+                            <td>
+                                <fmt:formatNumber type="number"
+                                                  value="${requestScope.OrderDetailList[loop.count-1].number*GoodsList.goodsprice}"
+                                                  pattern="#.##"/>
+                            </td>
                             <td class="statusTd">
                                 <span class="isout">卖家已发货</span>
                                 <span class="notout">卖家未发货</span>
@@ -183,25 +188,25 @@
             if (isOut[i] === 0) {
                 $(this).find('.isout').css({
                     display: 'none'
-                })
+                });
                 $(this).find('.notout').css({
                     display: 'block'
-                })
+                });
                 $(this).find('.searchForTransport').css({
                     display: 'none'
-                })
-                $(this).parents().find('.operationTd').find('.confirmReceive').addClass('am-disabled');
+                });
+                // $(this).parents().find('.operationTd').find('.confirmReceive').addClass('am-disabled');
             } else {
                 $(this).find('.isout').css({
                     display: 'block'
-                })
+                });
                 $(this).find('.notout').css({
                     display: 'none'
-                })
+                });
                 $(this).find('.searchForTransport').css({
                     display: 'block'
-                })
-                $(this).parents().find('.operationTd').find('.confirmReceive').removeClass('am-disabled');
+                });
+                // $(this).parents().find('.operationTd').find('.confirmReceive').removeClass("am-disabled");
             }
         });
     });

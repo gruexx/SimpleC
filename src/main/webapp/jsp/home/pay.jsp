@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <html>
 
 <head>
@@ -100,7 +101,7 @@
                             <td>${requestScope.GoodsList[loop.count-1].goodsname}</td>
                             <td>${requestScope.GoodsList[loop.count-1].goodsprice}</td>
                             <td>${ShopcartList.number}</td>
-                            <td>${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}</td>
+                            <td><fmt:formatNumber type="number" value="${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}" pattern="#.##"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -113,12 +114,14 @@
         <!--含运费小计 -->
         <div class="buy-point-discharge ">
             <p class="price g_price "> 合计（含运费）
-                <span>¥</span><em class="pay-sum">${requestScope.totalprice}</em>
+                <span>¥</span><em class="pay-sum"><fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/></em>
             </p>
             <div style="float:right">
                 <label class="am-checkbox am-success">
                     <input type="checkbox" value="" id="isUsing" data-am-ucheck>使用潮积分抵扣
-                    <p id="isUsingp">${sessionScope.user.userchaopoint*0.001}</p>元
+                    <p id="isUsingp">
+                        <fmt:formatNumber type="number" value="${sessionScope.user.userchaopoint*0.001}" pattern="#.###"/>
+                    </p>元
                 </label>
             </div>
         </div>
@@ -127,7 +130,7 @@
                 var chao = '${sessionScope.user.userchaopoint*0.001}';
                 var remainder = '${requestScope.totalprice}';
                 if (chao > remainder) {
-                    $('#isUsingp').text(${requestScope.totalprice});
+                    $('#isUsingp').text(<fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/>);
                     $('#submitOrder').attr("data-chao", ${requestScope.totalprice*1000});
                 }
                 else {
@@ -214,6 +217,7 @@
 
     $('#submitOrder').click(function () {
         var goodsid = 0;
+
         var number = 0;
 
         var setoff = 0;

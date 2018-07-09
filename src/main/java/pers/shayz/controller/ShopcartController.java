@@ -13,10 +13,7 @@ import pers.shayz.service.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author ZhouXiaoyu & WangKai
@@ -38,6 +35,12 @@ public class ShopcartController {
 
     @Autowired
     OrderdetailsService orderdetailsService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    private BillService billService;
 
     @RequestMapping(value = "/toShopcart")
     public String toShopcart(HttpSession session, ModelMap modelMap) {
@@ -222,9 +225,34 @@ public class ShopcartController {
         if (user.getUserremainder() < (totalprice - Double.parseDouble(setoff) * chaoRate)) {
             return Msg.fail().add("msg", "余额不足，请先充值");
         }
+
+        List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(user.getUserid());
+
         user.setUserremainder(user.getUserremainder() - totalprice + Double.parseDouble(setoff) * chaoRate);
         user.setUserchaopoint(user.getUserchaopoint() - Integer.parseInt(setoff));
+        user.setUserchaopoint(user.getUserchaopoint() + Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
+        user.setUserpassword(null);
+        userService.updateUser(user);
         session.setAttribute("user", user);
+        Bill bill1 = new Bill();
+        bill1.setUseridFkBill(user.getUserid());
+        bill1.setDate(new Date());
+        bill1.setOutcome(totalprice - Double.parseDouble(setoff) * chaoRate);
+        bill1.setChaooutcome(Integer.parseInt(setoff));
+        bill1.setChaoincome(Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
+        billService.createBill(bill1);
+
+        for (Shopcart shopcart : shopcartlist) {
+            Goods goods = goodsService.getGoodsById(shopcart.getGoodsidFkShopcart());
+            User goodsUser = userService.getUserById(goods.getUseridFkGoods());
+            goodsUser.setUserremainder(user.getUserremainder() + shopcart.getNumber() * goods.getGoodsprice());
+            Bill bill2 = new Bill();
+            bill2.setUseridFkBill(goodsUser.getUserid());
+            bill2.setDate(new Date());
+            bill2.setIncome(shopcart.getNumber() * goods.getGoodsprice());
+            billService.createBill(bill2);
+        }
+
 
         System.out.println("/Balance: " + totalprice);
 
@@ -245,8 +273,6 @@ public class ShopcartController {
         System.out.println("/Balance: " + orderitemid);
 
         if (goodsid == 0 && number == 0) {
-
-            List<Shopcart> shopcartlist = shopcartService.getShopcartByUserIdAndIsbuy(user.getUserid());
 
             System.out.println("/Balance: " + shopcartlist.toString());
 

@@ -43,6 +43,7 @@
         <table tableName="user" domainObjectName=""></table>
         <table tableName="message" domainObjectName=""></table>
         <table tableName="address" domainObjectName=""></table>
+        <table tableName="bill" domainObjectName=""></table>
 
     </context>
 </generatorConfiguration>
