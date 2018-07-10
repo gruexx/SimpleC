@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.shayz.dao.LotteryDrawMapper">
+  <resultMap id="BaseResultMap" type="pers.shayz.bean.LotteryDraw">
+    <id column="lottery_drawid" jdbcType="INTEGER" property="lotteryDrawid" />
+    <result column="useridFklotter_draw" jdbcType="INTEGER" property="useridfklotterDraw" />
+    <result column="lottery_drawdetils" jdbcType="VARCHAR" property="lotteryDrawdetils" />
+    <result column="lottery_drawdate" jdbcType="VARCHAR" property="lotteryDrawdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    lottery_drawid, useridFklotter_draw, lottery_drawdetils, lottery_drawdate
+  </sql>
+  <select id="selectByExample" parameterType="pers.shayz.bean.LotteryDrawExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_draw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_draw
+    where lottery_drawid = #{lotteryDrawid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_draw
+    where lottery_drawid = #{lotteryDrawid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pers.shayz.bean.LotteryDrawExample">
+    delete from lottery_draw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pers.shayz.bean.LotteryDraw">
+    insert into lottery_draw (lottery_drawid, useridFklotter_draw, 
+      lottery_drawdetils, lottery_drawdate)
+    values (#{lotteryDrawid,jdbcType=INTEGER}, #{useridfklotterDraw,jdbcType=INTEGER}, 
+      #{lotteryDrawdetils,jdbcType=VARCHAR}, #{lotteryDrawdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pers.shayz.bean.LotteryDraw">
+    insert into lottery_draw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lotteryDrawid != null">
+        lottery_drawid,
+      </if>
+      <if test="useridfklotterDraw != null">
+        useridFklotter_draw,
+      </if>
+      <if test="lotteryDrawdetils != null">
+        lottery_drawdetils,
+      </if>
+      <if test="lotteryDrawdate != null">
+        lottery_drawdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lotteryDrawid != null">
+        #{lotteryDrawid,jdbcType=INTEGER},
+      </if>
+      <if test="useridfklotterDraw != null">
+        #{useridfklotterDraw,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryDrawdetils != null">
+        #{lotteryDrawdetils,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryDrawdate != null">
+        #{lotteryDrawdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pers.shayz.bean.LotteryDrawExample" resultType="java.lang.Long">
+    select count(*) from lottery_draw
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery_draw
+    <set>
+      <if test="record.lotteryDrawid != null">
+        lottery_drawid = #{record.lotteryDrawid,jdbcType=INTEGER},
+      </if>
+      <if test="record.useridfklotterDraw != null">
+        useridFklotter_draw = #{record.useridfklotterDraw,jdbcType=INTEGER},
+      </if>
+      <if test="record.lotteryDrawdetils != null">
+        lottery_drawdetils = #{record.lotteryDrawdetils,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lotteryDrawdate != null">
+        lottery_drawdate = #{record.lotteryDrawdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery_draw
+    set lottery_drawid = #{record.lotteryDrawid,jdbcType=INTEGER},
+      useridFklotter_draw = #{record.useridfklotterDraw,jdbcType=INTEGER},
+      lottery_drawdetils = #{record.lotteryDrawdetils,jdbcType=VARCHAR},
+      lottery_drawdate = #{record.lotteryDrawdate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pers.shayz.bean.LotteryDraw">
+    update lottery_draw
+    <set>
+      <if test="useridfklotterDraw != null">
+        useridFklotter_draw = #{useridfklotterDraw,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryDrawdetils != null">
+        lottery_drawdetils = #{lotteryDrawdetils,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryDrawdate != null">
+        lottery_drawdate = #{lotteryDrawdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where lottery_drawid = #{lotteryDrawid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pers.shayz.bean.LotteryDraw">
+    update lottery_draw
+    set useridFklotter_draw = #{useridfklotterDraw,jdbcType=INTEGER},
+      lottery_drawdetils = #{lotteryDrawdetils,jdbcType=VARCHAR},
+      lottery_drawdate = #{lotteryDrawdate,jdbcType=VARCHAR}
+    where lottery_drawid = #{lotteryDrawid,jdbcType=INTEGER}
+  </update>
+</mapper>
