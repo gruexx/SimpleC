@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca84735a-90fc-402d-9897-e27809f16cb8" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/pers/shayz/controller/path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/service/AddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/WEB-INF/classes/pers/shayz/service/AddressService.class" afterDir="false" />
@@ -17,14 +16,6 @@
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/lottery_draw.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/home/lottery_draw.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SimpleC_Web_exploded/jsp/person/password.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/service/AddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderdetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/service/OrderdetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pers/shayz/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pers/shayz/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/home/lottery_draw.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/person/password.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/service/AddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/service/AddressService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pers/shayz/service/OrderdetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pers/shayz/service/OrderdetailsService.class" afterDir="false" />
@@ -112,7 +103,7 @@
       <file leaf-file-name="bottom.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="328">
               <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
@@ -945,7 +936,7 @@
       <workItem from="1531094846476" duration="1798000" />
       <workItem from="1531097890277" duration="12031000" />
       <workItem from="1531118072154" duration="14686000" />
-      <workItem from="1531181537591" duration="12465000" />
+      <workItem from="1531181537591" duration="12496000" />
     </task>
     <task id="LOCAL-00001" summary="2018.07.09(14:38)">
       <created>1531118452652</created>
@@ -996,7 +987,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531188975359</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="2018.07.10(12:10)">
+      <created>1531195870992</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1531195870992</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1032,7 +1030,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="524838000" />
+    <option name="totallyTimeSpent" value="524869000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1045,7 +1043,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1616" height="886" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50159746" side_tool="true" weight="0.38297874" />
@@ -1068,12 +1065,12 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="9" weight="0.32832617" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49840257" weight="0.27792552" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978701" visible="true" weight="0.32180852" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" sideWeight="0.49840257" visible="true" weight="0.27659574" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4978701" weight="0.32180852" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32939914" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32939914" />
       <window_info anchor="bottom" id="SQL" order="11" weight="0.32939914" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49570817" visible="true" weight="0.22015405" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49570817" visible="true" weight="0.22015405" />
       <window_info anchor="bottom" id="Problems" order="18" weight="0.32725322" />
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32960597" />
       <window_info id="Web" order="6" sideWeight="0.5034843" side_tool="true" weight="0.20926517" />
@@ -1176,7 +1173,8 @@
     <MESSAGE value="2018.07.09(18:39)" />
     <MESSAGE value="2018.07.10(8:39)" />
     <MESSAGE value="2018.07.10(10:15)" />
-    <option name="LAST_COMMIT_MESSAGE" value="2018.07.10(10:15)" />
+    <MESSAGE value="2018.07.10(12:10)" />
+    <option name="LAST_COMMIT_MESSAGE" value="2018.07.10(12:10)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1557,7 +1555,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/common/bottom.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="328">
           <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
