@@ -81,7 +81,6 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
-        user.setUserpassword(DesUtil.encryptBasedDes(user.getUserpassword()));
         userService.saveUser(user);
 
         MailUtil mailUtil = new MailUtil();
@@ -228,7 +227,7 @@ public class UserController {
 
         System.out.println("comming!");
         String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\UserImage";
-        System.out.println("path>>" + path);
+        System.out.println("path >> " + path);
 
         String fileName = userImage.getOriginalFilename();
         System.out.println(fileName);

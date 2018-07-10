@@ -162,7 +162,6 @@
                             heading: "Success",
                             text: '密码修改成功',
                             showHideTransition: 'slide',
-                            hideAfter: true,
                             hideAfter: 1000,
                             afterHidden: function () {
                                 window.location.reload();

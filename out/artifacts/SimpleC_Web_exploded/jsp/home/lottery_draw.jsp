@@ -227,7 +227,7 @@
                     type="button"
                     class="am-btn am-btn-danger"
                     data-am-modal="{target: '#my-popup'}">
-                Popup
+                历史记录
             </button>
             <button
                     type="button"

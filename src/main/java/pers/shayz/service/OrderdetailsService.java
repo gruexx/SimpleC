@@ -32,9 +32,6 @@ public class OrderdetailsService {
     @Autowired
     GoodsMapper goodsMapper;
 
-    @Autowired
-    UserMapper userMapper;
-
     //必填项，从官网申请的key
     private static String key = "29833628d495d7a5";
 
@@ -66,16 +63,20 @@ public class OrderdetailsService {
 
             byte[] b = new byte[10000];
             int numRead = urlStream.read(b);
-            StringBuilder content = new StringBuilder(new String(b, 0, numRead, charSet));
-            while (numRead != -1) {
-                numRead = urlStream.read(b);
-                if (numRead != -1) {
-                    //String newContent = new String(b, 0, numRead);
-                    String newContent = new String(b, 0, numRead, charSet);
-                    content.append(newContent);
+            StringBuilder content = null;
+            if (charSet != null) {
+                content = new StringBuilder(new String(b, 0, numRead, charSet));
+
+                while (numRead != -1) {
+                    numRead = urlStream.read(b);
+                    if (numRead != -1) {
+                        //String newContent = new String(b, 0, numRead);
+                        String newContent = new String(b, 0, numRead, charSet);
+                        content.append(newContent);
+                    }
                 }
+                ret = content.toString();
             }
-            ret = content.toString();
             urlStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -136,9 +137,9 @@ public class OrderdetailsService {
         criteria.andGoodsidFkOrderEqualTo(goodsid).andIsoutEqualTo(0).andFlagEqualTo(1);
 
         List<Orderdetails> orderdetailsList = orderdetailsMapper.selectByExample(orderdetailsExample);
-        if(orderdetailsList.size()==0){
+        if (orderdetailsList.size() == 0) {
             return null;
-        }else {
+        } else {
             return orderdetailsList.get(0);
         }
 

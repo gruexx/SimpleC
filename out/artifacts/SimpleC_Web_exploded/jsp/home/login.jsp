@@ -176,6 +176,10 @@
                         text: result.extend.msg,
                         showHideTransition: 'fade',
                         position: 'top-right',
+                        hideAfter: 1000,
+                        afterHidden: function () {
+                            window.location.reload();
+                        },
                         icon: 'error'
                     })
                 }

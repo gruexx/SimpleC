@@ -19,6 +19,7 @@ public class UserService {
     private UserMapper userMapper;
 
     public void saveUser(User user) {
+        user.setUserpassword(DesUtil.encryptBasedDes(user.getUserpassword()));
         userMapper.insertSelective(user);
     }
 
@@ -33,13 +34,7 @@ public class UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUseremailEqualTo(email).andFlagEqualTo(1);
         List<User> list = userMapper.selectByExample(userExample);
-        if (list.size() == 0) {
-            return null;
-        } else {
-            User user = list.get(0);
-            user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
-            return user;
-        }
+        return getUserBy(list);
     }
 
     public User getUserByName(String name) {
@@ -47,12 +42,16 @@ public class UserService {
         UserExample.Criteria criteria = userExample.createCriteria();
         criteria.andUsernameEqualTo(name).andFlagEqualTo(1);
         List<User> list = userMapper.selectByExample(userExample);
+        return getUserBy(list);
+    }
+
+    private User getUserBy(List<User> list) {
         if (list.size() == 0) {
             return null;
         } else {
             User user = list.get(0);
             user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
-            return list.get(0);
+            return user;
         }
     }
 
