@@ -8,8 +8,12 @@ import pers.shayz.dao.AddressMapper;
 
 import java.util.List;
 
+/**
+ * @author Yans & Zhou
+ */
 @Service
 public class AddressService {
+
     @Autowired
     private AddressMapper addressMapper;
 
@@ -17,7 +21,7 @@ public class AddressService {
         addressMapper.insertSelective(address);
     }
 
-    public List<Address> getAllAddress(int userid){
+    public List<Address> getAllAddress(int userid) {
         AddressExample addressExample = new AddressExample();
         AddressExample.Criteria criteria = addressExample.createCriteria();
         criteria.andUseridFkAddressEqualTo(userid).andFlagEqualTo(1);
@@ -28,12 +32,16 @@ public class AddressService {
         addressMapper.deleteByPrimaryKey(addressid);
     }
 
-    public Address findByidAddress(int addressid){
-        return  addressMapper.selectByPrimaryKey(addressid);
+    public Address findByidAddress(int addressid) {
+        return addressMapper.selectByPrimaryKey(addressid);
     }
 
-    public void updateAddress(Address address){
+    public void updateAddress(Address address) {
 
         addressMapper.updateByPrimaryKeySelective(address);
+    }
+
+    public Address getAddressById(int addressid) {
+        return addressMapper.selectByPrimaryKey(addressid);
     }
 }

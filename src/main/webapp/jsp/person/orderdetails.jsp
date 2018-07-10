@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -19,6 +20,9 @@
 
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/css/orstyle.css" rel="stylesheet" type="text/css">
+
+    <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
 </head>
 
 <body>
@@ -55,103 +59,61 @@
                     </div>
                 </div>
                 <hr/>
-                <!--进度条-->
+
+                <table class="am-table am-table-striped am-table-hover">
+                    <thead>
+                    <tr style="white-space: nowrap">
+                        <th style="font-size: 16px;font-weight: bold">商品</th>
+                        <th style="font-size: 16px;font-weight: bold">商品名称</th>
+                        <th style="font-size: 16px;font-weight: bold">单价</th>
+                        <th style="font-size: 16px;font-weight: bold">数量</th>
+                        <th style="font-size: 16px;font-weight: bold">合计</th>
+                        <th style="font-size: 16px;font-weight: bold">交易状态</th>
+                        <th style="font-size: 16px;font-weight: bold">交易操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.GoodsList}" var="GoodsList" varStatus="loop">
+                        <tr class="shopcartItem">
+                            <td>
+                                <a href="${APP_PATH}/toIntroduction/${GoodsList.goodsid}">
+                                    <img src="${APP_PATH}/${GoodsList.image}"
+                                         style="width: 90px;height: 90px;">
+                                </a>
+                            </td>
+                            <td>${GoodsList.goodsname}</td>
+                            <td>${GoodsList.goodsprice}</td>
+                            <td><span>×</span>${requestScope.OrderDetailList[loop.count-1].number}</td>
+                            <td>
+                                <fmt:formatNumber type="number"
+                                                  value="${requestScope.OrderDetailList[loop.count-1].number*GoodsList.goodsprice}"
+                                                  pattern="#.##"/>
+                            </td>
+                            <td class="statusTd">
+                                <span class="isout">卖家已发货</span>
+                                <span class="notout">卖家未发货</span>
+                                <a class="searchForTransport" style="color: black;cursor:pointer;"
+                                   data-company="${requestScope.OrderDetailList[loop.count-1].company}"
+                                   data-identifier="${requestScope.OrderDetailList[loop.count-1].identifier}">查看物流</a>
+                            </td>
+                            <td class="operationTd">
+                                <button type="button"
+                                        class="am-btn am-btn-danger confirmReceive"
+                                        data-id="${requestScope.OrderDetailList[loop.count-1].orderid}">确认收货
+                                </button>
+                                <button type="button"
+                                        class="am-btn am-btn-success addComment"
+                                        data-id="${GoodsList.goodsid}"
+                                        data-orderid="${requestScope.OrderDetailList[loop.count-1].orderid}">评论商品
+                                </button>
+                                <a href="/toIntroduction/${GoodsList.goodsid}" class="am-btn am-btn-link isComment">你已经评论了</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 
 
-                <div class="order-infomain">
-                    <div class="order-top">
-                        <div class="th th-item">
-                            <td class="td-inner">商品</td>
-                        </div>
-                        <div class="th th-price">
-                            <td class="td-inner">单价</td>
-                        </div>
-                        <div class="th th-number">
-                            <td class="td-inner">数量</td>
-                        </div>
-                        <%--<div class="th th-operation">--%>
-                        <%--<td class="td-inner"></td>--%>
-                        <%--</div>--%>
-                        <div class="th th-change" style="float: right;">
-                            <td class="td-inner">交易操作</td>
-                        </div>
-                        <div class="th th-status" style="float: right;">
-                            <td class="td-inner">交易状态</td>
-                        </div>
-                        <div class="th th-amount" style="float: right;">
-                            <td class="td-inner">合计</td>
-                        </div>
-
-
-                    </div>
-                    <div class="order-main">
-                        <div class="order-status3">
-                            <div class="order-title">
-                                <div class="dd-num">订单编号：<a
-                                        href="javascript:;">${requestScope.OrderItemList.orderitemid}</a></div>
-                                <span>成交时间：2015-12-20</span>
-                                <!--    <em>店铺：小桔灯</em>--></div>
-                            <c:forEach items="${requestScope.GoodsList}" var="GoodsList" varStatus="loop">
-                                <div class="order-content">
-                                    <div class="order-left">
-                                        <ul class="item-list" style="float: left;">
-                                            <li class="td td-item">
-                                                <div class="item-pic">
-                                                    <a href="#" class="J_MakePoint"> <img
-                                                            src="${APP_PATH}/${GoodsList.image}"
-                                                            class="itempic J_ItemImg"> </a>
-                                                </div>
-                                                <div class="item-info">
-                                                    <div class="item-basic-info">
-                                                        <a href="#">
-                                                            <p>${GoodsList.goodsname}</p>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="td td-price">
-                                                <div class="item-price">${GoodsList.goodsprice}</div>
-                                            </li>
-                                            <li class="td td-number">
-                                                <div class="item-number">
-                                                    <span>×</span>${requestScope.OrderDetailList[loop.count-1].number}
-                                                </div>
-                                            </li>
-                                                <%--<li class="td td-operation">--%>
-                                                <%--<div class="item-operation"> 退款/退货 </div>--%>
-                                                <%--</li>--%>
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="order-right">
-                                        <li class="td td-amount">
-                                            <div class="item-amount" style="float: left;">
-                                                合计：
-                                                <p class="totalprice">
-                                                    <script>${GoodsList.goodsprice*requestScope.OrderDetailList[loop.count-1].number}</script>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <div class="move-right">
-                                            <li class="td td-status">
-                                                <div class="item-status">
-                                                    <p class="Mystatus">卖家已发货</p>
-                                                    <p class="order-info"><a href="logistics.html">查看物流</a></p>
-                                                    <p class="order-info"><a href="#">延长收货</a></p>
-                                                </div>
-                                            </li>
-                                            <li class="td td-change">
-                                                <div class="am-btn am-btn-danger anniu"> 确认收货</div>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!--底部-->
@@ -188,5 +150,162 @@
 </div>
 </body>
 
+<div class="am-modal am-modal-prompt" tabindex="-1" id="commentModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">
+            添加评论
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form class="am-form">
+                <label for="commentContent"></label>
+                <textarea class="am-validate" id="commentContent" minlength="10" maxlength="100" required></textarea>
+            </form>
+        </div>
+        <div class="am-modal-footer">
+            <button type="button" class="am-btn am-modal-btn am-btn-default am-btn-hollow" data-am-modal-cancel>取消
+            </button>
+            <button type="button" class="am-btn am-modal-btn am-btn-primary" data-am-modal-confirm>确定</button>
+        </div>
+    </div>
+</div>
+
 </html>
 
+<script>
+    $('.searchForTransport').click(function () {
+        var company = $(this).data("company");
+        var identifier = $(this).data("identifier");
+
+        window.location.href = "${APP_PATH}/toGistics/" + company + "/" + identifier;
+    })
+
+    $(function () {
+        var isOut = JSON.parse('${requestScope.isOut}');
+        console.log("isOut: " + isOut);
+
+        $('.statusTd').each(function (i) {
+            if (isOut[i] === 0) {
+                $(this).find('.isout').css({
+                    display: 'none'
+                });
+                $(this).find('.notout').css({
+                    display: 'block'
+                });
+                $(this).find('.searchForTransport').css({
+                    display: 'none'
+                });
+            } else {
+                $(this).find('.isout').css({
+                    display: 'block'
+                });
+                $(this).find('.notout').css({
+                    display: 'none'
+                });
+                $(this).find('.searchForTransport').css({
+                    display: 'block'
+                });
+            }
+        });
+
+        $('.operationTd').each(function (i) {
+            if (isOut[i] === 0) {
+                $(this).find('.confirmReceive').addClass('am-disabled');
+            }else{
+                $(this).find('.confirmReceive').removeClass("am-disabled");
+            }
+        })
+    });
+
+    $(function () {
+        var isReceive = JSON.parse('${requestScope.isReceive}');
+        console.log("isReceive: " + isReceive);
+
+        var isComment = JSON.parse('${requestScope.isComment}');
+        console.log("isComment: " + isComment);
+
+        $('.operationTd').each(function (i) {
+            if (isReceive[i] === 0) {
+                $(this).find('.addComment').css({
+                    display: 'none'
+                })
+                $(this).find('.confirmReceive').css({
+                    display: 'block'
+                })
+                $(this).find('.isComment').css({
+                    display: 'none'
+                })
+            } else {
+                $(this).find('.addComment').css({
+                    display: 'block'
+                })
+                $(this).find('.confirmReceive').css({
+                    display: 'none'
+                })
+                if (isComment[i] === 1) {
+                    $(this).find('.addComment').css({
+                        display: 'none'
+                    });
+                    $(this).find('.isComment').css({
+                        display: 'block'
+                    })
+                } else {
+                    $(this).find('.addComment').css({
+                        display: 'block'
+                    });
+                    $(this).find('.isComment').css({
+                        display: 'none'
+                    })
+                }
+            }
+        })
+    });
+
+    $('.confirmReceive').click(function () {
+        var orderid = $(this).data('id');
+        console.log(orderid);
+
+        $.ajax({
+            url: '${APP_PATH}/confirmReceive',
+            type: 'POST',
+            data: {"orderid": orderid},
+            success: function () {
+                window.location.reload();
+            }
+        })
+    });
+
+    $('.addComment').click(function () {
+
+        var goodsid = $(this).data('id');
+        console.log(goodsid);
+
+        var orderid = $(this).data('orderid');
+        console.log(orderid);
+
+        $('#commentModal').modal({
+            onConfirm: function () {
+                $.ajax({
+                    url: '${APP_PATH}/addComment',
+                    type: 'POST',
+                    data: {"goodsidFkComment": goodsid, "content": $('#commentContent').val(), "orderid": orderid},
+                    success: function (result) {
+                        $('#commentContent').val('');
+                        if (result.code === 100) {
+                            window.location.reload();
+                        }
+                        if (undefined != result.extend.errorFields.content) {
+                            $.toast({
+                                heading: "Fail",
+                                text: result.extend.errorFields.content,
+                                showHideTransition: 'slide',
+                                hideAfter: false,
+                                position: 'top-right'
+                            });
+                        }
+                    }
+                })
+            }
+        });
+    });
+</script>

@@ -6,7 +6,6 @@ import pers.shayz.bean.Message;
 import pers.shayz.bean.MessageExample;
 import pers.shayz.dao.MessageMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +31,14 @@ public class MessageService {
         criteria.andSendname1EqualTo(u.getSendname1())
                 .andRecivername2EqualTo(u.getRecivername2())
                 .andFlagEqualTo(1);
+
+        return messageMapper.selectByExample(messageExample);
+    }
+
+    public List<Message> getMessageByReceiverName(String username) {
+        MessageExample messageExample = new MessageExample();
+        MessageExample.Criteria criteria = messageExample.createCriteria();
+        criteria.andRecivername2EqualTo(username).andFlagEqualTo(1);
 
         return messageMapper.selectByExample(messageExample);
     }

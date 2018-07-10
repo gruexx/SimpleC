@@ -474,66 +474,6 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andFlagIsNull() {
-            addCriterion("flag is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagIsNotNull() {
-            addCriterion("flag is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagEqualTo(Integer value) {
-            addCriterion("flag =", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagNotEqualTo(Integer value) {
-            addCriterion("flag <>", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagGreaterThan(Integer value) {
-            addCriterion("flag >", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagGreaterThanOrEqualTo(Integer value) {
-            addCriterion("flag >=", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagLessThan(Integer value) {
-            addCriterion("flag <", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagLessThanOrEqualTo(Integer value) {
-            addCriterion("flag <=", value, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagIn(List<Integer> values) {
-            addCriterion("flag in", values, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagNotIn(List<Integer> values) {
-            addCriterion("flag not in", values, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagBetween(Integer value1, Integer value2) {
-            addCriterion("flag between", value1, value2, "flag");
-            return (Criteria) this;
-        }
-
-        public Criteria andFlagNotBetween(Integer value1, Integer value2) {
-            addCriterion("flag not between", value1, value2, "flag");
-            return (Criteria) this;
-        }
-
         public Criteria andImageIsNull() {
             addCriterion("image is null");
             return (Criteria) this;
@@ -671,6 +611,126 @@ public class GoodsExample {
 
         public Criteria andGoodsinfoNotBetween(String value1, String value2) {
             addCriterion("goodsInfo not between", value1, value2, "goodsinfo");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNull() {
+            addCriterion("flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNotNull() {
+            addCriterion("flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagEqualTo(Integer value) {
+            addCriterion("flag =", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotEqualTo(Integer value) {
+            addCriterion("flag <>", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThan(Integer value) {
+            addCriterion("flag >", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThanOrEqualTo(Integer value) {
+            addCriterion("flag >=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThan(Integer value) {
+            addCriterion("flag <", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThanOrEqualTo(Integer value) {
+            addCriterion("flag <=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIn(List<Integer> values) {
+            addCriterion("flag in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotIn(List<Integer> values) {
+            addCriterion("flag not in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagBetween(Integer value1, Integer value2) {
+            addCriterion("flag between", value1, value2, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotBetween(Integer value1, Integer value2) {
+            addCriterion("flag not between", value1, value2, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersIsNull() {
+            addCriterion("hasOrders is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersIsNotNull() {
+            addCriterion("hasOrders is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersEqualTo(Integer value) {
+            addCriterion("hasOrders =", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotEqualTo(Integer value) {
+            addCriterion("hasOrders <>", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersGreaterThan(Integer value) {
+            addCriterion("hasOrders >", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hasOrders >=", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersLessThan(Integer value) {
+            addCriterion("hasOrders <", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersLessThanOrEqualTo(Integer value) {
+            addCriterion("hasOrders <=", value, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersIn(List<Integer> values) {
+            addCriterion("hasOrders in", values, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotIn(List<Integer> values) {
+            addCriterion("hasOrders not in", values, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersBetween(Integer value1, Integer value2) {
+            addCriterion("hasOrders between", value1, value2, "hasorders");
+            return (Criteria) this;
+        }
+
+        public Criteria andHasordersNotBetween(Integer value1, Integer value2) {
+            addCriterion("hasOrders not between", value1, value2, "hasorders");
             return (Criteria) this;
         }
     }

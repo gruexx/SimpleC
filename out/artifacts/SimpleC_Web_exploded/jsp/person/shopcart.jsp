@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -46,6 +47,7 @@
             </thead>
             <tbody>
             <c:forEach items="${requestScope.ShopcartList}" var="ShopcartList" varStatus="loop">
+
                 <tr class="shopcartItem">
                     <td width="50px">
                         <label class="am-checkbox needsclick">
@@ -72,7 +74,7 @@
                             </div>
                         </form>
                     </td>
-                    <td>${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}</td>
+                    <td><fmt:formatNumber type="number" value="${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}" pattern="#.##"/></td>
                     <td>
                         <button type="button"
                                 class="am-btn am-btn-danger deleteShopcart"
@@ -95,7 +97,7 @@
 
         <div class="am-u-sm-3">
             <button type="button" id="balance" class="am-btn am-btn-danger am-btn-xl">结算</button>
-            <label>合计：${requestScope.totalprice}</label>
+            <label>合计：<fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/></label>
         </div>
 
     </div>
@@ -190,7 +192,7 @@
                 type: 'POST',
                 data:
                     {
-                        "isBuy": 0,
+                        "isBuy": 1,
                         "shopcartid": 0
                     },
                 success: function () {
@@ -203,6 +205,22 @@
             });
         } else {
             $('.check').uCheck('uncheck');
+            $.ajax({
+                url: '${APP_PATH}/updateShopcartCheck',
+                type: 'POST',
+                data:
+                    {
+                        "isBuy": 0,
+                        "shopcartid": 0
+                    },
+                success: function () {
+                    window.location.reload();
+                    console.log("success")
+                },
+                error: function () {
+                    console.log("fail")
+                }
+            });
         }
     });
 

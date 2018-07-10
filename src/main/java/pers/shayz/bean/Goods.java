@@ -13,11 +13,13 @@ public class Goods {
 
     private Integer goodsnumber;
 
-    private Integer flag;
-
     private String image;
 
     private String goodsinfo;
+
+    private Integer flag;
+
+    private Integer hasorders;
 
     public Integer getGoodsid() {
         return goodsid;
@@ -67,14 +69,6 @@ public class Goods {
         this.goodsnumber = goodsnumber;
     }
 
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
-
     public String getImage() {
         return image;
     }
@@ -89,5 +83,21 @@ public class Goods {
 
     public void setGoodsinfo(String goodsinfo) {
         this.goodsinfo = goodsinfo == null ? null : goodsinfo.trim();
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
+    public Integer getHasorders() {
+        return hasorders;
+    }
+
+    public void setHasorders(Integer hasorders) {
+        this.hasorders = hasorders;
     }
 }

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 /**
@@ -34,7 +36,10 @@ public class UserController {
     private GoodsService goodsService;
 
     @Autowired
-    private OrderdetailsService orderdetailsService;
+    MessageService messageService;
+
+    @Autowired
+    private BillService billService;
 
     @Autowired
     private OrderItemService orderItemService;
@@ -76,7 +81,6 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
-        user.setUserpassword(DesUtil.encryptBasedDes(user.getUserpassword()));
         userService.saveUser(user);
 
         MailUtil mailUtil = new MailUtil();
@@ -112,15 +116,6 @@ public class UserController {
             user = userService.getUserByName(userlogin);
         }
 
-//        session.setAttribute("username", user.getUsername());
-//        session.setAttribute("userid", String.valueOf(user.getUserid()));
-//        session.setAttribute("userchaopoint", String.valueOf(user.getUserchaopoint()));
-//        session.setAttribute("image", user.getImage());
-//        session.setAttribute("phonenumber", user.getUserphone());
-//        session.setAttribute("useremail", user.getUseremail());
-//        session.setAttribute("useraddress", user.getAddress());
-
-        user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
         System.out.println("/doLogin: " + user);
         session.setAttribute("user", user);
 
@@ -151,7 +146,7 @@ public class UserController {
             return Msg.fail().add("msg", "用户不存在！！！");
         }
 
-        if (!DesUtil.decryptBasedDes(user.getUserpassword()).equals(userpassword)) {
+        if (!user.getUserpassword().equals(userpassword)) {
             return Msg.fail().add("msg", "用户名密码不匹配！！！");
         }
 
@@ -186,14 +181,14 @@ public class UserController {
 
     @RequestMapping(value = "/toHome")
     public String toHome(ModelMap modelMap) {
-        modelMap.addAttribute("book", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(1)));
-        modelMap.addAttribute("household", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(2)));
-        modelMap.addAttribute("snack", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(3)));
-        modelMap.addAttribute("phone", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(4)));
+        modelMap.addAttribute("book", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(8)));
+        modelMap.addAttribute("household", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(1)));
+        modelMap.addAttribute("snack", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(6)));
+        modelMap.addAttribute("phone", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(2)));
         modelMap.addAttribute("sport", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(5)));
-        modelMap.addAttribute("beauty", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(6)));
-        modelMap.addAttribute("computer", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(7)));
-        modelMap.addAttribute("clothes", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(8)));
+        modelMap.addAttribute("beauty", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(7)));
+        modelMap.addAttribute("computer", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(3)));
+        modelMap.addAttribute("clothes", new ArrayList<Goods>(goodsService.getGoodsByClassifyId(4)));
 
         Random random = new Random();
         modelMap.addAttribute("one", goodsService.getGoodsByRandomId(random.nextInt()));
@@ -215,36 +210,6 @@ public class UserController {
         return "person/userinfo";
     }
 
-    @RequestMapping(value = "/toBill")
-    public String toBill() {
-        return "person/bill";
-    }
-
-    @RequestMapping(value = "/toBillList")
-    public String toBillList() {
-        return "person/billlist";
-    }
-
-    @RequestMapping(value = "/toOrderDetails/{orderitemid}")
-    public String toOrderDetails(@PathVariable("orderitemid") String id, ModelMap modelMap) {
-        int orderItemId = Integer.parseInt(id);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderItemId);
-
-        List<Goods> goodsList = orderdetailsService.getGoodsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + goodsList);
-        modelMap.addAttribute("GoodsList", goodsList);
-
-        Orderitem orderitem = orderItemService.getOrderItemByOrderitemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderitem);
-        modelMap.addAttribute("OrderItemList", orderitem);
-
-        List<Orderdetails> orderdetailsList = orderdetailsService.getOrderDetailsByOrderItemId(orderItemId);
-        System.out.println("/toOrderDetails/{orderitemid}: " + orderdetailsList);
-        modelMap.addAttribute("OrderDetailList", orderdetailsList);
-
-        return "person/orderdetails";
-    }
-
     @RequestMapping(value = "/toPassword")
     public String toPassword() {
         return "person/password";
@@ -261,8 +226,8 @@ public class UserController {
         user.setUserid(userNow.getUserid());
 
         System.out.println("comming!");
-        String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\GoodsImage";
-        System.out.println("path>>" + path);
+        String path = "D:\\JetBrains\\SimpleC\\src\\main\\webapp\\UserImage";
+        System.out.println("path >> " + path);
 
         String fileName = userImage.getOriginalFilename();
         System.out.println(fileName);
@@ -332,7 +297,6 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
-
         newUser.setUserid(userNow.getUserid());
         System.out.println("/userUpdate: " + newUser);
         userService.updateUser(newUser);
@@ -364,7 +328,6 @@ public class UserController {
 
         User userNow = (User) session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
-        newUser.setUserpassword(DesUtil.encryptBasedDes(newUser.getUserpassword()));
         System.out.println("/passwordUpdate: " + newUser);
         userService.updateUser(newUser);
 
@@ -374,45 +337,28 @@ public class UserController {
 
     @RequestMapping(value = "/confirmOldPassword", method = RequestMethod.POST)
     @ResponseBody
-    public Msg confirmOldPassword(@RequestParam("oldPassword")String oldPassword, HttpSession session) {
-        User user = (User)session.getAttribute("user");
-        if (DesUtil.decryptBasedDes(user.getUserpassword()).equals(oldPassword)){
+    public Msg confirmOldPassword(@RequestParam("oldPassword") String oldPassword, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (DesUtil.decryptBasedDes(user.getUserpassword()).equals(oldPassword)) {
             return Msg.success();
-        }else {
+        } else {
             return Msg.fail();
         }
     }
 
-    @RequestMapping(value = "/toLotteryDraw")
-    public String toLotteryDraw(){
-        return "home/lottery_draw";
-    }
-
-//    @RequestMapping(value = "/updateChaopoint")
-//    public String updateChaopoint(HttpSession session,@RequestParam("chaoPoint")String chaoPoint){
-//
-//        System.out.println("/updateChaopoint: "+chaoPoint);
-//
-//        User user = (User)session.getAttribute("user");
-//        int cp = Integer.parseInt(chaoPoint);
-//        userService.updateUserChaoPointByUserId(user.getUserid(),cp-100);
-//
-//        session.setAttribute("user", userService.getUser(user.getUserid()));
-//        return "home/lottery_draw";
-//    }
 
     @RequestMapping(value = "/lotteryChaopoint")
-    public String lotteryChaopoint(HttpSession session,@RequestParam("award")String chaoPoint){
+    public String lotteryChaopoint(HttpSession session, @RequestParam("award") String chaoPoint) {
 
-        System.out.println("/lotteryChaopoint: "+chaoPoint);
+        System.out.println("/lotteryChaopoint: " + chaoPoint);
 
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         int cp = Integer.parseInt(chaoPoint);
         int oldchaopoint = user.getUserchaopoint();
 
         System.out.print("/lotteryChaopoint: ");
-        System.out.println(oldchaopoint+cp);
-        userService.updateUserChaoPointByUserId(user.getUserid(),oldchaopoint+cp-100);
+        System.out.println(oldchaopoint + cp);
+        userService.updateUserChaoPointByUserId(user.getUserid(), oldchaopoint + cp - 100);
 
         session.setAttribute("user", userService.getUser(user.getUserid()));
         return "home/lottery_draw";
@@ -420,33 +366,98 @@ public class UserController {
 
     @RequestMapping(value = "/charge", method = RequestMethod.POST)
     @ResponseBody
-    public Msg charge(HttpSession session, @RequestParam("remainder")String remainder) {
-        User user = (User)session.getAttribute("user");
+    public Msg charge(HttpSession session, @RequestParam("remainder") String remainder) {
+        User user = (User) session.getAttribute("user");
         Double oldremainder = user.getUserremainder();
-        user.setUserremainder(oldremainder+Double.parseDouble(remainder));
+        user.setUserremainder(oldremainder + Double.parseDouble(remainder));
+
         userService.updateUser(user);
+
+        Bill bill = new Bill();
+        bill.setUseridFkBill(user.getUserid());
+        bill.setDate(new Date());
+        bill.setIncome(Double.parseDouble(remainder));
+        billService.createBill(bill);
+
         return Msg.success();
     }
 
     @RequestMapping(value = "/doActive/{useremail}")
-    public String setIsLogin(@PathVariable("useremail")String useremail, ModelMap modelMap){
-        System.out.println("/doActive/{useremail}: "+useremail);
-        String uemail = DesUtil.decryptBasedDes(useremail);
+    public String setIsLogin(@PathVariable("useremail") String useremail, ModelMap modelMap) {
+        System.out.println("/doActive/{useremail}: " + useremail);
+        String uemail = new String(Base64.getDecoder().decode(useremail));
 
-        System.out.println("/doActive/{useremail}: "+uemail);
+        System.out.println("/doActive/{useremail}: " + uemail);
         User user = userService.getUserByEmail(uemail);
 
-        System.out.println("/doActive/{useremail}: "+user);
-        if(user.getIsactive()==1){
+        System.out.println("/doActive/{useremail}: " + user);
+        if (user.getIsactive() == 1) {
             modelMap.addAttribute("msg", "该账号已经激活了！！！");
-        }else {
+        } else {
             user.setIsactive(1);
             modelMap.addAttribute("msg", "成功激活账号！！！");
         }
+
         userService.updateUser(user);
-        System.out.println("/doActive/{useremail}: "+user);
+        System.out.println("/doActive/{useremail}: " + user);
+
+        InetAddress addr = null;
+        try {
+            addr = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        assert addr != null;
+        String ip = addr.getHostAddress();
+        modelMap.addAttribute("ip", ip);
 
         return "common/active";
     }
 
+    @RequestMapping(value = "/getMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public Msg getMessage(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<Message> messageList = messageService.getMessageByReceiverName(user.getUsername());
+        System.out.println("/getMessage: " + messageList);
+
+        Set<String> set = new HashSet<>();
+        for (Message message : messageList) {
+            set.add(message.getSendname1());
+        }
+        System.out.println("/getMessage: " + set.toString());
+
+        List<User> userList = new ArrayList<>();
+        for (String username : set) {
+            userList.add(userService.getUserByName(username));
+        }
+        List<Integer> useridList = new ArrayList<>();
+        for (User u : userList) {
+            useridList.add(u.getUserid());
+        }
+
+        return Msg.success().add("sendnames", set).add("messageNum", set.size()).add("useridList", useridList);
+    }
+
+    @RequestMapping(value = "/toChat/{goodsUserId}")
+    public String toChat(HttpSession session, @PathVariable("goodsUserId") String goodsUserId, ModelMap modelMap) {
+        User user1 = (User) session.getAttribute("user");
+        User user2 = userService.getUser(Integer.parseInt(goodsUserId));
+        modelMap.addAttribute("name1", user1.getUsername());
+        modelMap.addAttribute("name2", user2.getUserid());
+        modelMap.addAttribute("image2", user2.getImage());
+
+        InetAddress addr = null;
+        try {
+            addr = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        if (addr != null) {
+            String ip = addr.getHostAddress();
+            modelMap.addAttribute("ip", ip);
+        }
+
+        return "person/chat";
+    }
 }
