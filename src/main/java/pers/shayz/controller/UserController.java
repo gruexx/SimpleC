@@ -117,15 +117,6 @@ public class UserController {
             user = userService.getUserByName(userlogin);
         }
 
-//        session.setAttribute("username", user.getUsername());
-//        session.setAttribute("userid", String.valueOf(user.getUserid()));
-//        session.setAttribute("userchaopoint", String.valueOf(user.getUserchaopoint()));
-//        session.setAttribute("image", user.getImage());
-//        session.setAttribute("phonenumber", user.getUserphone());
-//        session.setAttribute("useremail", user.getUseremail());
-//        session.setAttribute("useraddress", user.getAddress());
-
-        user.setUserpassword(DesUtil.decryptBasedDes(user.getUserpassword()));
         System.out.println("/doLogin: " + user);
         session.setAttribute("user", user);
 
@@ -156,7 +147,7 @@ public class UserController {
             return Msg.fail().add("msg", "用户不存在！！！");
         }
 
-        if (!DesUtil.decryptBasedDes(user.getUserpassword()).equals(userpassword)) {
+        if (!user.getUserpassword().equals(userpassword)) {
             return Msg.fail().add("msg", "用户名密码不匹配！！！");
         }
 
@@ -307,7 +298,6 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
-
         newUser.setUserid(userNow.getUserid());
         System.out.println("/userUpdate: " + newUser);
         userService.updateUser(newUser);
@@ -339,7 +329,6 @@ public class UserController {
 
         User userNow = (User) session.getAttribute("user");
         newUser.setUserid(userNow.getUserid());
-        newUser.setUserpassword(DesUtil.encryptBasedDes(newUser.getUserpassword()));
         System.out.println("/passwordUpdate: " + newUser);
         userService.updateUser(newUser);
 
@@ -409,6 +398,7 @@ public class UserController {
             user.setIsactive(1);
             modelMap.addAttribute("msg", "成功激活账号！！！");
         }
+
         userService.updateUser(user);
         System.out.println("/doActive/{useremail}: " + user);
 
@@ -453,7 +443,7 @@ public class UserController {
     @RequestMapping(value = "/toChat/{goodsUserId}")
     public String toChat(HttpSession session, @PathVariable("goodsUserId") String goodsUserId, ModelMap modelMap) {
         User user1 = (User) session.getAttribute("user");
-        User user2 = userService.getUserById(Integer.parseInt(goodsUserId));
+        User user2 = userService.getUser(Integer.parseInt(goodsUserId));
         modelMap.addAttribute("name1", user1.getUsername());
         modelMap.addAttribute("name2", user2.getUserid());
         modelMap.addAttribute("image2", user2.getImage());

@@ -195,7 +195,6 @@
                 $(this).find('.searchForTransport').css({
                     display: 'none'
                 });
-                // $(this).parents().find('.operationTd').find('.confirmReceive').addClass('am-disabled');
             } else {
                 $(this).find('.isout').css({
                     display: 'block'
@@ -206,9 +205,16 @@
                 $(this).find('.searchForTransport').css({
                     display: 'block'
                 });
-                // $(this).parents().find('.operationTd').find('.confirmReceive').removeClass("am-disabled");
             }
         });
+
+        $('.operationTd').each(function (i) {
+            if (isOut[i] === 0) {
+                $(this).find('.confirmReceive').addClass('am-disabled');
+            }else{
+                $(this).find('.confirmReceive').removeClass("am-disabled");
+            }
+        })
     });
 
     $(function () {

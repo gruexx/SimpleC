@@ -69,7 +69,7 @@ public class OrderItemController {
         List<Orderdetails> orderdetailsList = orderItemService.getOderDetailsByGoodsId(goodsid);
         List<User> userList = new ArrayList<>();
         for (Orderdetails orderdetails : orderdetailsList) {
-            userList.add(userService.getUserById(orderdetails.getUseridFkOrder()));
+            userList.add(userService.getUser(orderdetails.getUseridFkOrder()));
         }
         return Msg.success().add("orderDetailList", orderdetailsList).add("userList", userList);
     }

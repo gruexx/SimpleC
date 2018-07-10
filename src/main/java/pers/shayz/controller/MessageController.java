@@ -65,74 +65,72 @@ public class MessageController {
         //System.out.println(incomingMessage);
         //判断第一次调用onmessage
         if (first) {
-            if (!incomingMessage.equals(null)) {
-                String[] splited = incomingMessage.split("\\s+");
-                String sendname = splited[0];
-                //String receivename = splited[1];
-                String receiveId = splited[1];
-                String receivename = userService.getUserById(Integer.parseInt(receiveId)).getUsername();
-                name1 = sendname;
-                name2 = receivename;
-                userMap.put(session.getId(), sendname);
-                System.out.println(sendname + "$" + receivename);
-                List<Message> list1 = new ArrayList<>();
-                Message message = new Message();
-                //m.setMessage(message);
-                message.setRecivername2(sendname);
-                message.setSendname1(receivename);
-                // message.setMessage("hehe");
+            String[] splited = incomingMessage.split("\\s+");
+            String sendname = splited[0];
+            //String receivename = splited[1];
+            String receiveId = splited[1];
+            String receivename = userService.getUser(Integer.parseInt(receiveId)).getUsername();
+            name1 = sendname;
+            name2 = receivename;
+            userMap.put(session.getId(), sendname);
+            System.out.println(sendname + "$" + receivename);
+            List<Message> list1 = new ArrayList<>();
+            Message message = new Message();
+            //m.setMessage(message);
+            message.setRecivername2(sendname);
+            message.setSendname1(receivename);
+            // message.setMessage("hehe");
 //                System.out.println("message:"+message);
 //                messageService.saveMessage(message);
-                //message.setFlag(1);
+            //message.setFlag(1);
+            try {
+                //System.out.println("message:"+message);
+                //System.out.println("messageService.toString():"+messageService.toString());
+                //System.out.println(messageService.getMessage(message).isEmpty());
+                list1 = messageService.getMessage(message);
+
+
+                //读取第二个人
+                List<Message> list2 = new ArrayList<>();
+                Message message2 = new Message();
+                //m.setMessage(message);
+                message2.setRecivername2(receivename);
+                message2.setSendname1(sendname);
+                list2 = messageService.getMessage(message2);
+
+                List<String> list = sort(list1, list2);
+
+
+                MessageController client = (MessageController) connect.get(session.getId());
+                //System.out.println(client);
                 try {
-                    //System.out.println("message:"+message);
-                    //System.out.println("messageService.toString():"+messageService.toString());
-                    //System.out.println(messageService.getMessage(message).isEmpty());
-                    list1 = messageService.getMessage(message);
 
+                    if (null == list || list.size() == 0) {
+                        //System.out.println("list null");
+                        //synchronized (client) {
+                        client.session.getBasicRemote().sendText("还没聊过天呢，打个招呼吧");
 
-                    //读取第二个人
-                    List<Message> list2 = new ArrayList<>();
-                    Message message2 = new Message();
-                    //m.setMessage(message);
-                    message2.setRecivername2(receivename);
-                    message2.setSendname1(sendname);
-                    list2 = messageService.getMessage(message2);
-
-                    List<String> list = sort(list1, list2);
-
-
-                    MessageController client = (MessageController) connect.get(session.getId());
-                    //System.out.println(client);
-                    try {
-
-                        if (null == list || list.size() == 0) {
-                            //System.out.println("list null");
+                        //}
+                    } else {
+                        for (String s : list) {
                             //synchronized (client) {
-                            client.session.getBasicRemote().sendText("还没聊过天呢，打个招呼吧");
-
+                            client.session.getBasicRemote().sendText(s);
                             //}
-                        } else {
-                            for (String s : list) {
-                                //synchronized (client) {
-                                client.session.getBasicRemote().sendText(s);
-                                //}
-                                //this client
-                            }
+                            //this client
                         }
-                    } catch (IOException e) {
-                        connect.remove(client);
-                        try {
-                            client.session.close();
-                        } catch (IOException e1) {
-                        }
-                    } catch (Exception e) {
-                        // TODO: handle exception
+                    }
+                } catch (IOException e) {
+                    connect.remove(client);
+                    try {
+                        client.session.close();
+                    } catch (IOException e1) {
                     }
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    // TODO: handle exception
                 }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
             first = false;
         }

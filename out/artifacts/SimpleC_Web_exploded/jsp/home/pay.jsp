@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -69,9 +69,7 @@
         <div class="logistics">
             <h3>选择支付方式</h3>
             <ul class="pay-list">
-                <li class="pay card"><img src="${APP_PATH}/images/wangyin.jpg"/>银联<span></span></li>
-                <li class="pay qq"><img src="${APP_PATH}/images/weizhifu.jpg"/>微信<span></span></li>
-                <li class="pay taobao"><img src="${APP_PATH}/images/zhifubao.jpg"/>支付宝<span></span></li>
+                <li class="pay card"><img src="${APP_PATH}/static/picture/logoPro.png"/>余额支付<span></span></li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -101,7 +99,9 @@
                             <td>${requestScope.GoodsList[loop.count-1].goodsname}</td>
                             <td>${requestScope.GoodsList[loop.count-1].goodsprice}</td>
                             <td>${ShopcartList.number}</td>
-                            <td><fmt:formatNumber type="number" value="${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}" pattern="#.##"/></td>
+                            <td><fmt:formatNumber type="number"
+                                                  value="${requestScope.GoodsList[loop.count-1].goodsprice*ShopcartList.number}"
+                                                  pattern="#.##"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -114,13 +114,15 @@
         <!--含运费小计 -->
         <div class="buy-point-discharge ">
             <p class="price g_price "> 合计（含运费）
-                <span>¥</span><em class="pay-sum"><fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/></em>
+                <span>¥</span><em class="pay-sum"><fmt:formatNumber type="number" value="${requestScope.totalprice}"
+                                                                    pattern="#.##"/></em>
             </p>
             <div style="float:right">
                 <label class="am-checkbox am-success">
                     <input type="checkbox" value="" id="isUsing" data-am-ucheck>使用潮积分抵扣
                     <p id="isUsingp">
-                        <fmt:formatNumber type="number" value="${sessionScope.user.userchaopoint*0.001}" pattern="#.###"/>
+                        <fmt:formatNumber type="number" value="${sessionScope.user.userchaopoint*0.001}"
+                                          pattern="#.###"/>
                     </p>元
                 </label>
             </div>
@@ -225,34 +227,40 @@
             setoff = $(this).data("chao");
             console.log("chao: " + setoff);
         }
-        var addressid = $('.selectAddress').data('addressid');
-        console.log(addressid);
+
         var totalprice = '${requestScope.totalprice}';
         console.log(totalprice);
-        $.ajax({
-            url: "${APP_PATH}/Balance",
-            type: "POST",
-            data: {
-                "addressid": addressid,
-                "totalprice": totalprice,
-                "setoff": setoff,
-                "goodsid": goodsid,
-                "number": number
-            },
-            success: function (result) {
-                if (result.code === 100) {
-                    window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
-                } else {
-                    $.toast({
-                        heading: "Fail",
-                        text: result.extend.msg,
-                        showHideTransition: 'slide',
-                        hideAfter: false,
-                        position: 'top-right',
-                    })
+
+        var addressid = $('.selectAddress').data('addressid');
+        if (addressid == null) {
+            alert("地址呢？？？？？？？？？？？？？？")
+        } else {
+            console.log(addressid);
+            $.ajax({
+                url: "${APP_PATH}/Balance",
+                type: "POST",
+                data: {
+                    "addressid": addressid,
+                    "totalprice": totalprice,
+                    "setoff": setoff,
+                    "goodsid": goodsid,
+                    "number": number
+                },
+                success: function (result) {
+                    if (result.code === 100) {
+                        window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
+                    } else {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.msg,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right',
+                        })
+                    }
+                    console.log("success");
                 }
-                console.log("success");
-            }
-        })
+            })
+        }
     })
 </script>

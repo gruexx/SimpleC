@@ -231,7 +231,6 @@ public class ShopcartController {
         user.setUserremainder(user.getUserremainder() - totalprice + Double.parseDouble(setoff) * chaoRate);
         user.setUserchaopoint(user.getUserchaopoint() - Integer.parseInt(setoff));
         user.setUserchaopoint(user.getUserchaopoint() + Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
-        user.setUserpassword(null);
         userService.updateUser(user);
         session.setAttribute("user", user);
         Bill bill1 = new Bill();
@@ -247,12 +246,14 @@ public class ShopcartController {
             goods.setHasorders(1);
             goods.setGoodsnumber(goods.getGoodsnumber()-shopcart.getNumber());
             goodsService.updateGoods(goods);
-            User goodsUser = userService.getUserById(goods.getUseridFkGoods());
-            goodsUser.setUserremainder(user.getUserremainder() + shopcart.getNumber() * goods.getGoodsprice());
+            User goodsUser = userService.getUser(goods.getUseridFkGoods());
+            goodsUser.setUserremainder(goodsUser.getUserremainder() + shopcart.getNumber() * goods.getGoodsprice());
+            goodsUser.setUserchaopoint(goodsUser.getUserchaopoint() + Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
             Bill bill2 = new Bill();
             bill2.setUseridFkBill(goodsUser.getUserid());
             bill2.setDate(new Date());
             bill2.setIncome(shopcart.getNumber() * goods.getGoodsprice());
+            bill2.setChaoincome(Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
             billService.createBill(bill2);
         }
 

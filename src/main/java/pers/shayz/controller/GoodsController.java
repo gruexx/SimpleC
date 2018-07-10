@@ -53,7 +53,7 @@ public class GoodsController {
 
         List<User> userList = new ArrayList<User>();
         for (Comment comment : commentList) {
-            userList.add(userService.getUserById(comment.getUseridFkComment()));
+            userList.add(userService.getUser(comment.getUseridFkComment()));
         }
         modelMap.addAttribute("User", userList);
 
@@ -179,28 +179,33 @@ public class GoodsController {
         modelMap.addAttribute("classifyList", classifyList);
 
         List<Orderdetails> orderdetailsList = new ArrayList<>();
-        assert goodsList != null;
-        for (Goods goods : goodsList) {
-            Orderdetails orderdetails = orderdetailsService.getGoodsByGoodsIdAndIsOut(goods.getGoodsid());
-            if (orderdetails != null) {
-                orderdetailsList.add(orderdetails);
+
+        if (goodsList != null) {
+            for (Goods goods : goodsList) {
+                Orderdetails orderdetails = orderdetailsService.getGoodsByGoodsIdAndIsOut(goods.getGoodsid());
+                if (orderdetails != null) {
+                    orderdetailsList.add(orderdetails);
+                }
+                goods.setHasorders(0);
+                goodsService.updateGoods(goods);
             }
-            goods.setHasorders(0);
-            goodsService.updateGoods(goods);
-        }
-        for (Orderdetails od :orderdetailsList) {
-            Goods goods = new Goods();
-            goods.setGoodsid(od.getGoodsidFkOrder());
-            goods.setHasorders(1);
-            goodsService.updateGoods(goods);
+
+            for (Orderdetails od : orderdetailsList) {
+                Goods goods = new Goods();
+                goods.setGoodsid(od.getGoodsidFkOrder());
+                goods.setHasorders(1);
+                goodsService.updateGoods(goods);
+            }
         }
 
         List<Integer> hasOrder = new ArrayList<>();
         List<Goods> goodsList2 = goodsService.getGoodsByUserId(id);
-        for (Goods goods : goodsList2) {
-            hasOrder.add(goods.getHasorders());
+        if (goodsList2 != null) {
+            for (Goods goods : goodsList2) {
+                hasOrder.add(goods.getHasorders());
+            }
         }
-        System.out.println("/toGoodsManage: "+hasOrder.toString());
+        System.out.println("/toGoodsManage: " + hasOrder.toString());
         modelMap.addAttribute("hasOrder", hasOrder);
 
         return "person/goodsmanage";
