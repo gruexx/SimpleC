@@ -58,7 +58,7 @@
                 <fieldset>
                     <div class="am-form-group am-form-icon am-form-feedback">
                         <input type="text" name="username" id="username" class="am-form-field"
-                               minlength="3" maxlength="12" placeholder="输入用户名（3-12个字符）" required/>
+                               minlength="3" maxlength="12" placeholder="输入用户名（3-16个字符）" required/>
                         <span style="display: none" class="am-icon-check"></span>
                     </div>
                     <div class="am-form-group am-form-icon am-form-feedback">

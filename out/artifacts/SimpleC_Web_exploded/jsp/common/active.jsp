@@ -33,7 +33,7 @@
 <div style="padding-top: 250px;text-align: center">
     <h1 style="font-size: 35px;">${requestScope.msg}</h1>
 
-    <span id="time" style="background: #37ff87;font-size: 30px ;| bolder;">100</span><span
+    <span id="time" style="background: #37ff87;font-size: 30px ;| bolder;">5</span><span
         style="font-size: 30px ;| bolder;">秒钟后自动跳转，如果不跳转，请</span><a href="${APP_PATH}/toLogin"
                                                                     style="font-size: 30px ;| bolder;color: white">点击这里</a>
 </div>

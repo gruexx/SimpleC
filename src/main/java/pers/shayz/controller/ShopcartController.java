@@ -245,6 +245,7 @@ public class ShopcartController {
         for (Shopcart shopcart : shopcartlist) {
             Goods goods = goodsService.getGoodsById(shopcart.getGoodsidFkShopcart());
             goods.setHasorders(1);
+            goods.setGoodsnumber(goods.getGoodsnumber()-shopcart.getNumber());
             goodsService.updateGoods(goods);
             User goodsUser = userService.getUserById(goods.getUseridFkGoods());
             goodsUser.setUserremainder(user.getUserremainder() + shopcart.getNumber() * goods.getGoodsprice());
