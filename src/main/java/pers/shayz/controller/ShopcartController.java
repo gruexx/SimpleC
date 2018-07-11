@@ -222,6 +222,7 @@ public class ShopcartController {
         Double chaoRate = 0.001;
 
         User user = (User) session.getAttribute("user");
+        System.out.println("/Balance: "+user);
         if (user.getUserremainder() < (totalprice - Double.parseDouble(setoff) * chaoRate)) {
             return Msg.fail().add("msg", "余额不足，请先充值");
         }
@@ -231,6 +232,7 @@ public class ShopcartController {
         user.setUserremainder(user.getUserremainder() - totalprice + Double.parseDouble(setoff) * chaoRate);
         user.setUserchaopoint(user.getUserchaopoint() - Integer.parseInt(setoff));
         user.setUserchaopoint(user.getUserchaopoint() + Integer.parseInt(new java.text.DecimalFormat("0").format(totalprice / 10)));
+        user.setUserpassword(null);
         userService.updateUser(user);
         session.setAttribute("user", user);
         Bill bill1 = new Bill();

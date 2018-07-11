@@ -123,4 +123,21 @@ public class User {
     public void setFlag(Integer flag) {
         this.flag = flag;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", userpassword='" + userpassword + '\'' +
+                ", useremail='" + useremail + '\'' +
+                ", userchaopoint=" + userchaopoint +
+                ", userremainder=" + userremainder +
+                ", administrator=" + administrator +
+                ", userphone='" + userphone + '\'' +
+                ", image='" + image + '\'' +
+                ", isactive=" + isactive +
+                ", flag=" + flag +
+                '}';
+    }
 }

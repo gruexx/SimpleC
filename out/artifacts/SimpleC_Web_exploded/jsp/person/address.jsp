@@ -20,7 +20,7 @@
     <link href="${APP_PATH}/css/personal.css" rel="stylesheet" type="text/css">
     <link href="${APP_PATH}/css/addstyle.css" rel="stylesheet" type="text/css">
 
-    <script src="${APP_PATH}/js/ssx.js" type="text/javascript"></script>
+    <script src="${APP_PATH}/js/ssx.js" charset="UTF-8" type="text/javascript"></script>
 
     <link href="${APP_PATH}/css/jquery.toast.min.css" rel="stylesheet">
     <script type="text/javascript" src="${APP_PATH}/js/jquery.toast.min.js"></script>
