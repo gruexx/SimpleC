@@ -108,7 +108,7 @@ public class MessageController {
                     if (null == list || list.size() == 0) {
                         //System.out.println("list null");
                         //synchronized (client) {
-                        client.session.getBasicRemote().sendText("还没聊过天呢，打个招呼吧");
+                        client.session.getBasicRemote().sendText("系统"+" "+"还没聊过天呢，打个招呼吧");
 
                         //}
                     } else {

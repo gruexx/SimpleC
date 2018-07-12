@@ -216,7 +216,15 @@
                     img[iNow].className += 'imgright';
                     span[iNow].className += 'spanright';
                     content.scrollTop = content.scrollHeight;
-                } else {
+                }else if(x[0] == "系统"){
+                    var apppath = '${APP_PATH}';
+                    content.innerHTML += '<li><img src="' + apppath + '/static/picture/logoPro.png"><span>' + x[1] + '</span></li>';
+                    iNow++;
+                    img[iNow].className += 'imgright';
+                    span[iNow].className += 'spanright';
+                    content.scrollTop = content.scrollHeight;
+                }
+                else {
                     num = 1;
                     content.innerHTML += '<li><img src="' + arrIcon[num] + '"><span>' + x[1] + '</span></li>';
                     iNow++;
