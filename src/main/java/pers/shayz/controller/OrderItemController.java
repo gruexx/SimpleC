@@ -71,7 +71,17 @@ public class OrderItemController {
         for (Orderdetails orderdetails : orderdetailsList) {
             userList.add(userService.getUser(orderdetails.getUseridFkOrder()));
         }
-        return Msg.success().add("orderDetailList", orderdetailsList).add("userList", userList);
+
+        List<Orderitem> orderitemList = new ArrayList<>();
+        for (Orderdetails orderdetails : orderdetailsList) {
+            orderitemList.add(orderItemService.getOrderItemById(orderdetails.getOrderitemidFkOrder()));
+        }
+
+        List<Address> addressList = new ArrayList<>();
+        for (Orderitem orderitem : orderitemList) {
+            addressList.add(addressService.getAddressById(orderitem.getAddressidFkOrderitemid()));
+        }
+        return Msg.success().add("orderDetailList", orderdetailsList).add("userList", userList).add("addressList", addressList);
     }
 
     @RequestMapping(value = "/updateIsout", method = RequestMethod.POST)

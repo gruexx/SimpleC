@@ -347,23 +347,6 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/lotteryChaopoint")
-    public String lotteryChaopoint(HttpSession session, @RequestParam("award") String chaoPoint) {
-
-        System.out.println("/lotteryChaopoint: " + chaoPoint);
-
-        User user = (User) session.getAttribute("user");
-        int cp = Integer.parseInt(chaoPoint);
-        int oldchaopoint = user.getUserchaopoint();
-
-        System.out.print("/lotteryChaopoint: ");
-        System.out.println(oldchaopoint + cp);
-        userService.updateUserChaoPointByUserId(user.getUserid(), oldchaopoint + cp - 100);
-
-        session.setAttribute("user", userService.getUser(user.getUserid()));
-        return "home/lottery_draw";
-    }
-
     @RequestMapping(value = "/charge", method = RequestMethod.POST)
     @ResponseBody
     public Msg charge(HttpSession session, @RequestParam("remainder") String remainder) {

@@ -68,7 +68,10 @@
                         <th style="font-size: 16px;font-weight: bold">库存</th>
                         <th style="font-size: 16px;font-weight: bold">图片信息</th>
                         <th style="font-size: 16px;font-weight: bold">详细信息</th>
-                        <th style="font-size: 16px;font-weight: bold">操作</th>
+                        <th style="font-size: 16px;font-weight: bold">操作
+                            <a id="op" style="display: none;color: white" class="am-badge am-badge-danger am-round"
+                               data-am-popover="{content: '点击查看新订单', trigger: 'hover focus'}">New Order!!</a>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -182,6 +185,7 @@
                     <th>商品名称</th>
                     <th>数量</th>
                     <th>买家</th>
+                    <th>地址</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -348,7 +352,11 @@
             }else {
                 $(this).css({
                     display:'block'
-                })
+                });
+                $(this).attr('id', i);
+                $('#op').css({
+                    display:'block'
+                }).attr('href', '#'+i);
             }
         })
     });
@@ -381,6 +389,7 @@
                         '<td>' + goodname + '</td>' +
                         '<td>' + orderDetailList[i].number + '</td>' +
                         '<td>' + result.extend.userList[i].username + '</td>' +
+                        '<td>' + result.extend.addressList[i].address + '</td>' +
                         '<td>' +
                         '<button class="confirmout am-btn am-btn-secondary" data-id="' + orderDetailList[i].orderid + '">确认发货' + '</button>' +
                         '</td>' +
