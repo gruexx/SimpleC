@@ -262,17 +262,36 @@
         }
 
     </script>
+    <script>
+        function mytime(){
+            var a = new Date();
+            var b = a.toLocaleTimeString();
+            var c = a.toLocaleDateString();
+            document.getElementById("time1").innerHTML = c+"&nbsp"+b;
+        }
+        setInterval(function() {mytime()},1000);
+    </script>
+    <script>
+        $(function () {
+            $('#return').click(function () {
+                window.location.href="javascript:history.back(-1)";
+            })
+        })
+
+    </script>
 </head>
 <body>
 <div id="container">
     <div class="header">
-        <span style="float: left;"></span>
-        <span style="float: right;"><%
-            Date d = new Date();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String now = df.format(d);
-            out.println(now);
-        %></span>
+        <span style="float: left;" id="return">返回</span>
+        <span style="float: right;" id="time1">
+                <%--<%--%>
+            <%--Date d = new Date();--%>
+            <%--SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");--%>
+            <%--String now = df.format(d);--%>
+            <%--out.println(now);--%>
+                <%--%>--%>
+        </span>
     </div>
     <ul class="content" style="background-image:url(${APP_PATH}/chatBackground/bg1.jpg);">
 
