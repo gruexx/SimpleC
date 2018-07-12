@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 
 <head>
@@ -68,9 +69,7 @@
         <div class="logistics">
             <h3>选择支付方式</h3>
             <ul class="pay-list">
-                <li class="pay card"><img src="${APP_PATH}/images/wangyin.jpg"/>银联<span></span></li>
-                <li class="pay qq"><img src="${APP_PATH}/images/weizhifu.jpg"/>微信<span></span></li>
-                <li class="pay taobao"><img src="${APP_PATH}/images/zhifubao.jpg"/>支付宝<span></span></li>
+                <li class="pay card"><img src="${APP_PATH}/static/picture/logoPro.png"/>余额支付<span></span></li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -112,21 +111,25 @@
         <!--含运费小计 -->
         <div class="buy-point-discharge ">
             <p class="price g_price "> 合计（含运费）
-                <span>¥</span><em class="pay-sum">${requestScope.totalprice}</em>
+                <span>¥</span><em class="pay-sum"><fmt:formatNumber type="number" value="${requestScope.totalprice}"
+                                                                    pattern="#.##"/></em>
             </p>
             <div style="float:right">
                 <label class="am-checkbox am-success">
                     <input type="checkbox" value="" id="isUsing" data-am-ucheck>使用潮积分抵扣
-                    <p id="isUsingp">${sessionScope.user.userchaopoint*0.001}</p>元
+                    <p id="isUsingp">
+                        <fmt:formatNumber type="number" value="${sessionScope.user.userchaopoint*0.001}"
+                                          pattern="#.###"/>
+                    </p>元
                 </label>
             </div>
         </div>
         <script>
             $(function () {
-                var chao = '${sessionScope.user.userchaopoint*0.001}';
-                var remainder = '${requestScope.totalprice}';
+                var chao = parseInt('${sessionScope.user.userchaopoint*0.001}');
+                var remainder = parseInt('${requestScope.totalprice}');
                 if (chao > remainder) {
-                    $('#isUsingp').text(${requestScope.totalprice});
+                    $('#isUsingp').text(<fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/>);
                     $('#submitOrder').attr("data-chao", ${requestScope.totalprice*1000});
                 }
                 else {
@@ -220,33 +223,37 @@
             console.log("chao: " + setoff);
         }
         var addressid = $('.selectAddress').data('addressid');
-        console.log("addressid:"+addressid);
+        console.log("addressid:" + addressid);
         var totalprice = '${requestScope.totalprice}';
-        console.log("totalprice: "+totalprice);
-        $.ajax({
-            url: "${APP_PATH}/Balance",
-            type: "POST",
-            data: {
-                "addressid": addressid,
-                "totalprice": totalprice,
-                "setoff": setoff,
-                "goodsid": goodsid,
-                "number": number
-            },
-            success: function (result) {
-                if (result.code === 100) {
-                    window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
-                } else {
-                    $.toast({
-                        heading: "Fail",
-                        text: result.extend.msg,
-                        showHideTransition: 'slide',
-                        hideAfter: false,
-                        position: 'top-right',
-                    })
+        console.log("totalprice: " + totalprice);
+        if (addressid == null) {
+            alert("请先添加一个收货地址！！！！")
+        } else {
+            $.ajax({
+                url: "${APP_PATH}/Balance",
+                type: "POST",
+                data: {
+                    "addressid": addressid,
+                    "totalprice": totalprice,
+                    "setoff": setoff,
+                    "goodsid": goodsid,
+                    "number": number
+                },
+                success: function (result) {
+                    if (result.code === 100) {
+                        window.location.href = "${APP_PATH}/toSuccess/" + result.extend.orderitemid;
+                    } else {
+                        $.toast({
+                            heading: "Fail",
+                            text: result.extend.msg,
+                            showHideTransition: 'slide',
+                            hideAfter: false,
+                            position: 'top-right',
+                        })
+                    }
+                    console.log("success");
                 }
-                console.log("success");
-            }
-        })
+            })
+        }
     })
 </script>

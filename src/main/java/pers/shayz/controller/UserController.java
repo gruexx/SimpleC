@@ -81,6 +81,7 @@ public class UserController {
             return Msg.fail().add("msg", "该邮箱已被注册");
         }
 
+        user.setUserchaopoint(10000);
         userService.saveUser(user);
 
         MailUtil mailUtil = new MailUtil();

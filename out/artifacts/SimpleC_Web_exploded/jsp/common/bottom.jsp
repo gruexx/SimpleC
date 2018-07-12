@@ -32,7 +32,7 @@
 <div data-am-smooth-scroll="{speed: 1000}" class="returnToTop" style="
             top: 650px; margin-left: 40px;
             padding-left: 40px;position: fixed;">
-    <a href="#" title="回到顶部" class="am-icon-btn am-icon-arrow-circle-o-up am-active"
+    <a href="#" title="回到顶部" class="am-icon-btn am-icon-arrow-up am-active"
        style="opacity: 0.8;width: 100%;height: 100%;"></a>
 </div>
 

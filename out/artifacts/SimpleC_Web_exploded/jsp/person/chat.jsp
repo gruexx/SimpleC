@@ -283,7 +283,7 @@
 <body>
 <div id="container">
     <div class="header">
-        <span style="float: left;" id="return">返回</span>
+        <span style="float: left;cursor:pointer" id="return">返回</span>
         <span style="float: right;" id="time1">
                 <%--<%--%>
             <%--Date d = new Date();--%>

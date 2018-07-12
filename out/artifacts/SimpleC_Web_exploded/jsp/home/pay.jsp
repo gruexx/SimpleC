@@ -129,8 +129,8 @@
         </div>
         <script>
             $(function () {
-                var chao = '${sessionScope.user.userchaopoint*0.001}';
-                var remainder = '${requestScope.totalprice}';
+                var chao = parseInt('${sessionScope.user.userchaopoint*0.001}');
+                var remainder = parseInt('${requestScope.totalprice}');
                 if (chao > remainder) {
                     $('#isUsingp').text(<fmt:formatNumber type="number" value="${requestScope.totalprice}" pattern="#.##"/>);
                     $('#submitOrder').attr("data-chao", ${requestScope.totalprice*1000});
@@ -233,7 +233,7 @@
 
         var addressid = $('.selectAddress').data('addressid');
         if (addressid == null) {
-            alert("地址呢？？？？？？？？？？？？？？")
+            alert("请先添加一个收货地址！！！！")
         } else {
             console.log(addressid);
             $.ajax({
