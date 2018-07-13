@@ -91,7 +91,7 @@ public class GoodsController {
 
         System.out.println("/doPublish type: " + type);
 
-        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber) || classifyid == null) {
+        if ("".equals(goodsname) || "".equals(goodsprice) || "".equals(goodsnumber)) {
             return Msg.fail().add("msg", "商品信息不完整/商品发布失败");
         }
 
@@ -101,7 +101,9 @@ public class GoodsController {
         goods.setGoodsname(goodsname);
         goods.setGoodsprice(Double.parseDouble(goodsprice));
         goods.setGoodsnumber(Integer.parseInt(goodsnumber));
-        goods.setClassifyidFkGoods(Integer.parseInt(classifyid));
+        if (!"".equals(classifyid)) {
+            goods.setClassifyidFkGoods(Integer.parseInt(classifyid));
+        }
         goods.setGoodsinfo(goodsinfo);
         System.out.println("/doPublish: " + goods);
 
