@@ -31,3 +31,9 @@
  - 加密：DES
  - 校验：JSR303
  - ...
+
+## 部分页面展示
+
+![register](/readme/display1.PNG)
+
+![home](/readme/display2.PNG)
